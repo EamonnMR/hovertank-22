@@ -1,0 +1,8 @@
+{
+	"contains_albedo": true,
+	"resolution": 512,
+	"src": {
+		"a": "#ff888888",
+		"rgb": "res://assets/yughues_cc0/pattern_79_worn_stone/diffus.png"
+	}
+}

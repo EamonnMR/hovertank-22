@@ -1,0 +1,57 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://addons/zylann.hterrain/hterrain.gd" type="Script" id=1]
+[ext_resource path="res://addons/zylann.hterrain/hterrain_texture_set.gd" type="Script" id=2]
+[ext_resource path="res://hterrain_data/data.hterrain" type="Resource" id=3]
+[ext_resource path="res://World_slot0_albedo_bump.packed_tex" type="Texture" id=4]
+[ext_resource path="res://World_slot0_normal_roughness.packed_tex" type="Texture" id=5]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 2 )
+mode = 0
+textures = [ [ ExtResource( 4 ) ], [ ExtResource( 5 ) ] ]
+
+[sub_resource type="CubeMesh" id=2]
+size = Vector3( 4, 1, 2 )
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 2.01798, 0.484609, 1 )
+
+[sub_resource type="RayShape" id=4]
+length = 1.56696
+
+[node name="World" type="Spatial"]
+
+[node name="HTerrain" type="Spatial" parent="."]
+script = ExtResource( 1 )
+ambient_wind = 0.0
+lod_scale = 2.0
+map_scale = Vector3( 1, 1, 1 )
+_terrain_data = ExtResource( 3 )
+chunk_size = 32
+collision_enabled = true
+collision_layer = 1
+collision_mask = 0
+shader_type = "Classic4Lite"
+custom_shader = null
+custom_globalmap_shader = null
+texture_set = SubResource( 1 )
+render_layers = 1
+shader_params/u_ground_uv_scale = 20
+shader_params/u_depth_blending = true
+shader_params/u_triplanar = false
+shader_params/u_tile_reduction = Plane( 0, 0, 0, 0 )
+
+[node name="Player" type="KinematicBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14.6572, 1.49532, 12.9349 )
+
+[node name="Graphics" type="MeshInstance" parent="Player"]
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="Player"]
+shape = SubResource( 3 )
+
+[node name="Hover" type="CollisionShape" parent="Player"]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
+shape = SubResource( 4 )
