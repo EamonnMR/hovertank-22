@@ -3,4 +3,4 @@
 [node name="CameraRig" type="Spatial"]
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.39322, 0.919444, 0, -0.919444, 0.39322, 0, 36.7005, 21.1904 )
+transform = Transform( 1, 0, 0, 0, 0.561636, 0.827385, 0, -0.827385, 0.561636, 0, 35.9173, 21.1904 )

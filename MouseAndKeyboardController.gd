@@ -26,10 +26,11 @@ func get_motion_and_facing() -> Array:
 		l = true
 	if (Input.is_key_pressed(KEY_D)):
 		r = true
+	# Up and down inverted
 	if (Input.is_key_pressed(KEY_W)):
-		u = true
-	if (Input.is_key_pressed(KEY_S)):
 		d = true
+	if (Input.is_key_pressed(KEY_S)):
+		u = true
 		
 	if r:
 		if d:

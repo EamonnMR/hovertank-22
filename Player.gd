@@ -3,10 +3,11 @@ var aim_dir: float
 var motion: Vector3 = Vector3(0,0,0)
 var cooldown: bool
 var health = 1
+export var gravity = 60
 
-const MOTION_SPEED = 300.0 #100.00
-const ACCEL = 5
-const DRIFT = 1
+const MOTION_SPEED = 50.0
+const ACCEL = 1
+const DRIFT = 0.5
 
 
 func is_player():
@@ -33,10 +34,11 @@ func _physics_process(delta: float):
 	else:
 		motion = lerp(motion, Vector3(0,0,0), DRIFT * delta)
 	if facing != null:
-		# Rotate self to face direction?
-		pass
-		
-	move_and_slide(motion * MOTION_SPEED)
+		$Graphics.rotation.y = facing
+	var gravity_delta = gravity * delta * Vector3.DOWN
+	var motion_total = motion * MOTION_SPEED + gravity_delta
+	move_and_slide_with_snap(motion_total, Vector3.DOWN, Vector3.UP)
+
 	_handle_shooting()
 
 func _handle_shooting():
