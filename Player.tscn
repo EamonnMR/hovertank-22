@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://CameraRig.tscn" type="PackedScene" id=2]
@@ -8,11 +8,8 @@
 [sub_resource type="CubeMesh" id=1]
 size = Vector3( 4, 1, 2 )
 
-[sub_resource type="CylinderShape" id=4]
-radius = 2.40776
-
-[sub_resource type="RayShape" id=3]
-length = 1.56696
+[sub_resource type="RayShape" id=2]
+length = 1.58936
 
 [node name="Player" type="KinematicBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14.6572, 1.49532, 12.9349 )
@@ -26,11 +23,8 @@ script = ExtResource( 1 )
 mesh = SubResource( 1 )
 material/0 = null
 
-[node name="CollisionShape" type="CollisionShape" parent="."]
-shape = SubResource( 4 )
+[node name="CameraRig" parent="." instance=ExtResource( 2 )]
 
 [node name="Hover" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
-shape = SubResource( 3 )
-
-[node name="CameraRig" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 3.57628e-07, 0 )
+shape = SubResource( 2 )
