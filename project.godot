@@ -18,15 +18,28 @@ _global_script_classes=[ {
 "class": "HTerrainDataSaver",
 "language": "GDScript",
 "path": "res://addons/zylann.hterrain/hterrain_resource_saver.gd"
+}, {
+"base": "Spatial",
+"class": "Health",
+"language": "GDScript",
+"path": "res://components/Health.gd"
+}, {
+"base": "Reference",
+"class": "PlayerController",
+"language": "GDScript",
+"path": "res://PlayerController.gd"
 } ]
 _global_script_class_icons={
 "HTerrainDataLoader": "",
-"HTerrainDataSaver": ""
+"HTerrainDataSaver": "",
+"Health": "",
+"PlayerController": ""
 }
 
 [application]
 
 config/name="owtd"
+run/main_scene="res://World.tscn"
 config/icon="res://icon.png"
 
 [editor_plugins]
