@@ -7,6 +7,7 @@ script = ExtResource( 1 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.561636, 0.827385, 0, -0.827385, 0.561636, 0, 35.9173, 21.1904 )
+far = 500.0
 
 [node name="InvisibleControlForGettingMousePos" type="Control" parent="."]
 margin_right = 40.0

@@ -42,6 +42,10 @@ config/name="owtd"
 run/main_scene="res://World.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Procgen="*res://Procgen.tscn"
+
 [editor_plugins]
 
 enabled=PoolStringArray( "zylann.hterrain" )

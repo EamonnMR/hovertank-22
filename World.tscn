@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://addons/zylann.hterrain/hterrain.gd" type="Script" id=1]
 [ext_resource path="res://addons/zylann.hterrain/hterrain_texture_set.gd" type="Script" id=2]
@@ -11,6 +11,9 @@
 script = ExtResource( 2 )
 mode = 0
 textures = [ [ ExtResource( 4 ) ], [ ExtResource( 5 ) ] ]
+
+[sub_resource type="QuadMesh" id=2]
+size = Vector2( 1000, 1000 )
 
 [node name="World" type="Spatial"]
 
@@ -29,6 +32,13 @@ render_layers = 1
 shader_params/u_ground_uv_scale = 20
 shader_params/u_depth_blending = true
 shader_params/u_triplanar = false
-shader_params/u_tile_reduction = Plane( 0, 0, 0, 0 )
+shader_params/u_tile_reduction = Plane( 1, 0, 0, 0 )
 
 [node name="Player" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14.6572, 27.6839, 12.9349 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
+visible = false
+mesh = SubResource( 2 )
+material/0 = null

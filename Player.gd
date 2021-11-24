@@ -3,11 +3,11 @@ var aim_dir: float
 var motion: Vector3 = Vector3(0,0,0)
 var cooldown: bool
 var health = 1
-export var gravity = 60
+export var gravity = 90
 
-const MOTION_SPEED = 50.0
-const ACCEL = 1
-const DRIFT = 0.5
+const MOTION_SPEED = 30.0
+const ACCEL = 0.5
+const DRIFT = 0.25
 
 
 func is_player():
