@@ -27,7 +27,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "PlayerController",
 "language": "GDScript",
-"path": "res://PlayerController.gd"
+"path": "res://components/PlayerController.gd"
 } ]
 _global_script_class_icons={
 "HTerrainDataLoader": "",

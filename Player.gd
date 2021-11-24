@@ -22,7 +22,7 @@ func _ready():
 	#if ProjectSettings.get_setting("Prefs/controller"):
 		#add_child(preload("res://GamepadController.tscn").instance())
 	#else:
-	add_child(preload("res://MouseAndKeyboardController.tscn").instance())
+	add_child(preload("res://components/MouseAndKeyboardController.tscn").instance())
 	
 func _physics_process(delta: float):
 	aim_dir = $PlayerController.get_aim_dir()
@@ -38,7 +38,7 @@ func _physics_process(delta: float):
 	var gravity_delta = gravity * delta * Vector3.DOWN
 	var motion_total = motion * MOTION_SPEED + gravity_delta
 	move_and_slide_with_snap(motion_total, Vector3.DOWN, Vector3.UP)
-
+	_handle_aiming()
 	_handle_shooting()
 
 func _handle_shooting():
@@ -63,3 +63,6 @@ func explode():
 	# var explo = get_explo()
 	# explo.position = position
 	# get_node("../").add_child(explo)
+
+func _handle_aiming():
+	$Turret.update(Vector3(0,0,0)) #$CameraRig.get_aim_point())

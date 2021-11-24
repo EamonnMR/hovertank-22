@@ -11,4 +11,8 @@ func _physics_process(delta):
 	var result = space_state.intersect_ray(from, to, [], RAYCAST_MASK)
 	if "position" in result:
 		$PickerLocation.global_transform.origin = result.position
-		$PointerMarker.rect_position = $Camera.unproject_position(result.position)
+		$PointerMarker.rect_position = camera.unproject_position(result.position)
+	# TODO: If there's an object under this, pick and set the picker location to the object's origin
+
+func get_aim_point() -> Vector3:
+	return $PickerLocation.get_global_transform().origin

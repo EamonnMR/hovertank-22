@@ -1,13 +1,9 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://CameraRig.gd" type="Script" id=1]
+[ext_resource path="res://components/CameraRig.gd" type="Script" id=1]
 
 [node name="CameraRig" type="Spatial"]
 script = ExtResource( 1 )
-
-[node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.561636, 0.827385, 0, -0.827385, 0.561636, 0, 35.9173, 21.1904 )
-far = 500.0
 
 [node name="InvisibleControlForGettingMousePos" type="Control" parent="."]
 margin_right = 40.0
@@ -38,3 +34,7 @@ text = "X"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.561636, 0.827385, 0, -0.827385, 0.561636, 0, 6.52334, 10.3112 )
+far = 500.0

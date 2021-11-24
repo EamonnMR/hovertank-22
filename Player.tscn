@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
-[ext_resource path="res://CameraRig.tscn" type="PackedScene" id=2]
+[ext_resource path="res://components/CameraRig.tscn" type="PackedScene" id=2]
 [ext_resource path="res://components/Health.tscn" type="PackedScene" id=3]
-[ext_resource path="res://MouseAndKeyboardController.tscn" type="PackedScene" id=4]
+[ext_resource path="res://components/MouseAndKeyboardController.tscn" type="PackedScene" id=4]
+[ext_resource path="res://components/Turret.tscn" type="PackedScene" id=5]
 
 [sub_resource type="CubeMesh" id=1]
 size = Vector3( 4, 1, 2 )
@@ -28,3 +29,6 @@ material/0 = null
 [node name="Hover" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 3.57628e-07, 0 )
 shape = SubResource( 2 )
+
+[node name="Turret" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.555049, 0 )
