@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://addons/zylann.hterrain/hterrain.gd" type="Script" id=1]
 [ext_resource path="res://addons/zylann.hterrain/hterrain_texture_set.gd" type="Script" id=2]
@@ -15,10 +15,18 @@ textures = [ [ ExtResource( 4 ) ], [ ExtResource( 5 ) ] ]
 [sub_resource type="QuadMesh" id=2]
 size = Vector2( 1000, 1000 )
 
+[sub_resource type="ProceduralSky" id=3]
+
+[sub_resource type="Environment" id=4]
+background_sky = SubResource( 3 )
+ambient_light_color = Color( 0.129412, 0.129412, 0.129412, 1 )
+glow_enabled = true
+
 [node name="World" type="Spatial"]
 
 [node name="HTerrain" type="Spatial" parent="."]
 script = ExtResource( 1 )
+map_scale = Vector3( 2, 1, 2 )
 _terrain_data = ExtResource( 3 )
 chunk_size = 32
 collision_enabled = true
@@ -42,3 +50,14 @@ transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0
 visible = false
 mesh = SubResource( 2 )
 material/0 = null
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 4 )
+
+[node name="CelestialSphere" type="Spatial" parent="WorldEnvironment"]
+transform = Transform( 0.994824, -0.101612, 0, 0.101612, 0.994824, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="WorldEnvironment/CelestialSphere"]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 36.021, 0 )
+shadow_enabled = true
+shadow_bias = 1.82

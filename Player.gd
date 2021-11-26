@@ -65,4 +65,4 @@ func explode():
 	# get_node("../").add_child(explo)
 
 func _handle_aiming():
-	$Turret.update(Vector3(0,0,0)) #$CameraRig.get_aim_point())
+	$Turret.update($CameraRig.get_aim_point())

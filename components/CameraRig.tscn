@@ -36,5 +36,7 @@ __meta__ = {
 }
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.561636, 0.827385, 0, -0.827385, 0.561636, 0, 6.52334, 10.3112 )
+transform = Transform( 1, 0, 0, 0, 0.856024, 0.516937, 0, -0.516937, 0.856024, 0, 39.0389, 23.6656 )
 far = 500.0
+
+[node name="Center" type="Spatial" parent="."]
