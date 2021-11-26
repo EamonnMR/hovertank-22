@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://addons/zylann.hterrain/hterrain.gd" type="Script" id=1]
 [ext_resource path="res://addons/zylann.hterrain/hterrain_texture_set.gd" type="Script" id=2]
@@ -6,19 +6,32 @@
 [ext_resource path="res://World_slot0_albedo_bump.packed_tex" type="Texture" id=4]
 [ext_resource path="res://World_slot0_normal_roughness.packed_tex" type="Texture" id=5]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://addons/godot-navigation-lite/bin/navmesh_parameters.gdns" type="Script" id=7]
+[ext_resource path="res://addons/godot-navigation-lite/bin/detour_navigation.gdns" type="Script" id=8]
+[ext_resource path="res://addons/godot-navigation-lite/bin/navigation.gdnlib" type="GDNativeLibrary" id=9]
 
-[sub_resource type="ProceduralSky" id=1]
+[sub_resource type="NativeScript" id=6]
+class_name = "DetourNavigationMesh"
+library = ExtResource( 9 )
 
-[sub_resource type="Environment" id=2]
-background_sky = SubResource( 1 )
-ambient_light_color = Color( 0.129412, 0.129412, 0.129412, 1 )
-glow_enabled = true
+[sub_resource type="Resource" id=7]
+script = ExtResource( 7 )
+cell_size = 0.3
+tile_size = 64
+cell_height = 0.2
+agent_height = 2.0
+agent_radius = 0.6
+agent_max_climb = 0.9
+agent_max_slope = 45.0
+region_min_size = 8.0
+region_merge_size = 20.0
+edge_max_length = 12.0
+edge_max_error = 1.3
+detail_sample_distance = 6.0
+detail_sample_max_error = 1.0
+max_layers = 8
 
-[sub_resource type="NavigationMesh" id=3]
-vertices = PoolVector3Array( 32.2215, 1.28769, 28.0639, 32.2215, 1.28769, 37.0639, 41.2215, 1.28769, 37.0639, 41.2215, 1.28769, 28.0639 )
-polygons = [ PoolIntArray( 3, 2, 0 ), PoolIntArray( 0, 2, 1 ) ]
-geometry/parsed_geometry_type = 2
-geometry/collision_mask = 4294967295
+[sub_resource type="ArrayMesh" id=8]
 
 [sub_resource type="Resource" id=4]
 script = ExtResource( 2 )
@@ -28,25 +41,25 @@ textures = [ [ ExtResource( 4 ) ], [ ExtResource( 5 ) ] ]
 [sub_resource type="CubeMesh" id=5]
 size = Vector3( 10, 2, 10 )
 
+[sub_resource type="ProceduralSky" id=1]
+
+[sub_resource type="Environment" id=2]
+background_sky = SubResource( 1 )
+ambient_light_color = Color( 0.129412, 0.129412, 0.129412, 1 )
+glow_enabled = true
+
 [node name="World" type="Spatial"]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 2 )
+[node name="DetourNavigation" type="Spatial" parent="."]
+script = ExtResource( 8 )
 
-[node name="CelestialSphere" type="Spatial" parent="WorldEnvironment"]
-transform = Transform( 0.994824, -0.101612, 0, 0.101612, 0.994824, 0, 0, 0, 1, 0, 0, 0 )
+[node name="DetourNavigationMesh" type="Spatial" parent="DetourNavigation"]
+script = SubResource( 6 )
+serialized_navmesh_data = PoolByteArray( 84, 69, 83, 77, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 154, 153, 153, 65, 154, 153, 153, 65, 1, 0, 0, 0, 0, 0, 64, 0 )
+parameters = SubResource( 7 )
+debug_mesh = SubResource( 8 )
 
-[node name="DirectionalLight" type="DirectionalLight" parent="WorldEnvironment/CelestialSphere"]
-transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 36.021, 0 )
-shadow_enabled = true
-shadow_bias = 0.5
-
-[node name="Navigation" type="Navigation" parent="."]
-
-[node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="Navigation"]
-navmesh = SubResource( 3 )
-
-[node name="HTerrain" type="Spatial" parent="Navigation/NavigationMeshInstance"]
+[node name="HTerrain" type="Spatial" parent="DetourNavigation/DetourNavigationMesh"]
 script = ExtResource( 1 )
 map_scale = Vector3( 2, 1, 2 )
 _terrain_data = ExtResource( 3 )
@@ -64,10 +77,21 @@ shader_params/u_depth_blending = true
 shader_params/u_triplanar = false
 shader_params/u_tile_reduction = Plane( 1, 0, 0, 0 )
 
-[node name="Player" parent="Navigation/NavigationMeshInstance" instance=ExtResource( 6 )]
+[node name="Player" parent="DetourNavigation/DetourNavigationMesh" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 118.876, -1.41231, 86.2321 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Navigation/NavigationMeshInstance"]
+[node name="MeshInstance" type="MeshInstance" parent="DetourNavigation/DetourNavigationMesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 36.6215, 0, 32.4639 )
 mesh = SubResource( 5 )
 material/0 = null
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 2 )
+
+[node name="CelestialSphere" type="Spatial" parent="WorldEnvironment"]
+transform = Transform( 0.994824, -0.101612, 0, 0.101612, 0.994824, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="WorldEnvironment/CelestialSphere"]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 36.021, 0 )
+shadow_enabled = true
+shadow_bias = 0.5
