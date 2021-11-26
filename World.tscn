@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://addons/zylann.hterrain/hterrain.gd" type="Script" id=1]
 [ext_resource path="res://addons/zylann.hterrain/hterrain_texture_set.gd" type="Script" id=2]
@@ -7,24 +7,46 @@
 [ext_resource path="res://World_slot0_normal_roughness.packed_tex" type="Texture" id=5]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=6]
 
-[sub_resource type="Resource" id=1]
+[sub_resource type="ProceduralSky" id=1]
+
+[sub_resource type="Environment" id=2]
+background_sky = SubResource( 1 )
+ambient_light_color = Color( 0.129412, 0.129412, 0.129412, 1 )
+glow_enabled = true
+
+[sub_resource type="NavigationMesh" id=3]
+vertices = PoolVector3Array( 32.2215, 1.28769, 28.0639, 32.2215, 1.28769, 37.0639, 41.2215, 1.28769, 37.0639, 41.2215, 1.28769, 28.0639 )
+polygons = [ PoolIntArray( 3, 2, 0 ), PoolIntArray( 0, 2, 1 ) ]
+geometry/parsed_geometry_type = 2
+geometry/collision_mask = 4294967295
+
+[sub_resource type="Resource" id=4]
 script = ExtResource( 2 )
 mode = 0
 textures = [ [ ExtResource( 4 ) ], [ ExtResource( 5 ) ] ]
 
-[sub_resource type="QuadMesh" id=2]
-size = Vector2( 1000, 1000 )
-
-[sub_resource type="ProceduralSky" id=3]
-
-[sub_resource type="Environment" id=4]
-background_sky = SubResource( 3 )
-ambient_light_color = Color( 0.129412, 0.129412, 0.129412, 1 )
-glow_enabled = true
+[sub_resource type="CubeMesh" id=5]
+size = Vector3( 10, 2, 10 )
 
 [node name="World" type="Spatial"]
 
-[node name="HTerrain" type="Spatial" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 2 )
+
+[node name="CelestialSphere" type="Spatial" parent="WorldEnvironment"]
+transform = Transform( 0.994824, -0.101612, 0, 0.101612, 0.994824, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="WorldEnvironment/CelestialSphere"]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 36.021, 0 )
+shadow_enabled = true
+shadow_bias = 0.5
+
+[node name="Navigation" type="Navigation" parent="."]
+
+[node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="Navigation"]
+navmesh = SubResource( 3 )
+
+[node name="HTerrain" type="Spatial" parent="Navigation/NavigationMeshInstance"]
 script = ExtResource( 1 )
 map_scale = Vector3( 2, 1, 2 )
 _terrain_data = ExtResource( 3 )
@@ -35,29 +57,17 @@ collision_mask = 0
 shader_type = "Classic4Lite"
 custom_shader = null
 custom_globalmap_shader = null
-texture_set = SubResource( 1 )
+texture_set = SubResource( 4 )
 render_layers = 1
 shader_params/u_ground_uv_scale = 20
 shader_params/u_depth_blending = true
 shader_params/u_triplanar = false
 shader_params/u_tile_reduction = Plane( 1, 0, 0, 0 )
 
-[node name="Player" parent="." instance=ExtResource( 6 )]
+[node name="Player" parent="Navigation/NavigationMeshInstance" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 118.876, -1.41231, 86.2321 )
 
-[node name="MeshInstance" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
-visible = false
-mesh = SubResource( 2 )
+[node name="MeshInstance" type="MeshInstance" parent="Navigation/NavigationMeshInstance"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 36.6215, 0, 32.4639 )
+mesh = SubResource( 5 )
 material/0 = null
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 4 )
-
-[node name="CelestialSphere" type="Spatial" parent="WorldEnvironment"]
-transform = Transform( 0.994824, -0.101612, 0, 0.101612, 0.994824, 0, 0, 0, 1, 0, 0, 0 )
-
-[node name="DirectionalLight" type="DirectionalLight" parent="WorldEnvironment/CelestialSphere"]
-transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 36.021, 0 )
-shadow_enabled = true
-shadow_bias = 0.8
