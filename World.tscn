@@ -43,7 +43,7 @@ shader_params/u_triplanar = false
 shader_params/u_tile_reduction = Plane( 1, 0, 0, 0 )
 
 [node name="Player" parent="." instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 118.876, 27.6839, 86.2321 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 118.876, -1.41231, 86.2321 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
@@ -60,4 +60,4 @@ transform = Transform( 0.994824, -0.101612, 0, 0.101612, 0.994824, 0, 0, 0, 1, 0
 [node name="DirectionalLight" type="DirectionalLight" parent="WorldEnvironment/CelestialSphere"]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 36.021, 0 )
 shadow_enabled = true
-shadow_bias = 1.82
+shadow_bias = 0.8
