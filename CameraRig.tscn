@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://components/CameraRig.gd" type="Script" id=1]
+[ext_resource path="res://CameraRig.gd" type="Script" id=1]
 
 [node name="CameraRig" type="Spatial"]
 script = ExtResource( 1 )
@@ -35,8 +35,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Camera" type="Camera" parent="."]
+[node name="Camera" type="InterpolatedCamera" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.856024, 0.516937, 0, -0.516937, 0.856024, 0, 39.0389, 23.6656 )
 far = 500.0
+target = NodePath("../CameraOffset/CameraLocation")
+enabled = true
 
 [node name="Center" type="Spatial" parent="."]
+
+[node name="CameraOffset" type="Spatial" parent="."]
+
+[node name="CameraLocation" type="Spatial" parent="CameraOffset"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 39.7149, 24.0506 )

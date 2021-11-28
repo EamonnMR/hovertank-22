@@ -2,7 +2,7 @@ extends Spatial
 
 const RAYCAST_MASK = 1
 
-func _ready():
+func _process(delta):
 	$Camera.look_at(to_global(Vector3(0,0,0)), Vector3.UP)
 
 func _physics_process(delta):
@@ -19,3 +19,6 @@ func _physics_process(delta):
 
 func get_aim_point() -> Vector3:
 	return $PickerLocation.get_global_transform().origin
+
+func get_mover_path() -> NodePath:
+	return $CameraOffset.get_path()

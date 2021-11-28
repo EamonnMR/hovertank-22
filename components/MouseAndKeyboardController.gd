@@ -1,8 +1,16 @@
 extends Node
 
-func get_aim_dir() -> float:
-	return 0.0
-	# TODO: Steal 3d mouse code from vehicles
+var cam_rig: Node
+
+func is_player():
+	return true
+
+func _ready():
+	# TODO: SOC
+	cam_rig = get_node("../../CameraRig")
+
+func get_aim_point() -> float:
+	return cam_rig.get_aim_point()
 
 # Facings to radians
 const E = PI * 0

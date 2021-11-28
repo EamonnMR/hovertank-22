@@ -10,7 +10,6 @@ func _aim_to_turret_pose(aim_point: Vector3) -> Vector2:
 	var euler = Transform.IDENTITY.looking_at(
 		local_point, Vector3.UP
 	).basis.get_euler()
-	print("aim_point: ", aim_point, " local_point: ", local_point, " euler: ", euler)
 	return Vector2(euler.x, euler.y + PI/2)
 
 func try_shoot_primary():
@@ -21,7 +20,6 @@ func try_shoot_secondary():
 
 func update(aim_point: Vector3):
 	var aim_pose = _aim_to_turret_pose(aim_point)
-	print("aim_point: ", aim_point, " aim_pose: ", aim_pose)
 	# var aim_pose = Vector2(-0.078713, 3.865857)
 	$RotationPivot.rotation.y = aim_pose.y
 	$RotationPivot/ElevationPivot.rotation.z = aim_pose.x

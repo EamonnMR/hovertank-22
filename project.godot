@@ -24,7 +24,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://components/Health.gd"
 }, {
-"base": "Reference",
+"base": "Node",
 "class": "PlayerController",
 "language": "GDScript",
 "path": "res://components/PlayerController.gd"
@@ -52,5 +52,4 @@ enabled=PoolStringArray( "godot-navigation-lite", "zylann.hterrain" )
 
 [rendering]
 
-quality/driver/driver_name="GLES2"
 environment/default_environment="res://default_env.tres"

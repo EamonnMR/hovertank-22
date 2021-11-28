@@ -11,11 +11,17 @@ const DRIFT = 0.25
 
 
 func is_player():
-	return true
+	return $Controller.is_player()
 
 signal destroyed(unit)
 	
 func _ready():
+	
+	if $Controller.is_player():
+		# TODO: Not great for SOC
+		var camera = get_node("../CameraRig")
+		$CameraMover.remote_path = camera.get_mover_path()
+	
 	var map = get_node("../../")
 	# connect("destroyed", map, "unit_destroyed")
 	$Health.connect("destroyed", self, "_dead")
@@ -25,8 +31,7 @@ func _ready():
 	add_child(preload("res://components/MouseAndKeyboardController.tscn").instance())
 	
 func _physics_process(delta: float):
-	aim_dir = $PlayerController.get_aim_dir()
-	var motion_and_facing = $PlayerController.get_motion_and_facing()
+	var motion_and_facing = $Controller.get_motion_and_facing()
 	var facing = motion_and_facing[1]
 	# Drifty movement:
 	if motion_and_facing[0] != null:
@@ -65,4 +70,4 @@ func explode():
 	# get_node("../").add_child(explo)
 
 func _handle_aiming():
-	$Turret.update($CameraRig.get_aim_point())
+	$Turret.update($Controller.get_aim_point())
