@@ -3,7 +3,7 @@ extends Spatial
 const RAYCAST_MASK = 1
 
 func _process(delta):
-	$Camera.look_at(to_global(Vector3(0,0,0)), Vector3.UP)
+	$Camera.look_at($CameraOffset.to_global(Vector3(0,0,0)), Vector3.UP)
 
 func _physics_process(delta):
 	var mouse_pos = $InvisibleControlForGettingMousePos.get_global_mouse_position()
