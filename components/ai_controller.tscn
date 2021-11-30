@@ -4,3 +4,8 @@
 
 [node name="Controller" type="Spatial"]
 script = ExtResource( 1 )
+
+[node name="RecalcTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="RecalcTimer" to="." method="_on_RecalcTimer_timeout"]
