@@ -1,4 +1,4 @@
-[gd_scene load_steps=361 format=2]
+[gd_scene load_steps=362 format=2]
 
 [ext_resource path="res://addons/godot-navigation-lite/bin/cached_navmesh_parameters.gdns" type="Script" id=1]
 [ext_resource path="res://Map.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://CameraRig.tscn" type="PackedScene" id=4]
 [ext_resource path="res://components/MouseAndKeyboardController.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Vehicle.tscn" type="PackedScene" id=6]
+[ext_resource path="res://components/ai_controller.tscn" type="PackedScene" id=7]
 [ext_resource path="res://addons/godot-navigation-lite/bin/detour_navigation.gdns" type="Script" id=8]
 [ext_resource path="res://addons/godot-navigation-lite/bin/navigation.gdnlib" type="GDNativeLibrary" id=9]
 
@@ -4596,4 +4597,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14.067, 2.79337, 33.3776 )
 [node name="CameraRig" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 84.9529, 0, 143.88 )
 
+[node name="Vehicle" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18.6811, 3.44039, 55.2345 )
+
+[node name="Controller" parent="Vehicle" instance=ExtResource( 7 )]
+
 [editable path="Player"]
+[editable path="Vehicle"]

@@ -9,7 +9,7 @@ func _ready():
 	# TODO: SOC
 	cam_rig = get_node("../../CameraRig")
 
-func get_aim_point() -> float:
+func get_aim_point() -> Vector3:
 	return cam_rig.get_aim_point()
 
 # Facings to radians
