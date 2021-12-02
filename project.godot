@@ -48,7 +48,7 @@ Procgen="*res://Procgen.tscn"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "godot-navigation-lite", "zylann.hterrain" )
+enabled=PoolStringArray( "res://addons/zylann.hterrain/plugin.cfg" )
 
 [rendering]
 

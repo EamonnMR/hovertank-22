@@ -4,3 +4,6 @@
 [submodule "lib/Godot-Navigation-Lite"]
 	path = lib/Godot-Navigation-Lite
 	url = git@github.com:MilosLukic/Godot-Navigation-Lite.git
+[submodule "lib/godotdetour"]
+	path = lib/godotdetour
+	url = git@github.com:TheSHEEEP/godotdetour.git

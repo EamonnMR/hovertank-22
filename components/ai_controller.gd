@@ -52,6 +52,6 @@ func _obtain_target(target):
 	
 func recalculate_path():
 	# var path = navmesh.find_path(global_transform.origin, target.global_transform.origin).points
-	path = get_node("../../../").get_simple_path(global_transform.origin, target.global_transform.origin)
-	print(global_transform.origin, " to ", target.global_transform.origin, " path: ", path)
-	
+	#path = get_node("../../../").get_simple_path(global_transform.origin, target.global_transform.origin)
+	#print(global_transform.origin, " to ", target.global_transform.origin, " path: ", path)
+	pass
