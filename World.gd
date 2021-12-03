@@ -2,6 +2,8 @@
 
 extends Spatial
 
+signal nav_ready
+
 const DetourNavigation 	            :NativeScript = preload("res://addons/godotdetour/detournavigation.gdns")
 const DetourNavigationParameters	:NativeScript = preload("res://addons/godotdetour/detournavigationparameters.gdns")
 const DetourNavigationMeshParameters    :NativeScript = preload("res://addons/godotdetour/detournavigationmeshparameters.gdns")
@@ -35,6 +37,7 @@ func _ready():
 	yield(get_tree(), "idle_frame")
 	drawDebugMesh()
 	print("Drawing debug mesh")
+	emit_signal("nav_ready")
 	
 func toggle_debug_display():
 	if navMeshToDisplay == 1:
@@ -133,12 +136,14 @@ func initializeNavigation():
 	# Mark an area in the center as grass, this is doable before initalization
 	if navigation == null:
 		navigation = DetourNavigation.new()
-	var vertices :Array = []
-	vertices.append(Vector3(-2.0, -0.5, 1.7))
-	vertices.append(Vector3(3.2, -0.5, 2.2))
-	vertices.append(Vector3(2.3, -0.5, -2.0))
-	vertices.append(Vector3(-1.2, -0.5, -3.1))
-	var markedAreaId = navigation.markConvexArea(vertices, 1.5, 4) # 4 = grass
+	
+	#How to add special areas
+	#var vertices :Array = []
+	#vertices.append(Vector3(-2.0, -0.5, 1.7))
+	#vertices.append(Vector3(3.2, -0.5, 2.2))
+	#vertices.append(Vector3(2.3, -0.5, -2.0))
+	#vertices.append(Vector3(-1.2, -0.5, -3.1))
+	#var markedAreaId = navigation.markConvexArea(vertices, 1.5, 4) # 4 = grass
 
 	# Initialize the navigation with the mesh instance and the parameters
 	navigation.initialize(get_level_mesh(), navParams)
@@ -170,7 +175,7 @@ func drawDebugMesh() -> void:
 	# Don't do anything if navigation is not initialized
 	if not navigation.isInitialized():
 		return
-	
+	print("Redraw debug mesh")
 	# Free the old instance
 	if debugMeshInstance != null:
 		remove_child(debugMeshInstance)
@@ -448,3 +453,11 @@ func onAgentNoMovement(detourAgent, distanceLeft :float, agent :Spatial):
 	# print("Detour agent ", detourAgent, " reported no movement. Distance left: ", distanceLeft)
 	if distanceLeft < 0.75 * agent.scale.x:
 		detourAgent.stop()
+
+func redraw():
+	var timer :Timer = Timer.new()
+	timer.set_one_shot(true)
+	timer.set_wait_time(0.1)
+	timer.connect("timeout", self, "drawDebugMesh")
+	add_child(timer)
+	timer.start()
