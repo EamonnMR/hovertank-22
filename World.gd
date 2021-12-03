@@ -55,15 +55,14 @@ func get_agent():
 	# TODO
 
 func get_level_mesh():
-	var csgCombiner :CSGShape = get_node("CSGCombiner")
-	csgCombiner._update_shape()
-	var arrayMesh :ArrayMesh = csgCombiner.get_meshes()[1]
-	var meshInstance :MeshInstance = get_node("MeshInstance")
-	if meshInstance.mesh == null:
-		meshInstance.mesh = arrayMesh
-		meshInstance.create_trimesh_collision()
-		return meshInstance.get_child(0)
-	return levelStaticBody
+	#var csgCombiner :CSGShape = get_node("CSGCombiner")
+	#csgCombiner._update_shape()
+	return get_node("HTerrain_FullMesh")
+	# if meshInstance.mesh == null:
+	# 	meshInstance.mesh = arrayMesh
+	# 	meshInstance.create_trimesh_collision()
+	# 	return meshInstance.get_child(0)
+	# return levelStaticBody
 
 # Initializes the navigation
 func initializeNavigation():
@@ -131,9 +130,6 @@ func initializeNavigation():
 	navMeshParamsLarge.detailSampleMaxError = 1.0
 	navParams.navMeshParameters.append(navMeshParamsLarge)
 
-	# Create the arrayMesh from the CSG and set it as the meshInstance's mesh
-	level_static_body = get_level_mesh()
-
 	# Mark an area in the center as grass, this is doable before initalization
 	if navigation == null:
 		navigation = DetourNavigation.new()
@@ -145,7 +141,7 @@ func initializeNavigation():
 	var markedAreaId = navigation.markConvexArea(vertices, 1.5, 4) # 4 = grass
 
 	# Initialize the navigation with the mesh instance and the parameters
-	navigation.initialize(meshInstance, navParams)
+	navigation.initialize(get_level_mesh(), navParams)
 
 	# Set a few query filters
 	var weights :Dictionary = {}
@@ -189,8 +185,9 @@ func drawDebugMesh() -> void:
 
 	# Add the debug mesh instance a little elevated to avoid flickering
 	debugMeshInstance.translation = Vector3(0.0, 0.05, 0.0)
-	var displayMeshInst :MeshInstance = get_node("MeshInstance")
-	debugMeshInstance.rotation = displayMeshInst.rotation
+	# No idea what the point of this bit is
+	# var displayMeshInst :MeshInstance = get_node("MeshInstance")
+	# debugMeshInstance.rotation = displayMeshInst.rotation
 	add_child(debugMeshInstance)
 
 
@@ -409,8 +406,8 @@ func doSaveLoadRoutine():
 	# Draw the debug mesh
 	# Make sure everything loaded by the Navigation has been applied internally after the first internal navigation thread tick
 	# Otherwise, we risk drawing an "unfinished" state
-	yield(navigation, "navigation_tick_done")
-	drawDebugMesh()
+	# yield(navigation, "navigation_tick_done")
+	# drawDebugMesh()
 	
 	# Done
 	$Control/TempLbl.bbcode_text = ""
