@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://Map.tscn" type="PackedScene" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://components/MouseAndKeyboardController.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Vehicle.tscn" type="PackedScene" id=6]
 [ext_resource path="res://components/ai_controller.tscn" type="PackedScene" id=7]
+[ext_resource path="res://components/AgentMovement.tscn" type="PackedScene" id=8]
+[ext_resource path="res://components/HoverMovement.tscn" type="PackedScene" id=9]
 
 [sub_resource type="ProceduralSky" id=4]
 
@@ -43,6 +45,8 @@ script = ExtResource( 1 )
 [node name="Player" parent="." instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 37.7196, 2.79337, 35.7604 )
 
+[node name="Movement" parent="Player" instance=ExtResource( 9 )]
+
 [node name="Controller" parent="Player" instance=ExtResource( 5 )]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -60,7 +64,9 @@ shadow_bias = 0.5
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 84.9529, 0, 143.88 )
 
 [node name="Vehicle" parent="." instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 122.155, 1.15578, 101.935 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 122.155, -1.25172, 101.935 )
+
+[node name="Movement" parent="Vehicle" instance=ExtResource( 8 )]
 
 [node name="Controller" parent="Vehicle" instance=ExtResource( 7 )]
 

@@ -11,7 +11,7 @@ const MIN_GOAL_POINT_DIST = 10
 
 func _ready():
 	navmesh = get_node("../../NavigationMesh") # TODO: Different navmeshes for different movement capabilities
-	_obtain_target(get_node("../../../../Player"))
+	_obtain_target(get_node("../../Player"))
 
 func is_player():
 	return false
@@ -54,4 +54,7 @@ func recalculate_path():
 	# var path = navmesh.find_path(global_transform.origin, target.global_transform.origin).points
 	#path = get_node("../../../").get_simple_path(global_transform.origin, target.global_transform.origin)
 	#print(global_transform.origin, " to ", target.global_transform.origin, " path: ", path)
-	pass
+	if target:
+		get_node("../Movement").navigate_to_position(target.global_transform.origin)
+	else:
+		return Vector3()
