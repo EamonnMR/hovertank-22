@@ -15,22 +15,22 @@ func _ready():
 	parent = get_node("../")
 	controller = get_node("../Controller")
 	world = parent.get_node("../")
+	
+	var sticky_point = world.stick_to_ground(parent.global_transform.origin)
+	
 	if world.navigation:
-		_create_nav_agent()
+		_create_nav_agent(sticky_point)
 	else:
-		get_tree().get_root().get_node("World").connect("nav_ready", self, "_create_nav_agent")
+		get_tree().get_root().get_node("World").connect("nav_ready", self, "_create_nav_agent", [sticky_point])
 
 func navigate_to_position(position: Vector3):
 	if agent:
 		agent.moveTowards(position)
 
-func _create_nav_agent():
+func _create_nav_agent(position_on_ground):
 	print("Create nav agent")
-	# Create an agent in GodotDetour and remember both
-	var targetPos :Vector3 = parent.global_transform.origin
 	var params = DetourCrowdAgentParameters.new()
-	targetPos.y -= 0.1
-	params.position = targetPos
+	params.position = position_on_ground - Vector3(0, 0.1, 0)
 	params.radius = 0.3
 	params.height = 1.6
 	params.maxAcceleration = 6.0
@@ -57,6 +57,7 @@ func _create_nav_agent():
 	if agent == null:
 		print("Unable to place agent!")
 	else:
+		print("Able to create nav agent")
 		agent.connect("arrived_at_target", self, "_on_agent_arrived", [agent], CONNECT_DEFERRED)
 		agent.connect("no_progress", self, "_on_agent_no_progress", [agent], CONNECT_DEFERRED)
 		agent.connect("no_movement", self, "_on_agent_movement", [agent], CONNECT_DEFERRED)
