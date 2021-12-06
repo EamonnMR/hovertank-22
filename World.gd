@@ -30,6 +30,18 @@ var navMeshToDisplay		:int = 0
 var lastUpdateTimestamp		:int = OS.get_ticks_msec()
 var offMeshID				:int = 0
 
+func stickToGround(point: Vector3):
+	var collisionMask = 1 # TODO: Make a terrain-only mask and use it here
+	# The pathfinding system only likes to interact with things that are stuck to the ground
+	var to :Vector3 = rayQueryPos + 1000.0 * point
+	var spaceState :PhysicsDirectSpaceState = get_world().direct_space_state
+	var result :Dictionary = spaceState.intersect_ray(point, to, [], collisionMask)
+	if result.empty():
+		return null
+	else:
+		assert result == $HTerrain_FullMesh/StaticBody
+		return result.position
+
 func _ready():
 	print("initializeNavigation")
 	yield(get_tree(), "idle_frame")
