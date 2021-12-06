@@ -24,6 +24,7 @@ func _ready():
 		get_tree().get_root().get_node("World").connect("nav_ready", self, "_create_nav_agent", [sticky_point])
 
 func navigate_to_position(position: Vector3):
+	print("Update nav to: ", position)
 	if agent:
 		agent.moveTowards(position)
 
@@ -64,6 +65,7 @@ func _create_nav_agent(position_on_ground):
 
 func _physics_process(delta):
 	if agent and agent.isMoving == true:
+		print(agent.position)
 		if usePrediction:
 			var result: Dictionary = agent.getPredictedMovement(parent.translation, -parent.global_transform.basis.z, lastUpdateTimestamp, deg2rad(2.5))
 			parent.translation = result["position"]
