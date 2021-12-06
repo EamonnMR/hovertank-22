@@ -24,7 +24,7 @@ func _physics_process(delta):
 	else:
 		motion = lerp(motion, Vector3(0,0,0), drift * delta)
 	# TODO: Lerp facing
-	if facing:
+	if facing != null:
 		parent.set_facing(facing)
 	var gravity_delta = gravity * delta * Vector3.DOWN
 	var motion_total = motion * motion_speed + gravity_delta

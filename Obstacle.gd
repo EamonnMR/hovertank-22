@@ -1,9 +1,12 @@
 extends MeshInstance
 
 var obstacle
+var world
 
 func _ready():
-	get_node("../").connect("nav_ready", self, "_setup_obstacle")
+	world = get_node("../")
+	transform.origin = world.stick_to_ground(global_transform.origin)
+	world.connect("nav_ready", self, "_setup_obstacle")
 
 func _setup_obstacle():
 	var world = get_node("../")
