@@ -39,7 +39,7 @@ func stick_to_ground(point: Vector3):
 	if result.empty():
 		return null
 	else:
-		assert(result.collider == $HTerrain_FullMesh/StaticBody)
+		# assert(result.collider == $HTerrain_FullMesh/StaticBody)
 		return result.position
 
 func _ready():

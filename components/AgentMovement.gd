@@ -26,7 +26,7 @@ func _ready():
 func navigate_to_position(position: Vector3):
 	print("Update nav to: ", position)
 	if agent:
-		agent.moveTowards(position)
+		agent.moveTowards(world.stick_to_ground(position))
 
 func _create_nav_agent(position_on_ground):
 	print("Create nav agent")
@@ -61,11 +61,10 @@ func _create_nav_agent(position_on_ground):
 		print("Able to create nav agent")
 		agent.connect("arrived_at_target", self, "_on_agent_arrived", [agent], CONNECT_DEFERRED)
 		agent.connect("no_progress", self, "_on_agent_no_progress", [agent], CONNECT_DEFERRED)
-		agent.connect("no_movement", self, "_on_agent_movement", [agent], CONNECT_DEFERRED)
+		agent.connect("no_movement", self, "_on_agent_no_movement", [agent], CONNECT_DEFERRED)
 
 func _physics_process(delta):
 	if agent and agent.isMoving == true:
-		print(agent.position)
 		if usePrediction:
 			var result: Dictionary = agent.getPredictedMovement(parent.translation, -parent.global_transform.basis.z, lastUpdateTimestamp, deg2rad(2.5))
 			parent.translation = result["position"]
@@ -76,3 +75,12 @@ func _physics_process(delta):
 
 	# Remember time of update
 	lastUpdateTimestamp = OS.get_ticks_msec()
+
+func _on_agent_arrived():
+	print("agent arrived")
+
+func _on_agent_no_progress():
+	print("agent no progress")
+
+func _on_agent_no_movement():
+	print("agent no movement")
