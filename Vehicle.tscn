@@ -18,7 +18,7 @@ radius = 0.507259
 height = 0.002
 
 [node name="Vehicle" type="KinematicBody"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14.6572, 1.49532, 12.9349 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.495, 0 )
 script = ExtResource( 1 )
 
 [node name="Health" parent="." instance=ExtResource( 3 )]

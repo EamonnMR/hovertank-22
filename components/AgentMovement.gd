@@ -24,9 +24,12 @@ func _ready():
 		get_tree().get_root().get_node("World").connect("nav_ready", self, "_create_nav_agent", [sticky_point])
 
 func navigate_to_position(position: Vector3):
+	$PointMarker.transform.origin = to_local(position)
+	position = world.stick_to_ground(position)
 	print("Update nav to: ", position)
-	if agent:
-		agent.moveTowards(world.stick_to_ground(position))
+	if agent and position:
+		agent.moveTowards(position)
+		$DestinationMarker.transform.origin = to_local(position)
 
 func _create_nav_agent(position_on_ground):
 	print("Create nav agent")
