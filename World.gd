@@ -31,17 +31,19 @@ var lastUpdateTimestamp		:int = OS.get_ticks_msec()
 var offMeshID				:int = 0
 
 func stick_to_ground(point: Vector3):
+	var from = point + Vector3.UP * 25
 	var collisionMask = 1 # TODO: Make a terrain-only mask and use it here
 	# The pathfinding system only likes to interact with things that are stuck to the ground
 	var to :Vector3 = point + Vector3.DOWN * 100
 	var spaceState :PhysicsDirectSpaceState = get_world().direct_space_state
-	var result :Dictionary = spaceState.intersect_ray(point, to, [], collisionMask)
+	var result :Dictionary = spaceState.intersect_ray(from, to, [], collisionMask)
 	if result.empty():
-		print("Cannot stick to ground between ", point, " and ", to)
+		print("Cannot stick to ground between ", from, " and ", to)
 		return null
 	else:
+		# TODO: Fix this with collision flags
 		# assert(result.collider == $HTerrain_FullMesh/StaticBody)
-		return result.position
+		return result.position#  + Vector3(0,-0.2,0)
 
 func _ready():
 	print("initializeNavigation")

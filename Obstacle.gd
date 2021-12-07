@@ -9,6 +9,7 @@ func _ready():
 	world.connect("nav_ready", self, "_setup_obstacle")
 
 func _setup_obstacle():
+	print("Setup Obstacle")
 	var world = get_node("../")
 	#obstacle = world.navigation.addBoxObstacle(
 	#	global_transform.origin - Vector3(0, 1, 0),

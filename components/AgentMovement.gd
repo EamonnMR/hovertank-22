@@ -81,9 +81,12 @@ func _physics_process(delta):
 
 func _on_agent_arrived():
 	print("agent arrived")
+	controller.recalculate_path()
 
 func _on_agent_no_progress():
 	print("agent no progress")
+	controller.recalculate_path()
 
 func _on_agent_no_movement():
 	print("agent no movement")
+	controller.recalculate_path()
