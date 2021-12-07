@@ -75,7 +75,9 @@ func _physics_process(delta):
 		else:
 			parent.translation = agent.position
 			parent.look_at(parent.translation + agent.velocity, parent.transform.basis.y)
-
+	else:
+		pass
+		#This is what's up
 	# Remember time of update
 	lastUpdateTimestamp = OS.get_ticks_msec()
 
