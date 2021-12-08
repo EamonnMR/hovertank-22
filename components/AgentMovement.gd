@@ -8,7 +8,7 @@ var world
 
 var lastUpdateTimestamp
 
-export var usePrediction = false
+export var usePrediction = true
 
 
 func _ready():

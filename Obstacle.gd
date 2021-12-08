@@ -1,4 +1,4 @@
-extends MeshInstance
+extends Spatial
 
 var obstacle
 var world
@@ -18,7 +18,7 @@ func _setup_obstacle():
 	#)
 	obstacle = world.navigation.addCylinderObstacle(global_transform.origin - Vector3(0, 10, 0), 10, 30)
 	world.navigation.rebuildChangedTiles()
-	print(obstacle)
+	print("obstacle: ", obstacle)
 	
 	world.redraw()
 
