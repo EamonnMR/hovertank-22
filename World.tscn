@@ -74,7 +74,8 @@ collision_mask = 0
 
 [node name="HTerrain" parent="." instance=ExtResource( 2 )]
 visible = false
-collision_mask = 1
+collision_layer = 129
+collision_mask = 129
 
 [node name="Obstacle" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 48.9638, 1.17308, 39.7697 )
@@ -94,6 +95,8 @@ skeleton = NodePath("")
 material/0 = null
 
 [node name="StaticBody" type="StaticBody" parent="HTerrain_FullMesh"]
+collision_layer = 129
+collision_mask = 129
 
 [node name="CollisionShape" type="CollisionShape" parent="HTerrain_FullMesh/StaticBody"]
 shape = SubResource( 8576 )

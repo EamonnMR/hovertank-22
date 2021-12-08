@@ -50,6 +50,17 @@ Procgen="*res://Procgen.tscn"
 
 enabled=PoolStringArray( "res://addons/zylann.hterrain/plugin.cfg" )
 
+[input]
+
+shoot={
+"deadzone": 0.5,
+"events": [  ]
+}
+shoot_secondary={
+"deadzone": 0.5,
+"events": [  ]
+}
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"

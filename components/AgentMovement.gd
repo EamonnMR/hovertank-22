@@ -8,7 +8,7 @@ var world
 
 var lastUpdateTimestamp
 
-export var usePrediction = true
+export var usePrediction = false
 
 
 func _ready():
@@ -25,11 +25,14 @@ func _ready():
 
 func navigate_to_position(position: Vector3):
 	$PointMarker.transform.origin = to_local(position)
-	position = world.stick_to_ground(position)
-	print("Update nav to: ", position)
-	if agent and position:
+	var maybe_position = world.stick_to_ground(position)
+	# print("Update nav to: ", position)
+	if agent and maybe_position:
+		position = maybe_position
 		agent.moveTowards(position)
 		$DestinationMarker.transform.origin = to_local(position)
+	else:
+		print("Could not stick to ground from ", position)
 
 func _create_nav_agent(position_on_ground):
 	print("Create nav agent")
@@ -67,17 +70,15 @@ func _create_nav_agent(position_on_ground):
 		agent.connect("no_movement", self, "_on_agent_no_movement", [agent], CONNECT_DEFERRED)
 
 func _physics_process(delta):
-	if agent and agent.isMoving == true:
+	if agent: # and agent.isMoving == true:
 		if usePrediction:
 			var result: Dictionary = agent.getPredictedMovement(parent.translation, -parent.global_transform.basis.z, lastUpdateTimestamp, deg2rad(2.5))
 			parent.translation = result["position"]
-			parent.look_at(parent.translation + result["direction"], parent.transform.basis.y)
+			parent.get_node("Graphics").look_at(parent.translation + result["direction"], parent.transform.basis.y)
 		else:
 			parent.translation = agent.position
-			parent.look_at(parent.translation + agent.velocity, parent.transform.basis.y)
-	else:
-		pass
-		#This is what's up
+			parent.get_node("Graphics").look_at(parent.translation + agent.velocity, parent.transform.basis.y)
+		# print("agent.isMoving:  ", agent.isMoving)
 	# Remember time of update
 	lastUpdateTimestamp = OS.get_ticks_msec()
 
