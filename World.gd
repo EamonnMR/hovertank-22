@@ -32,7 +32,6 @@ var offMeshID				:int = 0
 
 func stick_to_ground(point: Vector3):
 	var from = point + Vector3.UP * 25
-	print("$HTerrain_FullMesh/StaticBody.collision_mask = ", $HTerrain_FullMesh/StaticBody.collision_mask)
 	var collisionMask = 128
 	# The pathfinding system only likes to interact with things that are stuck to the ground
 	var to :Vector3 = point + Vector3.DOWN * 100
@@ -42,9 +41,7 @@ func stick_to_ground(point: Vector3):
 		print("Cannot stick to ground between ", from, " and ", to)
 		return null
 	else:
-		# TODO: Fix this with collision flags
-		#assert(result.collider == $HTerrain_FullMesh/StaticBody)
-		return result.position + Vector3(0, -0.2, 0)
+		return result.position - Vector3(0, 0.2, 0)
 
 func _ready():
 	print("initializeNavigation")
@@ -99,7 +96,7 @@ func initializeNavigation():
 	# Units are usually in world units [wu] (e.g. meters, or whatever you use), but some may be in voxel units [vx] (multiples of cellSize).
 
 	# x = width & depth of a single cell (only one value as both must be the same) | y = height of a single cell. [wu]
-	navMeshParamsSmall.cellSize = Vector2(0.15, 0.1)
+	navMeshParamsSmall.cellSize = Vector2(.4, 0.1)
 	# The maximum number of agents that can be active on this navmesh
 	navMeshParamsSmall.maxNumAgents = 256
 	# How steep an angle can be to still be considered walkable. In degree. Max 90.0.
@@ -209,85 +206,11 @@ func drawDebugMesh() -> void:
 	# No idea what the point of this bit is
 	# var displayMeshInst :MeshInstance = get_node("MeshInstance")
 	# debugMeshInstance.rotation = displayMeshInst.rotation
+	print("Debug mesh drawn")
 	add_child(debugMeshInstance)
 
 
 # Called during physics process updates (doing creation/removal of obstacles and agents, etc.)
-func _physics_process(delta):
-	if doPlaceRemoveObstacle == true or doMarkArea == true or doPlaceRemoveAgent == true or doSetTargetPosition == true:
-		var redrawDebugMesh :bool = false
-
-		# Adjust the collision mask
-		var collisionMask = 1
-		if doPlaceRemoveObstacle:
-			collisionMask = 1 | 2
-		if doPlaceRemoveAgent:
-			collisionMask = 1 | 3
-
-		# Querying is the same for obstacles, marks & agents
-		var cam :Camera = $Camera
-		var to :Vector3 = rayQueryPos + 1000.0 * -cam.global_transform.basis.z
-		var spaceState :PhysicsDirectSpaceState = get_world().direct_space_state
-		var result :Dictionary = spaceState.intersect_ray(rayQueryPos, to, [], collisionMask)
-
-		# Quit if we didn't hit anything
-		if result.empty():
-			return
-
-		# Place or remove an obstacle
-		if doPlaceRemoveObstacle == true:
-			doPlaceRemoveObstacle = false
-			redrawDebugMesh = true
-
-			# Check if we hit the level geometry
-			if result.collider == levelStaticBody:
-				# Create an obstacle in Godot
-				var newObstacle :RigidBody = $Obstacle.duplicate()
-				newObstacle.translation = result.position
-				add_child(newObstacle)
-
-				# Create an obstacle in GodotDetour and remember both
-				var targetPos :Vector3 = result.position
-				targetPos.y -= 0.2
-				var godotDetourObstacle = navigation.addCylinderObstacle(targetPos, 0.7, 2.0)
-				obstacles[newObstacle] = godotDetourObstacle
-			# Otherwise, we hit an obstacle
-			else:
-				# Remove the obstacle
-				var obstacle :RigidBody = result.collider
-				var godotDetourObstacle = obstacles[obstacle]
-				godotDetourObstacle.destroy() # This is important! Don't leave memory leaks
-				obstacles.erase(obstacle)
-				remove_child(obstacle)
-				obstacle.queue_free()
-
-		# Mark a somewhat random area
-		if doMarkArea == true:
-			doMarkArea = false
-			redrawDebugMesh = true
-
-			var vertices :Array = []
-			var targetPos :Vector3 = result.position
-			vertices.append(targetPos + Vector3(rand_range(-0.5, -2.0), -0.5, rand_range(-0.5, -2.0)))
-			vertices.append(targetPos + Vector3(rand_range(0.5, 2.0), -0.5, rand_range(-0.5, -2.0)))
-			vertices.append(targetPos + Vector3(rand_range(0.5, 2.0), -0.5, rand_range(0.5, 2.0)))
-			vertices.append(targetPos + Vector3(rand_range(-0.5, -2.0), -0.5, rand_range(0.5, 2.0)))
-			var markedAreaId = navigation.markConvexArea(vertices, 1.5, 2) # 2 = water
-
-			# Doing this right after marking a single area is not good for performance
-			# It is just done this way here for demo purposes
-			navigation.rebuildChangedTiles()
-
-		# Update the debug mesh after a bit (letting the navigation thread catch up)
-		if redrawDebugMesh == true:
-			var timer :Timer = Timer.new()
-			timer.set_one_shot(true)
-			timer.set_wait_time(0.1)
-			timer.connect("timeout", self, "drawDebugMesh")
-			add_child(timer)
-			timer.start()
-
-# Go through the entire process of saving and re-loading the navmesh
 func doSaveLoadRoutine():
 	# Save the current state (twice to see difference between compressed and raw)
 	$Control/TempLbl.bbcode_text = "Saving current state..."
@@ -357,23 +280,6 @@ func doSaveLoadRoutine():
 	
 	# Done
 	$Control/TempLbl.bbcode_text = ""
-	
-# Update function
-func _process(delta):
-	# Update the agents
-	for agent in agents:
-		var detourCrowdAgent = agents[agent]
-		if detourCrowdAgent.isMoving == true:
-			if usePrediction:
-				var result :Dictionary = detourCrowdAgent.getPredictedMovement(agent.translation, -agent.global_transform.basis.z, lastUpdateTimestamp, deg2rad(2.5))
-				agent.translation = result["position"]
-				agent.look_at(agent.translation + result["direction"], agent.transform.basis.y)
-			else:
-				agent.translation = detourCrowdAgent.position
-				agent.look_at(agent.translation + detourCrowdAgent.velocity, agent.transform.basis.y)
-	
-	# Remember time of update
-	lastUpdateTimestamp = OS.get_ticks_msec()
 
 # Do something when an agent arrived
 func onAgentArrived(detourAgent, agent :Spatial):
