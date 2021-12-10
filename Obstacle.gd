@@ -16,7 +16,7 @@ func _setup_obstacle():
 	#	Vector3(8, 16, 8),
 	#	global_transform.basis.get_euler().x
 	#)
-	obstacle = world.navigation.addCylinderObstacle(global_transform.origin, 4, 10)
+	obstacle = world.navigation.addCylinderObstacle(global_transform.origin, 4.5, 10)
 	world.navigation.rebuildChangedTiles()
 	print("obstacle: ", obstacle)
 	
