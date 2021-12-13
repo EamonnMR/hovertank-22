@@ -4,6 +4,7 @@ var parent: KinematicBody
 var controller
 
 export var gravity = 90
+# export var gravity = 0
 export var motion_speed = 30.0
 export var accel = 0.5
 export var drift = 0.25

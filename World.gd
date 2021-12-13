@@ -2,14 +2,30 @@
 
 extends Spatial
 
+
 signal nav_ready
 
+var terrain_mesh
+
+const NAV_TERRAIN_MASK = 128
 const DetourNavigation 	            :NativeScript = preload("res://addons/godotdetour/detournavigation.gdns")
 const DetourNavigationParameters	:NativeScript = preload("res://addons/godotdetour/detournavigationparameters.gdns")
 const DetourNavigationMeshParameters    :NativeScript = preload("res://addons/godotdetour/detournavigationmeshparameters.gdns")
 const DetourCrowdAgent	            :NativeScript = preload("res://addons/godotdetour/detourcrowdagent.gdns")
 const DetourCrowdAgentParameters    :NativeScript = preload("res://addons/godotdetour/detourcrowdagentparameters.gdns")
 const DetourObstacle				:NativeScript = preload("res://addons/godotdetour/detourobstacle.gdns")
+
+# Import classes
+const HTerrain = preload("res://addons/zylann.hterrain/hterrain.gd")
+const HTerrainData = preload("res://addons/zylann.hterrain/hterrain_data.gd")
+const HTerrainTextureSet = preload("res://addons/zylann.hterrain/hterrain_texture_set.gd")
+const HTerrainMesher = preload("res://addons/zylann.hterrain/hterrain_mesher.gd")
+
+
+# You may want to change paths to your own textures
+var grass_texture = load("res://assets/yughues_cc0/pattern_79_worn_stone/diffus.png")
+var sand_texture = load("res://assets/yughues_cc0/pattern_80_mossy_rock/diffus.png")
+var leaves_texture = load("res://assets/yughues_cc0/pattern_91_foliage/diffus.png")
 
 var navigation = null
 var testIndex :int = -1
@@ -32,11 +48,10 @@ var offMeshID				:int = 0
 
 func stick_to_ground(point: Vector3):
 	var from = point + Vector3.UP * 25
-	var collisionMask = 128
 	# The pathfinding system only likes to interact with things that are stuck to the ground
 	var to :Vector3 = point + Vector3.DOWN * 100
 	var spaceState :PhysicsDirectSpaceState = get_world().direct_space_state
-	var result :Dictionary = spaceState.intersect_ray(from, to, [], collisionMask)
+	var result :Dictionary = spaceState.intersect_ray(from, to, [], NAV_TERRAIN_MASK)
 	if result.empty():
 		print("Cannot stick to ground between ", from, " and ", to)
 		return null
@@ -44,6 +59,12 @@ func stick_to_ground(point: Vector3):
 		return result.position - Vector3(0, 0.2, 0)
 
 func _ready():
+	_terrain_ready()
+	_navigation_ready()
+
+# Navigation functions -- see godot detour demo
+
+func _navigation_ready():
 	print("initializeNavigation")
 	yield(get_tree(), "idle_frame")
 	yield(initializeNavigation(), "completed")
@@ -71,14 +92,7 @@ func get_agent():
 	# TODO
 
 func get_level_mesh():
-	#var csgCombiner :CSGShape = get_node("CSGCombiner")
-	#csgCombiner._update_shape()
-	return get_node("HTerrain_FullMesh")
-	# if meshInstance.mesh == null:
-	# 	meshInstance.mesh = arrayMesh
-	# 	meshInstance.create_trimesh_collision()
-	# 	return meshInstance.get_child(0)
-	# return levelStaticBody
+	return terrain_mesh
 
 # Initializes the navigation
 func initializeNavigation():
@@ -308,3 +322,96 @@ func redraw():
 	timer.connect("timeout", self, "drawDebugMesh")
 	add_child(timer)
 	timer.start()
+
+# Oh yes, we're also gonna copypasta in the entire hterrain procgen docs section
+func _terrain_ready():
+	# Create terrain resource and give it a size.
+	# It must be either 513, 1025, 2049 or 4097.
+	var terrain_data = HTerrainData.new()
+	terrain_data.resize(513)
+
+	var noise = OpenSimplexNoise.new()
+	var noise_multiplier = 50.0
+
+	# Get access to terrain maps
+	var heightmap: Image = terrain_data.get_image(HTerrainData.CHANNEL_HEIGHT)
+	var normalmap: Image = terrain_data.get_image(HTerrainData.CHANNEL_NORMAL)
+	var splatmap: Image = terrain_data.get_image(HTerrainData.CHANNEL_SPLAT)
+
+	heightmap.lock()
+	normalmap.lock()
+	splatmap.lock()
+
+	# Generate terrain maps
+	# Note: this is an example with some arbitrary formulas,
+	# you may want to come up with your owns
+	
+	# Also note: This displays a totally janked up texture, mapping totally fails.
+	# So, like, fix it I guess.
+	for z in heightmap.get_height():
+		for x in heightmap.get_width():
+			# Generate height
+			var h = noise_multiplier * noise.get_noise_2d(x, z)
+
+			# Getting normal by generating extra heights directly from noise,
+			# so map borders won't have seams in case you stitch them
+			var h_right = noise_multiplier * noise.get_noise_2d(x + 0.1, z)
+			var h_forward = noise_multiplier * noise.get_noise_2d(x, z + 0.1)
+			var normal = Vector3(h - h_right, 0.1, h_forward - h).normalized()
+
+			# Generate texture amounts
+			var splat = splatmap.get_pixel(x, z)
+			var slope = 4.0 * normal.dot(Vector3.UP) - 2.0
+			# Sand on the slopes
+			var sand_amount = clamp(1.0 - slope, 0.0, 1.0)
+			# Leaves below sea level
+			var leaves_amount = clamp(0.0 - h, 0.0, 1.0)
+			splat = splat.linear_interpolate(Color(0,1,0,0), sand_amount)
+			splat = splat.linear_interpolate(Color(0,0,1,0), leaves_amount)
+
+			heightmap.set_pixel(x, z, Color(h, 0, 0))
+			normalmap.set_pixel(x, z, HTerrainData.encode_normal(normal))
+			splatmap.set_pixel(x, z, splat)
+
+	heightmap.unlock()
+	normalmap.unlock()
+	splatmap.unlock()
+
+	# Commit modifications so they get uploaded to the graphics card
+	var modified_region = Rect2(Vector2(), heightmap.get_size())
+	terrain_data.notify_region_change(modified_region, HTerrainData.CHANNEL_HEIGHT)
+	terrain_data.notify_region_change(modified_region, HTerrainData.CHANNEL_NORMAL)
+	terrain_data.notify_region_change(modified_region, HTerrainData.CHANNEL_SPLAT)
+
+	# Create texture set
+	# NOTE: usually this is not made from script, it can be built with editor tools
+	var texture_set = HTerrainTextureSet.new()
+	texture_set.set_mode(HTerrainTextureSet.MODE_TEXTURES)
+	texture_set.insert_slot(-1)
+	texture_set.set_texture(0, HTerrainTextureSet.TYPE_ALBEDO_BUMP, grass_texture)
+	texture_set.insert_slot(-1)
+	texture_set.set_texture(1, HTerrainTextureSet.TYPE_ALBEDO_BUMP, sand_texture)
+	texture_set.insert_slot(-1)
+	texture_set.set_texture(2, HTerrainTextureSet.TYPE_ALBEDO_BUMP, leaves_texture)
+
+	# Create terrain node
+	var terrain = HTerrain.new()
+	terrain.set_shader_type(HTerrain.SHADER_CLASSIC4_LITE)
+	terrain.set_data(terrain_data)
+	terrain.set_texture_set(texture_set)
+	terrain._collision_layer = 1 || NAV_TERRAIN_MASK
+	add_child(terrain)
+	terrain
+
+	# No need to call this, but you may need to if you edit the terrain later on
+	#terrain.update_collider()
+	# Me attempting to generate a mesh out of the terrain
+	var mesh_lod = 2
+	var mesh_scale = Vector3(1,1,1)
+	var mesh := HTerrainMesher.make_heightmap_mesh(heightmap, mesh_lod, mesh_scale)
+	
+	terrain_mesh = MeshInstance.new()
+	terrain_mesh.mesh = mesh
+	terrain_mesh.transform = terrain.transform
+
+	print("Terrain Done")

@@ -52,7 +52,7 @@ func explode():
 	# get_node("../").add_child(explo)
 
 func _handle_aiming():
-	# TODO: Maybe components should just talk to each other?
+	# TODO: Maybe components should just  to each other?
 	$Turret.update($Controller.get_aim_point())
 
 func set_facing(facing):

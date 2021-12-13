@@ -34,7 +34,7 @@ func navigate_to_position(position: Vector3):
 	else:
 		print("Could not stick to ground from ", position)
 
-func _create_nav_agent(position_on_ground):
+func _create_nav_agent(position_on_ground: Vector3):
 	print("Create nav agent")
 	var params = DetourCrowdAgentParameters.new()
 	params.position = position_on_ground - Vector3(0, 0.1, 0)
@@ -75,11 +75,9 @@ func _physics_process(delta):
 			var result: Dictionary = agent.getPredictedMovement(parent.translation, -parent.global_transform.basis.z, lastUpdateTimestamp, deg2rad(2.5))
 			parent.translation = result["position"]
 			parent.get_node("Graphics").look_at(parent.translation + result["direction"], parent.transform.basis.y)
-			parent.get_node("Graphics").rotate(Vector3(0, PI/2, 0))
 		else:
 			parent.translation = agent.position
 			parent.get_node("Graphics").look_at(parent.translation + agent.velocity, parent.transform.basis.y)
-			parent.get_node("Graphics").rotate(Vector3(0, PI/2, 0))
 	# Remember time of update
 	lastUpdateTimestamp = OS.get_ticks_msec()
 
