@@ -67,7 +67,6 @@ collision_mask = 0
 [node name="Controller" parent="Vehicle" instance=ExtResource( 7 )]
 
 [node name="HTerrain" parent="." instance=ExtResource( 2 )]
-visible = false
 collision_layer = 129
 collision_mask = 129
 
@@ -75,6 +74,7 @@ collision_mask = 129
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 48.7785, 1.18827, 72.8716 )
 
 [node name="HTerrain_FullMesh" type="MeshInstance" parent="."]
+visible = false
 mesh = SubResource( 8575 )
 skeleton = NodePath("")
 material/0 = null
@@ -84,19 +84,6 @@ collision_layer = 129
 collision_mask = 129
 
 [node name="CollisionShape" type="CollisionShape" parent="HTerrain_FullMesh/StaticBody"]
-shape = SubResource( 8576 )
-
-[node name="HTerrain_FullMesh2" type="MeshInstance" parent="."]
-transform = Transform( -1, 0, 0, 0, 1, 0, 0, 0, 1, 1.86063, 0, 0 )
-mesh = SubResource( 8575 )
-skeleton = NodePath("")
-material/0 = null
-
-[node name="StaticBody" type="StaticBody" parent="HTerrain_FullMesh2"]
-collision_layer = 129
-collision_mask = 129
-
-[node name="CollisionShape" type="CollisionShape" parent="HTerrain_FullMesh2/StaticBody"]
 shape = SubResource( 8576 )
 
 [node name="Spatial" parent="." instance=ExtResource( 3 )]
