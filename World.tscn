@@ -1,8 +1,7 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://Map.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Obstacle.tscn" type="PackedScene" id=3]
 [ext_resource path="res://CameraRig.tscn" type="PackedScene" id=4]
 [ext_resource path="res://components/MouseAndKeyboardController.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Vehicle.tscn" type="PackedScene" id=6]
@@ -70,9 +69,6 @@ collision_mask = 0
 collision_layer = 129
 collision_mask = 129
 
-[node name="Obstacle" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 48.7785, 1.18827, 72.8716 )
-
 [node name="HTerrain_FullMesh" type="MeshInstance" parent="."]
 visible = false
 mesh = SubResource( 8575 )
@@ -85,9 +81,6 @@ collision_mask = 129
 
 [node name="CollisionShape" type="CollisionShape" parent="HTerrain_FullMesh/StaticBody"]
 shape = SubResource( 8576 )
-
-[node name="Spatial" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 75.9378, 11.3473, 86.3868 )
 
 [editable path="Player"]
 [editable path="Vehicle"]

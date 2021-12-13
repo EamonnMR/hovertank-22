@@ -55,5 +55,5 @@ func _handle_aiming():
 	# TODO: Maybe components should just talk to each other?
 	$Turret.update($Controller.get_aim_point())
 
-func set_facing(facing):
+func set_facing(facing: float):
 	$Graphics.rotation.y = facing
