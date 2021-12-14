@@ -1,21 +1,21 @@
 extends Spatial
 
-var cooldown: bool
+var cooldown: bool = false
 var parent: Node
 class_name Weapon
 
 onready var world = get_tree().get_root().get_node("World")
-onready var projectile = preload("res://projectiles/Projectile.tscn")
+onready var projectile_scene = preload("res://projectiles/Projectile.tscn")
 
 func init(parent: Node):
 	parent = parent
 
-func try_shooting():
+func try_shoot():
 	if not cooldown:
 		_shoot()
 
 func _shoot():
-	var projectile = projectile.instance()
+	var projectile = projectile_scene.instance()
 	projectile.init(parent)
 	world.add_child(projectile)
 	projectile.global_transform = global_transform

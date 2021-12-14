@@ -2,6 +2,9 @@ extends Node
 
 var cam_rig: Node
 
+func is_shooting():
+	return Input.is_action_pressed("shoot")
+
 func is_player():
 	return true
 

@@ -9,7 +9,7 @@ func init(owner: Node):
 	
 func _physics_process(delta):
 	var collision: KinematicCollision = move_and_collide(
-		-global_transform.basis.x * speed * delta
+		global_transform.basis.x * speed * delta
 	)
 	
 	if collision:

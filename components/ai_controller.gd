@@ -58,3 +58,7 @@ func recalculate_path():
 		get_node("../Movement").navigate_to_position(target.global_transform.origin)
 	else:
 		return Vector3()
+
+func is_shooting():
+	# TODO: Do I have a clean line of sight to my target?
+	return false

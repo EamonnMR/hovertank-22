@@ -9,4 +9,7 @@ func get_motion_and_facing() -> Array:
 	return [null, null]
 
 func is_player():
-	true
+	return true
+
+func is_shooting():
+	return false

@@ -29,12 +29,12 @@ func _physics_process(delta: float):
 	_handle_shooting()
 
 func _handle_shooting():
-	if Input.is_action_pressed("shoot"):
+	if $Controller.is_shooting():
 		$Turret.try_shoot_primary()
 		# TODO: Multi Turret vehicles
-	if Input.is_action_pressed("shoot_secondary"):
-		pass
-		# $SecondaryWeapon.try_shooting()
+	#if $Controller.is_shooting_secondary()
+	#	pass
+	#	# $SecondaryWeapon.try_shooting()
 
 func _dead():
 	explode()
