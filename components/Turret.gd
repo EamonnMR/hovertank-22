@@ -1,5 +1,8 @@
 extends Spatial
 
+func _ready():
+	$RotationPivot/ElevationPivot/Weapon.init(get_node("../"))
+
 func _aim_to_turret_pose(aim_point: Vector3) -> Vector2:
 	# aim point: Global coordinates of the thing to aim at
 	# Returns a Vector2 representing yaw and pitch to pose at that target
@@ -13,7 +16,7 @@ func _aim_to_turret_pose(aim_point: Vector3) -> Vector2:
 	return Vector2(euler.x, euler.y + PI/2)
 
 func try_shoot_primary():
-	pass
+	$RotationPivot/ElevationPivot/Weapon.try_shoot()
 	
 func try_shoot_secondary():
 	pass

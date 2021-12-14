@@ -28,12 +28,18 @@ _global_script_classes=[ {
 "class": "PlayerController",
 "language": "GDScript",
 "path": "res://components/PlayerController.gd"
+}, {
+"base": "Spatial",
+"class": "Weapon",
+"language": "GDScript",
+"path": "res://components/Weapon.gd"
 } ]
 _global_script_class_icons={
 "HTerrainDataLoader": "",
 "HTerrainDataSaver": "",
 "Health": "",
-"PlayerController": ""
+"PlayerController": "",
+"Weapon": ""
 }
 
 [application]

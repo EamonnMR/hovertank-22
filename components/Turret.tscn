@@ -1,17 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://components/Turret.gd" type="Script" id=1]
+[ext_resource path="res://components/Weapon.tscn" type="PackedScene" id=2]
 
 [sub_resource type="PrismMesh" id=1]
 size = Vector3( 1, 0.5, 0.5 )
-
-[sub_resource type="SpatialMaterial" id=2]
-albedo_color = Color( 0.984314, 0.0666667, 0.0235294, 1 )
-
-[sub_resource type="CylinderMesh" id=3]
-material = SubResource( 2 )
-top_radius = 0.1
-bottom_radius = 0.1
 
 [node name="Turret" type="Spatial"]
 script = ExtResource( 1 )
@@ -26,7 +19,4 @@ material/0 = null
 [node name="ElevationPivot" type="Spatial" parent="RotationPivot"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.191465, 0 )
 
-[node name="TestGun" type="MeshInstance" parent="RotationPivot/ElevationPivot"]
-transform = Transform( -1.62921e-07, 1, -1.62921e-07, 0, -1.62921e-07, -1, -1, -1.62921e-07, 2.65431e-14, 0.923324, 0, 0 )
-mesh = SubResource( 3 )
-material/0 = null
+[node name="Weapon" parent="RotationPivot/ElevationPivot" instance=ExtResource( 2 )]
