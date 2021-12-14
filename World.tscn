@@ -2,10 +2,10 @@
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://Map.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Building.tscn" type="PackedScene" id=3]
+[ext_resource path="res://entities/Building.tscn" type="PackedScene" id=3]
 [ext_resource path="res://CameraRig.tscn" type="PackedScene" id=4]
 [ext_resource path="res://components/MouseAndKeyboardController.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Vehicle.tscn" type="PackedScene" id=6]
+[ext_resource path="res://entities/Vehicle.tscn" type="PackedScene" id=6]
 [ext_resource path="res://components/ai_controller.tscn" type="PackedScene" id=7]
 [ext_resource path="res://components/AgentMovement.tscn" type="PackedScene" id=8]
 [ext_resource path="res://components/HoverMovement.tscn" type="PackedScene" id=9]
