@@ -11,6 +11,7 @@ data = PoolVector3Array( -4, 8, 4, 4, 8, 4, -4, -8, 4, 4, 8, 4, 4, -8, 4, -4, -8
 size = Vector3( 8, 16, 8 )
 
 [node name="Building" type="StaticBody"]
+collision_layer = 3
 script = ExtResource( 3 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]

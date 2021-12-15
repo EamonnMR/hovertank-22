@@ -95,7 +95,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 84.9529, 0, 143.88 )
 
 [node name="Vehicle" parent="." instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 55.1957, 3.17774, 87.1963 )
-collision_layer = 0
+collision_layer = 2
 collision_mask = 0
 
 [node name="Movement" parent="Vehicle" instance=ExtResource( 8 )]
@@ -119,5 +119,6 @@ collision_mask = 129
 [node name="CollisionShape" type="CollisionShape" parent="HTerrain_FullMesh/StaticBody"]
 shape = SubResource( 8576 )
 
+[editable path="Building"]
 [editable path="Player"]
 [editable path="Vehicle"]
