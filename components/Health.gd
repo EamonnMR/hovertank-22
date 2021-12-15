@@ -36,8 +36,8 @@ func _signal_for_damage():
 
 static func do_damage(entity, damage):
 	if entity.has_node("Health"):
-		print("Do some damage to something")
+		# print("Do some damage to something")
 		entity.get_node("Health").take_damage(damage)
-	else:
-		print(entity.name)
-		print("Cannot damage: node does not have Health node? ", entity.has_node("Health"))
+	# else:
+		# print(entity.name)
+		# print("Cannot damage: node does not have Health node? ", entity.has_node("Health"))

@@ -13,7 +13,6 @@ func _ready():
 	world.connect("nav_ready", self, "_setup_obstacle")
 
 func _setup_obstacle():
-	print("Setup Obstacle")
 	#obstacle = world.navigation.addBoxObstacle(
 	#	global_transform.origin - Vector3(0, 1, 0),
 	#	Vector3(8, 16, 8),
@@ -25,3 +24,5 @@ func _setup_obstacle():
 
 func _exit_tree():
 	obstacle.destroy()
+	world.navigation.rebuildChangedTiles()
+	world.redraw()

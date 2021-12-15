@@ -30,5 +30,5 @@ material/0 = null
 
 [node name="Obstacle" parent="." instance=ExtResource( 1 )]
 
-[connection signal="damaged" from="Health" to="Building" method="_on_Health_damaged"]
-[connection signal="destroyed" from="Health" to="Building" method="_on_Health_destroyed"]
+[connection signal="damaged" from="Health" to="." method="_on_Health_damaged"]
+[connection signal="destroyed" from="Health" to="." method="_on_Health_destroyed"]
