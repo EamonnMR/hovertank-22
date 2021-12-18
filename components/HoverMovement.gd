@@ -10,6 +10,7 @@ export var drift = 0.25
 
 var motion = Vector3(0,0,0)
 
+
 func _ready():
 	parent = get_node("../")
 	controller = get_node("../Controller")
@@ -25,7 +26,7 @@ func _physics_process(delta):
 		motion = lerp(motion, Vector3(0,0,0), drift * delta)
 	# TODO: Lerp facing
 	if facing != null:
-		parent.set_facing(facing)
+		parent.set_facing(facing + PI/2)
 	var gravity_delta = gravity * delta * Vector3.DOWN
 	var motion_total = motion * motion_speed + gravity_delta
 	parent.move_and_slide_with_snap(motion_total, Vector3.DOWN, Vector3.UP)

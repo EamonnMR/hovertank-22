@@ -74,10 +74,10 @@ func _physics_process(delta):
 		if usePrediction:
 			var result: Dictionary = agent.getPredictedMovement(parent.translation, -parent.global_transform.basis.z, lastUpdateTimestamp, deg2rad(2.5))
 			parent.translation = result["position"]
-			parent.set_facing(_get_ideal_face(parent.translation + result["direction"]))
+			parent.get_node("Graphics").look_at(parent.translation + result["direction"], parent.transform.basis.y)
 		else:
 			parent.translation = agent.position
-			parent.set_facing(_get_ideal_face(parent.translation + agent.velocity))
+			parent.get_node("Graphics").look_at(parent.translation + agent.velocity, parent.transform.basis.y)
 	# Remember time of update
 	lastUpdateTimestamp = OS.get_ticks_msec()
 
