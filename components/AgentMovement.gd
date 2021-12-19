@@ -15,6 +15,7 @@ func _ready():
 	parent = get_node("../")
 	controller = get_node("../Controller")
 	world = parent.get_node("../")
+	parent.get_node("Graphics").rotation.y += PI/2
 	
 	var sticky_point = world.stick_to_ground(parent.global_transform.origin)
 	
@@ -40,8 +41,8 @@ func _create_nav_agent(position_on_ground):
 	params.position = position_on_ground - Vector3(0, 0.1, 0)
 	params.radius = 0.3
 	params.height = 1.6
-	params.maxAcceleration = 6.0
-	params.maxSpeed = 3.0
+	params.maxAcceleration = 3.0
+	params.maxSpeed = 6.0
 	params.filterName = "default"
 	# Check more in-depth descriptions of the optimizations here:
 	# http://digestingduck.blogspot.com/2010/11/path-corridor-optimizations.html
@@ -74,10 +75,12 @@ func _physics_process(delta):
 		if usePrediction:
 			var result: Dictionary = agent.getPredictedMovement(parent.translation, -parent.global_transform.basis.z, lastUpdateTimestamp, deg2rad(2.5))
 			parent.translation = result["position"]
-			parent.set_facing(_get_ideal_face(parent.translation + result["direction"]))
+			parent.look_at(parent.translation + result["direction"], parent.transform.basis.y)
+			# parent.rotation.y += PI/2
 		else:
 			parent.translation = agent.position
-			parent.set_facing(_get_ideal_face(parent.translation + agent.velocity))
+			parent.look_at(parent.translation + agent.velocity, parent.transform.basis.y)
+			# parent.rotation.y += PI/2
 	# Remember time of update
 	lastUpdateTimestamp = OS.get_ticks_msec()
 

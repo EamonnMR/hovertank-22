@@ -58,4 +58,5 @@ func _handle_aiming():
 	$Turret.update($Controller.get_aim_point())
 
 func set_facing(facing: float):
-	$Graphics.rotation.y = facing
+	# $GraphicsPivoter.rotation.y = facing
+	rotation.y = facing

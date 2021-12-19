@@ -11,9 +11,11 @@ size = Vector3( 1, 1, 1 )
 script = ExtResource( 1 )
 
 [node name="DestinationMarker" type="MeshInstance" parent="."]
+visible = false
 mesh = SubResource( 1 )
 material/0 = null
 
 [node name="PointMarker" type="MeshInstance" parent="."]
+visible = false
 mesh = SubResource( 2 )
 material/0 = null
