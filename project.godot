@@ -68,6 +68,11 @@ shoot_secondary={
 "events": [  ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="solid"
+3d_physics/layer_8="ground"
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"

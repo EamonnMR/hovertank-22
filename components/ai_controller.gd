@@ -6,12 +6,12 @@ var target: Spatial
 # export var min_range
 var path: Array
 var navmesh
+export var firing_range = 20
 
 const MIN_GOAL_POINT_DIST = 10
 
 func _ready():
 	navmesh = get_node("../../NavigationMesh") # TODO: Different navmeshes for different movement capabilities
-	_obtain_target(get_node("../../Player"))
 
 func is_player():
 	return false
@@ -60,5 +60,12 @@ func recalculate_path():
 		return Vector3()
 
 func is_shooting():
-	# TODO: Do I have a clean line of sight to my target?
-	return false
+	return target and target.global_transform.origin.distance_to(global_transform.origin) < firing_range
+
+func _on_DetectArea_body_entered(body):
+	if not target and body.has_method("is_player") and body.is_player():
+		_obtain_target(body)
+
+
+func _on_DetectArea_body_exited(body):
+	pass # Replace with function body.

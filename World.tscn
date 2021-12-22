@@ -102,6 +102,33 @@ collision_mask = 0
 
 [node name="Controller" parent="Vehicle" instance=ExtResource( 7 )]
 
+[node name="Vehicle2" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 94.5969, 3.17774, 109.839 )
+collision_layer = 2
+collision_mask = 0
+
+[node name="Movement" parent="Vehicle2" instance=ExtResource( 8 )]
+
+[node name="Controller" parent="Vehicle2" instance=ExtResource( 7 )]
+
+[node name="Vehicle3" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 55.1957, 3.17774, 116.595 )
+collision_layer = 2
+collision_mask = 0
+
+[node name="Movement" parent="Vehicle3" instance=ExtResource( 8 )]
+
+[node name="Controller" parent="Vehicle3" instance=ExtResource( 7 )]
+
+[node name="Vehicle4" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.96, 3.17774, 87.1963 )
+collision_layer = 2
+collision_mask = 0
+
+[node name="Movement" parent="Vehicle4" instance=ExtResource( 8 )]
+
+[node name="Controller" parent="Vehicle4" instance=ExtResource( 7 )]
+
 [node name="HTerrain" parent="." instance=ExtResource( 2 )]
 collision_layer = 129
 collision_mask = 129
@@ -122,3 +149,6 @@ shape = SubResource( 8576 )
 [editable path="Building"]
 [editable path="Player"]
 [editable path="Vehicle"]
+[editable path="Vehicle2"]
+[editable path="Vehicle3"]
+[editable path="Vehicle4"]
