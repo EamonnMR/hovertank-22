@@ -1,7 +1,12 @@
 extends Spatial
 
 func _ready():
-	$RotationPivot/ElevationPivot/Weapon.init(get_node("../"))
+	var owner = get_node("../")
+	$RotationPivot/ElevationPivot/Weapon.init(IffProfile.new(
+		owner,
+		not owner.is_player(),
+		owner.is_player()
+	))
 
 func _aim_to_turret_pose(aim_point: Vector3) -> Vector2:
 	# aim point: Global coordinates of the thing to aim at
@@ -26,3 +31,5 @@ func update(aim_point: Vector3):
 	# var aim_pose = Vector2(-0.078713, 3.865857)
 	$RotationPivot.rotation.y = aim_pose.y
 	$RotationPivot/ElevationPivot.rotation.z = aim_pose.x
+
+# func project_ray_from_

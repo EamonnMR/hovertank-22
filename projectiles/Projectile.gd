@@ -3,9 +3,11 @@ extends KinematicBody
 export var speed = 10
 export var damage = 20
 export var already_exploded = false
+var iff: IffProfile
 
-func init(owner: Node):
-	add_collision_exception_with(owner)
+func init(iff: IffProfile):
+	self.iff = iff
+	add_collision_exception_with(iff.owner)
 	
 func _physics_process(delta):
 	var collision: KinematicCollision = move_and_collide(
@@ -23,6 +25,7 @@ func explode():
 
 func _do_impact(collider):
 	print("Shot impact - do damage")
-	Health.do_damage(collider, damage)
+	if not iff.should_exclude(collider):
+		Health.do_damage(collider, damage)
 	print("Blam!")
 	queue_free()
