@@ -17,7 +17,7 @@ func is_player():
 	return false
 
 func get_aim_point() -> Vector3:
-	if target:
+	if target and is_instance_valid(target):
 		return target.global_transform.origin
 	else:
 		return Vector3()
@@ -60,7 +60,7 @@ func recalculate_path():
 		return Vector3()
 
 func is_shooting():
-	return target and target.global_transform.origin.distance_to(global_transform.origin) < firing_range
+	return target and is_instance_valid(target) and target.global_transform.origin.distance_to(global_transform.origin) < firing_range
 
 func _on_DetectArea_body_entered(body):
 	if not target and body.has_method("is_player") and body.is_player():

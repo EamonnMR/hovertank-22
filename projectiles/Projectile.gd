@@ -1,6 +1,6 @@
 extends KinematicBody
 
-export var speed = 10
+export var speed = 30
 export var damage = 20
 export var already_exploded = false
 var iff: IffProfile

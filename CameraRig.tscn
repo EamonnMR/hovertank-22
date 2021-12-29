@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://CameraRig.gd" type="Script" id=1]
+[ext_resource path="res://assets/hackcraft.de_cc0/crosshair3.png" type="Texture" id=2]
+[ext_resource path="res://assets/hackcraft.de_cc0/crosshair0.png" type="Texture" id=3]
 
 [node name="CameraRig" type="Spatial"]
 script = ExtResource( 1 )
@@ -21,15 +23,35 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="PointerMarker"]
-margin_left = -3.86492
-margin_top = -5.35143
-margin_right = 36.1351
-margin_bottom = 8.64857
-text = "X"
+[node name="TextureRect" type="TextureRect" parent="PointerMarker"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -51.3552
+margin_top = -50.354
+margin_right = 12.6448
+margin_bottom = 13.646
+texture = ExtResource( 2 )
+
+[node name="AimMarker" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="TextureRect2" type="TextureRect" parent="AimMarker"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -335.458
+margin_top = -330.683
+margin_right = -271.458
+margin_bottom = -266.683
+rect_scale = Vector2( 10, 10 )
+texture = ExtResource( 3 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 39.7149, 24.0506 )

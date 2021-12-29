@@ -5,7 +5,7 @@ const RAYCAST_MASK = 1
 func _process(delta):
 	$Camera.look_at($CameraOffset.to_global(Vector3(0,0,0)), Vector3.UP)
 
-func _physics_process(delta):
+# func _physics_process(delta):
 	var mouse_pos = $InvisibleControlForGettingMousePos.get_global_mouse_position()
 	var camera = $Camera
 	var from = camera.project_ray_origin(mouse_pos)
@@ -22,3 +22,7 @@ func get_aim_point() -> Vector3:
 
 func get_mover_path() -> NodePath:
 	return $CameraOffset.get_path()
+
+func set_turret_point(aim_position: Vector3):
+	$AimMarker.rect_position = $Camera.unproject_position(aim_position)
+	print("Aim Marker Screen Position: ", $AimMarker.rect_position)

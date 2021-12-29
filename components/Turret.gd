@@ -32,4 +32,18 @@ func update(aim_point: Vector3):
 	$RotationPivot.rotation.y = aim_pose.y
 	$RotationPivot/ElevationPivot.rotation.z = aim_pose.x
 
-# func project_ray_from_
+func project_ray():
+	# Whatis the turret pointing at right now?
+	var collisionMask = 1
+	# The pathfinding system only likes to interact with things that are stuck to the ground
+	var from = global_transform.origin
+	var to = $RotationPivot/ElevationPivot.to_global(Vector3(1000, 0, 0))
+	var spaceState :PhysicsDirectSpaceState = get_world().direct_space_state
+	var result :Dictionary = spaceState.intersect_ray(from, to, [], collisionMask)
+	if result.has("position"):
+		$TurretPointMarker.show()
+		$TurretPointMarker.global_transform.origin = result.position
+	else:
+		$TurretPointMarker.hide()
+	# return {"position": to}
+	return result
