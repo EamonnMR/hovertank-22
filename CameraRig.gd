@@ -1,6 +1,10 @@
 extends Spatial
 
 const RAYCAST_MASK = 1
+var aim_position: Vector3
+
+func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
 func _process(delta):
 	$Camera.look_at($CameraOffset.to_global(Vector3(0,0,0)), Vector3.UP)
@@ -16,7 +20,8 @@ func _process(delta):
 		$PickerLocation.global_transform.origin = result.position
 		$PointerMarker.rect_position = camera.unproject_position(result.position)
 	# TODO: If there's an object under this, pick and set the picker location to the object's origin
-
+	print("Update Rect Position of flashy dot: ", $AimMarker.rect_position)
+	$AimMarker.rect_position = $Camera.unproject_position(aim_position)
 func get_aim_point() -> Vector3:
 	return $PickerLocation.get_global_transform().origin
 
@@ -24,5 +29,4 @@ func get_mover_path() -> NodePath:
 	return $CameraOffset.get_path()
 
 func set_turret_point(aim_position: Vector3):
-	$AimMarker.rect_position = $Camera.unproject_position(aim_position)
-	print("Aim Marker Screen Position: ", $AimMarker.rect_position)
+	self.aim_position = aim_position

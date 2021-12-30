@@ -24,5 +24,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.191465, 0 )
 [node name="Weapon" parent="RotationPivot/ElevationPivot" instance=ExtResource( 2 )]
 
 [node name="TurretPointMarker" type="MeshInstance" parent="."]
+visible = false
 mesh = SubResource( 2 )
 material/0 = null

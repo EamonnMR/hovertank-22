@@ -2,7 +2,6 @@ extends KinematicBody
 var aim_dir: float
 var cooldown: bool
 var camera
-var aiming_at
 
 func is_player():
 	return $Controller.is_player()
@@ -57,10 +56,13 @@ func explode():
 func _handle_aiming():
 	# TODO: Maybe components should just talk to each other?
 	$Turret.update($Controller.get_aim_point())
-	aiming_at = $Turret.project_ray()
-	if camera and aiming_at:
-		print("Turret Pointing at: ", aiming_at.position)
-		camera.set_turret_point(aiming_at.position)
+	var ray_result: Dictionary = $Turret.project_ray()
+	if camera:
+		if ray_result.has("position"):
+				print("Turret Pointing at: ", ray_result.position)
+				camera.set_turret_point(ray_result.position)
+		else:
+			print("Turret not pointing")
 
 func set_facing(facing: float):
 	# $GraphicsPivoter.rotation.y = facing
