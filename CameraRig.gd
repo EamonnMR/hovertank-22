@@ -20,7 +20,6 @@ func _process(delta):
 		$PickerLocation.global_transform.origin = result.position
 		$PointerMarker.rect_position = camera.unproject_position(result.position)
 	# TODO: If there's an object under this, pick and set the picker location to the object's origin
-	print("Update Rect Position of flashy dot: ", $AimMarker.rect_position)
 	$AimMarker.rect_position = $Camera.unproject_position(aim_position)
 func get_aim_point() -> Vector3:
 	return $PickerLocation.get_global_transform().origin

@@ -18,7 +18,7 @@ func is_player():
 
 func get_aim_point() -> Vector3:
 	if target and is_instance_valid(target):
-		return target.global_transform.origin
+		return target.get_center_of_mass()
 	else:
 		return Vector3()
 
@@ -60,7 +60,19 @@ func recalculate_path():
 		return Vector3()
 
 func is_shooting():
-	return target and is_instance_valid(target) and target.global_transform.origin.distance_to(global_transform.origin) < firing_range
+	# TODO: Only when gun is ready to fire
+	if is_instance_valid(target) and target.global_transform.origin.distance_to(global_transform.origin) < firing_range:
+		var raycast_result = get_node("../Turret").project_ray()
+		if raycast_result.collider == self:
+			print("Raycasted to self")
+			return false
+		elif raycast_result.collider == target:
+			return true
+		else:
+			print("AI Aiming at: ", raycast_result.collider)
+			return false
+	else:
+		return false
 
 func _on_DetectArea_body_entered(body):
 	if not target and body.has_method("is_player") and body.is_player():

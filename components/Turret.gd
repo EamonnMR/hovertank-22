@@ -41,9 +41,9 @@ func project_ray():
 	var spaceState :PhysicsDirectSpaceState = get_world().direct_space_state
 	var result :Dictionary = spaceState.intersect_ray(from, to, [], collisionMask)
 	if result.has("position"):
-		# $TurretPointMarker.show()
+		#$TurretPointMarker.show()
 		$TurretPointMarker.global_transform.origin = result.position
 	else:
 		pass
-		# $TurretPointMarker.hide()
+		#$TurretPointMarker.hide()
 	return result

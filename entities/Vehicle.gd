@@ -56,14 +56,14 @@ func explode():
 func _handle_aiming():
 	# TODO: Maybe components should just talk to each other?
 	$Turret.update($Controller.get_aim_point())
-	var ray_result: Dictionary = $Turret.project_ray()
 	if camera:
+		var ray_result: Dictionary = $Turret.project_ray()
 		if ray_result.has("position"):
-				print("Turret Pointing at: ", ray_result.position)
 				camera.set_turret_point(ray_result.position)
-		else:
-			print("Turret not pointing")
 
 func set_facing(facing: float):
 	# $GraphicsPivoter.rotation.y = facing
 	rotation.y = facing
+
+func get_center_of_mass():
+	return $CenterOfMass.global_transform.origin
