@@ -21,6 +21,7 @@ shape = SubResource( 2817 )
 [node name="Building" type="Spatial" parent="."]
 
 [node name="Health" parent="." instance=ExtResource( 2 )]
+max_health = 20
 
 [node name="Graphics" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0 )
