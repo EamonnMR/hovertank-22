@@ -1,29 +1,24 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://components/Turret.gd" type="Script" id=1]
 [ext_resource path="res://components/Weapon.tscn" type="PackedScene" id=2]
 
-[sub_resource type="PrismMesh" id=1]
-size = Vector3( 1, 0.5, 0.5 )
-
 [sub_resource type="SphereMesh" id=2]
 
-[node name="Turret" type="Spatial"]
+[node name="Turret" type="BoneAttachment"]
 script = ExtResource( 1 )
 
-[node name="RotationPivot" type="Spatial" parent="."]
-
-[node name="Graphics" type="MeshInstance" parent="RotationPivot"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.24886, 0 )
-mesh = SubResource( 1 )
-material/0 = null
-
-[node name="ElevationPivot" type="Spatial" parent="RotationPivot"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.191465, 0 )
-
-[node name="Weapon" parent="RotationPivot/ElevationPivot" instance=ExtResource( 2 )]
-
 [node name="TurretPointMarker" type="MeshInstance" parent="."]
-visible = false
 mesh = SubResource( 2 )
 material/0 = null
+
+[node name="ElevationPivot" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.191465, 0 )
+
+[node name="Weapon" parent="ElevationPivot" instance=ExtResource( 2 )]
+
+[node name="UnrotatedPositionMover" type="RemoteTransform" parent="."]
+update_rotation = false
+update_scale = false
+
+[node name="UnrotatedPositionTracker" type="Spatial" parent="."]

@@ -62,7 +62,8 @@ func recalculate_path():
 func is_shooting():
 	# TODO: Only when gun is ready to fire
 	if is_instance_valid(target) and target.global_transform.origin.distance_to(global_transform.origin) < firing_range:
-		var raycast_result = get_node("../Turret").project_ray()
+		var raycast_result = get_node("../").get_turret().project_ray()
+		# TODO: If Raycast has result at all
 		if raycast_result.collider == self:
 			print("Raycasted to self")
 			return false

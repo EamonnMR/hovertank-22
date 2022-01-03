@@ -25,7 +25,6 @@ func _ready():
 	
 func _physics_process(delta: float):
 	# Movement is handled by the movement component
-	_handle_aiming()
 	_handle_shooting()
 
 func _handle_shooting():
@@ -53,17 +52,12 @@ func explode():
 	# explo.position = position
 	# get_node("../").add_child(explo)
 
-func _handle_aiming():
-	# TODO: Maybe components should just talk to each other?
-	$Turret.update($Controller.get_aim_point())
-	if camera:
-		var ray_result: Dictionary = $Turret.project_ray()
-		if ray_result.has("position"):
-				camera.set_turret_point(ray_result.position)
-
 func set_facing(facing: float):
 	# $GraphicsPivoter.rotation.y = facing
 	rotation.y = facing
 
 func get_center_of_mass():
 	return $CenterOfMass.global_transform.origin
+
+func get_turret():
+	return $Graphics/Armature/Skeleton/Turret
