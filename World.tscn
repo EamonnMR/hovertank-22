@@ -75,6 +75,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 83.6611, 0, 146.494 )
 [node name="Player" parent="." instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 37.7196, 2.79337, 35.7604 )
 
+[node name="Turret" parent="Player/Graphics/Armature/Skeleton" index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1915, 0 )
+
 [node name="Movement" parent="Player" instance=ExtResource( 9 )]
 
 [node name="Controller" parent="Player" instance=ExtResource( 5 )]
@@ -97,6 +100,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 84.9529, 0, 143.88 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 55.1957, 3.17774, 87.1963 )
 collision_mask = 0
 
+[node name="Turret" parent="Vehicle/Graphics/Armature/Skeleton" index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1915, 0 )
+
 [node name="Movement" parent="Vehicle" instance=ExtResource( 8 )]
 
 [node name="Controller" parent="Vehicle" instance=ExtResource( 7 )]
@@ -104,6 +110,9 @@ collision_mask = 0
 [node name="Vehicle2" parent="." instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 138.789, 3.17774, 125.681 )
 collision_mask = 0
+
+[node name="Turret" parent="Vehicle2/Graphics/Armature/Skeleton" index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1915, 0 )
 
 [node name="Movement" parent="Vehicle2" instance=ExtResource( 8 )]
 
@@ -113,6 +122,9 @@ collision_mask = 0
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 101.715, 3.17774, 160.133 )
 collision_mask = 0
 
+[node name="Turret" parent="Vehicle3/Graphics/Armature/Skeleton" index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1915, 0 )
+
 [node name="Movement" parent="Vehicle3" instance=ExtResource( 8 )]
 
 [node name="Controller" parent="Vehicle3" instance=ExtResource( 7 )]
@@ -121,6 +133,9 @@ collision_mask = 0
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 141.213, 3.17774, 87.1963 )
 collision_mask = 0
 
+[node name="Turret" parent="Vehicle4/Graphics/Armature/Skeleton" index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1915, 0 )
+
 [node name="Movement" parent="Vehicle4" instance=ExtResource( 8 )]
 
 [node name="Controller" parent="Vehicle4" instance=ExtResource( 7 )]
@@ -128,6 +143,9 @@ collision_mask = 0
 [node name="Vehicle5" parent="." instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 55.1957, 3.17774, 121.232 )
 collision_mask = 0
+
+[node name="Turret" parent="Vehicle5/Graphics/Armature/Skeleton" index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1915, 0 )
 
 [node name="Movement" parent="Vehicle5" instance=ExtResource( 8 )]
 
