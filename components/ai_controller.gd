@@ -64,13 +64,16 @@ func is_shooting():
 	if is_instance_valid(target) and target.global_transform.origin.distance_to(global_transform.origin) < firing_range:
 		var raycast_result = get_node("../").get_turret().project_ray()
 		# TODO: If Raycast has result at all
-		if raycast_result.collider == self:
-			print("Raycasted to self")
-			return false
-		elif raycast_result.collider == target:
-			return true
+		if raycast_result.has("collider"):
+			if raycast_result.collider == self:
+				print("Raycasted to self")
+				return false
+			elif raycast_result.collider == target:
+				return true
+			else:
+				print("AI Aiming at: ", raycast_result.collider)
+				return false
 		else:
-			print("AI Aiming at: ", raycast_result.collider)
 			return false
 	else:
 		return false

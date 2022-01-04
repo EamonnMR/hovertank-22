@@ -29,7 +29,7 @@ func _physics_process(delta: float):
 
 func _handle_shooting():
 	if $Controller.is_shooting():
-		$Turret.try_shoot_primary()
+		get_turret().try_shoot_primary()
 		# TODO: Multi Turret vehicles
 	#if $Controller.is_shooting_secondary()
 	#	pass

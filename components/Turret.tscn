@@ -20,5 +20,3 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.191465, 0 )
 [node name="UnrotatedPositionMover" type="RemoteTransform" parent="."]
 update_rotation = false
 update_scale = false
-
-[node name="UnrotatedPositionTracker" type="Spatial" parent="."]

@@ -17,10 +17,8 @@ func _ready():
 	))
 	
 	# This uses two extra nodes per turret
-	unrotated_position = $UnrotatedPositionTracker
-	remove_child(unrotated_position)
-	parent.add_child(unrotated_position)
-	$UnrotatedPositionMover.remote_path = unrotated_position.get_path()
+	unrotated_position = Spatial.new()
+	call_deferred("_add_position_tracker")
 
 func _aim_to_turret_pose(aim_point: Vector3) -> Vector2:
 	# aim point: Global coordinates of the thing to aim at
@@ -71,3 +69,9 @@ func project_ray():
 		#pass
 		$TurretPointMarker.hide()
 	return result
+
+func _add_position_tracker():
+	unrotated_position.name = "PositionFor" + name
+	parent.add_child(unrotated_position)
+	print("Position For Path: ", unrotated_position.get_path())
+	$UnrotatedPositionMover.remote_path = unrotated_position.get_path()
