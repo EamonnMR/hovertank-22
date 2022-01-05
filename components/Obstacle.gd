@@ -3,8 +3,10 @@ extends Spatial
 var obstacle
 var world
 var parent
-export var radius: float = 4.5 # Values above this tend to break the pathing system
-export var height: float = 10
+
+export var radius: float = 9
+export var height: float = 20
+export var square: bool = true
 
 func _ready():
 	parent = get_node("../")
@@ -13,12 +15,15 @@ func _ready():
 	world.connect("nav_ready", self, "_setup_obstacle")
 
 func _setup_obstacle():
-	#obstacle = world.navigation.addBoxObstacle(
-	#	global_transform.origin - Vector3(0, 1, 0),
-	#	Vector3(8, 16, 8),
-	#	global_transform.basis.get_euler().x
-	#)
-	obstacle = world.navigation.addCylinderObstacle(parent.global_transform.origin, 4.5, 10)
+	var pos = parent.global_transform.origin - Vector3(0, 1, 0)
+	if square:
+		obstacle = world.navigation.addBoxObstacle(
+			pos,
+			Vector3(2 * radius, height, 2 * radius),
+			global_transform.basis.get_euler().x
+		)
+	else:
+		obstacle = world.navigation.addCylinderObstacle(pos, radius, height)
 	world.navigation.rebuildChangedTiles()
 	world.redraw()
 

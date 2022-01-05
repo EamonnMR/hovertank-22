@@ -96,7 +96,7 @@ func initializeNavigation():
 	# Units are usually in world units [wu] (e.g. meters, or whatever you use), but some may be in voxel units [vx] (multiples of cellSize).
 
 	# x = width & depth of a single cell (only one value as both must be the same) | y = height of a single cell. [wu]
-	navMeshParamsSmall.cellSize = Vector2(.4, 0.1)
+	navMeshParamsSmall.cellSize = Vector2(1, 0.1)
 	# The maximum number of agents that can be active on this navmesh
 	navMeshParamsSmall.maxNumAgents = 256
 	# How steep an angle can be to still be considered walkable. In degree. Max 90.0.

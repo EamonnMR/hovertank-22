@@ -37,40 +37,40 @@ data = PoolVector3Array( 0, -1.2002, 0, 16, -0.5923, 16, 0, 0.6504, 16, 0, -1.20
 script = ExtResource( 1 )
 
 [node name="Building" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 117.975, 0, 81.5634 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 160.589, 0, 81.5634 )
 
 [node name="Building2" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 117.975, 0, 97.8536 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 159.735, 0, 116.47 )
 
 [node name="Building3" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 117.975, 0, 132.385 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 117.975, 0, 169.452 )
 
 [node name="Building4" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 117.975, 0, 146.494 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 157.747, 0, 146.494 )
 
 [node name="Building5" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 99.7106, 0, 81.5634 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 129.719, 0, 81.5634 )
 
 [node name="Building6" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 99.7106, 0, 97.8536 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 84.574, 0, 167.797 )
 
 [node name="Building7" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 99.7106, 0, 132.385 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 200.302, 0, 132.385 )
 
 [node name="Building8" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 99.7106, 0, 146.494 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 122.753, 0, 197.715 )
 
 [node name="Building9" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 83.6611, 0, 81.5634 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 83.6611, 0, 200.65 )
 
 [node name="Building10" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 83.6611, 0, 97.8536 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 190.157, 12.9033, 176.61 )
 
 [node name="Building11" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 83.6611, 0, 132.385 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14.8832, 0, 132.385 )
 
 [node name="Building12" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 83.6611, 0, 146.494 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 83.6611, 0, 122.177 )
 
 [node name="Player" parent="." instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 37.7196, 2.79337, 35.7604 )
