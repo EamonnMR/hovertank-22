@@ -1,0 +1,37 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path.s3tc="res://.import/five_story_boxRM.png-48a5f6cc4569f6304b166109a4d8a7ca.s3tc.stex"
+path.etc2="res://.import/five_story_boxRM.png-48a5f6cc4569f6304b166109a4d8a7ca.etc2.stex"
+metadata={
+"imported_formats": [ "s3tc", "etc2" ],
+"vram_texture": true
+}
+
+[deps]
+
+source_file="res://assets/eamonn/buildings/five_story_box/five_story_boxRM.png"
+dest_files=[ "res://.import/five_story_boxRM.png-48a5f6cc4569f6304b166109a4d8a7ca.s3tc.stex", "res://.import/five_story_boxRM.png-48a5f6cc4569f6304b166109a4d8a7ca.etc2.stex" ]
+
+[params]
+
+compress/mode=2
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=true
+flags/filter=false
+flags/mipmaps=true
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+process/normal_map_invert_y=false
+stream=false
+size_limit=0
+detect_3d=false
+svg/scale=1.0
