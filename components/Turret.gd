@@ -41,7 +41,6 @@ func try_shoot_secondary():
 func _physics_process(delta):
 	var aim_point = parent.get_node("Controller").get_aim_point()
 	var aim_pose = _aim_to_turret_pose(aim_point)
-	# var aim_pose = Vector2(-0.078713, 3.865857)
 	skel.set_bone_pose(
 		turret_bone,
 		turret_pose.rotated(Vector3(0,1,0), aim_pose.y

@@ -7,6 +7,7 @@ var target: Spatial
 var path: Array
 var navmesh
 export var firing_range = 20
+var players_in_area: Array
 
 const MIN_GOAL_POINT_DIST = 10
 
@@ -18,46 +19,25 @@ func is_player():
 
 func get_aim_point() -> Vector3:
 	if target and is_instance_valid(target):
-		return target.get_center_of_mass()
+		var point = target.get_center_of_mass()
+		print("AI Aiming at target: ", point)
+		return point
 	else:
 		return Vector3()
 
-func get_motion_and_facing() -> Array:
-	var goal_point = get_aim_point()
-	if path:
-		goal_point = path[0]
-	
-	var local_point: Vector3 = to_local(goal_point)
-	if local_point.length() < MIN_GOAL_POINT_DIST and path:
-		path.pop_front()
-		print("Reached point")
-		if path:
-			local_point = path[0]
-		else:
-			local_point = to_local(get_aim_point())
-	var ideal_face = Transform.IDENTITY.looking_at(
-		local_point, Vector3.UP
-	).basis.get_euler().y + PI/2
-
-	return [Vector3(1, 0, 0).rotated(Vector3.UP, ideal_face), ideal_face]
-
-
 func _on_RecalcTimer_timeout():
+	_check_for_target()
 	if target:
 		recalculate_path()
 
 func _obtain_target(target):
+	print("Target Obtained: ", target)
 	self.target = target
 	recalculate_path()
 	
 func recalculate_path():
-	# var path = navmesh.find_path(global_transform.origin, target.global_transform.origin).points
-	#path = get_node("../../../").get_simple_path(global_transform.origin, target.global_transform.origin)
-	#print(global_transform.origin, " to ", target.global_transform.origin, " path: ", path)
 	if target:
 		get_node("../Movement").navigate_to_position(target.global_transform.origin)
-	else:
-		return Vector3()
 
 func is_shooting():
 	# TODO: Only when gun is ready to fire
@@ -80,8 +60,26 @@ func is_shooting():
 
 func _on_DetectArea_body_entered(body):
 	if not target and body.has_method("is_player") and body.is_player():
-		_obtain_target(body)
-
+		players_in_area.append(body)
+	_check_for_target()
 
 func _on_DetectArea_body_exited(body):
-	pass # Replace with function body.
+	players_in_area.erase(body)
+	_check_for_target()
+	
+func _has_los_player(player):
+	var our_pos = 	get_parent().get_center_of_mass()
+	var player_pos = player.get_center_of_mass()
+	var space_state = get_world().get_direct_space_state()
+	var result = space_state.intersect_ray(our_pos, player_pos, [], 1)
+	var has_los =  result.has("collider") and result.collider == player
+	print("Has los? ", has_los)
+	return has_los
+
+func _check_for_target():
+	# TODO: Sort by distance
+	for player in players_in_area:
+		if _has_los_player(player):
+			_obtain_target(player)
+			return
+	target = null
