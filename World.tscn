@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://Map.tscn" type="PackedScene" id=2]
@@ -6,7 +6,10 @@
 [ext_resource path="res://CameraRig.tscn" type="PackedScene" id=4]
 [ext_resource path="res://components/MouseAndKeyboardController.tscn" type="PackedScene" id=5]
 [ext_resource path="res://entities/vehicles/hovertank.tscn" type="PackedScene" id=6]
+[ext_resource path="res://components/ai_controller.tscn" type="PackedScene" id=7]
+[ext_resource path="res://components/AgentMovement.tscn" type="PackedScene" id=8]
 [ext_resource path="res://components/HoverMovement.tscn" type="PackedScene" id=9]
+[ext_resource path="res://entities/vehicles/Scout.tscn" type="PackedScene" id=10]
 
 [sub_resource type="ProceduralSky" id=4]
 
@@ -73,9 +76,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 83.6611, 0, 122.177 )
 [node name="Vehicle" parent="." instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 41.1128, 0, 32.8106 )
 
-[node name="Skeleton" parent="Vehicle/Graphics/Armature" index="0"]
-bones/1/bound_children = [  ]
-
 [node name="Turret" parent="Vehicle/Graphics/Armature/Skeleton" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1915, 0 )
 
@@ -115,6 +115,21 @@ collision_mask = 129
 [node name="CollisionShape" type="CollisionShape" parent="HTerrain_FullMesh/StaticBody"]
 shape = SubResource( 8576 )
 
+[node name="Vehicle2" parent="." instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 33.3953, 14.0152, 77.3061 )
+
+[node name="Skeleton" parent="Vehicle2/Graphics/Armature" index="0"]
+bones/1/bound_children = [  ]
+
+[node name="Turret" parent="Vehicle2/Graphics/Armature/Skeleton" index="1"]
+transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 1.1915, 0 )
+
+[node name="Movement" parent="Vehicle2" instance=ExtResource( 8 )]
+
+[node name="Controller" parent="Vehicle2" instance=ExtResource( 7 )]
+
 [editable path="Building"]
 [editable path="Vehicle"]
 [editable path="Vehicle/Graphics"]
+[editable path="Vehicle2"]
+[editable path="Vehicle2/Graphics"]

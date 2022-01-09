@@ -5,6 +5,8 @@ onready var turret_bone = skel.find_bone(bone_name)
 onready var turret_pose = skel.get_bone_pose(skel.find_bone("turret"))
 onready var parent = skel.get_node("../../../")
 
+export var bone_axis: Vector3 = Vector3(0,1,0)
+
 var unrotated_position: Spatial
 
 const AIM_EXTEND = 1000
@@ -44,9 +46,7 @@ func _physics_process(delta):
 	var aim_pose = _aim_to_turret_pose(aim_point)
 	skel.set_bone_pose(
 		turret_bone,
-		turret_pose.rotated(Vector3(0,1,0),
-		aim_pose.y
-		)
+		turret_pose.rotated(bone_axis, aim_pose.y )
 	)
 	$ElevationPivot.rotation.z = aim_pose.x
 	
