@@ -5,7 +5,10 @@ onready var turret_bone = skel.find_bone(bone_name)
 onready var turret_pose = skel.get_bone_pose(skel.find_bone("turret"))
 onready var parent = skel.get_node("../../../")
 
+# Hacks for wonky models; ignore unless your model is wonky
 export var bone_axis: Vector3 = Vector3(0,1,0)
+export var bone_invert: bool = false
+export var bone_offset = PI/2
 
 var unrotated_position: Spatial
 
@@ -33,7 +36,7 @@ func _aim_to_turret_pose(aim_point: Vector3) -> Vector2:
 	var euler = Transform.IDENTITY.looking_at(
 		local_point, Vector3.UP
 	).basis.get_euler()
-	return Vector2(euler.x, euler.y + PI/2)
+	return Vector2(euler.x, euler.y)
 
 func try_shoot_primary():
 	$ElevationPivot/Weapon.try_shoot()
@@ -41,12 +44,17 @@ func try_shoot_primary():
 func try_shoot_secondary():
 	pass
 
+func _modify_aim(aim_y):
+	return bone_offset + (
+		PI - aim_y if bone_invert else aim_y 
+	)
+
 func _physics_process(delta):
 	var aim_point = parent.get_node("Controller").get_aim_point()
 	var aim_pose = _aim_to_turret_pose(aim_point)
 	skel.set_bone_pose(
 		turret_bone,
-		turret_pose.rotated(bone_axis, aim_pose.y )
+		turret_pose.rotated(bone_axis, _modify_aim(aim_pose.y))
 	)
 	$ElevationPivot.rotation.z = aim_pose.x
 	

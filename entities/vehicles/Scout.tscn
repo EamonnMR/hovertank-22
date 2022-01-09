@@ -16,14 +16,12 @@ height = 0.5
 
 [sub_resource type="CylinderShape" id=3]
 radius = 3.90985
+height = 2.26802
 
 [node name="Vehicle" instance=ExtResource( 3 )]
 
 [node name="Graphics" parent="." index="2" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.01416, 0 )
-
-[node name="Skeleton" parent="Graphics/Armature" index="0"]
-bones/1/bound_children = [ NodePath("Turret") ]
 
 [node name="Cube" parent="Graphics/Armature/Skeleton" index="0"]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.979475, 0 )
@@ -33,6 +31,7 @@ material/0 = ExtResource( 1 )
 transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 1.1915, 0 )
 bone_name = "turret"
 bone_axis = Vector3( 0, 0, 1 )
+bone_invert = true
 
 [node name="Wheel" type="MeshInstance" parent="Graphics" index="2"]
 transform = Transform( 2.00836, 0, 0, 0, -9.2626e-08, -2.11904, 0, 1.89395, -8.2787e-08, -3.71139, -2.98597, 3.15619 )
@@ -74,7 +73,7 @@ material/0 = null
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.51563, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="." index="4"]
-transform = Transform( 1, 0, 0, 0, 2.03861, 0, 0, 0, 1, 0, 3.86156, 0 )
+transform = Transform( 1, 0, 0, 0, 2.03861, 0, 0, 0, 1, 0, 2.16943, 0 )
 shape = SubResource( 3 )
 
 [editable path="Graphics"]
