@@ -5,7 +5,7 @@ onready var turret_bone = skel.find_bone(bone_name)
 onready var turret_pose = skel.get_bone_pose(skel.find_bone("turret"))
 onready var parent = skel.get_node("../../../")
 
-var unrotated_position
+var unrotated_position: Spatial
 
 const AIM_EXTEND = 1000
 
@@ -26,6 +26,7 @@ func _aim_to_turret_pose(aim_point: Vector3) -> Vector2:
 	# See:
 	# https://www.reddit.com/r/godot/comments/p2v6av/quaterionlookrotation_equivalent/
 	var local_point = unrotated_position.to_local(aim_point)
+	# var local_point = get_parent().to_local(aim_point)
 	# TODO Ballistic calculation goes here
 	var euler = Transform.IDENTITY.looking_at(
 		local_point, Vector3.UP
@@ -43,7 +44,8 @@ func _physics_process(delta):
 	var aim_pose = _aim_to_turret_pose(aim_point)
 	skel.set_bone_pose(
 		turret_bone,
-		turret_pose.rotated(Vector3(0,1,0), aim_pose.y
+		turret_pose.rotated(Vector3(0,1,0),
+		aim_pose.y
 		)
 	)
 	$ElevationPivot.rotation.z = aim_pose.x
@@ -61,16 +63,23 @@ func project_ray():
 	var to = $ElevationPivot.to_global(Vector3(AIM_EXTEND, 0, 0))
 	var spaceState :PhysicsDirectSpaceState = get_world().direct_space_state
 	var result :Dictionary = spaceState.intersect_ray(from, to, [], collisionMask)
+	$TurretPointMarker.show()
+	$TurretPointMarker.global_transform.origin = unrotated_position.global_transform.origin
 	if result.has("position"):
 		$TurretPointMarker.show()
-		$TurretPointMarker.global_transform.origin = result.position
+		# $TurretPointMarker.global_transform.origin = unrotated_position.global_transform.origin
 	else:
-		#pass
-		$TurretPointMarker.hide()
+		pass
+		# $TurretPointMarker.hide()
 	return result
 
 func _add_position_tracker():
+	print("Add turret position tracker for ", parent)
 	unrotated_position.name = "PositionFor" + name
-	parent.add_child(unrotated_position)
+	# Entire skeleton is the parent, not the bone
+	get_parent().add_child(unrotated_position)
 	print("Position For Path: ", unrotated_position.get_path())
 	$UnrotatedPositionMover.remote_path = unrotated_position.get_path()
+
+func _exit_tree():
+	unrotated_position.queue_free()
