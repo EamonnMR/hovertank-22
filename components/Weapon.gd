@@ -18,7 +18,7 @@ func _shoot():
 	var projectile = projectile_scene.instance()
 	projectile.init(iff)
 	world.add_child(projectile)
-	projectile.global_transform = global_transform
+	projectile.global_transform = $Emerge.global_transform
 	cooldown = true
 	$Cooldown.start()
 	_effects()

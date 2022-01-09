@@ -28,10 +28,11 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -51.3552
-margin_top = -50.354
-margin_right = 12.6448
-margin_bottom = 13.646
+margin_left = -114.923
+margin_top = -114.981
+margin_right = -50.923
+margin_bottom = -50.9812
+rect_scale = Vector2( 3, 3 )
 texture = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -45,11 +46,17 @@ __meta__ = {
 }
 
 [node name="TextureRect" type="TextureRect" parent="AimMarker"]
-margin_left = -31.3919
-margin_top = -31.3437
-margin_right = 32.6081
-margin_bottom = 32.6563
+margin_left = -94.9597
+margin_top = -93.852
+margin_right = -30.9597
+margin_bottom = -29.852
+rect_scale = Vector2( 3, 3 )
 texture = ExtResource( 3 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 39.7149, 24.0506 )

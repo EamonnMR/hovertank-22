@@ -34,6 +34,9 @@ material/0 = SubResource( 1 )
 one_shot = true
 autostart = true
 
+[node name="Emerge" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.80677, 0, 0 )
+
 [connection signal="timeout" from="Cooldown" to="." method="_on_Cooldown_timeout"]
 
 [editable path="Graphics"]

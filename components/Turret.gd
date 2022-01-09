@@ -63,14 +63,16 @@ func project_ray():
 	var to = $ElevationPivot.to_global(Vector3(AIM_EXTEND, 0, 0))
 	var spaceState :PhysicsDirectSpaceState = get_world().direct_space_state
 	var result :Dictionary = spaceState.intersect_ray(from, to, [], collisionMask)
-	$TurretPointMarker.show()
-	$TurretPointMarker.global_transform.origin = unrotated_position.global_transform.origin
+	return result
+	#$TurretPointMarker.show()
+	#$TurretPointMarker.global_transform.origin = unrotated_position.global_transform.origin
 	if result.has("position"):
-		$TurretPointMarker.show()
+		pass
+		# $TurretPointMarker.show()
 		# $TurretPointMarker.global_transform.origin = unrotated_position.global_transform.origin
 	else:
-		pass
-		# $TurretPointMarker.hide()
+		#pass
+		$TurretPointMarker.hide()
 	return result
 
 func _add_position_tracker():

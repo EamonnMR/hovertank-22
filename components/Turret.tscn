@@ -10,6 +10,7 @@ size = Vector3( 3, 3, 3 )
 script = ExtResource( 1 )
 
 [node name="TurretPointMarker" type="MeshInstance" parent="."]
+visible = false
 mesh = SubResource( 1 )
 material/0 = null
 
