@@ -59,7 +59,7 @@ func project_ray():
 	# What is the turret pointing at right now?
 	var collisionMask = 1
 	# The pathfinding system only likes to interact with things that are stuck to the ground
-	var from = global_transform.origin
+	var from = $ElevationPivot/Weapon/Emerge.global_transform.origin
 	var to = $ElevationPivot.to_global(Vector3(AIM_EXTEND, 0, 0))
 	var spaceState :PhysicsDirectSpaceState = get_world().direct_space_state
 	var result :Dictionary = spaceState.intersect_ray(from, to, [], collisionMask)

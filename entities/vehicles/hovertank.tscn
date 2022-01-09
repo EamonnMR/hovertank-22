@@ -1,0 +1,55 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://assets/eamonn/hovertank/hovertank.glb" type="PackedScene" id=1]
+[ext_resource path="res://entities/Vehicle.tscn" type="PackedScene" id=2]
+[ext_resource path="res://components/Hover.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/eamonn/hovertank/hovertank_N.png" type="Texture" id=4]
+[ext_resource path="res://assets/eamonn/hovertank/hovertank_E.png" type="Texture" id=5]
+[ext_resource path="res://assets/eamonn/hovertank/hovertank_C.png" type="Texture" id=6]
+[ext_resource path="res://components/Turret.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/eamonn/hovertank/hovertank_RM.png" type="Texture" id=8]
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_texture = ExtResource( 6 )
+metallic_texture = ExtResource( 8 )
+metallic_texture_channel = 2
+roughness_texture = ExtResource( 8 )
+emission_enabled = true
+emission = Color( 0, 0, 0, 1 )
+emission_energy = 1.0
+emission_operator = 0
+emission_on_uv2 = false
+emission_texture = ExtResource( 5 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 4 )
+
+[sub_resource type="CylinderShape" id=1]
+radius = 3.60023
+height = 2.608
+
+[node name="Vehicle" instance=ExtResource( 2 )]
+
+[node name="Hover" parent="." index="0" instance=ExtResource( 3 )]
+
+[node name="Graphics" parent="." index="1" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.59815, 0 )
+
+[node name="Turret" parent="Graphics/Armature/Skeleton" index="0" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1915, 0 )
+bone_name = "turret"
+
+[node name="Cube" parent="Graphics/Armature/Skeleton" index="1"]
+material/0 = SubResource( 2 )
+
+[node name="Health" parent="." index="2"]
+max_health = 10
+
+[node name="CollisionShape" type="CollisionShape" parent="." index="4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.24695, 0 )
+shape = SubResource( 1 )
+
+[node name="CenterOfMass" type="Spatial" parent="." index="5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.53312, 0 )
+
+[editable path="Graphics"]
