@@ -31,9 +31,6 @@ height = 3.18072
 
 [node name="Graphics" parent="." index="2" instance=ExtResource( 7 )]
 
-[node name="Skeleton" parent="Graphics/Armature" index="0"]
-bones/1/bound_children = [ NodePath("Turret") ]
-
 [node name="Cube" parent="Graphics/Armature/Skeleton" index="0"]
 material/0 = SubResource( 1 )
 
