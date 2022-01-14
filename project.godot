@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://projectiles/IffProfile.gd"
 }, {
+"base": "Spatial",
+"class": "Movement",
+"language": "GDScript",
+"path": "res://components/Movement.gd"
+}, {
 "base": "Node",
 "class": "PlayerController",
 "language": "GDScript",
@@ -44,6 +49,7 @@ _global_script_class_icons={
 "HTerrainDataSaver": "",
 "Health": "",
 "IffProfile": "",
+"Movement": "",
 "PlayerController": "",
 "Weapon": ""
 }

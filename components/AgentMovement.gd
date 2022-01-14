@@ -1,4 +1,5 @@
-extends Spatial
+extends Movement
+
 const DetourCrowdAgentParameters    :NativeScript = preload("res://addons/godotdetour/detourcrowdagentparameters.gdns")
 
 var parent: KinematicBody
@@ -25,13 +26,11 @@ func _ready():
 		get_tree().get_root().get_node("World").connect("nav_ready", self, "_create_nav_agent", [sticky_point])
 
 func navigate_to_position(position: Vector3):
-	$PointMarker.transform.origin = to_local(position)
 	var maybe_position = world.stick_to_ground(position)
 	# print("Update nav to: ", position)
 	if agent and maybe_position:
 		position = maybe_position
 		agent.moveTowards(position)
-		$DestinationMarker.transform.origin = to_local(position)
 	else:
 		print("Could not stick to ground from ", position)
 
@@ -81,6 +80,8 @@ func _physics_process(delta):
 			parent.look_at(parent.translation + agent.velocity, parent.transform.basis.y)
 	# Remember time of update
 	lastUpdateTimestamp = OS.get_ticks_msec()
+	if parent:
+		match_ground_normal(delta, parent)
 
 func _on_agent_arrived():
 	print("agent arrived")
