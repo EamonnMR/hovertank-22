@@ -32,7 +32,10 @@ func _physics_process(delta):
 	# see: http://kidscancode.org/godot_recipes/3d/3d_align_surface/
 	var ray_below_normal = $RayCast.get_collision_normal()
 	if ray_below_normal != Vector3(0, 0, 0):
-		parent.global_transform = _align_with_y(parent.global_transform, $RayCast.get_collision_normal())
+		parent.global_transform = parent.global_transform.interpolate_with(
+			_align_with_y(parent.global_transform, $RayCast.get_collision_normal()), 
+			0.2
+		)
 	else:
 		print("Empty normal below")
 func _constrained_turn(max_turn, ideal_face):
