@@ -76,11 +76,9 @@ func _physics_process(delta):
 			var result: Dictionary = agent.getPredictedMovement(parent.translation, -parent.global_transform.basis.z, lastUpdateTimestamp, deg2rad(2.5))
 			parent.translation = result["position"]
 			parent.look_at(parent.translation + result["direction"], parent.transform.basis.y)
-			# parent.rotation.y += PI/2
 		else:
 			parent.translation = agent.position
 			parent.look_at(parent.translation + agent.velocity, parent.transform.basis.y)
-			# parent.rotation.y += PI/2
 	# Remember time of update
 	lastUpdateTimestamp = OS.get_ticks_msec()
 
@@ -95,14 +93,3 @@ func _on_agent_no_progress():
 func _on_agent_no_movement():
 	print("agent no movement")
 	controller.recalculate_path()
-
-func _get_ideal_face(dest: Vector3) -> float:
-	# aim point: Global coordinates of the thing to aim at
-	# Returns a Vector2 representing yaw and pitch to pose at that target
-	# See:
-	# https://www.reddit.com/r/godot/comments/p2v6av/quaterionlookrotation_equivalent/
-	var local_point = parent.to_local(dest)
-	# TODO Ballistic calculation goes here
-	return Transform.IDENTITY.looking_at(
-		local_point, Vector3.UP
-	).basis.get_euler().y + PI/2

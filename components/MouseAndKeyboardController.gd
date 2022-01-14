@@ -62,6 +62,6 @@ func get_motion_and_facing() -> Array:
 	elif d:
 		ideal_face = S
 	else:
-		return [null, null]
+		return [false, null]
 	
-	return [Vector3(1, 0, 0).rotated(Vector3.UP, ideal_face), ideal_face]
+	return [true, ideal_face]

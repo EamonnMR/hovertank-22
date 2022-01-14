@@ -24,12 +24,14 @@ normal_scale = 1.0
 normal_texture = ExtResource( 1 )
 
 [sub_resource type="CylinderShape" id=2]
-radius = 4.71676
-height = 3.18072
+radius = 7.05293
 
 [node name="Vehicle" instance=ExtResource( 2 )]
 
 [node name="Graphics" parent="." index="2" instance=ExtResource( 7 )]
+
+[node name="Skeleton" parent="Graphics/Armature" index="0"]
+bones/1/bound_children = [ NodePath("Turret") ]
 
 [node name="Cube" parent="Graphics/Armature/Skeleton" index="0"]
 material/0 = SubResource( 1 )
@@ -39,7 +41,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46416, 2.84734, 0 )
 bone_name = "Turret"
 
 [node name="CollisionShape" type="CollisionShape" parent="." index="3"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.70942, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.44803, 0 )
 shape = SubResource( 2 )
 
 [node name="CenterOfMass" type="Spatial" parent="." index="4"]

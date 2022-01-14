@@ -4,3 +4,10 @@
 
 [node name="Movement" type="Spatial"]
 script = ExtResource( 1 )
+
+[node name="RayCast" type="RayCast" parent="."]
+enabled = true
+cast_to = Vector3( 0, -3, 0 )
+collision_mask = 129
+debug_shape_custom_color = Color( 1, 0, 0, 1 )
+debug_shape_thickness = 5.0

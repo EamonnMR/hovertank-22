@@ -15,8 +15,8 @@ bottom_radius = 0.6
 height = 0.5
 
 [sub_resource type="CylinderShape" id=3]
-radius = 3.90985
-height = 2.26802
+radius = 4.5557
+height = 1.95346
 
 [node name="Vehicle" instance=ExtResource( 3 )]
 
@@ -73,7 +73,7 @@ material/0 = null
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.51563, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="." index="4"]
-transform = Transform( 1, 0, 0, 0, 2.03861, 0, 0, 0, 1, 0, 2.16943, 0 )
+transform = Transform( 1, 0, 0, 0, 2.03861, 0, 0, 0, 1, 0, 3.23494, 0 )
 shape = SubResource( 3 )
 
 [editable path="Graphics"]

@@ -108,24 +108,12 @@ shape = SubResource( 8576 )
 [node name="Vehicle2" parent="." instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 33.3953, 0.117884, 77.3061 )
 
-[node name="Skeleton" parent="Vehicle2/Graphics/Armature" index="0"]
-bones/1/bound_children = [ NodePath("Turret") ]
-
-[node name="Turret" parent="Vehicle2/Graphics/Armature/Skeleton" index="1"]
-transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 1.1915, 0 )
-
 [node name="Movement" parent="Vehicle2" instance=ExtResource( 8 )]
 
 [node name="Controller" parent="Vehicle2" instance=ExtResource( 7 )]
 
 [node name="Vehicle3" parent="." instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 66.3462, 0.117884, 77.3061 )
-
-[node name="Skeleton" parent="Vehicle3/Graphics/Armature" index="0"]
-bones/1/bound_children = [ NodePath("Turret") ]
-
-[node name="Turret" parent="Vehicle3/Graphics/Armature/Skeleton" index="1"]
-transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 1.1915, 0 )
 
 [node name="Movement" parent="Vehicle3" instance=ExtResource( 8 )]
 
@@ -134,24 +122,12 @@ transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 1.1915, 0 )
 [node name="Vehicle4" parent="." instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 66.3462, 0.117884, 147.732 )
 
-[node name="Skeleton" parent="Vehicle4/Graphics/Armature" index="0"]
-bones/1/bound_children = [ NodePath("Turret") ]
-
-[node name="Turret" parent="Vehicle4/Graphics/Armature/Skeleton" index="1"]
-transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 1.1915, 0 )
-
 [node name="Movement" parent="Vehicle4" instance=ExtResource( 8 )]
 
 [node name="Controller" parent="Vehicle4" instance=ExtResource( 7 )]
 
 [node name="Vehicle5" parent="." instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 182.664, 0.117884, 147.732 )
-
-[node name="Skeleton" parent="Vehicle5/Graphics/Armature" index="0"]
-bones/1/bound_children = [ NodePath("Turret") ]
-
-[node name="Turret" parent="Vehicle5/Graphics/Armature/Skeleton" index="1"]
-transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 1.1915, 0 )
 
 [node name="Movement" parent="Vehicle5" instance=ExtResource( 8 )]
 
@@ -167,7 +143,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 118.368, -8.698, 102.29 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 118.368, -8.698, 102.29 )
 
 [node name="Vehicle6" parent="." instance=ExtResource( 11 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 185.252, 2, 194 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 185.252, 13.4629, 194 )
 
 [node name="Movement" parent="Vehicle6" instance=ExtResource( 9 )]
 
@@ -189,3 +165,4 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 144.026, 2, 194 )
 [editable path="Vehicle4/Graphics"]
 [editable path="Vehicle5"]
 [editable path="Vehicle5/Graphics"]
+[editable path="Vehicle6/Movement"]
