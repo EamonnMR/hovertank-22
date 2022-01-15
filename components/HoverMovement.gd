@@ -1,4 +1,4 @@
-extends Spatial
+extends Movement
 
 var parent: KinematicBody
 var controller
@@ -7,6 +7,7 @@ export var gravity = 90
 export var motion_speed = 30.0
 export var accel = 0.5
 export var drag = 0.25
+export var turn_speed = 10
 
 var motion = Vector3(0,0,0)
 
@@ -26,7 +27,9 @@ func _physics_process(delta):
 		motion = lerp(motion, Vector3(0,0,0), drag * delta)
 	# TODO: Lerp facing
 	if facing != null:
-		parent.rotation.y = facing
+		var turn_and_is_ideal = Util.constrained_turn(parent.rotation.y, delta * turn_speed, facing)
+		parent.rotation.y += turn_and_is_ideal[0]
+	match_ground_normal(delta, parent, 0.02)
 	var gravity_delta = gravity * delta * Vector3.DOWN
 	var motion_total = motion * motion_speed + gravity_delta
 	parent.move_and_slide_with_snap(motion_total, Vector3.DOWN, Vector3.UP)

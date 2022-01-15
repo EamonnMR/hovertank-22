@@ -63,6 +63,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Procgen="*res://Procgen.tscn"
+Util="*res://Util.gd"
 
 [editor_plugins]
 
