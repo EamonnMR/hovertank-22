@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://Map.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://components/TankMovement.tscn" type="PackedScene" id=9]
 [ext_resource path="res://entities/vehicles/Scout.tscn" type="PackedScene" id=10]
 [ext_resource path="res://entities/vehicles/Heavy.tscn" type="PackedScene" id=11]
+[ext_resource path="res://components/meta/ObjectiveMarker.tscn" type="PackedScene" id=12]
 
 [sub_resource type="ProceduralSky" id=4]
 
@@ -71,6 +72,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 190.157, 12.9033, 176.61 )
 [node name="Building11" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14.8832, 0, 132.385 )
 
+[node name="ObjectiveMarker" parent="Building11" instance=ExtResource( 12 )]
+
 [node name="Building12" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 83.6611, 0, 122.177 )
 
@@ -108,9 +111,6 @@ shape = SubResource( 8576 )
 [node name="Vehicle2" parent="." instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 33.3953, 0.117884, 77.3061 )
 
-[node name="Skeleton" parent="Vehicle2/Graphics/Armature" index="0"]
-bones/1/bound_children = [ NodePath("Turret") ]
-
 [node name="Turret" parent="Vehicle2/Graphics/Armature/Skeleton" index="1"]
 transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 1.1915, 0 )
 
@@ -120,9 +120,6 @@ transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 1.1915, 0 )
 
 [node name="Vehicle3" parent="." instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 66.3462, 0.117884, 77.3061 )
-
-[node name="Skeleton" parent="Vehicle3/Graphics/Armature" index="0"]
-bones/1/bound_children = [ NodePath("Turret") ]
 
 [node name="Turret" parent="Vehicle3/Graphics/Armature/Skeleton" index="1"]
 transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 1.1915, 0 )
@@ -134,9 +131,6 @@ transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 1.1915, 0 )
 [node name="Vehicle4" parent="." instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 66.3462, 0.117884, 147.732 )
 
-[node name="Skeleton" parent="Vehicle4/Graphics/Armature" index="0"]
-bones/1/bound_children = [ NodePath("Turret") ]
-
 [node name="Turret" parent="Vehicle4/Graphics/Armature/Skeleton" index="1"]
 transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 1.1915, 0 )
 
@@ -146,9 +140,6 @@ transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 1.1915, 0 )
 
 [node name="Vehicle5" parent="." instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 182.664, 0.117884, 147.732 )
-
-[node name="Skeleton" parent="Vehicle5/Graphics/Armature" index="0"]
-bones/1/bound_children = [ NodePath("Turret") ]
 
 [node name="Turret" parent="Vehicle5/Graphics/Armature/Skeleton" index="1"]
 transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 1.1915, 0 )
@@ -213,6 +204,7 @@ width = 259.759
 height = 18.2898
 
 [editable path="Building"]
+[editable path="Building11"]
 [editable path="Vehicle2"]
 [editable path="Vehicle2/Graphics"]
 [editable path="Vehicle3"]

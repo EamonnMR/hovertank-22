@@ -29,7 +29,7 @@ max_health = 20
 
 [node name="Obstacle" parent="." instance=ExtResource( 1 )]
 
-[node name="MeshInstance" type="MeshInstance" parent="."]
+[node name="Graphics" type="MeshInstance" parent="."]
 mesh = ExtResource( 6 )
 material/0 = SubResource( 1 )
 
