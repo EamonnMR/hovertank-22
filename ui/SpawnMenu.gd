@@ -6,12 +6,8 @@ onready var secondary_dd: OptionButton = $VBoxContainer/Selection/SecondaryWeapo
 onready var pilot_dd: OptionButton = $VBoxContainer/Selection/PilotSelect/MenuButton
 
 func _ready():
-	for i in [
-		"Heavy Tank",
-		"Scout Car",
-		"Hover Tank"
-	]:
-		vehicle_dd.add_item(i)
+	for i in Client.VEHICLES:
+		vehicle_dd.add_item(Client.VEHICLES[i].name)
 	
 	for i in [
 		"Autocannon",
@@ -33,3 +29,7 @@ func _on_StartButton_pressed():
 
 func _on_QuitButton_pressed():
 	get_tree().quit()
+
+
+func _on_MenuButton_item_selected(index):
+	Client.set_vehicle_selection(index)

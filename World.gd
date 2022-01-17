@@ -50,9 +50,10 @@ func _ready():
 	yield(get_tree(), "idle_frame")
 	yield(initializeNavigation(), "completed")
 	yield(get_tree(), "idle_frame")
-	drawDebugMesh()
-	print("Drawing debug mesh")
+	# drawDebugMesh()
+	# print("Drawing debug mesh")
 	emit_signal("nav_ready")
+	Client.spawn_player(self)
 	
 func toggle_debug_display():
 	if navMeshToDisplay == 1:

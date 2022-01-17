@@ -13,8 +13,14 @@ __meta__ = {
 }
 
 [node name="TextureRect" type="TextureRect" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -300.0
+margin_right = 512.0
+margin_bottom = 300.0
 texture = ExtResource( 3 )
 expand = true
 __meta__ = {
@@ -147,5 +153,6 @@ margin_right = 82.0
 margin_bottom = 20.0
 text = "quit"
 
+[connection signal="item_selected" from="VBoxContainer/Selection/VehicleSelect/MenuButton" to="." method="_on_MenuButton_item_selected"]
 [connection signal="pressed" from="VBoxContainer/LaunchOptions/StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/LaunchOptions/QuitButton" to="." method="_on_QuitButton_pressed"]
