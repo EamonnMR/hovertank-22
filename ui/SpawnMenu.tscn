@@ -1,0 +1,151 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/eamonn/logo.png" type="Texture" id=1]
+[ext_resource path="res://ui/SpawnMenu.gd" type="Script" id=2]
+[ext_resource path="res://assets/documerica_pd/Abandoned_Barn_Succumbs_to_the_Elements,_and_an_Adjoining_House_Which_Is_Empty_Off_Route_-800_near_Barnesville,_Ohio._07-1974_(3769914962).jpg" type="Texture" id=3]
+
+[node name="SpawnMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -300.0
+margin_top = -189.0
+margin_right = 300.0
+margin_bottom = 189.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
+margin_right = 600.0
+margin_bottom = 150.0
+texture = ExtResource( 1 )
+
+[node name="Selection" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 154.0
+margin_right = 600.0
+margin_bottom = 354.0
+rect_min_size = Vector2( 0, 200 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VehicleSelect" type="VBoxContainer" parent="VBoxContainer/Selection"]
+margin_right = 68.0
+margin_bottom = 200.0
+
+[node name="Label" type="Label" parent="VBoxContainer/Selection/VehicleSelect"]
+margin_right = 68.0
+margin_bottom = 14.0
+text = "Vehicle"
+
+[node name="MenuButton" type="OptionButton" parent="VBoxContainer/Selection/VehicleSelect"]
+margin_top = 18.0
+margin_right = 68.0
+margin_bottom = 38.0
+text = "Select"
+
+[node name="Desc" type="RichTextLabel" parent="VBoxContainer/Selection/VehicleSelect"]
+margin_top = 42.0
+margin_right = 68.0
+margin_bottom = 42.0
+
+[node name="PrimaryWeaponSelect" type="VBoxContainer" parent="VBoxContainer/Selection"]
+margin_left = 72.0
+margin_right = 140.0
+margin_bottom = 200.0
+
+[node name="Label" type="Label" parent="VBoxContainer/Selection/PrimaryWeaponSelect"]
+margin_right = 68.0
+margin_bottom = 14.0
+text = "Primary"
+
+[node name="MenuButton" type="OptionButton" parent="VBoxContainer/Selection/PrimaryWeaponSelect"]
+margin_top = 18.0
+margin_right = 68.0
+margin_bottom = 38.0
+text = "Select"
+
+[node name="Desc" type="RichTextLabel" parent="VBoxContainer/Selection/PrimaryWeaponSelect"]
+margin_top = 42.0
+margin_right = 68.0
+margin_bottom = 42.0
+
+[node name="SecondaryWeaponSelect" type="VBoxContainer" parent="VBoxContainer/Selection"]
+margin_left = 144.0
+margin_right = 212.0
+margin_bottom = 200.0
+
+[node name="Label" type="Label" parent="VBoxContainer/Selection/SecondaryWeaponSelect"]
+margin_right = 68.0
+margin_bottom = 14.0
+text = "Secondary"
+
+[node name="MenuButton" type="OptionButton" parent="VBoxContainer/Selection/SecondaryWeaponSelect"]
+margin_top = 18.0
+margin_right = 68.0
+margin_bottom = 38.0
+text = "Select"
+
+[node name="Desc" type="RichTextLabel" parent="VBoxContainer/Selection/SecondaryWeaponSelect"]
+margin_top = 42.0
+margin_right = 68.0
+margin_bottom = 42.0
+
+[node name="PilotSelect" type="VBoxContainer" parent="VBoxContainer/Selection"]
+margin_left = 216.0
+margin_right = 284.0
+margin_bottom = 200.0
+
+[node name="Label" type="Label" parent="VBoxContainer/Selection/PilotSelect"]
+margin_right = 68.0
+margin_bottom = 14.0
+text = "Pilot"
+
+[node name="MenuButton" type="OptionButton" parent="VBoxContainer/Selection/PilotSelect"]
+margin_top = 18.0
+margin_right = 68.0
+margin_bottom = 38.0
+text = "Select"
+
+[node name="Desc" type="RichTextLabel" parent="VBoxContainer/Selection/PilotSelect"]
+margin_top = 42.0
+margin_right = 68.0
+margin_bottom = 42.0
+
+[node name="LaunchOptions" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 358.0
+margin_right = 600.0
+margin_bottom = 378.0
+
+[node name="StartButton" type="Button" parent="VBoxContainer/LaunchOptions"]
+margin_right = 41.0
+margin_bottom = 20.0
+text = "Start"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer/LaunchOptions"]
+margin_left = 45.0
+margin_right = 82.0
+margin_bottom = 20.0
+text = "quit"
+
+[connection signal="pressed" from="VBoxContainer/LaunchOptions/StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/LaunchOptions/QuitButton" to="." method="_on_QuitButton_pressed"]
