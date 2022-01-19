@@ -1,0 +1,20 @@
+[gd_resource type="SpatialMaterial" load_steps=5 format=2]
+
+[ext_resource path="res://assets/eamonn/buildings/reactor/reactor_RM.png" type="Texture" id=1]
+[ext_resource path="res://assets/eamonn/buildings/reactor/reactor_C.png" type="Texture" id=2]
+[ext_resource path="res://assets/eamonn/buildings/reactor/reactor_N.png" type="Texture" id=3]
+[ext_resource path="res://assets/eamonn/buildings/reactor/reactor_E.png" type="Texture" id=4]
+
+[resource]
+albedo_texture = ExtResource( 2 )
+metallic_texture = ExtResource( 1 )
+roughness_texture = ExtResource( 1 )
+emission_enabled = true
+emission = Color( 0, 0, 0, 1 )
+emission_energy = 1.0
+emission_operator = 0
+emission_on_uv2 = false
+emission_texture = ExtResource( 4 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 3 )
