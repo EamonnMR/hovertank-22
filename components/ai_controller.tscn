@@ -3,7 +3,7 @@
 [ext_resource path="res://components/ai_controller.gd" type="Script" id=1]
 
 [sub_resource type="SphereShape" id=1]
-radius = 28.8531
+radius = 59.0557
 
 [node name="Controller" type="Spatial"]
 script = ExtResource( 1 )

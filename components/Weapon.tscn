@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://components/Weapon.gd" type="Script" id=1]
 [ext_resource path="res://assets/eamonn/cannon/cannon_RM.png" type="Texture" id=2]
@@ -21,6 +21,9 @@ normal_enabled = true
 normal_scale = 1.0
 normal_texture = ExtResource( 5 )
 
+[sub_resource type="SphereShape" id=2]
+radius = 54.9839
+
 [node name="Weapon" type="Spatial"]
 script = ExtResource( 1 )
 
@@ -37,6 +40,14 @@ autostart = true
 [node name="Emerge" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.80677, 0, 0 )
 
+[node name="AlertArea" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape" type="CollisionShape" parent="AlertArea"]
+shape = SubResource( 2 )
+
 [connection signal="timeout" from="Cooldown" to="." method="_on_Cooldown_timeout"]
+[connection signal="body_entered" from="AlertArea" to="." method="_on_AlertArea_body_entered"]
+[connection signal="body_exited" from="AlertArea" to="." method="_on_AlertArea_body_exited"]
 
 [editable path="Graphics"]

@@ -6,10 +6,13 @@ var target: Spatial
 # export var min_range
 var path: Array
 var navmesh
-export var firing_range = 20
+export var firing_range = 60
 var players_in_area: Array
 
 const MIN_GOAL_POINT_DIST = 10
+
+func _has_target():
+	return target != null and is_instance_valid(target)
 
 func _ready():
 	navmesh = get_node("../../NavigationMesh") # TODO: Different navmeshes for different movement capabilities
@@ -20,7 +23,6 @@ func is_player():
 func get_aim_point() -> Vector3:
 	if target and is_instance_valid(target):
 		var point = target.get_center_of_mass()
-		print("AI Aiming at target: ", point)
 		return point
 	else:
 		return Vector3()
@@ -51,7 +53,6 @@ func is_shooting():
 			elif raycast_result.collider == target:
 				return true
 			else:
-				print("AI Aiming at: ", raycast_result.collider)
 				return false
 		else:
 			return false
@@ -59,7 +60,7 @@ func is_shooting():
 		return false
 
 func _on_DetectArea_body_entered(body):
-	if not target and body.has_method("is_player") and body.is_player():
+	if body.has_method("is_player") and body.is_player():
 		players_in_area.append(body)
 	_check_for_target()
 
@@ -71,15 +72,22 @@ func _has_los_player(player):
 	var our_pos = 	get_parent().get_center_of_mass()
 	var player_pos = player.get_center_of_mass()
 	var space_state = get_world().get_direct_space_state()
-	var result = space_state.intersect_ray(our_pos, player_pos, [], 1)
+	var result = space_state.intersect_ray(our_pos, player_pos, [get_parent()], 1)
 	var has_los =  result.has("collider") and result.collider == player
-	print("Has los? ", has_los)
 	return has_los
 
 func _check_for_target():
+	if _has_target() and _has_los_player(target):
+		return
+	else:
 	# TODO: Sort by distance
-	for player in players_in_area:
-		if _has_los_player(player):
-			_obtain_target(player)
-			return
-	target = null
+		for player in players_in_area:
+			if _has_los_player(player):
+				_obtain_target(player)
+				return
+		target = null
+
+func alert(alerting_body):
+	print("Alert!")
+	if not _has_target():
+		_obtain_target(alerting_body)

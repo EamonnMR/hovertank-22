@@ -3,6 +3,7 @@ extends Spatial
 var cooldown: bool = false
 var iff: IffProfile
 class_name Weapon
+var alert_group = []
 
 onready var world = get_tree().get_root().get_node("World")
 onready var projectile_scene = preload("res://projectiles/Projectile.tscn")
@@ -21,6 +22,8 @@ func _shoot():
 	projectile.global_transform = $Emerge.global_transform
 	cooldown = true
 	$Cooldown.start()
+	for body in alert_group:
+		body.alert(iff.owner)
 	_effects()
 
 func _effects():
@@ -29,3 +32,13 @@ func _effects():
 
 func _on_Cooldown_timeout():
 	cooldown = false
+
+
+func _on_AlertArea_body_entered(body):
+	if body.has_method("alert"):
+		print("Entered Alert Area for gun", body)
+		alert_group.append(body)
+
+
+func _on_AlertArea_body_exited(body):
+	alert_group.erase(body)

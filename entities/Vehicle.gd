@@ -61,3 +61,8 @@ func get_center_of_mass():
 
 func get_turret():
 	return $Graphics/Armature/Skeleton/Turret
+
+func alert(source):
+	print("Alert")
+	if $Controller.has_method("alert"):
+		$Controller.alert(source)
