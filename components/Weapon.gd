@@ -10,6 +10,11 @@ onready var projectile_scene = preload("res://projectiles/Projectile.tscn")
 
 func init(iff: IffProfile):
 	self.iff = iff
+	if not iff.owner.is_player():
+		print(iff.owner, " is not player, no need for an alert area")
+		call_deferred("remove_child", $AlertArea)
+	else:
+		print(iff.owner, " is player, keep alert area")
 
 func try_shoot():
 	if not cooldown:
