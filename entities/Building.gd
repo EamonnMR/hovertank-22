@@ -1,4 +1,4 @@
-extends Spatial
+extends StaticBody
 
 func _on_Health_damaged():
 	print("Building took hit")

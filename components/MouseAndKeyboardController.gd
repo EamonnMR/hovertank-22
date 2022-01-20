@@ -65,3 +65,6 @@ func get_motion_and_facing() -> Array:
 		return [false, null]
 	
 	return [true, ideal_face]
+
+func _exit_tree():
+	get_tree().change_scene("res://ui/SpawnMenu.tscn")

@@ -32,3 +32,6 @@ func get_mover_path() -> NodePath:
 
 func set_turret_point(aim_position: Vector3):
 	self.aim_position = aim_position
+
+func _exit_tree():
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
