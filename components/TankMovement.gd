@@ -20,11 +20,14 @@ func _physics_process(delta):
 	var motion = motion_and_facing[0]
 	var ideal_face = motion_and_facing[1]
 	if ideal_face != null:
-		var turn_and_is_ideal = Util.constrained_turn(parent.rotation.y, delta * turn_speed, ideal_face)
-		parent.rotation.y += turn_and_is_ideal[0]
-		var is_ideal = turn_and_is_ideal[1]
+		var turn_sign_and_is_ideal = Util.constrained_turn_with_possibility_of_reverse(
+			parent.rotation.y, delta * turn_speed, ideal_face
+		)
+		parent.rotation.y += turn_sign_and_is_ideal[0]
+		var move_sign = turn_sign_and_is_ideal[1]
+		var is_ideal = turn_sign_and_is_ideal[2]
 		if motion: #  and is_ideal:
-			motion = Vector3(1, 0, 0).rotated(Vector3.UP, parent.rotation.y)
+			motion = Vector3(move_sign, 0, 0).rotated(Vector3.UP, parent.rotation.y)
 	else:
 		motion = Vector3(0,0,0)
 
