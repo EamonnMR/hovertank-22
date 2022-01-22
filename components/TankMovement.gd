@@ -23,10 +23,7 @@ func _physics_process(delta):
 	var turn = turn_and_motion_impulse[0]
 	var motion_impulse = turn_and_motion_impulse[1]
 	parent.rotation.y += turn
-	#if motion_impulse:
 	var motion = Vector3(motion_impulse, 0, 0).rotated(Vector3.UP, parent.rotation.y)
-	#else:
-	#	var motion = Vector3(0,0,0)
 
 	var gravity_delta = gravity * delta * Vector3.DOWN
 	var motion_total = motion * motion_speed + gravity_delta
