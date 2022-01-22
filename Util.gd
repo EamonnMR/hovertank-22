@@ -34,6 +34,7 @@ func constrained_turn_with_possibility_of_reverse(current_rotation, max_turn, id
 	
 	print("Initial: ", ideal_turn)
 	
+	
 	if ideal_turn > PI * 1.5:
 		print("ideal_turn > PI * 1.5; return 2PI-t")
 		return limit_turn( 2 * PI - ideal_turn, max_turn, 1)

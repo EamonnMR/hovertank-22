@@ -1,5 +1,7 @@
 extends Movement
 
+# Movement for player vehicles which can turn in place and don't hover
+
 var parent: KinematicBody
 var controller
 
@@ -16,20 +18,15 @@ func _ready():
 	
 
 func _physics_process(delta):
-	var motion_and_facing = controller.get_motion_and_facing()
-	var motion = motion_and_facing[0]
-	var ideal_face = motion_and_facing[1]
-	if ideal_face != null:
-		var turn_sign_and_is_ideal = Util.constrained_turn_with_possibility_of_reverse(
-			parent.rotation.y, delta * turn_speed, ideal_face
-		)
-		parent.rotation.y += turn_sign_and_is_ideal[0]
-		var move_sign = turn_sign_and_is_ideal[1]
-		var is_ideal = turn_sign_and_is_ideal[2]
-		if motion: #  and is_ideal:
-			motion = Vector3(move_sign, 0, 0).rotated(Vector3.UP, parent.rotation.y)
-	else:
-		motion = Vector3(0,0,0)
+	
+	var turn_and_motion_impulse = controller.get_turn_and_motion_impulse(delta, turn_speed)
+	var turn = turn_and_motion_impulse[0]
+	var motion_impulse = turn_and_motion_impulse[1]
+	parent.rotation.y += turn
+	#if motion_impulse:
+	var motion = Vector3(motion_impulse, 0, 0).rotated(Vector3.UP, parent.rotation.y)
+	#else:
+	#	var motion = Vector3(0,0,0)
 
 	var gravity_delta = gravity * delta * Vector3.DOWN
 	var motion_total = motion * motion_speed + gravity_delta

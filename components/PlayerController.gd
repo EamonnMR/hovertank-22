@@ -5,11 +5,11 @@ class_name PlayerController
 func get_aim_point() -> Vector3:
 	return Vector3()
 
-func get_motion_and_facing() -> Array:
-	return [null, null]
-
 func is_player():
 	return true
 
 func is_shooting():
 	return false
+
+func _exit_tree():
+	get_tree().change_scene("res://ui/SpawnMenu.tscn")

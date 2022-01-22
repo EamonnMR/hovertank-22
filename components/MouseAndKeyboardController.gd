@@ -1,6 +1,7 @@
-extends Node
+extends PlayerController
 
 var cam_rig: Node
+onready var parent = get_node("../")
 
 func is_shooting():
 	return Input.is_action_pressed("shoot")
@@ -25,7 +26,7 @@ const NW = PI * 1.25
 const N = PI * 1.5
 const NE = PI * 1.75
 
-func get_motion_and_facing() -> Array:
+func get_cardinal_motion_and_facing() -> Array:
 	var ideal_face = null
 	
 	var l = false
@@ -66,5 +67,22 @@ func get_motion_and_facing() -> Array:
 	
 	return [true, ideal_face]
 
-func _exit_tree():
-	get_tree().change_scene("res://ui/SpawnMenu.tscn")
+func get_turn_and_motion_impulse(delta, turn_speed) -> Array:
+	var motion_and_facing = get_cardinal_motion_and_facing()
+	var motion = motion_and_facing[0]
+	var ideal_face = motion_and_facing[1]
+	var turn = 0.0
+	if ideal_face != null:
+		var turn_sign_and_is_ideal = Util.constrained_turn_with_possibility_of_reverse(
+			parent.rotation.y, delta * turn_speed, ideal_face
+		)
+		turn = turn_sign_and_is_ideal[0]
+		var move_sign = turn_sign_and_is_ideal[1]
+		var is_ideal = turn_sign_and_is_ideal[2]
+		if motion: #  and is_ideal:
+			return [turn, move_sign]
+		else:
+			return [turn, 0]
+	else:
+		return [0.0, 0]
+
