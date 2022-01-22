@@ -21,7 +21,7 @@ func _ready():
 	#if ProjectSettings.get_setting("Prefs/controller"):
 		#add_child(preload("res://GamepadController.tscn").instance())
 	#else:
-	add_child(preload("res://components/MouseAndKeyboardController.tscn").instance())
+	# add_child(preload("res://components/player_control/MouseAndKeyboardController.tscn").instance())
 	
 func _physics_process(delta: float):
 	# Movement is handled by the movement component

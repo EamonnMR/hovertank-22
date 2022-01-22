@@ -37,7 +37,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "PlayerController",
 "language": "GDScript",
-"path": "res://components/PlayerController.gd"
+"path": "res://components/player_control/PlayerController.gd"
 }, {
 "base": "Spatial",
 "class": "Weapon",

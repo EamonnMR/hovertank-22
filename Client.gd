@@ -19,13 +19,14 @@ var VEHICLES = {
 }
 
 var MOVEMENT = {
-	"tank": preload("res://components/TankMovement.tscn"),
-	"hover": preload("res://components/HoverMovement.tscn")
+	"tank": preload("res://components/player_control/TankMovement.tscn"),
+	"hover": preload("res://components/player_control/HoverMovement.tscn")
 }
 
 var selected_vehicle: String
+var selected_control_scheme
 
-var controller = preload("res://components/MouseAndKeyboardController.tscn")
+var controller = preload("res://components/player_control/MouseAndKeyboardController.tscn")
 
 func _ready():
 	set_vehicle_selection(0)
