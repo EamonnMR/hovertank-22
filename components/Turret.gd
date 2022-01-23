@@ -17,6 +17,20 @@ var unrotated_position: Spatial
 
 const AIM_EXTEND = 1000
 
+func get_primary_slots():
+	return _get_slots(true)
+
+func get_secondary_slots():
+	return _get_slots(false)
+
+func _get_slots(primary):
+	var slots = []
+	for slot in $ElevationPivot.get_children():
+		if slot.primary == primary:
+			slots.append(slot)
+	return slots
+
+
 func _ready():
 	for slot in $ElevationPivot.get_children():
 		if slot.primary:

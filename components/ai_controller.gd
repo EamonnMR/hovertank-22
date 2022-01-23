@@ -47,7 +47,7 @@ func is_shooting_secondary():
 func is_shooting():
 	# TODO: Only when gun is ready to fire
 	if is_instance_valid(target) and target.global_transform.origin.distance_to(global_transform.origin) < firing_range:
-		var raycast_result = get_node("../").get_turret().project_ray()
+		var raycast_result = get_node("../").get_turrets()[0].project_ray()
 		# TODO: If Raycast has result at all
 		if raycast_result.has("collider"):
 			if raycast_result.collider == self:

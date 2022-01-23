@@ -1,12 +1,14 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://Map.tscn" type="PackedScene" id=2]
 [ext_resource path="res://entities/Building.tscn" type="PackedScene" id=3]
 [ext_resource path="res://CameraRig.tscn" type="PackedScene" id=4]
 [ext_resource path="res://entities/buildings/Reactor.tscn" type="PackedScene" id=5]
+[ext_resource path="res://components/weapons/AutoCannon.tscn" type="PackedScene" id=6]
 [ext_resource path="res://components/ai_controller.tscn" type="PackedScene" id=7]
 [ext_resource path="res://components/AgentMovement.tscn" type="PackedScene" id=8]
+[ext_resource path="res://components/weapons/Cannon.tscn" type="PackedScene" id=9]
 [ext_resource path="res://entities/vehicles/Scout.tscn" type="PackedScene" id=10]
 [ext_resource path="res://entities/vehicles/Heavy.tscn" type="PackedScene" id=11]
 [ext_resource path="res://components/meta/ObjectiveMarker.tscn" type="PackedScene" id=12]
@@ -113,79 +115,177 @@ collision_mask = 129
 [node name="CollisionShape" type="CollisionShape" parent="HTerrain_FullMesh/StaticBody"]
 shape = SubResource( 8576 )
 
-[node name="Vehicle2" parent="." instance=ExtResource( 10 )]
+[node name="Enemy" parent="." instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 33.3953, 0.117884, 77.3061 )
 
-[node name="Turret" parent="Vehicle2/Graphics/Armature/Skeleton" index="1"]
+[node name="Skeleton" parent="Enemy/Graphics/Armature" index="0"]
+bones/1/bound_children = [  ]
+
+[node name="Turret" parent="Enemy/Graphics/Armature/Skeleton" index="1"]
 transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 1.1915, 0 )
+
+[node name="Weapon" parent="Enemy/Graphics/Armature/Skeleton/Turret/ElevationPivot/WeaponSlot" index="0" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
+
+[node name="Weapon" parent="Enemy/Graphics/Armature/Skeleton/Turret/ElevationPivot/WeaponSlot2" index="0" instance=ExtResource( 6 )]
+
+[node name="Movement" parent="Enemy" instance=ExtResource( 8 )]
+
+[node name="Controller" parent="Enemy" instance=ExtResource( 7 )]
+
+[node name="Enemy2" parent="." instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 234.126, 0.117884, 77.3061 )
+
+[node name="Skeleton" parent="Enemy2/Graphics/Armature" index="0"]
+bones/1/bound_children = [  ]
+
+[node name="Turret" parent="Enemy2/Graphics/Armature/Skeleton" index="1"]
+transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 1.1915, 0 )
+
+[node name="WeaponSlot" parent="Enemy2/Graphics/Armature/Skeleton/Turret/ElevationPivot" index="0"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+
+[node name="Weapon" parent="Enemy2/Graphics/Armature/Skeleton/Turret/ElevationPivot/WeaponSlot" index="0" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
+
+[node name="WeaponSlot2" parent="Enemy2/Graphics/Armature/Skeleton/Turret/ElevationPivot" index="1"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.812092 )
+
+[node name="Weapon" parent="Enemy2/Graphics/Armature/Skeleton/Turret/ElevationPivot/WeaponSlot2" index="0" instance=ExtResource( 6 )]
+
+[node name="Movement" parent="Enemy2" instance=ExtResource( 8 )]
+
+[node name="Controller" parent="Enemy2" instance=ExtResource( 7 )]
+
+[node name="Enemy3" parent="." instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 234.126, 0.117884, 109.754 )
+
+[node name="Skeleton" parent="Enemy3/Graphics/Armature" index="0"]
+bones/1/bound_children = [  ]
+
+[node name="Turret" parent="Enemy3/Graphics/Armature/Skeleton" index="1"]
+transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 1.1915, 0 )
+
+[node name="WeaponSlot" parent="Enemy3/Graphics/Armature/Skeleton/Turret/ElevationPivot" index="0"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+
+[node name="Weapon" parent="Enemy3/Graphics/Armature/Skeleton/Turret/ElevationPivot/WeaponSlot" index="0" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
+
+[node name="WeaponSlot2" parent="Enemy3/Graphics/Armature/Skeleton/Turret/ElevationPivot" index="1"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.812092 )
+
+[node name="Weapon" parent="Enemy3/Graphics/Armature/Skeleton/Turret/ElevationPivot/WeaponSlot2" index="0" instance=ExtResource( 6 )]
+
+[node name="Movement" parent="Enemy3" instance=ExtResource( 8 )]
+
+[node name="Controller" parent="Enemy3" instance=ExtResource( 7 )]
+
+[node name="Enemy4" parent="." instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 180.63, 0.117884, 109.754 )
+
+[node name="Skeleton" parent="Enemy4/Graphics/Armature" index="0"]
+bones/1/bound_children = [  ]
+
+[node name="Turret" parent="Enemy4/Graphics/Armature/Skeleton" index="1"]
+transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 1.1915, 0 )
+
+[node name="WeaponSlot" parent="Enemy4/Graphics/Armature/Skeleton/Turret/ElevationPivot" index="0"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+
+[node name="Weapon" parent="Enemy4/Graphics/Armature/Skeleton/Turret/ElevationPivot/WeaponSlot" index="0" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
+
+[node name="WeaponSlot2" parent="Enemy4/Graphics/Armature/Skeleton/Turret/ElevationPivot" index="1"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.812092 )
+
+[node name="Weapon" parent="Enemy4/Graphics/Armature/Skeleton/Turret/ElevationPivot/WeaponSlot2" index="0" instance=ExtResource( 6 )]
+
+[node name="Movement" parent="Enemy4" instance=ExtResource( 8 )]
+
+[node name="Controller" parent="Enemy4" instance=ExtResource( 7 )]
+
+[node name="Enemy5" parent="." instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 115.235, 0.117884, 109.754 )
+
+[node name="Skeleton" parent="Enemy5/Graphics/Armature" index="0"]
+bones/1/bound_children = [  ]
+
+[node name="Turret" parent="Enemy5/Graphics/Armature/Skeleton" index="1"]
+transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 1.1915, 0 )
+
+[node name="WeaponSlot" parent="Enemy5/Graphics/Armature/Skeleton/Turret/ElevationPivot" index="0"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+
+[node name="Weapon" parent="Enemy5/Graphics/Armature/Skeleton/Turret/ElevationPivot/WeaponSlot" index="0" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
+
+[node name="WeaponSlot2" parent="Enemy5/Graphics/Armature/Skeleton/Turret/ElevationPivot" index="1"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.812092 )
+
+[node name="Weapon" parent="Enemy5/Graphics/Armature/Skeleton/Turret/ElevationPivot/WeaponSlot2" index="0" instance=ExtResource( 6 )]
+
+[node name="Movement" parent="Enemy5" instance=ExtResource( 8 )]
+
+[node name="Controller" parent="Enemy5" instance=ExtResource( 7 )]
+
+[node name="Enemy6" parent="." instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 46.207, 0.117884, 109.754 )
+
+[node name="Skeleton" parent="Enemy6/Graphics/Armature" index="0"]
+bones/1/bound_children = [  ]
+
+[node name="Turret" parent="Enemy6/Graphics/Armature/Skeleton" index="1"]
+transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 1.1915, 0 )
+
+[node name="WeaponSlot" parent="Enemy6/Graphics/Armature/Skeleton/Turret/ElevationPivot" index="0"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+
+[node name="Weapon" parent="Enemy6/Graphics/Armature/Skeleton/Turret/ElevationPivot/WeaponSlot" index="0" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
+
+[node name="WeaponSlot2" parent="Enemy6/Graphics/Armature/Skeleton/Turret/ElevationPivot" index="1"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.812092 )
+
+[node name="Weapon" parent="Enemy6/Graphics/Armature/Skeleton/Turret/ElevationPivot/WeaponSlot2" index="0" instance=ExtResource( 6 )]
+
+[node name="Movement" parent="Enemy6" instance=ExtResource( 8 )]
+
+[node name="Controller" parent="Enemy6" instance=ExtResource( 7 )]
+
+[node name="Vehicle" parent="." instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 110.118, -3.88647, 31.1396 )
+
+[node name="Skeleton" parent="Vehicle/Graphics/Armature" index="0"]
+bones/1/bound_children = [  ]
+
+[node name="Turret" parent="Vehicle/Graphics/Armature/Skeleton" index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46416, 2.84734, 0 )
+
+[node name="Weapon" parent="Vehicle/Graphics/Armature/Skeleton/Turret/ElevationPivot/WeaponSlot" index="0" instance=ExtResource( 9 )]
+
+[node name="Weapon" parent="Vehicle/Graphics/Armature/Skeleton/Turret/ElevationPivot/WeaponSlot2" index="0" instance=ExtResource( 6 )]
+
+[node name="Movement" parent="Vehicle" instance=ExtResource( 8 )]
+
+[node name="Controller" parent="Vehicle" instance=ExtResource( 7 )]
+
+[node name="Vehicle2" parent="." instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 202.317, -3.88647, 31.1396 )
+
+[node name="Skeleton" parent="Vehicle2/Graphics/Armature" index="0"]
+bones/1/bound_children = [  ]
+
+[node name="Turret" parent="Vehicle2/Graphics/Armature/Skeleton" index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46416, 2.84734, 0 )
+
+[node name="Weapon" parent="Vehicle2/Graphics/Armature/Skeleton/Turret/ElevationPivot/WeaponSlot" index="0" instance=ExtResource( 9 )]
+
+[node name="Weapon" parent="Vehicle2/Graphics/Armature/Skeleton/Turret/ElevationPivot/WeaponSlot2" index="0" instance=ExtResource( 6 )]
 
 [node name="Movement" parent="Vehicle2" instance=ExtResource( 8 )]
 
 [node name="Controller" parent="Vehicle2" instance=ExtResource( 7 )]
-
-[node name="Vehicle3" parent="." instance=ExtResource( 10 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 66.3462, 0.117884, 77.3061 )
-
-[node name="Turret" parent="Vehicle3/Graphics/Armature/Skeleton" index="1"]
-transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 1.1915, 0 )
-
-[node name="Movement" parent="Vehicle3" instance=ExtResource( 8 )]
-
-[node name="Controller" parent="Vehicle3" instance=ExtResource( 7 )]
-
-[node name="Vehicle4" parent="." instance=ExtResource( 10 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 66.3462, 0.117884, 147.732 )
-
-[node name="Turret" parent="Vehicle4/Graphics/Armature/Skeleton" index="1"]
-transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 1.1915, 0 )
-
-[node name="Movement" parent="Vehicle4" instance=ExtResource( 8 )]
-
-[node name="Controller" parent="Vehicle4" instance=ExtResource( 7 )]
-
-[node name="Vehicle9" parent="." instance=ExtResource( 10 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 81.4979, 0.117884, 182.178 )
-
-[node name="Turret" parent="Vehicle9/Graphics/Armature/Skeleton" index="1"]
-transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 1.1915, 0 )
-
-[node name="Movement" parent="Vehicle9" instance=ExtResource( 8 )]
-
-[node name="Controller" parent="Vehicle9" instance=ExtResource( 7 )]
-
-[node name="Vehicle5" parent="." instance=ExtResource( 10 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 182.664, 0.117884, 147.732 )
-
-[node name="Turret" parent="Vehicle5/Graphics/Armature/Skeleton" index="1"]
-transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 1.1915, 0 )
-
-[node name="Movement" parent="Vehicle5" instance=ExtResource( 8 )]
-
-[node name="Controller" parent="Vehicle5" instance=ExtResource( 7 )]
-
-[node name="Vehicle6" parent="." instance=ExtResource( 10 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 209.364, 0.117884, 187.611 )
-
-[node name="Turret" parent="Vehicle6/Graphics/Armature/Skeleton" index="1"]
-transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 1.1915, 0 )
-
-[node name="Movement" parent="Vehicle6" instance=ExtResource( 8 )]
-
-[node name="Controller" parent="Vehicle6" instance=ExtResource( 7 )]
-
-[node name="Vehicle7" parent="." instance=ExtResource( 11 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 186.832, 1.99997, 35.4759 )
-
-[node name="Movement" parent="Vehicle7" instance=ExtResource( 8 )]
-
-[node name="Controller" parent="Vehicle7" instance=ExtResource( 7 )]
-
-[node name="Vehicle8" parent="." instance=ExtResource( 11 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 114.62, 1.99997, 35.4759 )
-
-[node name="Movement" parent="Vehicle8" instance=ExtResource( 8 )]
-
-[node name="Controller" parent="Vehicle8" instance=ExtResource( 7 )]
 
 [node name="Wall" type="CSGBox" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 126.476, 6.92489, 0 )
@@ -232,15 +332,27 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 155.453, 0.413464, 36.6265 )
 [editable path="Building15"]
 [editable path="Building16"]
 [editable path="Building11"]
+[editable path="Enemy"]
+[editable path="Enemy/Graphics"]
+[editable path="Enemy/Graphics/Armature/Skeleton/Turret"]
+[editable path="Enemy2"]
+[editable path="Enemy2/Graphics"]
+[editable path="Enemy2/Graphics/Armature/Skeleton/Turret"]
+[editable path="Enemy3"]
+[editable path="Enemy3/Graphics"]
+[editable path="Enemy3/Graphics/Armature/Skeleton/Turret"]
+[editable path="Enemy4"]
+[editable path="Enemy4/Graphics"]
+[editable path="Enemy4/Graphics/Armature/Skeleton/Turret"]
+[editable path="Enemy5"]
+[editable path="Enemy5/Graphics"]
+[editable path="Enemy5/Graphics/Armature/Skeleton/Turret"]
+[editable path="Enemy6"]
+[editable path="Enemy6/Graphics"]
+[editable path="Enemy6/Graphics/Armature/Skeleton/Turret"]
+[editable path="Vehicle"]
+[editable path="Vehicle/Graphics"]
+[editable path="Vehicle/Graphics/Armature/Skeleton/Turret"]
 [editable path="Vehicle2"]
 [editable path="Vehicle2/Graphics"]
-[editable path="Vehicle3"]
-[editable path="Vehicle3/Graphics"]
-[editable path="Vehicle4"]
-[editable path="Vehicle4/Graphics"]
-[editable path="Vehicle9"]
-[editable path="Vehicle9/Graphics"]
-[editable path="Vehicle5"]
-[editable path="Vehicle5/Graphics"]
-[editable path="Vehicle6"]
-[editable path="Vehicle6/Graphics"]
+[editable path="Vehicle2/Graphics/Armature/Skeleton/Turret"]

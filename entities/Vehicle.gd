@@ -29,10 +29,12 @@ func _physics_process(delta: float):
 
 func _handle_shooting():
 	if $Controller.is_shooting():
-		get_turret().try_shoot_primary()
+		for turret in get_turrets():
+			turret.try_shoot_primary()
 		# TODO: Multi Turret vehicles
 	if $Controller.is_shooting_secondary():
-		get_turret().try_shoot_secondary()
+		for turret in get_turrets():
+			turret.try_shoot_secondary()
 
 func _dead():
 	explode()
@@ -58,8 +60,8 @@ func set_facing(facing: float):
 func get_center_of_mass():
 	return $CenterOfMass.global_transform.origin
 
-func get_turret():
-	return $Graphics/Armature/Skeleton/Turret
+func get_turrets():
+	return [$Graphics/Armature/Skeleton/Turret]
 
 func alert(source):
 	print("Alert")

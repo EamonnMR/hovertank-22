@@ -73,6 +73,7 @@ text = "Select"
 margin_top = 42.0
 margin_right = 68.0
 margin_bottom = 42.0
+bbcode_enabled = true
 
 [node name="PrimaryWeaponSelect" type="VBoxContainer" parent="VBoxContainer/Selection"]
 margin_left = 72.0
@@ -94,6 +95,7 @@ text = "Select"
 margin_top = 42.0
 margin_right = 68.0
 margin_bottom = 42.0
+bbcode_enabled = true
 
 [node name="SecondaryWeaponSelect" type="VBoxContainer" parent="VBoxContainer/Selection"]
 margin_left = 144.0
@@ -115,6 +117,7 @@ text = "Select"
 margin_top = 42.0
 margin_right = 68.0
 margin_bottom = 42.0
+bbcode_enabled = true
 
 [node name="PilotSelect" type="VBoxContainer" parent="VBoxContainer/Selection"]
 margin_left = 216.0
@@ -136,6 +139,7 @@ text = "Select"
 margin_top = 42.0
 margin_right = 68.0
 margin_bottom = 42.0
+bbcode_enabled = true
 
 [node name="LaunchOptions" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 358.0
@@ -159,7 +163,6 @@ margin_right = 178.0
 margin_bottom = 20.0
 text = "Controller"
 
-[connection signal="item_selected" from="VBoxContainer/Selection/VehicleSelect/MenuButton" to="." method="_on_MenuButton_item_selected"]
 [connection signal="pressed" from="VBoxContainer/LaunchOptions/StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/LaunchOptions/QuitButton" to="." method="_on_QuitButton_pressed"]
 [connection signal="item_selected" from="VBoxContainer/LaunchOptions/ControllerOption" to="." method="_on_ControllerOption_item_selected"]

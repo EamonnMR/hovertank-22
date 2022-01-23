@@ -8,6 +8,10 @@ var alert_group = []
 onready var world = get_tree().get_root().get_node("World")
 onready var projectile_scene = preload("res://projectiles/Projectile.tscn")
 
+func _ready():
+	assert($Graphics)
+	assert($Emerge)
+
 func init(iff: IffProfile):
 	self.iff = iff
 	if not iff.owner.is_player():

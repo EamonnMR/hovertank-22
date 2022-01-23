@@ -1,25 +1,6 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://components/Weapon.gd" type="Script" id=1]
-[ext_resource path="res://assets/eamonn/cannon/cannon_RM.png" type="Texture" id=2]
-[ext_resource path="res://assets/eamonn/cannon/cannon_C.png" type="Texture" id=3]
-[ext_resource path="res://assets/eamonn/cannon/cannon_E.png" type="Texture" id=4]
-[ext_resource path="res://assets/eamonn/cannon/cannon_N.png" type="Texture" id=5]
-[ext_resource path="res://assets/eamonn/cannon/cannon.glb" type="PackedScene" id=6]
-
-[sub_resource type="SpatialMaterial" id=1]
-albedo_texture = ExtResource( 3 )
-roughness_texture = ExtResource( 2 )
-roughness_texture_channel = 1
-emission_enabled = true
-emission = Color( 0, 0, 0, 1 )
-emission_energy = 1.0
-emission_operator = 0
-emission_on_uv2 = false
-emission_texture = ExtResource( 4 )
-normal_enabled = true
-normal_scale = 1.0
-normal_texture = ExtResource( 5 )
 
 [sub_resource type="SphereShape" id=2]
 radius = 54.9839
@@ -27,20 +8,11 @@ radius = 54.9839
 [node name="Weapon" type="Spatial"]
 script = ExtResource( 1 )
 
-[node name="Graphics" parent="." instance=ExtResource( 6 )]
-transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
-
-[node name="Cube" parent="Graphics/Armature/Skeleton" index="0"]
-material/0 = SubResource( 1 )
-
 [node name="Cooldown" type="Timer" parent="."]
 one_shot = true
 autostart = true
 
-[node name="Emerge" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.80677, 0, 0 )
-
-[node name="AlertArea" type="Area2D" parent="."]
+[node name="AlertArea" type="Area" parent="."]
 collision_layer = 0
 
 [node name="CollisionShape" type="CollisionShape" parent="AlertArea"]
@@ -49,5 +21,3 @@ shape = SubResource( 2 )
 [connection signal="timeout" from="Cooldown" to="." method="_on_Cooldown_timeout"]
 [connection signal="body_entered" from="AlertArea" to="." method="_on_AlertArea_body_entered"]
 [connection signal="body_exited" from="AlertArea" to="." method="_on_AlertArea_body_exited"]
-
-[editable path="Graphics"]

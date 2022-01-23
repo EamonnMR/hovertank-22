@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://entities/vehicles/scout_spatialmaterial.tres" type="Material" id=1]
 [ext_resource path="res://components/Turret.tscn" type="PackedScene" id=2]
 [ext_resource path="res://entities/Vehicle.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/eamonn/scout/scout.dae" type="PackedScene" id=4]
+[ext_resource path="res://components/WeaponSlot.tscn" type="PackedScene" id=5]
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 0.0509804, 0.00392157, 0.00392157, 1 )
@@ -23,6 +24,9 @@ height = 1.95346
 [node name="Graphics" parent="." index="2" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.01416, 0 )
 
+[node name="Skeleton" parent="Graphics/Armature" index="0"]
+bones/1/bound_children = [ NodePath("Turret") ]
+
 [node name="Cube" parent="Graphics/Armature/Skeleton" index="0"]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.979475, 0 )
 material/0 = ExtResource( 1 )
@@ -32,6 +36,13 @@ transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 1.1915, 0 )
 bone_name = "turret"
 bone_axis = Vector3( 0, 0, 1 )
 bone_invert = true
+
+[node name="WeaponSlot" parent="Graphics/Armature/Skeleton/Turret/ElevationPivot" index="0" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+primary = true
+
+[node name="WeaponSlot2" parent="Graphics/Armature/Skeleton/Turret/ElevationPivot" index="1" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.812092 )
 
 [node name="Wheel" type="MeshInstance" parent="Graphics" index="2"]
 transform = Transform( 2.00836, 0, 0, 0, -9.2626e-08, -2.11904, 0, 1.89395, -8.2787e-08, -3.71139, -2.98597, 3.15619 )
@@ -77,3 +88,4 @@ transform = Transform( 1, 0, 0, 0, 2.03861, 0, 0, 0, 1, 0, 3.23494, 0 )
 shape = SubResource( 3 )
 
 [editable path="Graphics"]
+[editable path="Graphics/Armature/Skeleton/Turret"]
