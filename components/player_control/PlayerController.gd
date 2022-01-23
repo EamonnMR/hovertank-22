@@ -14,5 +14,8 @@ func is_player():
 func is_shooting():
 	return false
 
+func is_shooting_secondary():
+	return false
+
 func _exit_tree():
 	get_tree().change_scene("res://ui/SpawnMenu.tscn")

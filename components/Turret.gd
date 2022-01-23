@@ -5,6 +5,9 @@ onready var turret_bone = skel.find_bone(bone_name)
 onready var turret_pose = skel.get_bone_pose(skel.find_bone("turret"))
 onready var parent = skel.get_node("../../../")
 
+var primary_weapons = []
+var secondary_weapons = []
+
 # Hacks for wonky models; ignore unless your model is wonky
 export var bone_axis: Vector3 = Vector3(0,1,0)
 export var bone_invert: bool = false
@@ -15,11 +18,18 @@ var unrotated_position: Spatial
 const AIM_EXTEND = 1000
 
 func _ready():
-	$ElevationPivot/Weapon.init(IffProfile.new(
-		parent,
-		not parent.is_player(),
-		parent.is_player()
-	))
+	for slot in $ElevationPivot.get_children():
+		if slot.primary:
+			primary_weapons.append(slot.get_weapon())
+		else:
+			secondary_weapons.append(slot.get_weapon())
+	
+	for weapon in primary_weapons + secondary_weapons:
+		weapon.init(IffProfile.new(
+			parent,
+			not parent.is_player(),
+			parent.is_player()
+		))
 	
 	# This uses two extra nodes per turret
 	unrotated_position = Spatial.new()
@@ -39,10 +49,12 @@ func _aim_to_turret_pose(aim_point: Vector3) -> Vector2:
 	return Vector2(euler.x, euler.y)
 
 func try_shoot_primary():
-	$ElevationPivot/Weapon.try_shoot()
+	for weapon in primary_weapons:
+		weapon.try_shoot()
 	
 func try_shoot_secondary():
-	pass
+	for weapon in secondary_weapons:
+		weapon.try_shoot()
 
 func _modify_aim(aim_y):
 	return bone_offset + (
@@ -67,8 +79,11 @@ func project_ray():
 	# What is the turret pointing at right now?
 	var collisionMask = 1
 	# The pathfinding system only likes to interact with things that are stuck to the ground
-	var from = $ElevationPivot/Weapon/Emerge.global_transform.origin
-	var to = $ElevationPivot.to_global(Vector3(AIM_EXTEND, 0, 0))
+	
+	var first_weapon_emergepoint = primary_weapons[0].get_node("Emerge")
+	
+	var from = first_weapon_emergepoint.global_transform.origin
+	var to = first_weapon_emergepoint.to_global(Vector3(AIM_EXTEND, 0, 0))
 	var spaceState :PhysicsDirectSpaceState = get_world().direct_space_state
 	var result :Dictionary = spaceState.intersect_ray(from, to, [], collisionMask)
 	return result

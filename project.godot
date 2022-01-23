@@ -48,6 +48,11 @@ _global_script_classes=[ {
 "class": "Weapon",
 "language": "GDScript",
 "path": "res://components/Weapon.gd"
+}, {
+"base": "Spatial",
+"class": "WeaponSlot",
+"language": "GDScript",
+"path": "res://components/WeaponSlot.gd"
 } ]
 _global_script_class_icons={
 "HTerrainDataLoader": "",
@@ -57,7 +62,8 @@ _global_script_class_icons={
 "MouseAndKeyboardController": "",
 "Movement": "",
 "PlayerController": "",
-"Weapon": ""
+"Weapon": "",
+"WeaponSlot": ""
 }
 
 [application]
@@ -85,7 +91,8 @@ shoot={
 }
 shoot_secondary={
 "deadzone": 0.5,
-"events": [  ]
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":2,"pressed":false,"doubleclick":false,"script":null)
+ ]
 }
 
 [layer_names]

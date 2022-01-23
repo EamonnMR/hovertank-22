@@ -41,6 +41,9 @@ func recalculate_path():
 	if target:
 		get_node("../Movement").navigate_to_position(target.global_transform.origin)
 
+func is_shooting_secondary():
+	return is_shooting()
+
 func is_shooting():
 	# TODO: Only when gun is ready to fire
 	if is_instance_valid(target) and target.global_transform.origin.distance_to(global_transform.origin) < firing_range:

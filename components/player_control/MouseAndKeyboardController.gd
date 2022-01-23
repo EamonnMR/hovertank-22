@@ -8,6 +8,9 @@ onready var parent = get_node("../")
 func is_shooting():
 	return Input.is_action_pressed("shoot")
 
+func is_shooting_secondary():
+	return Input.is_action_pressed("shoot_secondary")
+
 func is_player():
 	return true
 

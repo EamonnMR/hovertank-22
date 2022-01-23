@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://components/Turret.gd" type="Script" id=1]
 [ext_resource path="res://components/Weapon.tscn" type="PackedScene" id=2]
+[ext_resource path="res://components/WeaponSlot.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CubeMesh" id=1]
 size = Vector3( 3, 3, 3 )
@@ -17,7 +18,15 @@ material/0 = null
 [node name="ElevationPivot" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.191465, 0 )
 
-[node name="Weapon" parent="ElevationPivot" instance=ExtResource( 2 )]
+[node name="WeaponSlot" parent="ElevationPivot" instance=ExtResource( 3 )]
+primary = true
+
+[node name="Weapon" parent="ElevationPivot/WeaponSlot" instance=ExtResource( 2 )]
+
+[node name="WeaponSlot2" parent="ElevationPivot" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.61418 )
+
+[node name="Weapon" parent="ElevationPivot/WeaponSlot2" instance=ExtResource( 2 )]
 
 [node name="UnrotatedPositionMover" type="RemoteTransform" parent="."]
 update_rotation = false

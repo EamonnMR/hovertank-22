@@ -27,8 +27,8 @@ var selected_vehicle: String
 var selected_control_scheme
 
 var CONTROLLERS = {
-	"cardinal": preload("res://components/player_control/CardinalController.tscn"),
-	"absolute": preload("res://components/player_control/AbsoluteController.tscn")
+	"absolute": preload("res://components/player_control/AbsoluteController.tscn"),
+	"cardinal": preload("res://components/player_control/CardinalController.tscn")
 }
 
 func _ready():

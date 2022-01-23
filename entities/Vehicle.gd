@@ -31,9 +31,8 @@ func _handle_shooting():
 	if $Controller.is_shooting():
 		get_turret().try_shoot_primary()
 		# TODO: Multi Turret vehicles
-	#if $Controller.is_shooting_secondary()
-	#	pass
-	#	# $SecondaryWeapon.try_shooting()
+	if $Controller.is_shooting_secondary():
+		get_turret().try_shoot_secondary()
 
 func _dead():
 	explode()
