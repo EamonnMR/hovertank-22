@@ -153,6 +153,13 @@ margin_right = 82.0
 margin_bottom = 20.0
 text = "quit"
 
+[node name="ControllerOption" type="OptionButton" parent="VBoxContainer/LaunchOptions"]
+margin_left = 86.0
+margin_right = 178.0
+margin_bottom = 20.0
+text = "Controller"
+
 [connection signal="item_selected" from="VBoxContainer/Selection/VehicleSelect/MenuButton" to="." method="_on_MenuButton_item_selected"]
 [connection signal="pressed" from="VBoxContainer/LaunchOptions/StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/LaunchOptions/QuitButton" to="." method="_on_QuitButton_pressed"]
+[connection signal="item_selected" from="VBoxContainer/LaunchOptions/ControllerOption" to="." method="_on_ControllerOption_item_selected"]

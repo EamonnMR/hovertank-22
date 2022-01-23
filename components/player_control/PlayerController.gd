@@ -2,6 +2,9 @@ extends Node
 
 class_name PlayerController
 
+func get_turn_and_motion_impulse(delta, turn_speed) -> Array:
+	return [0.0, 0]
+
 func get_aim_point() -> Vector3:
 	return Vector3()
 

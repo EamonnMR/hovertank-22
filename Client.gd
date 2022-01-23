@@ -26,19 +26,28 @@ var MOVEMENT = {
 var selected_vehicle: String
 var selected_control_scheme
 
-var controller = preload("res://components/player_control/MouseAndKeyboardController.tscn")
+var CONTROLLERS = {
+	"cardinal": preload("res://components/player_control/CardinalController.tscn"),
+	"absolute": preload("res://components/player_control/AbsoluteController.tscn")
+}
 
 func _ready():
 	set_vehicle_selection(0)
+	set_controller_selection(0)
 
 func set_vehicle_selection(index: int):
 	var keys = VEHICLES.keys()
 	var byindex = keys[index]
 	selected_vehicle = VEHICLES.keys()[index]
 
+func set_controller_selection(index: int):
+	var keys = CONTROLLERS.keys()
+	var byindex = keys[index]
+	selected_control_scheme = CONTROLLERS.keys()[index]
+
 func spawn_player(world: Node):
 	var player = VEHICLES[selected_vehicle].scene.instance()
-	var controller_instance = controller.instance()
+	var controller_instance = CONTROLLERS[selected_control_scheme].instance()
 	controller_instance.name = "Controller"
 	var movement_instance = MOVEMENT[VEHICLES[selected_vehicle].movement].instance()
 	movement_instance.name = "Movement"
