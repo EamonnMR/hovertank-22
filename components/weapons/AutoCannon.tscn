@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://components/Weapon.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/eamonn/weapons/autocannon/autocannon_RM.png" type="Texture" id=2]
 [ext_resource path="res://assets/eamonn/weapons/autocannon.obj" type="ArrayMesh" id=3]
 [ext_resource path="res://assets/eamonn/weapons/autocannon/autocannon_C.png" type="Texture" id=4]
 [ext_resource path="res://assets/eamonn/weapons/autocannon/autocannon_N.png" type="Texture" id=5]
+[ext_resource path="res://projectiles/AutocannonProjectile.tscn" type="PackedScene" id=6]
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_texture = ExtResource( 4 )
@@ -16,6 +17,10 @@ normal_scale = 1.0
 normal_texture = ExtResource( 5 )
 
 [node name="Weapon" instance=ExtResource( 1 )]
+projectile_scene = ExtResource( 6 )
+
+[node name="Cooldown" parent="." index="0"]
+wait_time = 0.25
 
 [node name="Graphics" type="MeshInstance" parent="." index="2"]
 mesh = ExtResource( 3 )

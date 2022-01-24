@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://assets/eamonn/logo.png" type="Texture" id=1]
 [ext_resource path="res://ui/SpawnMenu.gd" type="Script" id=2]
 [ext_resource path="res://assets/documerica_pd/Abandoned_Barn_Succumbs_to_the_Elements,_and_an_Adjoining_House_Which_Is_Empty_Off_Route_-800_near_Barnesville,_Ohio._07-1974_(3769914962).jpg" type="Texture" id=3]
+[ext_resource path="res://assets/eamonn/darken.png" type="Texture" id=4]
 
 [node name="SpawnMenu" type="Control"]
 anchor_right = 1.0
@@ -26,6 +27,15 @@ expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+margin_left = 208.0
+margin_top = 257.0
+margin_right = 772.0
+margin_bottom = 499.0
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_left = 0.5

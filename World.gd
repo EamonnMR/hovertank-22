@@ -4,7 +4,6 @@ extends Spatial
 
 signal nav_ready
 
-var nodraw = false
 
 const DetourNavigation 	            :NativeScript = preload("res://addons/godotdetour/detournavigation.gdns")
 const DetourNavigationParameters	:NativeScript = preload("res://addons/godotdetour/detournavigationparameters.gdns")
@@ -188,7 +187,7 @@ func initializeNavigation():
 
 # Draws and displays the debug mesh
 func drawDebugMesh() -> void:
-	if nodraw:
+	if not get_tree().debug_collisions_hint:
 		return
 	# Don't do anything if navigation is not initialized
 	if not navigation.isInitialized():

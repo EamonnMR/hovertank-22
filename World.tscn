@@ -19,6 +19,8 @@
 background_sky = SubResource( 4 )
 ambient_light_color = Color( 0.129412, 0.129412, 0.129412, 1 )
 glow_enabled = true
+glow_intensity = 1.0
+glow_bloom = 0.2
 
 [sub_resource type="ArrayMesh" id=8575]
 surfaces/0 = {
@@ -92,6 +94,7 @@ transform = Transform( 0.994824, -0.101612, 0, 0.101612, 0.994824, 0, 0, 0, 1, 0
 
 [node name="DirectionalLight" type="DirectionalLight" parent="WorldEnvironment/CelestialSphere"]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 36.021, 0 )
+light_energy = 0.5
 shadow_enabled = true
 shadow_bias = 0.5
 
@@ -118,9 +121,6 @@ shape = SubResource( 8576 )
 [node name="Enemy" parent="." instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 33.3953, 0.117884, 77.3061 )
 
-[node name="Skeleton" parent="Enemy/Graphics/Armature" index="0"]
-bones/1/bound_children = [  ]
-
 [node name="Turret" parent="Enemy/Graphics/Armature/Skeleton" index="1"]
 transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 1.1915, 0 )
 
@@ -136,20 +136,11 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0
 [node name="Enemy2" parent="." instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 234.126, 0.117884, 77.3061 )
 
-[node name="Skeleton" parent="Enemy2/Graphics/Armature" index="0"]
-bones/1/bound_children = [  ]
-
 [node name="Turret" parent="Enemy2/Graphics/Armature/Skeleton" index="1"]
 transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 1.1915, 0 )
 
-[node name="WeaponSlot" parent="Enemy2/Graphics/Armature/Skeleton/Turret/ElevationPivot" index="0"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
-
 [node name="Weapon" parent="Enemy2/Graphics/Armature/Skeleton/Turret/ElevationPivot/WeaponSlot" index="0" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
-
-[node name="WeaponSlot2" parent="Enemy2/Graphics/Armature/Skeleton/Turret/ElevationPivot" index="1"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.812092 )
 
 [node name="Weapon" parent="Enemy2/Graphics/Armature/Skeleton/Turret/ElevationPivot/WeaponSlot2" index="0" instance=ExtResource( 6 )]
 
@@ -160,20 +151,11 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -
 [node name="Enemy3" parent="." instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 234.126, 0.117884, 109.754 )
 
-[node name="Skeleton" parent="Enemy3/Graphics/Armature" index="0"]
-bones/1/bound_children = [  ]
-
 [node name="Turret" parent="Enemy3/Graphics/Armature/Skeleton" index="1"]
 transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 1.1915, 0 )
 
-[node name="WeaponSlot" parent="Enemy3/Graphics/Armature/Skeleton/Turret/ElevationPivot" index="0"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
-
 [node name="Weapon" parent="Enemy3/Graphics/Armature/Skeleton/Turret/ElevationPivot/WeaponSlot" index="0" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
-
-[node name="WeaponSlot2" parent="Enemy3/Graphics/Armature/Skeleton/Turret/ElevationPivot" index="1"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.812092 )
 
 [node name="Weapon" parent="Enemy3/Graphics/Armature/Skeleton/Turret/ElevationPivot/WeaponSlot2" index="0" instance=ExtResource( 6 )]
 
@@ -184,20 +166,11 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -
 [node name="Enemy4" parent="." instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 180.63, 0.117884, 109.754 )
 
-[node name="Skeleton" parent="Enemy4/Graphics/Armature" index="0"]
-bones/1/bound_children = [  ]
-
 [node name="Turret" parent="Enemy4/Graphics/Armature/Skeleton" index="1"]
 transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 1.1915, 0 )
 
-[node name="WeaponSlot" parent="Enemy4/Graphics/Armature/Skeleton/Turret/ElevationPivot" index="0"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
-
 [node name="Weapon" parent="Enemy4/Graphics/Armature/Skeleton/Turret/ElevationPivot/WeaponSlot" index="0" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
-
-[node name="WeaponSlot2" parent="Enemy4/Graphics/Armature/Skeleton/Turret/ElevationPivot" index="1"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.812092 )
 
 [node name="Weapon" parent="Enemy4/Graphics/Armature/Skeleton/Turret/ElevationPivot/WeaponSlot2" index="0" instance=ExtResource( 6 )]
 
@@ -208,20 +181,11 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -
 [node name="Enemy5" parent="." instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 115.235, 0.117884, 109.754 )
 
-[node name="Skeleton" parent="Enemy5/Graphics/Armature" index="0"]
-bones/1/bound_children = [  ]
-
 [node name="Turret" parent="Enemy5/Graphics/Armature/Skeleton" index="1"]
 transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 1.1915, 0 )
 
-[node name="WeaponSlot" parent="Enemy5/Graphics/Armature/Skeleton/Turret/ElevationPivot" index="0"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
-
 [node name="Weapon" parent="Enemy5/Graphics/Armature/Skeleton/Turret/ElevationPivot/WeaponSlot" index="0" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
-
-[node name="WeaponSlot2" parent="Enemy5/Graphics/Armature/Skeleton/Turret/ElevationPivot" index="1"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.812092 )
 
 [node name="Weapon" parent="Enemy5/Graphics/Armature/Skeleton/Turret/ElevationPivot/WeaponSlot2" index="0" instance=ExtResource( 6 )]
 
@@ -232,20 +196,11 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -
 [node name="Enemy6" parent="." instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 46.207, 0.117884, 109.754 )
 
-[node name="Skeleton" parent="Enemy6/Graphics/Armature" index="0"]
-bones/1/bound_children = [  ]
-
 [node name="Turret" parent="Enemy6/Graphics/Armature/Skeleton" index="1"]
 transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 1.1915, 0 )
 
-[node name="WeaponSlot" parent="Enemy6/Graphics/Armature/Skeleton/Turret/ElevationPivot" index="0"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
-
 [node name="Weapon" parent="Enemy6/Graphics/Armature/Skeleton/Turret/ElevationPivot/WeaponSlot" index="0" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
-
-[node name="WeaponSlot2" parent="Enemy6/Graphics/Armature/Skeleton/Turret/ElevationPivot" index="1"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.812092 )
 
 [node name="Weapon" parent="Enemy6/Graphics/Armature/Skeleton/Turret/ElevationPivot/WeaponSlot2" index="0" instance=ExtResource( 6 )]
 
@@ -255,9 +210,6 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -
 
 [node name="Vehicle" parent="." instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 110.118, -3.88647, 31.1396 )
-
-[node name="Skeleton" parent="Vehicle/Graphics/Armature" index="0"]
-bones/1/bound_children = [  ]
 
 [node name="Turret" parent="Vehicle/Graphics/Armature/Skeleton" index="1"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46416, 2.84734, 0 )
@@ -272,9 +224,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46416, 2.84734, 0 )
 
 [node name="Vehicle2" parent="." instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 202.317, -3.88647, 31.1396 )
-
-[node name="Skeleton" parent="Vehicle2/Graphics/Armature" index="0"]
-bones/1/bound_children = [  ]
 
 [node name="Turret" parent="Vehicle2/Graphics/Armature/Skeleton" index="1"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46416, 2.84734, 0 )

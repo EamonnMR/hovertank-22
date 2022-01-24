@@ -1,8 +1,10 @@
 extends KinematicBody
 
-export var speed = 30
+export var speed = 50
 export var damage = 20
 export var already_exploded = false
+signal impact
+
 var iff: IffProfile
 
 func init(iff: IffProfile):
@@ -25,6 +27,7 @@ func explode():
 
 func _do_impact(collider):
 	print("Shot impact - do damage")
+	emit_signal("impact")
 	if not iff.should_exclude(collider):
 		Health.do_damage(collider, damage)
 	print("Blam!")
