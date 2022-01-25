@@ -41,7 +41,7 @@ var PILOTS = {
 	},
 	"pro": {
 		"name": "The Professional",
-		"desc": "Unspeakable horror from another dimension, sworn to hunt maltech users across the multiverse. I guess they’ve got problems out there too."
+		"desc": "Unspeakable horror from another dimension, sworn to hunt maltech users across the multiverse. I guess they've got problems out there too."
 	},
 	"doc": {
 		"name": "Doc",

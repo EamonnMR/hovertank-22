@@ -65,91 +65,99 @@ __meta__ = {
 }
 
 [node name="VehicleSelect" type="VBoxContainer" parent="VBoxContainer/Selection"]
-margin_right = 68.0
+margin_right = 100.0
 margin_bottom = 200.0
 
 [node name="Label" type="Label" parent="VBoxContainer/Selection/VehicleSelect"]
-margin_right = 68.0
+margin_right = 100.0
 margin_bottom = 14.0
 text = "Vehicle"
 
 [node name="MenuButton" type="OptionButton" parent="VBoxContainer/Selection/VehicleSelect"]
 margin_top = 18.0
-margin_right = 68.0
+margin_right = 100.0
 margin_bottom = 38.0
+rect_min_size = Vector2( 100, 0 )
 text = "Select"
 
 [node name="Desc" type="RichTextLabel" parent="VBoxContainer/Selection/VehicleSelect"]
 margin_top = 42.0
-margin_right = 68.0
-margin_bottom = 42.0
+margin_right = 100.0
+margin_bottom = 57.0
 bbcode_enabled = true
+fit_content_height = true
 
 [node name="PrimaryWeaponSelect" type="VBoxContainer" parent="VBoxContainer/Selection"]
-margin_left = 72.0
-margin_right = 140.0
+margin_left = 104.0
+margin_right = 204.0
 margin_bottom = 200.0
 
 [node name="Label" type="Label" parent="VBoxContainer/Selection/PrimaryWeaponSelect"]
-margin_right = 68.0
+margin_right = 100.0
 margin_bottom = 14.0
 text = "Primary"
 
 [node name="MenuButton" type="OptionButton" parent="VBoxContainer/Selection/PrimaryWeaponSelect"]
 margin_top = 18.0
-margin_right = 68.0
+margin_right = 100.0
 margin_bottom = 38.0
+rect_min_size = Vector2( 100, 0 )
 text = "Select"
 
 [node name="Desc" type="RichTextLabel" parent="VBoxContainer/Selection/PrimaryWeaponSelect"]
 margin_top = 42.0
-margin_right = 68.0
-margin_bottom = 42.0
+margin_right = 100.0
+margin_bottom = 57.0
 bbcode_enabled = true
+fit_content_height = true
 
 [node name="SecondaryWeaponSelect" type="VBoxContainer" parent="VBoxContainer/Selection"]
-margin_left = 144.0
-margin_right = 212.0
+margin_left = 208.0
+margin_right = 308.0
 margin_bottom = 200.0
 
 [node name="Label" type="Label" parent="VBoxContainer/Selection/SecondaryWeaponSelect"]
-margin_right = 68.0
+margin_right = 100.0
 margin_bottom = 14.0
 text = "Secondary"
 
 [node name="MenuButton" type="OptionButton" parent="VBoxContainer/Selection/SecondaryWeaponSelect"]
 margin_top = 18.0
-margin_right = 68.0
+margin_right = 100.0
 margin_bottom = 38.0
+rect_min_size = Vector2( 100, 0 )
 text = "Select"
 
 [node name="Desc" type="RichTextLabel" parent="VBoxContainer/Selection/SecondaryWeaponSelect"]
 margin_top = 42.0
-margin_right = 68.0
-margin_bottom = 42.0
+margin_right = 100.0
+margin_bottom = 57.0
 bbcode_enabled = true
+fit_content_height = true
 
 [node name="PilotSelect" type="VBoxContainer" parent="VBoxContainer/Selection"]
-margin_left = 216.0
-margin_right = 284.0
+margin_left = 312.0
+margin_right = 412.0
 margin_bottom = 200.0
 
 [node name="Label" type="Label" parent="VBoxContainer/Selection/PilotSelect"]
-margin_right = 68.0
+margin_right = 100.0
 margin_bottom = 14.0
 text = "Pilot"
 
 [node name="MenuButton" type="OptionButton" parent="VBoxContainer/Selection/PilotSelect"]
 margin_top = 18.0
-margin_right = 68.0
+margin_right = 100.0
 margin_bottom = 38.0
+rect_min_size = Vector2( 100, 0 )
 text = "Select"
 
 [node name="Desc" type="RichTextLabel" parent="VBoxContainer/Selection/PilotSelect"]
 margin_top = 42.0
-margin_right = 68.0
-margin_bottom = 42.0
+margin_right = 100.0
+margin_bottom = 57.0
 bbcode_enabled = true
+fit_content_height = true
 
 [node name="LaunchOptions" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 358.0
@@ -173,6 +181,10 @@ margin_right = 178.0
 margin_bottom = 20.0
 text = "Controller"
 
+[connection signal="item_selected" from="VBoxContainer/Selection/VehicleSelect/MenuButton" to="." method="_on_Vehicle_selected"]
+[connection signal="item_selected" from="VBoxContainer/Selection/PrimaryWeaponSelect/MenuButton" to="." method="_on_Primary_selected"]
+[connection signal="item_selected" from="VBoxContainer/Selection/SecondaryWeaponSelect/MenuButton" to="." method="_on_Secondary_selected"]
+[connection signal="item_selected" from="VBoxContainer/Selection/PilotSelect/MenuButton" to="." method="_on_Pilot_selected"]
 [connection signal="pressed" from="VBoxContainer/LaunchOptions/StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/LaunchOptions/QuitButton" to="." method="_on_QuitButton_pressed"]
 [connection signal="item_selected" from="VBoxContainer/LaunchOptions/ControllerOption" to="." method="_on_ControllerOption_item_selected"]

@@ -16,7 +16,8 @@ func _ready():
 	for i in Client.WEAPONS:
 		for j in [primary_dd, secondary_dd]:
 			j.add_item(Client.WEAPONS[i].name)
-			
+	# HACK
+	secondary_dd.selected = 1
 	for i in Client.PILOTS:
 		pilot_dd.add_item(Client.PILOTS[i].name)
 	
@@ -51,11 +52,12 @@ func _on_Pilot_selected(index):
 	update_text()
 
 func update_text():
-	$VBoxContainer/Selection/VehicleSelect/Desc.text = \
+	
+	$VBoxContainer/Selection/VehicleSelect/Desc.bbcode_text = \
 		Client.VEHICLES[Client.selected_vehicle].desc
-	$VBoxContainer/Selection/PrimaryWeaponSelect/Desc.text = \
+	$VBoxContainer/Selection/PrimaryWeaponSelect/Desc.bbcode_text = \
 		Client.WEAPONS[Client.selected_primary].desc
-	$VBoxContainer/Selection/SecondaryWeaponSelect/Desc.text = \
+	$VBoxContainer/Selection/SecondaryWeaponSelect/Desc.bbcode_text = \
 		Client.WEAPONS[Client.selected_secondary].desc
-	$VBoxContainer/Selection/PilotSelect/Desc.text = \
+	$VBoxContainer/Selection/PilotSelect/Desc.bbcode_text = \
 		Client.PILOTS[Client.selected_pilot].desc
