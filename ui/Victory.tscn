@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/documerica_pd/THE_EPA_WATER_QUALITY_OFFICE_AND_THE_NEW_HAMPSHIRE_WATER_SUPPLY_AND_POLLUTION_CONTROL_COMMISSION_TOGETHER_ARE..._-_NARA_-_553352.jpg" type="Texture" id=1]
+[ext_resource path="res://ui/Victory.gd" type="Script" id=2]
+
+[node name="Victory" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 1 )
+expand = true
+
+[node name="Label" type="Label" parent="."]
+margin_left = 276.208
+margin_top = 15.874
+margin_right = 320.208
+margin_bottom = 29.874
+rect_scale = Vector2( 10, 10 )
+text = "Victory"
+
+[node name="Continue" type="Button" parent="."]
+margin_left = 336.76
+margin_top = 310.033
+margin_right = 405.76
+margin_bottom = 330.033
+text = "Continue"
+
+[node name="Quit" type="Button" parent="."]
+margin_left = 593.339
+margin_top = 310.033
+margin_right = 662.339
+margin_bottom = 330.033
+text = "Quit"
+
+[connection signal="pressed" from="Continue" to="." method="_on_Continue_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_Quit_pressed"]

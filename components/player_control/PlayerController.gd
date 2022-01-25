@@ -18,4 +18,4 @@ func is_shooting_secondary():
 	return false
 
 func _exit_tree():
-	get_tree().change_scene("res://ui/SpawnMenu.tscn")
+	get_tree().change_scene("res://ui/Defeat.tscn")

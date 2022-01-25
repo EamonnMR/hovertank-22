@@ -120,7 +120,19 @@ func spawn_player(world: Node):
 			slot.add_child(WEAPONS[selected_primary].scene.instance())
 		for slot in turret.get_secondary_slots():
 			slot.add_child(WEAPONS[selected_secondary].scene.instance())
-		
-	
+			
 	world.add_child(player)
 	player.global_transform.origin = world.get_node("SpawnPoint").global_transform.origin
+
+
+func start_level():
+	get_tree().change_scene("res://ui/World.tscn")
+
+func return_to_menu():
+	get_tree().change_scene("res://ui/SpawnMenu.tscn")
+
+func victory_screen():
+	get_tree().change_scene("res://ui/Defeat.tscn")
+
+func defeat_screen():
+	get_tree().change_scene("res://ui/Victory.tscn")

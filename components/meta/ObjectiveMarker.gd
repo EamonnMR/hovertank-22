@@ -6,4 +6,4 @@ func _ready():
 	$Sprite3D.transform.origin.y = (aabb.position.y + aabb.size.y + 2) * scale
 
 func _exit_tree():
-	get_tree().change_scene("res://ui/main_menu.tscn")
+	Client.victory_screen()
