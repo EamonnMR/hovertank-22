@@ -94,3 +94,9 @@ func alert(alerting_body):
 	print("Alert!")
 	if not _has_target():
 		_obtain_target(alerting_body)
+
+func use_ability_primary():
+	return false
+	
+func use_ability_secondary():
+	return false

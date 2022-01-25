@@ -111,6 +111,10 @@ func spawn_player(world: Node):
 	player.add_child(movement_instance)
 	player.add_child(controller_instance)
 	
+	var primary_ability_instance = preload("res://components/abilities/Teleport.tscn").instance()
+	primary_ability_instance.primary = true
+	player.add_child(primary_ability_instance)
+	
 	for turret in player.get_turrets():
 		for slot in turret.get_primary_slots():
 			slot.add_child(WEAPONS[selected_primary].scene.instance())
