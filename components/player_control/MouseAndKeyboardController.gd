@@ -21,7 +21,7 @@ func is_player():
 	return true
 
 func _ready():
-	# TODO: SOC
+	._ready()
 	cam_rig = get_node("../../CameraRig")
 
 func get_aim_point() -> Vector3:

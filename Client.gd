@@ -131,8 +131,8 @@ func start_level():
 func return_to_menu():
 	get_tree().change_scene("res://ui/SpawnMenu.tscn")
 
-func victory_screen():
+func defeat_screen():
 	get_tree().change_scene("res://ui/Defeat.tscn")
 
-func defeat_screen():
+func victory_screen():
 	get_tree().change_scene("res://ui/Victory.tscn")

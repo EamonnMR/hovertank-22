@@ -6,7 +6,7 @@ var camera
 func is_player():
 	return $Controller.is_player()
 
-signal destroyed(unit)
+signal destroyed
 	
 func _ready():
 	
@@ -43,7 +43,7 @@ func _dead():
 	#remove_child(camera)
 	#get_node("../").add_child(camera)
 	#camera.position = position
-	emit_signal("destroyed", self)
+	emit_signal("destroyed")
 	queue_free()
 
 func explode():

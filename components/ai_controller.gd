@@ -1,11 +1,13 @@
 extends Spatial
 
+onready var parent = get_node("../")
+onready var navmesh = get_node("../../NavigationMesh") # TODO: Different navmeshes for different movement capabilities
 var target: Spatial
 # TODO: Tweak Params
 # export var standoff: false
 # export var min_range
 var path: Array
-var navmesh
+
 export var firing_range = 60
 var players_in_area: Array
 
@@ -15,7 +17,7 @@ func _has_target():
 	return target != null and is_instance_valid(target)
 
 func _ready():
-	navmesh = get_node("../../NavigationMesh") # TODO: Different navmeshes for different movement capabilities
+	parent.add_to_group("enemies")
 
 func is_player():
 	return false

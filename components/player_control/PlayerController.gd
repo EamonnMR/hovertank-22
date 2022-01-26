@@ -2,6 +2,9 @@ extends Node
 
 class_name PlayerController
 
+func _ready():
+	get_node("../").add_to_group("players")
+	get_node("../").connect("destroyed", self, "_on_player_destroyed")
 func get_turn_and_motion_impulse(delta, turn_speed) -> Array:
 	return [0.0, 0]
 
@@ -17,5 +20,5 @@ func is_shooting():
 func is_shooting_secondary():
 	return false
 
-func _exit_tree():
-	get_tree().change_scene("res://ui/Defeat.tscn")
+func _on_player_destroyed():
+	Client.defeat_screen()
