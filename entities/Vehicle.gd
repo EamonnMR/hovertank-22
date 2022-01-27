@@ -1,7 +1,7 @@
 extends KinematicBody
-var aim_dir: float
-var cooldown: bool
 var camera
+
+export var explosion: PackedScene
 
 func is_player():
 	return $Controller.is_player()
@@ -47,11 +47,9 @@ func _dead():
 	queue_free()
 
 func explode():
-	# TODO: Explosion
-	print("Boom")
-	# var explo = get_explo()
-	# explo.position = position
-	# get_node("../").add_child(explo)
+	var explo = explosion.instance()
+	explo.transform.origin = $CenterOfMass.global_transform.origin
+	get_node("../").add_child(explo)
 
 func set_facing(facing: float):
 	# $GraphicsPivoter.rotation.y = facing

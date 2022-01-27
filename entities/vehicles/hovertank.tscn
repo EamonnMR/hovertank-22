@@ -54,7 +54,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.452668 )
 material/0 = SubResource( 2 )
 
 [node name="Health" parent="." index="1"]
-max_health = 10
+max_health = 20
 
 [node name="CollisionShape" type="CollisionShape" parent="." index="3"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.24695, 0 )

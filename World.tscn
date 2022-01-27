@@ -121,9 +121,6 @@ shape = SubResource( 8576 )
 [node name="Enemy" parent="." instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 33.3953, 0.117884, 77.3061 )
 
-[node name="Skeleton" parent="Enemy/Graphics/Armature" index="0"]
-bones/1/bound_children = [  ]
-
 [node name="Turret" parent="Enemy/Graphics/Armature/Skeleton" index="1"]
 transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 1.1915, 0 )
 
@@ -138,9 +135,6 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0
 
 [node name="Enemy2" parent="." instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 234.126, 0.117884, 77.3061 )
-
-[node name="Skeleton" parent="Enemy2/Graphics/Armature" index="0"]
-bones/1/bound_children = [  ]
 
 [node name="Turret" parent="Enemy2/Graphics/Armature/Skeleton" index="1"]
 transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 1.1915, 0 )
@@ -157,9 +151,6 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0
 [node name="Enemy3" parent="." instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 234.126, 0.117884, 109.754 )
 
-[node name="Skeleton" parent="Enemy3/Graphics/Armature" index="0"]
-bones/1/bound_children = [  ]
-
 [node name="Turret" parent="Enemy3/Graphics/Armature/Skeleton" index="1"]
 transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 1.1915, 0 )
 
@@ -174,9 +165,6 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0
 
 [node name="Enemy4" parent="." instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 180.63, 0.117884, 109.754 )
-
-[node name="Skeleton" parent="Enemy4/Graphics/Armature" index="0"]
-bones/1/bound_children = [  ]
 
 [node name="Turret" parent="Enemy4/Graphics/Armature/Skeleton" index="1"]
 transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 1.1915, 0 )
@@ -193,9 +181,6 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0
 [node name="Enemy5" parent="." instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 115.235, 0.117884, 109.754 )
 
-[node name="Skeleton" parent="Enemy5/Graphics/Armature" index="0"]
-bones/1/bound_children = [  ]
-
 [node name="Turret" parent="Enemy5/Graphics/Armature/Skeleton" index="1"]
 transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 1.1915, 0 )
 
@@ -210,9 +195,6 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0
 
 [node name="Enemy6" parent="." instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 46.207, 0.117884, 109.754 )
-
-[node name="Skeleton" parent="Enemy6/Graphics/Armature" index="0"]
-bones/1/bound_children = [  ]
 
 [node name="Turret" parent="Enemy6/Graphics/Armature/Skeleton" index="1"]
 transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 1.1915, 0 )
@@ -229,9 +211,6 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0
 [node name="Vehicle" parent="." instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 110.118, -3.88647, 31.1396 )
 
-[node name="Skeleton" parent="Vehicle/Graphics/Armature" index="0"]
-bones/1/bound_children = [  ]
-
 [node name="Turret" parent="Vehicle/Graphics/Armature/Skeleton" index="1"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46416, 2.84734, 0 )
 
@@ -245,9 +224,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46416, 2.84734, 0 )
 
 [node name="Vehicle2" parent="." instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 202.317, -3.88647, 31.1396 )
-
-[node name="Skeleton" parent="Vehicle2/Graphics/Armature" index="0"]
-bones/1/bound_children = [  ]
 
 [node name="Turret" parent="Vehicle2/Graphics/Armature/Skeleton" index="1"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46416, 2.84734, 0 )
@@ -299,6 +275,11 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11.9124, 5.00212, 228.801 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 155.453, 0.413464, 36.6265 )
 
 [node name="ObjectiveMarker" parent="Building13" instance=ExtResource( 12 )]
+
+[node name="Building17" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 231.818, 0.413464, 36.6265 )
+
+[node name="ObjectiveMarker" parent="Building17" instance=ExtResource( 12 )]
 
 [editable path="Building"]
 [editable path="Building14"]

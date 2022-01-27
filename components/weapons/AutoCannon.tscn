@@ -20,7 +20,7 @@ normal_texture = ExtResource( 5 )
 projectile_scene = ExtResource( 6 )
 
 [node name="Cooldown" parent="." index="0"]
-wait_time = 0.25
+wait_time = 0.15
 
 [node name="Graphics" type="MeshInstance" parent="." index="2"]
 mesh = ExtResource( 3 )
