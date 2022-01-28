@@ -71,3 +71,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 39.7149, 24.0506 )
 
 [node name="RemoteTransform" type="RemoteTransform" parent="CameraOffset/CameraLocation"]
 remote_path = NodePath("../../../Camera")
+
+[node name="Listener" type="Listener" parent="CameraOffset"]
+current = true

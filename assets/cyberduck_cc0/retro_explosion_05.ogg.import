@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/retro_explosion_05.ogg-1509e396f754822d99c97a21ec3fa89b.oggstr"
+
+[deps]
+
+source_file="res://assets/cyberduck_cc0/retro_explosion_05.ogg"
+dest_files=[ "res://.import/retro_explosion_05.ogg-1509e396f754822d99c97a21ec3fa89b.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -36,8 +36,8 @@ func _shoot():
 	_effects()
 
 func _effects():
-	pass
-	# TODO: Muzzle flash, sparks, sound, etc
+	print("bang")
+	$AudioStreamPlayer3D.play()
 
 func _on_Cooldown_timeout():
 	cooldown = false

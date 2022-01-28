@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/shot_03.ogg-fdf5fcb4fedc784ae5cf502a420d191c.oggstr"
+
+[deps]
+
+source_file="res://assets/cyberduck_cc0/shot_03.ogg"
+dest_files=[ "res://.import/shot_03.ogg-fdf5fcb4fedc784ae5cf502a420d191c.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
