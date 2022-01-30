@@ -3,11 +3,14 @@ var camera
 
 export var explosion: PackedScene
 
+
 func is_player():
 	return $Controller.is_player()
 
 signal destroyed
-	
+
+class_name Vehicle
+
 func _ready():
 	
 	if $Controller.is_player():
@@ -59,6 +62,8 @@ func get_center_of_mass():
 	return $CenterOfMass.global_transform.origin
 
 func get_turrets():
+	if $Graphics/Armature is Skeleton:
+		return  [$Graphics/Armature/Turret]
 	return [$Graphics/Armature/Skeleton/Turret]
 
 func alert(source):

@@ -18,6 +18,12 @@ var VEHICLES = {
 		"scene": preload("res://entities/vehicles/hovertank.tscn"),
 		"movement": "hover",
 		"desc": "Nothing changes your perspective like being a meter off the ground"
+	},
+	"mecha": {
+		"name": "Cassidy Mech",
+		"scene": preload("res://entities/vehicles/Mecha.tscn"),
+		"movement": "walk",
+		"desc": "Light, by giant robot standards"
 	}
 }
 
@@ -55,7 +61,8 @@ var PILOTS = {
 
 var MOVEMENT = {
 	"tank": preload("res://components/player_control/TankMovement.tscn"),
-	"hover": preload("res://components/player_control/HoverMovement.tscn")
+	"hover": preload("res://components/player_control/HoverMovement.tscn"),
+	"walk": preload("res://components/player_control/WalkMovement.tscn")
 }
 
 var selected_vehicle: String

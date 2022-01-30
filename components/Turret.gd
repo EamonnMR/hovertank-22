@@ -3,7 +3,7 @@ extends BoneAttachment
 onready var skel = get_node("../")
 onready var turret_bone = skel.find_bone(bone_name)
 onready var turret_pose = skel.get_bone_pose(skel.find_bone("turret"))
-onready var parent = skel.get_node("../../../")
+var parent
 
 var primary_weapons = []
 var secondary_weapons = []
@@ -32,6 +32,13 @@ func _get_slots(primary):
 
 
 func _ready():
+	parent = self
+	while not (parent is Vehicle):
+		print(parent)
+		parent = parent.get_node("../")
+	assert(parent is Vehicle)
+	
+	assert($ElevationPivot.get_children().size() > 0)
 	for slot in $ElevationPivot.get_children():
 		if slot.primary:
 			primary_weapons.append(slot.get_weapon())
