@@ -36,14 +36,8 @@ max_health = 30
 [node name="Graphics" parent="." index="3" instance=ExtResource( 2 )]
 transform = Transform( -6.55671e-08, 0, 1.5, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 0, 0, 0 )
 
-[node name="Armature" parent="Graphics" index="0"]
-bones/8/bound_children = [ NodePath("Turret") ]
-
-[node name="Cube" parent="Graphics/Armature" index="1"]
-material/0 = SubResource( 2 )
-
-[node name="Turret" parent="Graphics/Armature" index="2" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 0, 2.96149, 0 )
+[node name="Turret" parent="Graphics/Armature" index="0" instance=ExtResource( 3 )]
+transform = Transform( -0.0131758, -0.99986, -0.0103605, -0.013411, 0.0105372, -0.999855, 0.999823, -0.0130349, -0.0135479, 0, 2.96149, 0 )
 bone_name = "turret"
 bone_axis = Vector3( 0, 0, 1 )
 bone_invert = true
@@ -55,6 +49,9 @@ primary = true
 
 [node name="WeaponSlot2" parent="Graphics/Armature/Turret/ElevationPivot" index="1" instance=ExtResource( 4 )]
 transform = Transform( 0.66, 0, 0, 0, 0.66, -2.15136e-09, 0, 2.15136e-09, 0.66, -0.464545, -1.39085, -0.562634 )
+
+[node name="Cube" parent="Graphics/Armature" index="2"]
+material/0 = SubResource( 2 )
 
 [node name="CenterOfMass" type="Spatial" parent="." index="4"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.59685, 0 )

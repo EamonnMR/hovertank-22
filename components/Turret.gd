@@ -82,7 +82,7 @@ func _modify_aim(aim_y):
 		PI - aim_y if bone_invert else aim_y 
 	)
 
-func _physics_process(delta):
+func _process(delta):
 	var aim_point = parent.get_node("Controller").get_aim_point()
 	var aim_pose = _aim_to_turret_pose(aim_point)
 	skel.set_bone_pose(

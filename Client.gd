@@ -122,6 +122,11 @@ func spawn_player(world: Node):
 	primary_ability_instance.primary = true
 	player.add_child(primary_ability_instance)
 	
+	var energy_component = preload("res://components/energy.tscn").instance()
+	energy_component.energy = 100
+	energy_component.max_energy = 100
+	player.add_child(energy_component)
+	
 	for turret in player.get_turrets():
 		for slot in turret.get_primary_slots():
 			slot.add_child(WEAPONS[selected_primary].scene.instance())

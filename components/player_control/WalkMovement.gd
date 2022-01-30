@@ -37,7 +37,6 @@ func _physics_process(delta):
 	parent.move_and_slide_with_snap(motion_total, Vector3.DOWN, Vector3.UP)
 	match_ground_normal(delta, parent)
 
-func _process(delta):
 	animation_player.play(
 		"walk" if grounded and motion_impulse else "idle",
 		animation_transition_speed
