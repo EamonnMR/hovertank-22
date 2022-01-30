@@ -129,6 +129,7 @@ func spawn_player(world: Node):
 			slot.add_child(WEAPONS[selected_secondary].scene.instance())
 			
 	world.add_child(player)
+	Hud.add_player(player)
 	player.global_transform.origin = world.get_node("SpawnPoint").global_transform.origin
 
 

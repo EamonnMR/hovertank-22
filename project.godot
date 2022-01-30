@@ -83,10 +83,17 @@ config/icon="res://icon.png"
 Procgen="*res://Procgen.tscn"
 Util="*res://Util.gd"
 Client="*res://Client.tscn"
+Hud="*res://ui/hud.tscn"
 
 [editor_plugins]
 
 enabled=PoolStringArray( "res://addons/zylann.hterrain/plugin.cfg" )
+
+[importer_defaults]
+
+texture={
+"flags/filter": false
+}
 
 [input]
 
