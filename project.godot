@@ -39,6 +39,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://components/Movement.gd"
 }, {
+"base": "KinematicBody",
+"class": "Pickup",
+"language": "GDScript",
+"path": "res://entities/pickups/pickup.gd"
+}, {
 "base": "Node",
 "class": "PlayerController",
 "language": "GDScript",
@@ -66,6 +71,7 @@ _global_script_class_icons={
 "IffProfile": "",
 "MouseAndKeyboardController": "",
 "Movement": "",
+"Pickup": "",
 "PlayerController": "",
 "Vehicle": "",
 "Weapon": "",

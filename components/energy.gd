@@ -15,12 +15,19 @@ func add_energy(amount: int):
 	energy += amount
 	if energy > max_energy:
 		energy = max_energy
+		
+func is_full():
+	return energy == max_energy
 
 func _ready():
 	energy = max_energy
 	parent.connect("destroyed", self, "_parent_destroyed")
 
 func _parent_destroyed():
-	pass
-	# Heat.add_heat(energy)
-	# TODO: Spawn pickups
+	var pickups = [
+		preload("res://entities/pickups/PowerPickup.tscn").instance()
+	]
+	
+	for pickup in pickups:
+		pickup.transform.origin = global_transform.origin
+		parent.get_node("../").add_child(pickup)
