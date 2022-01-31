@@ -254,6 +254,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 231.818, 0.413464, 36.6265 )
 
 [node name="Pickup" parent="." instance=ExtResource( 13 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 94.9359, 13.2082, 232.401 )
+collision_layer = 1
+collision_mask = 1
 
 [editable path="Building"]
 [editable path="Building14"]

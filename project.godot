@@ -127,6 +127,7 @@ ability_secondary={
 [layer_names]
 
 3d_physics/layer_1="solid"
+3d_physics/layer_7="pickups"
 3d_physics/layer_8="ground"
 
 [rendering]

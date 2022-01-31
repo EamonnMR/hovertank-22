@@ -10,6 +10,7 @@ var secondary_weapons = []
 
 # Hacks for wonky models; ignore unless your model is wonky
 export var bone_axis: Vector3 = Vector3(0,1,0)
+export var elevation_axis: Vector3 = Vector3(0,0,1)
 export var bone_invert: bool = false
 export var bone_offset = PI/2
 
@@ -89,7 +90,7 @@ func _process(delta):
 		turret_bone,
 		turret_pose.rotated(bone_axis, _modify_aim(aim_pose.y))
 	)
-	$ElevationPivot.rotation.z = aim_pose.x
+	$ElevationPivot.rotation = aim_pose.x * elevation_axis
 	
 	if parent.camera:
 		var ray_result: Dictionary = project_ray()
@@ -101,8 +102,8 @@ func project_ray():
 	var collisionMask = 1
 	# The pathfinding system only likes to interact with things that are stuck to the ground
 	
-	var first_weapon_emergepoint = primary_weapons[0].get_node("Emerge")
-	
+	#var first_weapon_emergepoint = primary_weapons[0]
+	var first_weapon_emergepoint = $ElevationPivot
 	var from = first_weapon_emergepoint.global_transform.origin
 	var to = first_weapon_emergepoint.to_global(Vector3(AIM_EXTEND, 0, 0))
 	var spaceState :PhysicsDirectSpaceState = get_world().direct_space_state

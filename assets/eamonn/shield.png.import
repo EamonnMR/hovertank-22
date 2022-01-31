@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/baseRM.png-0249a3c5eacb7b8e23d0545c0906cae5.stex"
+path="res://.import/shield.png-41e4050509086586c4dc5316ab20d9ca.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/eamonn/scout/baseRM.png"
-dest_files=[ "res://.import/baseRM.png-0249a3c5eacb7b8e23d0545c0906cae5.stex" ]
+source_file="res://assets/eamonn/shield.png"
+dest_files=[ "res://.import/shield.png-41e4050509086586c4dc5316ab20d9ca.stex" ]
 
 [params]
 

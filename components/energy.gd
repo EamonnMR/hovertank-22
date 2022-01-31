@@ -24,9 +24,11 @@ func _ready():
 	parent.connect("destroyed", self, "_parent_destroyed")
 
 func _parent_destroyed():
-	var pickups = [
-		preload("res://entities/pickups/PowerPickup.tscn").instance()
-	]
+	var pickup_scene = preload("res://entities/pickups/PowerPickup.tscn")
+	var pickups = []
+	while energy >= 20:
+		energy -= 20
+		pickups.append(pickup_scene.instance())
 	
 	for pickup in pickups:
 		pickup.transform.origin = global_transform.origin

@@ -37,9 +37,10 @@ max_health = 30
 transform = Transform( -6.55671e-08, 0, 1.5, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 0, 0, 0 )
 
 [node name="Turret" parent="Graphics/Armature" index="0" instance=ExtResource( 3 )]
-transform = Transform( -0.0131758, -0.99986, -0.0103605, -0.013411, 0.0105372, -0.999855, 0.999823, -0.0130349, -0.0135479, 0, 2.96149, 0 )
+transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 0, 2.96149, 0 )
 bone_name = "turret"
 bone_axis = Vector3( 0, 0, 1 )
+elevation_axis = Vector3( 0, 1, 0 )
 bone_invert = true
 bone_offset = 0.0
 
