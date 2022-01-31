@@ -22,6 +22,8 @@ func _update():
 	else:
 		$HealthWidget.value = 0
 		$EnergyWidget.value = 0
+	if is_instance_valid(Heat):
+		$HeatWidget.value = Heat.heat
 
 func _process(delta):
 	_update()

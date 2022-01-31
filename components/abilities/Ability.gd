@@ -5,6 +5,7 @@ onready var controller = parent.get_node("Controller")
 onready var energy = parent.get_node("Energy")
 export var primary: bool
 export var cost: int
+export var heat: int
 
 var cooldown = false
 
@@ -17,6 +18,7 @@ func _is_trying():
 func _physics_process(_delta):
 	if not cooldown and _is_trying() and energy.try_subtracting_energy(cost):
 		activate()
+		Heat.add_heat(heat)
 		cooldown = true
 		$Cooldown.start()
 

@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://ui/hud.gd" type="Script" id=1]
 [ext_resource path="res://assets/danc_cc_by/health_under.png" type="Texture" id=2]
 [ext_resource path="res://assets/danc_cc_by/health_over.png" type="Texture" id=3]
 [ext_resource path="res://assets/danc_cc_by/healthpack.png" type="Texture" id=4]
 [ext_resource path="res://assets/eamonn/power.png" type="Texture" id=5]
+[ext_resource path="res://assets/danc_cc_by/skull.png" type="Texture" id=6]
 
 [node name="HUD" type="Control"]
 script = ExtResource( 1 )
@@ -49,3 +50,27 @@ margin_top = -1.0
 margin_right = 123.5
 margin_bottom = 39.0
 texture = ExtResource( 5 )
+
+[node name="HeatWidget" type="TextureProgress" parent="."]
+margin_left = 1006.66
+margin_top = 5.31329
+margin_right = 1085.66
+margin_bottom = 45.3133
+rect_rotation = 90.0
+rect_scale = Vector2( 2, 2 )
+texture_under = ExtResource( 2 )
+texture_progress = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = 959.646
+margin_top = 166.471
+margin_right = 999.646
+margin_bottom = 206.471
+rect_scale = Vector2( 2, 2 )
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

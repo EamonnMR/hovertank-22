@@ -27,9 +27,6 @@ max_health = 15
 [node name="Graphics" parent="." index="2" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.01416, 0 )
 
-[node name="Skeleton" parent="Graphics/Armature" index="0"]
-bones/1/bound_children = [ NodePath("Turret") ]
-
 [node name="Cube" parent="Graphics/Armature/Skeleton" index="0"]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.979475, 0 )
 material/0 = ExtResource( 1 )

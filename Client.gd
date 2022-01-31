@@ -109,6 +109,7 @@ func set_pilot_selection(index: int):
 	selected_pilot = PILOTS.keys()[index]
 
 func spawn_player(world: Node):
+	Heat.heat = 0
 	var player = VEHICLES[selected_vehicle].scene.instance()
 	var controller_instance = CONTROLLERS[selected_control_scheme].instance()
 	controller_instance.name = "Controller"
