@@ -3,6 +3,9 @@ var camera
 
 export var explosion: PackedScene
 
+export var speed: float = 30.0
+export var accel: float = 3.0
+export var turn: float = 5
 
 func is_player():
 	return $Controller.is_player()

@@ -40,8 +40,8 @@ func _create_nav_agent(position_on_ground):
 	params.position = position_on_ground - Vector3(0, 0.1, 0)
 	params.radius = 0.3
 	params.height = 1.6
-	params.maxAcceleration = 3.0
-	params.maxSpeed = 6.0
+	params.maxAcceleration = parent.accel
+	params.maxSpeed = parent.speed
 	params.filterName = "default"
 	# Check more in-depth descriptions of the optimizations here:
 	# http://digestingduck.blogspot.com/2010/11/path-corridor-optimizations.html
