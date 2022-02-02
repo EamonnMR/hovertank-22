@@ -25,7 +25,7 @@ func _ready():
 
 
 func _on_StartButton_pressed():
-	get_tree().change_scene("res://World.tscn")
+	Client.start_level()
 
 
 func _on_QuitButton_pressed():

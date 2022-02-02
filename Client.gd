@@ -140,7 +140,7 @@ func spawn_player(world: Node):
 
 
 func start_level():
-	get_tree().change_scene("res://ui/World.tscn")
+	get_tree().change_scene("res://environment/World.tscn")
 
 func return_to_menu():
 	get_tree().change_scene("res://ui/SpawnMenu.tscn")

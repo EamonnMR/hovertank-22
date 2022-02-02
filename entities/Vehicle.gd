@@ -1,20 +1,22 @@
 extends KinematicBody
 var camera
 
-export var explosion: PackedScene
-
 export var speed: float = 30.0
 export var accel: float = 3.0
 export var turn: float = 5
 
 func is_player():
-	return $Controller.is_player()
+	return $Controller and $Controller.is_player()
 
 signal destroyed
 
 class_name Vehicle
 
 func _ready():
+	# If this wasn't spawned as a player, add AI to it
+	# TODO: This isn't as elegant as I'd like
+	if not has_node("Controller"):
+		add_ai()
 	
 	if $Controller.is_player():
 		# TODO: Not great for SOC
@@ -43,7 +45,6 @@ func _handle_shooting():
 			turret.try_shoot_secondary()
 
 func _dead():
-	explode()
 	# Remove this node but keep the camera around
 	#var camera = $Camera2D
 	#remove_child(camera)
@@ -51,11 +52,6 @@ func _dead():
 	#camera.position = position
 	emit_signal("destroyed")
 	queue_free()
-
-func explode():
-	var explo = explosion.instance()
-	explo.transform.origin = $CenterOfMass.global_transform.origin
-	get_node("../").add_child(explo)
 
 func set_facing(facing: float):
 	# $GraphicsPivoter.rotation.y = facing
@@ -65,6 +61,7 @@ func get_center_of_mass():
 	return $CenterOfMass.global_transform.origin
 
 func get_turrets():
+	# TODO: Support multiple turrets
 	if $Graphics/Armature is Skeleton:
 		return  [$Graphics/Armature/Turret]
 	return [$Graphics/Armature/Skeleton/Turret]
@@ -73,3 +70,13 @@ func alert(source):
 	print("Alert")
 	if $Controller.has_method("alert"):
 		$Controller.alert(source)
+
+func add_ai():
+	var mover = preload("res://components/AgentMovement.tscn").instance()
+	var controller = preload("res://components/ai_controller.tscn").instance()
+	
+	mover.name = "Movement"
+	controller.name = "Controller"
+	
+	add_child(mover)
+	add_child(controller)

@@ -2,12 +2,15 @@ extends Spatial
 
 class_name Health
 
+var already_destroyed: bool = false
+
 signal damaged
 signal healed
 signal destroyed
 
 export var max_health: int = 1
 export var health: int = -1
+export var explosion: PackedScene
 
 func _ready():
 	if health == -1:
@@ -25,19 +28,21 @@ func take_damage(damage):
 		return
 	
 	health -= damage
-	_signal_for_damage()
 
-func _signal_for_damage():
-	if health <= 0:
+	if health <= 0 and not already_destroyed:
+		already_destroyed = true
+		if not explosion == null:
+			var explo = explosion.instance()
+			explo.transform.origin = global_transform.origin
+			get_node("../../").add_child(explo)
+		else:
+			print("No explosion for ", get_node("../"))
 		emit_signal("destroyed")
+		already_destroyed = true
 	else:
 		emit_signal("damaged")
 
 
 static func do_damage(entity, damage):
 	if entity.has_node("Health"):
-		# print("Do some damage to something")
 		entity.get_node("Health").take_damage(damage)
-	# else:
-		# print(entity.name)
-		# print("Cannot damage: node does not have Health node? ", entity.has_node("Health"))

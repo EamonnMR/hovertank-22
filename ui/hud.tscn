@@ -13,7 +13,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HealthWidget" type="TextureProgress" parent="."]
+[node name="TopLeft" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="HealthWidget" type="TextureProgress" parent="TopLeft"]
 margin_left = 14.0
 margin_top = 17.0
 margin_right = 93.0
@@ -25,14 +29,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="HealthWidget"]
+[node name="TextureRect" type="TextureRect" parent="TopLeft/HealthWidget"]
 margin_left = 83.5
 margin_top = -1.0
 margin_right = 123.5
 margin_bottom = 39.0
 texture = ExtResource( 4 )
 
-[node name="EnergyWidget" type="TextureProgress" parent="."]
+[node name="EnergyWidget" type="TextureProgress" parent="TopLeft"]
 margin_left = 15.0
 margin_top = 71.0
 margin_right = 94.0
@@ -44,19 +48,27 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="EnergyWidget"]
+[node name="TextureRect" type="TextureRect" parent="TopLeft/EnergyWidget"]
 margin_left = 83.5
 margin_top = -1.0
 margin_right = 123.5
 margin_bottom = 39.0
 texture = ExtResource( 5 )
 
-[node name="HeatWidget" type="TextureProgress" parent="."]
-margin_left = 1006.66
-margin_top = 5.31329
-margin_right = 1085.66
-margin_bottom = 45.3133
-rect_rotation = 90.0
+[node name="TopRight" type="Control" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = 939.772
+margin_top = 18.6877
+margin_right = 1043.77
+margin_bottom = 175.688
+
+[node name="HeatWidget" type="TextureProgress" parent="TopRight"]
+margin_left = 26.6969
+margin_top = 160.181
+margin_right = 105.697
+margin_bottom = 200.181
+rect_rotation = -90.0
 rect_scale = Vector2( 2, 2 )
 texture_under = ExtResource( 2 )
 texture_progress = ExtResource( 3 )
@@ -64,11 +76,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="."]
-margin_left = 959.646
-margin_top = 166.471
-margin_right = 999.646
-margin_bottom = 206.471
+[node name="TextureRect" type="TextureRect" parent="TopRight"]
+margin_left = 10.6787
+margin_top = 173.529
+margin_right = 50.6787
+margin_bottom = 213.529
 rect_scale = Vector2( 2, 2 )
 texture = ExtResource( 6 )
 __meta__ = {

@@ -9,9 +9,9 @@ length = 0.5
 
 [node name="Vehicle" type="KinematicBody"]
 script = ExtResource( 1 )
-explosion = ExtResource( 2 )
 
 [node name="Health" parent="." instance=ExtResource( 3 )]
+explosion = ExtResource( 2 )
 
 [node name="CameraMover" type="RemoteTransform" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.51908, 0 )
