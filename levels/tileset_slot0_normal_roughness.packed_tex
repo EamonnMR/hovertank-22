@@ -1,0 +1,8 @@
+{
+	"contains_albedo": false,
+	"resolution": 512,
+	"src": {
+		"a": "#ffffffff",
+		"rgb": "res://assets/yughues_cc0/pattern_80_mossy_rock/normal.png"
+	}
+}

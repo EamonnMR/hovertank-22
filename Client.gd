@@ -1,5 +1,14 @@
 extends Node
 
+var current_level = 0
+
+var LEVELS = [
+	{
+		"name": "Deep Blue",
+		"scene": "res://levels/Level1.tscn"
+	}
+]
+
 var VEHICLES = {
 	"heavy": {
 		"name": "Heavy Tank",
@@ -140,7 +149,7 @@ func spawn_player(world: Node):
 
 
 func start_level():
-	get_tree().change_scene("res://environment/World.tscn")
+	get_tree().change_scene(LEVELS[current_level].scene)
 
 func return_to_menu():
 	get_tree().change_scene("res://ui/SpawnMenu.tscn")
