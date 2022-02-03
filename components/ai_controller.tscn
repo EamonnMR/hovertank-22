@@ -1,9 +1,6 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://components/ai_controller.gd" type="Script" id=1]
-
-[sub_resource type="SphereShape" id=1]
-radius = 79.7475
 
 [node name="Controller" type="Spatial"]
 script = ExtResource( 1 )
@@ -12,12 +9,4 @@ script = ExtResource( 1 )
 wait_time = 5.0
 autostart = true
 
-[node name="DetectArea" type="Area" parent="."]
-
-[node name="CollisionShape" type="CollisionShape" parent="DetectArea"]
-shape = SubResource( 1 )
-disabled = true
-
 [connection signal="timeout" from="RecalcTimer" to="." method="_on_RecalcTimer_timeout"]
-[connection signal="body_entered" from="DetectArea" to="." method="_on_DetectArea_body_entered"]
-[connection signal="body_exited" from="DetectArea" to="." method="_on_DetectArea_body_exited"]

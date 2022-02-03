@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://entities/Vehicle.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/eamonn/mecha/mecha.escn" type="PackedScene" id=2]
@@ -27,6 +27,9 @@ normal_texture = ExtResource( 8 )
 [sub_resource type="CapsuleShape" id=1]
 radius = 1.84335
 height = 1.20085
+
+[sub_resource type="SphereShape" id=3]
+radius = 11.5918
 
 [node name="Vehicle" instance=ExtResource( 1 )]
 
@@ -61,5 +64,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.59685, 0 )
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 3.69091, 0 )
 shape = SubResource( 1 )
 
+[node name="CollisionShape" parent="Notifier" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.41104, 0 )
+shape = SubResource( 3 )
+
 [editable path="Graphics"]
 [editable path="Graphics/Armature/Turret"]
+[editable path="Notifier"]

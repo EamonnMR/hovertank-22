@@ -5,6 +5,7 @@ func _ready():
 	$AudioStreamPlayer3D.play()
 	$Lifetime.wait_time = $Particles.lifetime # * 10
 	$Lifetime.start()
-
+	$Notifier.notify()
+	
 func _on_Lifetime_timeout():
 	queue_free()

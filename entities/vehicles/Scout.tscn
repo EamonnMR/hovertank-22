@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://entities/vehicles/scout_spatialmaterial.tres" type="Material" id=1]
 [ext_resource path="res://components/Turret.tscn" type="PackedScene" id=2]
@@ -19,6 +19,9 @@ height = 0.5
 radius = 4.5557
 height = 1.95346
 
+[sub_resource type="SphereShape" id=4]
+radius = 15.5608
+
 [node name="Vehicle" instance=ExtResource( 3 )]
 
 [node name="Health" parent="." index="0"]
@@ -26,9 +29,6 @@ max_health = 15
 
 [node name="Graphics" parent="." index="2" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.01416, 0 )
-
-[node name="Skeleton" parent="Graphics/Armature" index="0"]
-bones/1/bound_children = [ NodePath("Turret") ]
 
 [node name="Cube" parent="Graphics/Armature/Skeleton" index="0"]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.979475, 0 )
@@ -91,5 +91,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.51563, 0 )
 transform = Transform( 1, 0, 0, 0, 2.03861, 0, 0, 0, 1, 0, 3.23494, 0 )
 shape = SubResource( 3 )
 
+[node name="CollisionShape" parent="Notifier" index="0"]
+shape = SubResource( 4 )
+
 [editable path="Graphics"]
 [editable path="Graphics/Armature/Skeleton/Turret"]
+[editable path="Notifier"]

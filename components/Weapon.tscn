@@ -1,10 +1,11 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://components/Weapon.gd" type="Script" id=1]
 [ext_resource path="res://assets/cyberduck_cc0/shot_03.ogg" type="AudioStream" id=2]
+[ext_resource path="res://components/Notifier.tscn" type="PackedScene" id=3]
 
-[sub_resource type="SphereShape" id=2]
-radius = 54.9839
+[sub_resource type="SphereShape" id=1]
+radius = 7.86007
 
 [node name="Weapon" type="Spatial"]
 script = ExtResource( 1 )
@@ -13,15 +14,15 @@ script = ExtResource( 1 )
 one_shot = true
 autostart = true
 
-[node name="AlertArea" type="Area" parent="."]
-collision_layer = 0
-
-[node name="CollisionShape" type="CollisionShape" parent="AlertArea"]
-shape = SubResource( 2 )
-
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 2 )
 
+[node name="Notifier" parent="." instance=ExtResource( 3 )]
+line_of_sight = false
+
+[node name="CollisionShape" parent="Notifier" index="0"]
+shape = SubResource( 1 )
+
 [connection signal="timeout" from="Cooldown" to="." method="_on_Cooldown_timeout"]
-[connection signal="body_entered" from="AlertArea" to="." method="_on_AlertArea_body_entered"]
-[connection signal="body_exited" from="AlertArea" to="." method="_on_AlertArea_body_exited"]
+
+[editable path="Notifier"]

@@ -22,6 +22,7 @@ func _ready():
 		# TODO: Not great for SOC
 		camera = get_node("../CameraRig")
 		$CameraMover.remote_path = camera.get_mover_path()
+		$Notifier.proactive = true
 	
 	var map = get_node("../../")
 	# connect("destroyed", map, "unit_destroyed")

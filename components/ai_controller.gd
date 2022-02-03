@@ -30,7 +30,6 @@ func get_aim_point() -> Vector3:
 		return Vector3()
 
 func _on_RecalcTimer_timeout():
-	_check_for_target()
 	if target:
 		recalculate_path()
 
@@ -64,15 +63,6 @@ func is_shooting():
 	else:
 		return false
 
-func _on_DetectArea_body_entered(body):
-	if body.has_method("is_player") and body.is_player():
-		players_in_area.append(body)
-	_check_for_target()
-
-func _on_DetectArea_body_exited(body):
-	players_in_area.erase(body)
-	_check_for_target()
-	
 func _has_los_player(player):
 	var our_pos = 	get_parent().get_center_of_mass()
 	var player_pos = player.get_center_of_mass()
@@ -81,24 +71,17 @@ func _has_los_player(player):
 	var has_los =  result.has("collider") and result.collider == player
 	return has_los
 
-func _check_for_target():
-	if _has_target() and _has_los_player(target):
-		return
-	else:
-	# TODO: Sort by distance
-		for player in players_in_area:
-			if _has_los_player(player):
-				_obtain_target(player)
-				return
-		target = null
-
 func alert(alerting_body):
-	print("Alert!")
-	if not _has_target():
-		_obtain_target(alerting_body)
+	if _is_foe(alerting_body):
+		print("Alert!")
+		if not _has_target():
+			_obtain_target(alerting_body)
 
 func use_ability_primary():
 	return false
 	
 func use_ability_secondary():
 	return false
+	
+func _is_foe(entity: Node) -> bool:
+	return entity.has_method("is_player") and entity.is_player()
