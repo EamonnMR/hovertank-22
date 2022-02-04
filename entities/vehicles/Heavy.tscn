@@ -28,7 +28,7 @@ normal_texture = ExtResource( 1 )
 radius = 7.05293
 
 [sub_resource type="SphereShape" id=3]
-radius = 38.6188
+radius = 35.4015
 
 [node name="Vehicle" instance=ExtResource( 2 )]
 

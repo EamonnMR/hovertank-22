@@ -14,23 +14,39 @@ func _ready():
 	assert(not(proactive and cadence))
 	if not notification_source:
 		notification_source = get_node("../")
-	$CollisionShape.disabled = not proactive
+	if proactive:
+		enable_proactive()
+	else:
+		disable_proactive()
 	if cadence > 0:
 		_setup_cadence_timer()
 		
 	_setup_query()
 
+func enable_proactive():
+	proactive = true
+	$CollisionShape.disabled = false
+
+func disable_proactive():
+	proactive = false
+	$CollisionShape.disabled = true
+
 func notify():
+	print("Notifier.notify")
 	for result in _bodies_in_area():
 		if result.has("collider"):
+			if result.collider == notification_source:
+				continue
 			_notify_body(result.collider)
 
 func _notify_body(body):
-	if not body.has_method("notify"):
+	if body == notification_source:
 		return
-	if line_of_sight and not _line_of_sight(body):
+	if not body.has_method("alert"):
 		return
-	body.notify(notification_source)
+	# if line_of_sight and not _line_of_sight(body):
+	# 	return
+	body.alert(notification_source)
 
 func _setup_cadence_timer():
 	# TODO: Create timer with cadence as wait time
@@ -43,11 +59,11 @@ func _setup_query():
 	query = PhysicsShapeQueryParameters.new()
 	query.collide_with_areas = false
 	query.collide_with_bodies = true
-	query.collision_layer = 1
+	query.collision_mask = 2
 	query.set_shape($CollisionShape.shape)
 
 func _bodies_in_area() -> Array:
-	query.transform = $CollisionShape.transform
+	query.transform = $CollisionShape.global_transform
 	return get_world().get_direct_space_state().intersect_shape(query)
 
 func _line_of_sight(body) -> bool:

@@ -18,3 +18,4 @@ material/0 = ExtResource( 3 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.07501, 0, 0 )
 
 [editable path="Graphics"]
+[editable path="Notifier"]

@@ -18,11 +18,14 @@ func _ready():
 	if not has_node("Controller"):
 		add_ai()
 	
-	if $Controller.is_player():
+	if is_player():
 		# TODO: Not great for SOC
 		camera = get_node("../CameraRig")
 		$CameraMover.remote_path = camera.get_mover_path()
-		$Notifier.proactive = true
+		$Notifier.enable_proactive()
+	else:
+		$Notifier.disable_proactive()
+	
 	
 	var map = get_node("../../")
 	# connect("destroyed", map, "unit_destroyed")
