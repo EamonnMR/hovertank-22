@@ -14,6 +14,10 @@ script = ExtResource( 1 )
 one_shot = true
 autostart = true
 
+[node name="BurstCooldown" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 2 )
 
@@ -24,5 +28,6 @@ line_of_sight = false
 shape = SubResource( 1 )
 
 [connection signal="timeout" from="Cooldown" to="." method="_on_Cooldown_timeout"]
+[connection signal="timeout" from="BurstCooldown" to="." method="_on_BurstCooldown_timeout"]
 
 [editable path="Notifier"]

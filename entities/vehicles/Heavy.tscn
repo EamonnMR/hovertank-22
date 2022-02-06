@@ -31,9 +31,12 @@ radius = 7.05293
 radius = 35.4015
 
 [node name="Vehicle" instance=ExtResource( 2 )]
+speed = 20.0
+accel = 2.0
+turn = 4.0
 
 [node name="Health" parent="." index="0"]
-max_health = 50
+max_health = 150
 
 [node name="Graphics" parent="." index="2" instance=ExtResource( 7 )]
 
