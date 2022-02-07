@@ -4,6 +4,12 @@
 
 [node name="Heat" type="Node"]
 script = ExtResource( 1 )
-minor_incursion_threshold = 10
-major_incursion_threshold = 20
-boss_incursion_threshold = 30
+minor_incursion_threshold = 1
+major_incursion_threshold = 2
+boss_incursion_threshold = 3
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="add_heat" binds= [ -1 ]]

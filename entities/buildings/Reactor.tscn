@@ -48,8 +48,8 @@ material/0 = ExtResource( 2 )
 
 [node name="Energy" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.50935, 10.2228, 0 )
-energy = 100
-max_energy = 100
+energy = 300
+max_energy = 300
 
 [connection signal="damaged" from="Health" to="." method="_on_Health_damaged"]
 [connection signal="destroyed" from="Health" to="." method="_on_Health_destroyed"]

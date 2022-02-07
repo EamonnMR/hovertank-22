@@ -19,7 +19,13 @@ script = ExtResource( 1 )
 [node name="CelestialSphere" type="Spatial" parent="."]
 transform = Transform( 0.64011, -0.645032, -0.417364, 0.0595767, 0.583281, -0.810083, 0.76597, 0.493676, 0.411793, 0, 0, 0 )
 
-[node name="DirectionalLight" type="DirectionalLight" parent="CelestialSphere"]
+[node name="Sun" type="DirectionalLight" parent="CelestialSphere"]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 36.021, 0 )
+shadow_enabled = true
+shadow_bias = 0.5
+
+[node name="Dark" type="DirectionalLight" parent="CelestialSphere"]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 36.021, 0 )
+visible = false
 shadow_enabled = true
 shadow_bias = 0.5

@@ -3,7 +3,7 @@ extends Spatial
 class_name Movement
 
 func match_ground_normal(_delta: float, parent: Spatial, factor: float = 0.2):
-	# see: http://kidscancode.org/godot_recipes/3d/3d_align_surface/
+	# see: http://kidscancode.org/godot_recipes/3d/3d_align_surface
 	var ray_below_normal = $RayCast.get_collision_normal()
 	if ray_below_normal != Vector3(0, 0, 0):
 		parent.global_transform = parent.global_transform.interpolate_with(

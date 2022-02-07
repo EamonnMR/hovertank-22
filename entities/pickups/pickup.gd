@@ -10,12 +10,20 @@ export var velo_retained_on_bounce = 0.8
 var initialized = false
 
 func _ready():
-	velocity = -1 * global_transform.basis.y * start_move_speed
+	velocity =(
+		global_transform.basis.x
+		* rand_range(0, start_move_speed)
+	).rotated(
+		Vector3(0, 1, 0),
+		rand_range(0, PI * 2)
+	)
 	
 func _physics_process(delta):
+	print(global_transform.origin)
+	print(velocity)
 	velocity += -1 * velocity * drag + Vector3.DOWN * gravity * delta
 	var collision = move_and_collide(velocity * delta)
-	if collision:
+	if false: # collision:
 		# Calculate reflection
 		var d = velocity
 		var n = collision.normal
@@ -32,3 +40,4 @@ func do_pickup_effect(body):
 
 func can_pickup(body) -> bool:
 	return false
+
