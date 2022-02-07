@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/canister.obj-6fb29b0834458bf5ceac510072fb6ebc.mesh"
+
+[deps]
+
+files=[ "res://.import/canister.obj-6fb29b0834458bf5ceac510072fb6ebc.mesh" ]
+
+source_file="res://assets/eamonn/weapons/canister/canister.obj"
+dest_files=[ "res://.import/canister.obj-6fb29b0834458bf5ceac510072fb6ebc.mesh", "res://.import/canister.obj-6fb29b0834458bf5ceac510072fb6ebc.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

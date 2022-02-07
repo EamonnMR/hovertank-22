@@ -19,6 +19,7 @@ normal_texture = ExtResource( 5 )
 [node name="Weapon" instance=ExtResource( 1 )]
 projectile_scene = ExtResource( 6 )
 burst_count = 5
+spread = 0.2
 
 [node name="Cooldown" parent="." index="0"]
 wait_time = 0.15

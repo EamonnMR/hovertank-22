@@ -9,6 +9,8 @@ class_name Weapon
 onready var world = get_tree().get_root().get_node("World")
 export var projectile_scene = preload("res://projectiles/Projectile.tscn")
 export var burst_count = 0
+export var dupe_count = 1
+export var spread: float = 0
 
 func _ready():
 	assert($Graphics)
@@ -33,11 +35,14 @@ func _shoot():
 		if burst_counter >= burst_count:
 			burst_cooldown = true
 			$BurstCooldown.start()
+	for i in range(dupe_count):
+		var projectile = projectile_scene.instance()
+		projectile.init(iff)
+		world.add_child(projectile)
+		projectile.global_transform = $Emerge.global_transform
+		projectile.rotate_x(rand_range(-spread/2, spread/2))
+		projectile.rotate_y(rand_range(-spread/2, spread/2))
 	
-	var projectile = projectile_scene.instance()
-	projectile.init(iff)
-	world.add_child(projectile)
-	projectile.global_transform = $Emerge.global_transform
 	cooldown = true
 	$Cooldown.start()
 	$Notifier.notify()

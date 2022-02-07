@@ -46,6 +46,11 @@ var WEAPONS = {
 		"name": "Autocannon",
 		"scene": preload("res://components/weapons/AutoCannon.tscn"),
 		"desc": "Real fast"
+	},
+	"canister": {
+		"name": "Canister Shot",
+		"scene": preload("res://components/weapons/Canister.tscn"),
+		"desc": "Double down close in weapon"
 	}
 }
 

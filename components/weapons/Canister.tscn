@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://components/Weapon.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/eamonn/weapons/canister/canister_RM.png" type="Texture" id=2]
+[ext_resource path="res://assets/eamonn/weapons/canister/canister_C.png" type="Texture" id=3]
+[ext_resource path="res://assets/eamonn/weapons/canister/canister.obj" type="ArrayMesh" id=4]
+[ext_resource path="res://projectiles/AutocannonProjectile.tscn" type="PackedScene" id=5]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_texture = ExtResource( 3 )
+metallic_texture = ExtResource( 2 )
+metallic_texture_channel = 2
+roughness_texture = ExtResource( 2 )
+
+[node name="Weapon" instance=ExtResource( 1 )]
+projectile_scene = ExtResource( 5 )
+dupe_count = 8
+spread = 0.5
+
+[node name="BurstCooldown" parent="." index="1"]
+wait_time = 0.001
+
+[node name="Graphics" type="MeshInstance" parent="." index="4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.261146, 0, 0 )
+mesh = ExtResource( 4 )
+material/0 = SubResource( 1 )
+
+[node name="Emerge" type="Spatial" parent="." index="5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.22929, 0, 0 )
+
+[editable path="Notifier"]
