@@ -41,10 +41,11 @@ func _ready():
 	
 	assert($ElevationPivot.get_children().size() > 0)
 	for slot in $ElevationPivot.get_children():
-		if slot.primary:
-			primary_weapons.append(slot.get_weapon())
-		else:
-			secondary_weapons.append(slot.get_weapon())
+		if slot.has_weapon():
+			if slot.primary:
+				primary_weapons.append(slot.get_weapon())
+			else:
+				secondary_weapons.append(slot.get_weapon())
 	
 	for weapon in primary_weapons + secondary_weapons:
 		weapon.init(IffProfile.new(

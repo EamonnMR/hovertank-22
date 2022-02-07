@@ -7,4 +7,4 @@ script = ExtResource( 1 )
 
 [node name="RayCast" type="RayCast" parent="."]
 enabled = true
-cast_to = Vector3( 0, -2, 0 )
+cast_to = Vector3( 0, -4, 0 )
