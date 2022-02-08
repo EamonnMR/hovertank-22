@@ -84,4 +84,7 @@ func use_ability_secondary():
 	return false
 	
 func _is_foe(entity: Node) -> bool:
-	return entity.has_method("is_player") and entity.is_player()
+	var entity_fac = entity.get("faction")
+	if entity_fac == null:
+		return false
+	return entity_fac != parent.faction
