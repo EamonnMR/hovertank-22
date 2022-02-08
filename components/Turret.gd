@@ -50,8 +50,8 @@ func _ready():
 	for weapon in primary_weapons + secondary_weapons:
 		weapon.init(IffProfile.new(
 			parent,
-			not parent.is_player(),
-			parent.is_player()
+			parent.faction,
+			false
 		))
 	
 	# This uses two extra nodes per turret

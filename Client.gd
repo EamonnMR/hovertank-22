@@ -79,6 +79,12 @@ var MOVEMENT = {
 	"walk": preload("res://components/player_control/WalkMovement.tscn")
 }
 
+var FACTIONS = [
+	{"name": "Moloch"},
+	{"name": "ITAR"},
+	{"name": "The Others"}
+]
+
 var selected_vehicle: String
 var selected_control_scheme: String
 var selected_primary: String
@@ -147,7 +153,9 @@ func spawn_player(world: Node):
 			slot.add_child(WEAPONS[selected_primary].scene.instance())
 		for slot in turret.get_secondary_slots():
 			slot.add_child(WEAPONS[selected_secondary].scene.instance())
-			
+	
+	player.faction = 1  # Players always work for ITAR
+	
 	world.add_child(player)
 	Hud.add_player(player)
 	player.global_transform.origin = world.get_node("SpawnPoint").global_transform.origin

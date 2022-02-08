@@ -5,6 +5,8 @@ export var speed: float = 30.0
 export var accel: float = 3.0
 export var turn: float = 5
 
+export var faction: int = 0
+
 func is_player():
 	return $Controller and $Controller.is_player()
 

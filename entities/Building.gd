@@ -1,5 +1,7 @@
 extends StaticBody
 
+export var faction: int = -1
+
 signal destroyed
 
 func _on_Health_damaged():

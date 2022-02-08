@@ -19,6 +19,7 @@ radius = 7.70372
 
 [node name="Building" type="StaticBody"]
 script = ExtResource( 8 )
+faction = 0
 
 [node name="Obstacle" parent="." instance=ExtResource( 6 )]
 radius = 18.0
