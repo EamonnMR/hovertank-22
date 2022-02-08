@@ -94,6 +94,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.51563, 0 )
 transform = Transform( 1, 0, 0, 0, 2.03861, 0, 0, 0, 1, 0, 3.23494, 0 )
 shape = SubResource( 3 )
 
+[node name="Notifier" parent="." index="6"]
+cadence = 1.0
+
 [node name="CollisionShape" parent="Notifier" index="0"]
 shape = SubResource( 4 )
 

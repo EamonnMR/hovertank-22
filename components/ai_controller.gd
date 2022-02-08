@@ -39,7 +39,7 @@ func _obtain_target(target):
 	recalculate_path()
 	
 func recalculate_path():
-	if target:
+	if target and is_instance_valid(target):
 		get_node("../Movement").navigate_to_position(target.global_transform.origin)
 
 func is_shooting_secondary():
