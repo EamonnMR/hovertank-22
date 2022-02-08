@@ -44,8 +44,8 @@ func _notify_body(body):
 		return
 	if not body.has_method("alert"):
 		return
-	# if line_of_sight and not _line_of_sight(body):
-	# 	return
+	if line_of_sight and not _line_of_sight(body):
+		return
 	body.alert(notification_source)
 
 func _setup_cadence_timer():
