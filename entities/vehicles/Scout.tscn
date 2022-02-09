@@ -24,7 +24,7 @@ radius = 15.5608
 
 [node name="Vehicle" instance=ExtResource( 3 )]
 speed = 50.0
-accel = 5.0
+accel = 50.0
 turn = 6.0
 
 [node name="Health" parent="." index="0"]

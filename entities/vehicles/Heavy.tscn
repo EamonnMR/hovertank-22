@@ -32,13 +32,16 @@ radius = 35.4015
 
 [node name="Vehicle" instance=ExtResource( 2 )]
 speed = 20.0
-accel = 2.0
+accel = 10.0
 turn = 4.0
 
 [node name="Health" parent="." index="0"]
 max_health = 150
 
 [node name="Graphics" parent="." index="2" instance=ExtResource( 7 )]
+
+[node name="Skeleton" parent="Graphics/Armature" index="0"]
+bones/1/bound_children = [ NodePath("Turret") ]
 
 [node name="Cube" parent="Graphics/Armature/Skeleton" index="0"]
 material/0 = SubResource( 1 )
@@ -59,6 +62,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.02829, -0.125774, 1.11624 )
 [node name="CollisionShape" type="CollisionShape" parent="." index="3"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.44803, 0 )
 shape = SubResource( 2 )
+disabled = true
 
 [node name="CenterOfMass" type="Spatial" parent="." index="4"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.22237, 0 )

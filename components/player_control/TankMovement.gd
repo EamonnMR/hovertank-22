@@ -2,17 +2,9 @@ extends Movement
 
 # Movement for player vehicles which can turn in place and don't hover
 
-var parent: KinematicBody
-var controller
-
-
-export var gravity = 900
+const gravity = 9
 var motion = Vector3(0,0,0)
-
-func _ready():
-	parent = get_node("../")
-	controller = get_node("../Controller")
-	
+var momentum: float
 
 func _physics_process(delta):
 	
@@ -20,10 +12,11 @@ func _physics_process(delta):
 	var turn = turn_and_motion_impulse[0]
 	var motion_impulse = turn_and_motion_impulse[1]
 	parent.rotation.y += turn
-	var motion = Vector3(motion_impulse, 0, 0).rotated(Vector3.UP, parent.rotation.y)
+	momentum = update_momentum(momentum, delta, motion_impulse)
+	var motion = Vector3(momentum, 0, 0).rotated(Vector3.UP, parent.rotation.y)
 
-	var gravity_delta = gravity * delta * Vector3.DOWN
-	var motion_total = motion * parent.speed + gravity_delta
-	
-	parent.move_and_slide_with_snap(motion_total, Vector3.DOWN, Vector3.UP)
+	var gravity_delta = gravity * Vector3.DOWN
+	var motion_total = motion + gravity_delta
+	print(motion_total)
+	parent.move_and_slide(motion_total, Vector3.DOWN, true)
 	match_ground_normal(delta, parent)

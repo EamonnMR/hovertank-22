@@ -1,8 +1,5 @@
 extends Movement
 
-var parent: KinematicBody
-var controller
-
 export var drag = 0.25
 export var gravity = 90
 

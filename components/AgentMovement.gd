@@ -1,9 +1,7 @@
 extends Movement
 
-const DetourCrowdAgentParameters    :NativeScript = preload("res://addons/godotdetour/detourcrowdagentparameters.gdns")
+const DetourCrowdAgentParameters:NativeScript = preload("res://addons/godotdetour/detourcrowdagentparameters.gdns")
 
-var parent: KinematicBody
-var controller
 var agent
 var world
 
@@ -13,8 +11,6 @@ export var usePrediction = true
 
 
 func _ready():
-	parent = get_node("../")
-	controller = get_node("../Controller")
 	world = parent.get_node("../")
 	parent.get_node("Graphics").rotation.y += PI/2
 	

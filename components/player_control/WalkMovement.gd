@@ -1,40 +1,35 @@
 extends Movement
 
 # Movement for player vehicles which can turn in place and don't hover
+onready var animation_player = get_node("../Graphics/Armature/AnimationPlayer")
 
-var parent: KinematicBody
-var controller
-var animation_player
-
-export var gravity = 900
-export var animation_transition_speed = 0.25
+const gravity = -900
+const animation_transition_speed = 0.25
 var motion = Vector3(0,0,0)
 var motion_impulse
+var momentum: float = 0
 var grounded: bool
 
-func _ready():
-	parent = get_node("../")
-	controller = get_node("../Controller")
-	animation_player = get_node("../Graphics/Armature/AnimationPlayer")
-	
-
 func _physics_process(delta):
-	
 	var turn_and_motion_impulse = controller.get_turn_and_motion_impulse(delta, parent.turn)
 	var turn = turn_and_motion_impulse[0]
 	motion_impulse = turn_and_motion_impulse[1]
-	parent.rotation.y += turn
-	var motion = Vector3(motion_impulse, 0, 0).rotated(Vector3.UP, parent.rotation.y)
 	
-	var gravity_delta = gravity * delta * Vector3.DOWN
-	var motion_total = motion * parent.speed + gravity_delta
+	momentum = update_momentum(momentum, delta, motion_impulse)
+	
+	parent.rotation.y += turn
+	var motion = Vector3(momentum, 0, 0).rotated(Vector3.UP, parent.rotation.y)
+	
+	# var gravity_delta = gravity * delta * Vector3.DOWN
+	var gravity_delta = Vector3(0, delta * gravity, 0)
+	var motion_total = motion + gravity_delta
 	grounded = parent.is_on_floor()
 	if grounded:
 		motion.y = -0.01 # Need to keep touching floor to keep is_on_floor true
-	parent.move_and_slide_with_snap(motion_total, Vector3.DOWN, Vector3.UP)
+	parent.move_and_slide_with_snap(motion_total, Vector3.DOWN, Vector3.UP, true)
 	match_ground_normal(delta, parent)
 
 	animation_player.play(
-		"walk" if grounded and motion_impulse else "idle",
-		animation_transition_speed
+		"walk" if grounded and momentum else "idle",
+		animation_transition_speed * (momentum / parent.speed)
 	)
