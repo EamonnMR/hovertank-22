@@ -24,8 +24,8 @@ normal_enabled = true
 normal_scale = 1.0
 normal_texture = ExtResource( 1 )
 
-[sub_resource type="CylinderShape" id=2]
-radius = 7.05293
+[sub_resource type="BoxShape" id=4]
+extents = Vector3( 6.36887, 1.59387, 4.47535 )
 
 [sub_resource type="SphereShape" id=3]
 radius = 35.4015
@@ -60,14 +60,14 @@ primary = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.02829, -0.125774, 1.11624 )
 
 [node name="CollisionShape" type="CollisionShape" parent="." index="3"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.44803, 0 )
-shape = SubResource( 2 )
-disabled = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.02105, 0 )
+shape = SubResource( 4 )
 
 [node name="CenterOfMass" type="Spatial" parent="." index="4"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.22237, 0 )
 
 [node name="CollisionShape" parent="Notifier" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.21647, -0.0146484, 0.0911818 )
 shape = SubResource( 3 )
 
 [editable path="Graphics"]
