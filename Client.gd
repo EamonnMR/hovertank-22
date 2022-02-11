@@ -76,7 +76,8 @@ var PILOTS = {
 var MOVEMENT = {
 	"tank": preload("res://components/player_control/TankMovement.tscn"),
 	"hover": preload("res://components/player_control/HoverMovement.tscn"),
-	"walk": preload("res://components/player_control/WalkMovement.tscn")
+	"walk": preload("res://components/player_control/WalkMovement.tscn"),
+	"wheels": preload("res://components/player_control/WheelsMovement.tscn")
 }
 
 var FACTIONS = [
