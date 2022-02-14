@@ -68,5 +68,7 @@ func get_turn_and_motion_impulse(delta, turn_speed) -> Array:
 		else:
 			return [turn, 0]
 	else:
-		return [0.0, 0]
+		if not turn:
+			turn = _get_turret_turn()
+		return [turn, 0]
 

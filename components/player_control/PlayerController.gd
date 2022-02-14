@@ -2,6 +2,8 @@ extends Node
 
 class_name PlayerController
 
+onready var parent = get_node("../")
+
 func _ready():
 	get_node("../").add_to_group("players")
 	get_node("../").connect("destroyed", self, "_on_player_destroyed")
@@ -22,3 +24,6 @@ func is_shooting_secondary():
 
 func _on_player_destroyed():
 	Client.defeat_screen()
+
+func _get_turret_turn():
+	return parent.get_turrets()[0].request_turn

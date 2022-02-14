@@ -49,6 +49,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://components/player_control/PlayerController.gd"
 }, {
+"base": "BoneAttachment",
+"class": "Turret",
+"language": "GDScript",
+"path": "res://components/Turret.gd"
+}, {
 "base": "KinematicBody",
 "class": "Vehicle",
 "language": "GDScript",
@@ -73,6 +78,7 @@ _global_script_class_icons={
 "Movement": "",
 "Pickup": "",
 "PlayerController": "",
+"Turret": "",
 "Vehicle": "",
 "Weapon": "",
 "WeaponSlot": ""

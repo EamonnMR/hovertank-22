@@ -5,6 +5,8 @@ onready var turret_bone = skel.find_bone(bone_name)
 onready var turret_pose = skel.get_bone_pose(skel.find_bone("turret"))
 var parent
 
+class_name Turret
+
 var primary_weapons = []
 var secondary_weapons = []
 
@@ -13,8 +15,16 @@ export var bone_axis: Vector3 = Vector3(0,1,0)
 export var elevation_axis: Vector3 = Vector3(0,0,1)
 export var bone_invert: bool = false
 export var bone_offset = PI/2
+export var traverse_degrees: int = 0
+
+var traverse: bool = false
+var l_bound: float = 0
+var r_bound: float = 0
+var bounds_in_front: bool = true
 
 var unrotated_position: Spatial
+
+var request_turn
 
 const AIM_EXTEND = 1000
 
@@ -33,6 +43,8 @@ func _get_slots(primary):
 
 
 func _ready():
+	if traverse_degrees:
+		_setup_traverse()
 	parent = self
 	while not (parent is Vehicle):
 		print(parent)
@@ -87,6 +99,8 @@ func _modify_aim(aim_y):
 func _process(delta):
 	var aim_point = parent.get_node("Controller").get_aim_point()
 	var aim_pose = _aim_to_turret_pose(aim_point)
+	if traverse:
+		aim_pose.y = _constrain_aim_by_traverse(aim_pose.y)
 	skel.set_bone_pose(
 		turret_bone,
 		turret_pose.rotated(bone_axis, _modify_aim(aim_pose.y))
@@ -131,3 +145,46 @@ func _add_position_tracker():
 
 func _exit_tree():
 	unrotated_position.queue_free()
+
+func _setup_traverse():
+	traverse = true
+	var centerline = -PI/2
+	print("Traverse Degrees: ", traverse_degrees)
+	if traverse_degrees > 180:
+		traverse_degrees -= 180
+		centerline = -1 * centerline
+		bounds_in_front = false
+	var traverse_width = deg2rad(float(traverse_degrees) / 2.0)
+	l_bound = centerline - traverse_width
+	r_bound = centerline + traverse_width
+
+func _constrain_aim_by_traverse(aim: float) -> float:
+	# Aim is slightly wonky. The front quarter is inverted and negative.
+	# The rear quarter is not inverted and positive
+	# There's probably a less tabley way to do this
+	if aim >= 0: # Rear Quarter
+		if bounds_in_front:
+			if aim > PI/2:
+				request_turn = -1
+				return l_bound
+			else:
+				request_turn = 1
+				return r_bound
+		else:
+			if aim > l_bound and aim < r_bound:
+				if aim > PI/2:
+					request_turn = -1
+					return r_bound
+				else:
+					request_turn = 1
+					return l_bound
+	else: # Front Quarter
+		if bounds_in_front:
+			if aim < l_bound:
+				request_turn = -1
+				return l_bound
+			elif aim > r_bound:
+				request_turn = 1
+				return r_bound
+	request_turn = 0
+	return aim

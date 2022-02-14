@@ -46,6 +46,7 @@ material/0 = SubResource( 1 )
 [node name="Turret" parent="Graphics/Armature/Skeleton" index="1" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46416, 2.84734, 0 )
 bone_name = "Turret"
+traverse_degrees = 90
 
 [node name="ElevationPivot" parent="Graphics/Armature/Skeleton/Turret" index="1"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125774, 0 )

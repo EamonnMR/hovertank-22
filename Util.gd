@@ -2,7 +2,12 @@ extends Node
 
 func _ready():
 	unit_test_constrained_turn_with_possibility_of_reverse()
-
+	# I guess this is just where unit tests live now
+	unit_test_turret_calculates_front_quarter_bounds_correctly()
+	unit_test_turret_calculates_rear_quarter_bounds_correctly()
+	unit_test_traverse_works_90_traverse()
+	unit_test_traverse_works_270_traverse_looking_forward()
+	unit_test_traverse_works_270_traverse_looking_backward()
 func _anglemod(angle: float) -> float:
 	# Maybe the reason this isn't a builtin is that it happens whenever an angle is applied?
 	return fmod(angle, PI * 2)
@@ -71,3 +76,51 @@ func unit_test_constrained_turn_with_possibility_of_reverse():
 	assert(turn_cw[1] == 1)
 	assert(turn_cw[2] == false)
 
+func unit_test_turret_calculates_front_quarter_bounds_correctly():
+	print("unit_test_turret_calculates_front_quarter_bounds_correctly")
+	var turret = Turret.new()
+	turret.traverse_degrees = 90
+	turret._setup_traverse()
+	print("Lbound: ", rad2deg(turret.l_bound))
+	print("Rbound: ", rad2deg(turret.r_bound))
+	assert(turret.l_bound == deg2rad(-135))
+	assert(turret.r_bound == deg2rad(-45))
+
+func unit_test_turret_calculates_rear_quarter_bounds_correctly():
+	print("unit_test_turret_calculates_rear_quarter_bounds_correctly")
+	var turret = Turret.new()
+	turret.traverse_degrees = 270
+	turret._setup_traverse()
+	print("Lbound: ", rad2deg(turret.l_bound))
+	print("Rbound: ", rad2deg(turret.r_bound))
+	assert(turret.l_bound == deg2rad(45))
+	assert(turret.r_bound == deg2rad(135))
+
+func unit_test_traverse_works_90_traverse():
+	print("unit_test_traverse_works_90_traverse")
+	var turret = Turret.new()
+	turret.traverse_degrees = 90
+	turret._setup_traverse()
+	var new_aim = turret._constrain_aim_by_traverse(deg2rad(-90))
+	print("new aim: ", rad2deg(new_aim))
+	assert(rad2deg(new_aim) == -90)
+	assert(turret.bounds_in_front == true)
+
+func unit_test_traverse_works_270_traverse_looking_forward():
+	print("unit_test_traverse_works_270_traverse_looking_forward")
+	var turret = Turret.new()
+	turret.traverse_degrees = 270
+	turret._setup_traverse()
+	var new_aim = turret._constrain_aim_by_traverse(deg2rad(-90))
+	print("new aim: ", rad2deg(new_aim))
+	assert(rad2deg(new_aim) == -90)
+
+func unit_test_traverse_works_270_traverse_looking_backward():
+	print("unit_test_traverse_works_270_traverse_looking_backward")
+	var turret = Turret.new()
+	turret.traverse_degrees = 270
+	turret._setup_traverse()
+	var new_aim = turret._constrain_aim_by_traverse(deg2rad(10))
+	print("new aim: ", rad2deg(new_aim))
+	assert(turret.bounds_in_front == false)
+	assert(rad2deg(new_aim) == 10)
