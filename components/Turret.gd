@@ -24,7 +24,7 @@ var bounds_in_front: bool = true
 
 var unrotated_position: Spatial
 
-var request_turn
+var request_turn = 0
 
 const AIM_EXTEND = 1000
 

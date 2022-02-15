@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://environment/World.tscn" type="PackedScene" id=1]
 [ext_resource path="res://levels/tileset.tres" type="Resource" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://entities/Building.tscn" type="PackedScene" id=6]
 [ext_resource path="res://components/meta/ObjectiveMarker.tscn" type="PackedScene" id=7]
 [ext_resource path="res://entities/vehicles/prefab/EasyScout.tscn" type="PackedScene" id=8]
+[ext_resource path="res://entities/vehicles/prefab/BasicTD.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/yughues_cc0/pattern_144_cement_squares_bolts/normal.png" type="Texture" id=12]
 [ext_resource path="res://assets/yughues_cc0/pattern_144_cement_squares_bolts/diffuse.png" type="Texture" id=13]
 
@@ -33,7 +34,7 @@ normal_texture = ExtResource( 12 )
 [node name="World" instance=ExtResource( 1 )]
 
 [node name="SpawnPoint" parent="." index="2"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 132.882, 20.6493, 390.581 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 112.097, 20.6493, 294.384 )
 
 [node name="HTerrain" type="Spatial" parent="." index="3"]
 script = ExtResource( 3 )
@@ -105,35 +106,169 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 364.828, 4.74786, 317.038 )
 [node name="Building14" parent="." index="18" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 336.231, 4.74786, 318.26 )
 
-[node name="Wall" type="CSGBox" parent="." index="19"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 262.868, 13.1102, 0 )
-width = 502.775
+[node name="Building15" parent="." index="19" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 280.273, 4.74786, 343.492 )
+
+[node name="Building16" parent="." index="20" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 248.61, 10.0398, 343.492 )
+
+[node name="Building20" parent="." index="21" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 222.872, 4.74786, 255.456 )
+
+[node name="Building21" parent="." index="22" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 222.872, 4.74786, 275.928 )
+
+[node name="Building22" parent="." index="23" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 222.872, 4.74786, 296.662 )
+
+[node name="Building23" parent="." index="24" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 222.872, 4.74786, 318.651 )
+
+[node name="Building24" parent="." index="25" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 222.872, 10.0398, 343.492 )
+
+[node name="Building17" parent="." index="26" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 308.281, 4.74786, 344.187 )
+
+[node name="Building18" parent="." index="27" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 364.828, 4.74786, 341.879 )
+
+[node name="Building19" parent="." index="28" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 336.231, 4.74786, 343.101 )
+
+[node name="Building25" parent="." index="29" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 280.273, 4.74786, 367.766 )
+
+[node name="Building26" parent="." index="30" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 248.61, 10.0398, 367.766 )
+
+[node name="Building27" parent="." index="31" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 222.872, 10.0398, 367.766 )
+
+[node name="Building28" parent="." index="32" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 308.281, 4.74786, 368.461 )
+
+[node name="Building29" parent="." index="33" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 364.828, 4.74786, 366.153 )
+
+[node name="Building30" parent="." index="34" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 336.231, 4.74786, 367.375 )
+
+[node name="Wall" type="CSGBox" parent="." index="35"]
+transform = Transform( 0.864143, 0, -0.503246, 0, 1, 0, 0.503246, 0, 0.864143, 291.924, 13.1102, 171.3 )
+width = 536.143
 height = 33.722
 material = SubResource( 1 )
 
-[node name="Wall2" type="CSGBox" parent="." index="20"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 262.868, 13.1102, 510.602 )
-width = 502.775
+[node name="Wall2" type="CSGBox" parent="." index="36"]
+transform = Transform( -0.0201222, 0, -0.999797, 0, 1, 0, 0.999797, 0, -0.0201222, 421.534, 13.1102, 329.836 )
+width = 179.82
 height = 33.722
 material = SubResource( 1 )
 
-[node name="Wall3" type="CSGBox" parent="." index="21"]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 505.337, 13.1102, 258.767 )
-width = 502.775
+[node name="Wall3" type="CSGBox" parent="." index="37"]
+transform = Transform( -0.966685, 0, -0.255969, 0, 1, 0, 0.255969, 0, -0.966685, 334.174, 13.1102, 439.78 )
+width = 179.82
 height = 33.722
 material = SubResource( 1 )
 
-[node name="Wall4" type="CSGBox" parent="." index="22"]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 14.7941, 13.1102, 258.767 )
-width = 502.775
+[node name="Wall4" type="CSGBox" parent="." index="38"]
+transform = Transform( -0.999934, 0, 0.0115189, 0, 1, 0, -0.0115189, 0, -0.999934, 206.362, 13.1102, 460.369 )
+width = 94.573
 height = 33.722
 material = SubResource( 1 )
 
-[node name="Vehicle" parent="." index="23" instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 63.7213, 8.12111, 48.8909 )
+[node name="Wall5" type="CSGBox" parent="." index="39"]
+transform = Transform( -0.846463, 0, 0.532448, 0, 1, 0, -0.532448, 0, -0.846463, 120.382, 13.1102, 435.393 )
+width = 94.573
+height = 33.722
+material = SubResource( 1 )
 
-[node name="Vehicle2" parent="." index="24" instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 46.6454, 8.12111, 48.8909 )
-faction = 1
+[node name="Wall6" type="CSGBox" parent="." index="40"]
+transform = Transform( -0.078581, 0, 0.996908, 0, 1, 0, -0.996908, 0, -0.078581, 68.3321, 13.1102, 260.473 )
+width = 320.627
+height = 33.722
+material = SubResource( 1 )
+
+[node name="Wall7" type="CSGBox" parent="." index="41"]
+transform = Transform( 0.913744, 0, 0.40629, 0, 1, 0, -0.40629, 0, 0.913744, 91.0433, 13.1102, 103.423 )
+width = 139.062
+height = 33.722
+material = SubResource( 1 )
+
+[node name="Vehicle2" parent="." index="42" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 154.772, 8.3251, 400.31 )
+
+[node name="Vehicle3" parent="." index="43" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 173.104, 8.3251, 400.31 )
+
+[node name="Vehicle4" parent="." index="44" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 190.549, 8.3251, 400.31 )
+
+[node name="Vehicle5" parent="." index="45" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 207.412, 8.3251, 400.31 )
+
+[node name="Vehicle6" parent="." index="46" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 154.772, 8.3251, 412.751 )
+
+[node name="Vehicle7" parent="." index="47" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 173.104, 8.3251, 412.751 )
+
+[node name="Vehicle8" parent="." index="48" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 190.549, 8.3251, 412.751 )
+
+[node name="Vehicle9" parent="." index="49" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 207.412, 8.3251, 412.751 )
+
+[node name="Vehicle10" parent="." index="50" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 285.023, 8.3251, 395.304 )
+
+[node name="Vehicle11" parent="." index="51" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 301.885, 8.3251, 395.304 )
+
+[node name="Vehicle12" parent="." index="52" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 285.023, 8.3251, 407.745 )
+
+[node name="Vehicle13" parent="." index="53" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 301.885, 8.3251, 407.745 )
+
+[node name="Vehicle14" parent="." index="54" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 296.818, 8.3251, 279.118 )
+
+[node name="Vehicle15" parent="." index="55" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 313.681, 8.3251, 279.118 )
+
+[node name="Vehicle16" parent="." index="56" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 296.818, 8.3251, 291.56 )
+
+[node name="Vehicle17" parent="." index="57" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 313.681, 8.3251, 291.56 )
+
+[node name="Vehicle18" parent="." index="58" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 264.51, 5.9313, 271.694 )
+
+[node name="Vehicle19" parent="." index="59" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 264.51, 5.9313, 286.276 )
+
+[node name="Vehicle20" parent="." index="60" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 264.51, 5.9313, 297.492 )
+
+[node name="Vehicle21" parent="." index="61" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 170.696, 5.9313, 180.776 )
+
+[node name="Vehicle22" parent="." index="62" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 170.696, 5.9313, 195.357 )
+
+[node name="Vehicle23" parent="." index="63" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 170.696, 5.9313, 206.573 )
+
+[node name="Vehicle24" parent="." index="64" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 272.821, 5.9313, 201.261 )
+
+[node name="Vehicle25" parent="." index="65" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 272.821, 5.9313, 215.843 )
+
+[node name="Vehicle26" parent="." index="66" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 272.821, 5.9313, 227.059 )
 
 [editable path="WorldEnvironment"]

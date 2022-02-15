@@ -11,10 +11,10 @@ var LEVELS = [
 
 var VEHICLES = {
 	"heavy": {
-		"name": "Heavy Tank",
+		"name": "Heavy TD",
 		"scene": preload("res://entities/vehicles/Heavy.tscn"),
 		"movement": "tank",
-		"desc": "Large enough for the whole crew to stand in the turret."
+		"desc": "Tank Destroyer large enough for the whole crew to stand in the turret. Can only fire forward."
 	},
 	"scout": {
 		"name": "Scout Rover",
