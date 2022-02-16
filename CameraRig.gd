@@ -4,10 +4,27 @@ const RAYCAST_MASK = 1
 var aim_position: Vector3
 var aim_correct = false
 var AIM_UP_CORRECTION = Vector3(0,1,0) # We don't want to be aiming right at the ground all the time
+var zoom_target = 1.0
+export var zoom_min = 0.01
+export var zoom_max = 3.0
+export var zoom_incriment = 0.25
+var zoom = 1.0
+var base_distance: Vector3
+
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	base_distance = $CameraOffset/CameraLocation.transform.origin
 
 func _process(delta):
+	
+	if Input.is_action_just_pressed("zoom_in"):
+		zoom_in()
+	if Input.is_action_just_pressed("zoom_out"):
+		zoom_out()
+	
+	# TODO: Lerp for smoothing
+	$CameraOffset/CameraLocation.transform.origin = base_distance * zoom_target
+	
 	$Camera.look_at($CameraOffset.to_global(Vector3(0,0,0)), Vector3.UP)
 	var mouse_pos = $InvisibleControlForGettingMousePos.get_global_mouse_position()
 	var camera = $Camera
@@ -35,3 +52,15 @@ func set_turret_point(aim_position: Vector3):
 
 func _exit_tree():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+func zoom_in():
+	print("zoom in")
+	zoom_target -= zoom_incriment
+	if zoom_target <= zoom_min:
+		zoom_target = zoom_min
+
+func zoom_out():
+	print("zoom out")
+	zoom_target += zoom_incriment
+	if zoom_target >= zoom_max:
+		zoom_target = zoom_max

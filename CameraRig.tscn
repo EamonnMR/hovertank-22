@@ -60,7 +60,7 @@ __meta__ = {
 }
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 39.7149, 24.0506 )
+transform = Transform( 1, 0, 0, 0, 0.614616, 0.788827, 0, -0.788827, 0.614616, 0, 39.7149, 24.0506 )
 far = 500.0
 
 [node name="Center" type="Spatial" parent="."]
@@ -72,6 +72,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 39.7149, 24.0506 )
 
 [node name="RemoteTransform" type="RemoteTransform" parent="CameraOffset/CameraLocation"]
 remote_path = NodePath("../../../Camera")
+update_rotation = false
+update_scale = false
 
 [node name="Listener" type="Listener" parent="CameraOffset"]
 current = true
