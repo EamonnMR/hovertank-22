@@ -14,6 +14,7 @@ var base_distance: Vector3
 var aim: Vector2
 
 func _input(event):
+	print("Input")
 	if event is InputEventMouseMotion:
 		aim -= event.relative
 
@@ -65,11 +66,14 @@ func _project_aim_ray(pos):
 
 func _handle_third_person_aim():
 	
-	#$CameraOffset.rotation_degrees.y = aim.x
-	#$CameraOffset/PitchHelper.rotation_degrees.z = aim.y
-	
-	# $Camera.look_at($CameraOffset/LookSlightlyAbove.to_global(Vector3(0,0,0)), Vector3.UP)
-	var result = _project_aim_ray($PointerMarker.rect_position + $PointerMarker.rect_size / 2)
+	$CameraOffset.rotation_degrees.y = aim.x
+	$CameraOffset/PitchHelper.rotation_degrees.x = aim.y
+	#$Camera.look_at($CameraOffset.to_global(Vector3(0,0,0)), Vector3.UP)
+	$Camera.look_at($CameraOffset/LookSlightlyAbove.to_global(Vector3(0,0,0)), Vector3.UP)
+	var result = _project_aim_ray(
+		# Middle of screen:
+		$PointerMarker.rect_position + $PointerMarker.rect_size / 2
+	)
 	if "position" in result:
 		$PickerLocation.global_transform.origin = result.position
 	
