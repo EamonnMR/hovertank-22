@@ -91,11 +91,17 @@ var selected_control_scheme: String
 var selected_primary: String
 var selected_secondary: String
 var selected_pilot: String
+var selected_camera: bool
 
 var CONTROLLERS = {
 	"absolute": preload("res://components/player_control/AbsoluteController.tscn"),
 	"cardinal": preload("res://components/player_control/CardinalController.tscn")
 }
+
+var CAMERAS = [
+	"Top Down",
+	"Third Person"
+]
 
 func _ready():
 	set_vehicle_selection(0)
@@ -103,6 +109,7 @@ func _ready():
 	set_primary_selection(0)
 	set_secondary_selection(1)
 	set_pilot_selection(0)
+	set_camera_selection(0)
 
 func set_vehicle_selection(index: int):
 	var keys = VEHICLES.keys()
@@ -128,6 +135,9 @@ func set_pilot_selection(index: int):
 	var keys = PILOTS.keys()
 	var byindex = keys[index]
 	selected_pilot = PILOTS.keys()[index]
+	
+func set_camera_selection(index: int):
+	selected_camera = bool(index)
 
 func spawn_player(world: Node):
 	Heat.heat = 0
@@ -156,7 +166,9 @@ func spawn_player(world: Node):
 			slot.add_child(WEAPONS[selected_secondary].scene.instance())
 	
 	player.faction = 1  # Players always work for ITAR
-	
+	var camera_rig = preload("res://camera/CameraRig.tscn").instance()
+	camera_rig.third_person = bool(selected_camera)
+	world.add_child(camera_rig)
 	world.add_child(player)
 	Hud.add_player(player)
 	player.global_transform.origin = world.get_node("SpawnPoint").global_transform.origin

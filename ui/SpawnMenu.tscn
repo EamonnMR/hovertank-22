@@ -181,6 +181,11 @@ margin_right = 178.0
 margin_bottom = 20.0
 text = "Controller"
 
+[node name="CameraOption" type="OptionButton" parent="VBoxContainer/LaunchOptions"]
+margin_left = 182.0
+margin_right = 211.0
+margin_bottom = 20.0
+
 [connection signal="item_selected" from="VBoxContainer/Selection/VehicleSelect/MenuButton" to="." method="_on_Vehicle_selected"]
 [connection signal="item_selected" from="VBoxContainer/Selection/PrimaryWeaponSelect/MenuButton" to="." method="_on_Primary_selected"]
 [connection signal="item_selected" from="VBoxContainer/Selection/SecondaryWeaponSelect/MenuButton" to="." method="_on_Secondary_selected"]
@@ -188,3 +193,4 @@ text = "Controller"
 [connection signal="pressed" from="VBoxContainer/LaunchOptions/StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/LaunchOptions/QuitButton" to="." method="_on_QuitButton_pressed"]
 [connection signal="item_selected" from="VBoxContainer/LaunchOptions/ControllerOption" to="." method="_on_ControllerOption_item_selected"]
+[connection signal="item_selected" from="VBoxContainer/LaunchOptions/CameraOption" to="." method="_on_CameraOption_item_selected"]

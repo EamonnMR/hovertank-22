@@ -5,6 +5,7 @@
 [sub_resource type="ProceduralSky" id=4]
 
 [sub_resource type="Environment" id=5]
+background_mode = 2
 background_sky = SubResource( 4 )
 ambient_light_color = Color( 0.129412, 0.129412, 0.129412, 1 )
 glow_enabled = true

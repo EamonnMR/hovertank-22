@@ -5,6 +5,7 @@ onready var primary_dd: OptionButton = $VBoxContainer/Selection/PrimaryWeaponSel
 onready var secondary_dd: OptionButton = $VBoxContainer/Selection/SecondaryWeaponSelect/MenuButton
 onready var pilot_dd: OptionButton = $VBoxContainer/Selection/PilotSelect/MenuButton
 onready var controller_dd: OptionButton = $VBoxContainer/LaunchOptions/ControllerOption
+onready var cameras_dd: OptionButton = $VBoxContainer/LaunchOptions/CameraOption
 
 func _ready():
 	for i in Client.VEHICLES:
@@ -12,6 +13,9 @@ func _ready():
 	
 	for i in Client.CONTROLLERS:
 		controller_dd.add_item(i)
+	
+	for i in Client.CAMERAS:
+		cameras_dd.add_item(i)
 	
 	for i in Client.WEAPONS:
 		for j in [primary_dd, secondary_dd]:
@@ -61,3 +65,7 @@ func update_text():
 		Client.WEAPONS[Client.selected_secondary].desc
 	$VBoxContainer/Selection/PilotSelect/Desc.bbcode_text = \
 		Client.PILOTS[Client.selected_pilot].desc
+
+
+func _on_CameraOption_item_selected(index):
+	Client.set_camera_selection(index)

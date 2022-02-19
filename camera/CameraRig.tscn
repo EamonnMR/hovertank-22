@@ -1,11 +1,13 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://CameraRig.gd" type="Script" id=1]
-[ext_resource path="res://assets/hackcraft.de_cc0/crosshair3.png" type="Texture" id=2]
+[ext_resource path="res://assets/hackcraft.de_cc0/crosshair3.png" type="Texture" id=1]
+[ext_resource path="res://camera/CameraRig.gd" type="Script" id=2]
 [ext_resource path="res://assets/hackcraft.de_cc0/crosshair0.png" type="Texture" id=3]
 
+[sub_resource type="SphereMesh" id=1]
+
 [node name="CameraRig" type="Spatial"]
-script = ExtResource( 1 )
+script = ExtResource( 2 )
 
 [node name="InvisibleControlForGettingMousePos" type="Control" parent="."]
 margin_right = 40.0
@@ -16,24 +18,30 @@ __meta__ = {
 
 [node name="PickerLocation" type="Spatial" parent="."]
 
+[node name="MeshInstance" type="MeshInstance" parent="PickerLocation"]
+mesh = SubResource( 1 )
+material/0 = null
+
 [node name="PointerMarker" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -96.0
+margin_top = -96.0
+margin_right = 96.0
+margin_bottom = 96.0
+grow_horizontal = 2
+grow_vertical = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="TextureRect" type="TextureRect" parent="PointerMarker"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -114.923
-margin_top = -114.981
-margin_right = -50.923
-margin_bottom = -50.9812
+margin_right = 64.0
+margin_bottom = 64.0
 rect_scale = Vector2( 3, 3 )
-texture = ExtResource( 2 )
+texture = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -63,15 +71,18 @@ __meta__ = {
 transform = Transform( 1, 0, 0, 0, 0.614616, 0.788827, 0, -0.788827, 0.614616, 0, 39.7149, 24.0506 )
 far = 500.0
 
-[node name="Center" type="Spatial" parent="."]
-
 [node name="CameraOffset" type="Spatial" parent="."]
 
-[node name="CameraLocation" type="Spatial" parent="CameraOffset"]
+[node name="LookSlightlyAbove" type="Spatial" parent="CameraOffset"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.83876, 0 )
+
+[node name="PitchHelper" type="Spatial" parent="CameraOffset"]
+
+[node name="CameraLocation" type="Spatial" parent="CameraOffset/PitchHelper"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 39.7149, 24.0506 )
 
-[node name="RemoteTransform" type="RemoteTransform" parent="CameraOffset/CameraLocation"]
-remote_path = NodePath("../../../Camera")
+[node name="RemoteTransform" type="RemoteTransform" parent="CameraOffset/PitchHelper/CameraLocation"]
+remote_path = NodePath("../../../../Camera")
 update_rotation = false
 update_scale = false
 
