@@ -12,11 +12,13 @@ export var third_person: bool
 var zoom = 1.0
 var base_distance: Vector3
 var aim: Vector2
+var aim_smooth_goal: Vector2
+var aim_smooth_lerp = 10
 
 func _input(event):
 	print("Input")
 	if event is InputEventMouseMotion:
-		aim -= event.relative
+		aim_smooth_goal -= event.relative
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
@@ -37,14 +39,14 @@ func _handle_zoom(delta: float):
 func _process(delta):
 	_handle_zoom(delta)
 	if third_person:
-		_handle_third_person_aim()
+		_handle_third_person_aim(delta)
 	else:
-		_handle_topdown_mouse_aim()
+		_handle_topdown_mouse_aim(delta)
 	
 	$AimMarker.rect_position = $Camera.unproject_position(aim_position) # - ($AimMarker.rect_size)
 
-func _handle_topdown_mouse_aim():
-	$Camera.look_at($CameraOffset.to_global(Vector3(0,0,0)), Vector3.UP)
+func _handle_topdown_mouse_aim(delta):
+	$Camera.look_at($CameraOffset.to_global(Vector3(0,6,0)), Vector3.UP)
 	var mouse_pos = $InvisibleControlForGettingMousePos.get_global_mouse_position()
 	var result = _project_aim_ray(mouse_pos)
 	if "position" in result:
@@ -64,8 +66,8 @@ func _project_aim_ray(pos):
 	var result = space_state.intersect_ray(from, to, [], RAYCAST_MASK)
 	return result
 
-func _handle_third_person_aim():
-	
+func _handle_third_person_aim(delta):
+	aim = lerp(aim, aim_smooth_goal, aim_smooth_lerp * delta)
 	$CameraOffset.rotation_degrees.y = aim.x
 	$CameraOffset/PitchHelper.rotation_degrees.x = aim.y
 	#$Camera.look_at($CameraOffset.to_global(Vector3(0,0,0)), Vector3.UP)
