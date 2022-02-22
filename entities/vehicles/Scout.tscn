@@ -29,6 +29,9 @@ turn = 6.0
 [node name="Health" parent="." index="0"]
 max_health = 25
 
+[node name="CameraMover" parent="." index="1"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 7.75431, 0 )
+
 [node name="Graphics" parent="." index="2" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.01416, 0 )
 

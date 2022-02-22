@@ -9,6 +9,11 @@ export var zoom_min = 0.01
 export var zoom_max = 3.0
 export var zoom_incriment = 0.25
 export var third_person: bool
+
+export var max_pitch = 0
+export var min_pitch = -0.5
+export var mouse_sensitivity = 1
+
 var zoom = 1.0
 var base_distance: Vector3
 var aim: Vector2
@@ -53,7 +58,7 @@ func _process(delta):
 func _handle_topdown_mouse_aim(delta):
 	current_camera.look_at($CameraOffset.to_global(Vector3(0,6,0)), Vector3.UP)
 	var mouse_pos = $InvisibleControlForGettingMousePos.get_global_mouse_position()
-	var result = _project_aim_ray(mouse_pos)
+	var result = _project_aim_ray(mouse_pos, false)
 	if "position" in result:
 		$PickerLocation.global_transform.origin = result.position
 		$PointerMarker.rect_position = $Camera.unproject_position(result.position) - $PointerMarker.rect_size / 2
@@ -64,22 +69,25 @@ func _handle_topdown_mouse_aim(delta):
 	else:
 		aim_correct = false
 
-func _project_aim_ray(pos):
+func _project_aim_ray(pos: Vector2, ignore_close: bool):  # Returns ray intersection result
 	var from = current_camera.project_ray_origin(pos)
+	if ignore_close:
+		# TODO: Cache this?
+		from = from + current_camera.project_ray_normal(pos) * base_distance.length() * zoom_target
+
 	var to = from + current_camera.project_ray_normal(pos) * 1000
 	var space_state = get_world().direct_space_state
-	var result = space_state.intersect_ray(from, to, [], RAYCAST_MASK)
+	var result = space_state.intersect_ray(from, to, [Client.player_object], RAYCAST_MASK)
 	return result
 
 func _handle_third_person_aim(delta):
 	aim = lerp(aim, aim_smooth_goal, aim_smooth_lerp * delta)
 	$CameraOffset.rotation_degrees.y = aim.x
 	$CameraOffset/PitchHelper.rotation_degrees.x = aim.y
-	#$Camera.look_at($CameraOffset.to_global(Vector3(0,0,0)), Vector3.UP)
-	#$Camera.look_at($CameraOffset/LookSlightlyAbove.to_global(Vector3(0,0,0)), Vector3.UP)
 	var result = _project_aim_ray(
 		# Middle of screen:
-		$PointerMarker.rect_position + $PointerMarker.rect_size / 2
+		$PointerMarker.rect_position + $PointerMarker.rect_size / 2,
+		true
 	)
 	if "position" in result:
 		$PickerLocation.global_transform.origin = result.position

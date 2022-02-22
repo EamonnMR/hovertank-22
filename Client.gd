@@ -103,6 +103,8 @@ var CAMERAS = [
 	"Third Person"
 ]
 
+var player_object: Node
+
 func _ready():
 	set_vehicle_selection(0)
 	set_controller_selection(0)
@@ -142,6 +144,8 @@ func set_camera_selection(index: int):
 func spawn_player(world: Node):
 	Heat.heat = 0
 	var player = VEHICLES[selected_vehicle].scene.instance()
+	player_object = player
+	
 	var controller_instance = CONTROLLERS[selected_control_scheme].instance()
 	controller_instance.name = "Controller"
 	var movement_instance = MOVEMENT[VEHICLES[selected_vehicle].movement].instance()

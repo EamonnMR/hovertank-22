@@ -87,6 +87,7 @@ update_rotation = false
 update_scale = false
 
 [node name="Camera" type="Camera" parent="CameraOffset/PitchHelper/CameraLocation"]
+far = 800.0
 
 [node name="Listener" type="Listener" parent="CameraOffset"]
 current = true
