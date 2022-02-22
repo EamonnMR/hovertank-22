@@ -14,6 +14,7 @@ var base_distance: Vector3
 var aim: Vector2
 var aim_smooth_goal: Vector2
 var aim_smooth_lerp = 10
+var current_camera: Camera
 
 func _input(event):
 	print("Input")
@@ -24,8 +25,12 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	base_distance = $CameraOffset/PitchHelper/CameraLocation.transform.origin
 	if third_person:
-		pass
-		# TODO: Place pointer market in center of screen
+		current_camera = $CameraOffset/PitchHelper/CameraLocation/Camera
+		current_camera.make_current()
+		current_camera.look_at($CameraOffset.to_global(Vector3(0,0,0)), Vector3.UP)
+	else:
+		current_camera = $Camera
+	
 func _handle_zoom(delta: float):
 	if Input.is_action_just_pressed("zoom_in"):
 		zoom_in()
@@ -46,7 +51,7 @@ func _process(delta):
 	$AimMarker.rect_position = $Camera.unproject_position(aim_position) # - ($AimMarker.rect_size)
 
 func _handle_topdown_mouse_aim(delta):
-	$Camera.look_at($CameraOffset.to_global(Vector3(0,6,0)), Vector3.UP)
+	current_camera.look_at($CameraOffset.to_global(Vector3(0,6,0)), Vector3.UP)
 	var mouse_pos = $InvisibleControlForGettingMousePos.get_global_mouse_position()
 	var result = _project_aim_ray(mouse_pos)
 	if "position" in result:
@@ -60,8 +65,8 @@ func _handle_topdown_mouse_aim(delta):
 		aim_correct = false
 
 func _project_aim_ray(pos):
-	var from = $Camera.project_ray_origin(pos)
-	var to = from + $Camera.project_ray_normal(pos) * 1000
+	var from = current_camera.project_ray_origin(pos)
+	var to = from + current_camera.project_ray_normal(pos) * 1000
 	var space_state = get_world().direct_space_state
 	var result = space_state.intersect_ray(from, to, [], RAYCAST_MASK)
 	return result
@@ -71,7 +76,7 @@ func _handle_third_person_aim(delta):
 	$CameraOffset.rotation_degrees.y = aim.x
 	$CameraOffset/PitchHelper.rotation_degrees.x = aim.y
 	#$Camera.look_at($CameraOffset.to_global(Vector3(0,0,0)), Vector3.UP)
-	$Camera.look_at($CameraOffset/LookSlightlyAbove.to_global(Vector3(0,0,0)), Vector3.UP)
+	#$Camera.look_at($CameraOffset/LookSlightlyAbove.to_global(Vector3(0,0,0)), Vector3.UP)
 	var result = _project_aim_ray(
 		# Middle of screen:
 		$PointerMarker.rect_position + $PointerMarker.rect_size / 2

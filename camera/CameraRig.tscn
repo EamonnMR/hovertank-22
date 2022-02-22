@@ -86,5 +86,7 @@ remote_path = NodePath("../../../../Camera")
 update_rotation = false
 update_scale = false
 
+[node name="Camera" type="Camera" parent="CameraOffset/PitchHelper/CameraLocation"]
+
 [node name="Listener" type="Listener" parent="CameraOffset"]
 current = true
