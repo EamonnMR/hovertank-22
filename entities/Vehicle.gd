@@ -7,6 +7,12 @@ export var turn: float = 5
 
 export var faction: int = 0
 
+const HEALTH_NERF_FACTOR = 0.5
+const SPEED_NERF_FACTOR = 0.9
+const ACCEL_NERF_FACTOR = 0.6
+const TURN_NERF_FACTOR = 0.7
+const DMG_NERF_FACTOR = 0.5
+
 func is_player():
 	return $Controller and $Controller.is_player()
 
@@ -19,6 +25,7 @@ func _ready():
 	# TODO: This isn't as elegant as I'd like
 	if not has_node("Controller"):
 		add_ai()
+		_nerf_npc_stats()
 	
 	if is_player():
 		# TODO: Not great for SOC
@@ -86,3 +93,15 @@ func add_ai():
 	
 	add_child(mover)
 	add_child(controller)
+
+func _nerf_npc_stats():
+	$Health.max_health *= HEALTH_NERF_FACTOR
+	$Health.health = $Health.max_health
+	
+	speed *= SPEED_NERF_FACTOR
+	accel *= ACCEL_NERF_FACTOR
+	turn *= TURN_NERF_FACTOR
+	
+	for turret in get_turrets():
+		for weapon in turret.get_weapons():
+			weapon.dmg_factor = DMG_NERF_FACTOR

@@ -41,6 +41,13 @@ func _get_slots(primary):
 			slots.append(slot)
 	return slots
 
+func get_weapons():
+	var weapons = []
+	for slot_airity in [true, false]:
+		for slot in _get_slots(slot_airity):
+			if slot.has_weapon():
+				weapons.append(slot.get_weapon())
+	return weapons
 
 func _ready():
 	if traverse_degrees:

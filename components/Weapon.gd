@@ -12,6 +12,8 @@ export var burst_count = 0
 export var dupe_count = 1
 export var spread: float = 0
 
+export var dmg_factor: float = 1
+
 func _ready():
 	assert($Graphics)
 	assert($Emerge)
@@ -36,17 +38,22 @@ func _shoot():
 			burst_cooldown = true
 			$BurstCooldown.start()
 	for i in range(dupe_count):
-		var projectile = projectile_scene.instance()
-		projectile.init(iff)
-		world.add_child(projectile)
-		projectile.global_transform = $Emerge.global_transform
-		projectile.rotate_x(rand_range(-spread/2, spread/2))
-		projectile.rotate_y(rand_range(-spread/2, spread/2))
-	
+		_create_projectile()
 	cooldown = true
 	$Cooldown.start()
 	$Notifier.notify()
 	_effects()
+
+func _create_projectile():
+	var projectile = projectile_scene.instance()
+	projectile.init(iff)
+	world.add_child(projectile)
+	projectile.damage *= dmg_factor
+	# TODO: Also scale splash damage
+	projectile.global_transform = $Emerge.global_transform
+	projectile.rotate_x(rand_range(-spread/2, spread/2))
+	projectile.rotate_y(rand_range(-spread/2, spread/2))
+	
 
 func _effects():
 	print("bang")

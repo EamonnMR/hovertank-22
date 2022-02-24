@@ -19,6 +19,7 @@ __meta__ = {
 [node name="PickerLocation" type="Spatial" parent="."]
 
 [node name="MeshInstance" type="MeshInstance" parent="PickerLocation"]
+visible = false
 mesh = SubResource( 1 )
 material/0 = null
 
