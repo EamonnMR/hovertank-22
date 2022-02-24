@@ -26,16 +26,16 @@ func match_ground_normal(_delta: float, parent: Spatial, factor: float = 0.2):
 	# see: http://kidscancode.org/godot_recipes/3d/3d_align_surface
 	var ray_below_normal = $RayCast.get_collision_normal()
 	if ray_below_normal != Vector3(0, 0, 0):
-		# Hack to prevent weird sticky behavior 
-		if ray_below_normal == Vector3(0,1.0,0):
-			ray_below_normal = Vector3(0.1,1.001, 0.1)
-			hacked = true
-		else:
-			hacked = false
 		parent.global_transform = parent.global_transform.interpolate_with(
 			_align_with_y(parent.global_transform, ray_below_normal), 
 			factor
 		)
+		# Hack to prevent weird sticky behavior 
+		if global_transform.basis.y.distance_to(Vector3(0,1.0,0)) <= 0.01:
+			ray_below_normal = Vector3(0.1,1.001, 0.1)
+			hacked = true
+		else:
+			hacked = false
 
 func _align_with_y(xform: Transform, new_y: Vector3) -> Transform:
 	#var xform = Transform(transform)

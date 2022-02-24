@@ -10,10 +10,10 @@ script = ExtResource( 1 )
 [node name="DebugInfo" type="Control" parent="." index="1"]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_left = 14.6832
-margin_top = -76.0406
-margin_right = 54.6832
-margin_bottom = -36.0406
+margin_left = 28.0316
+margin_top = -104.072
+margin_right = 68.0316
+margin_bottom = -64.0722
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false

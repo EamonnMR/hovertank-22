@@ -22,7 +22,6 @@ var aim_smooth_lerp = 10
 var current_camera: Camera
 
 func _input(event):
-	print("Input")
 	if event is InputEventMouseMotion:
 		aim_smooth_goal -= event.relative
 
