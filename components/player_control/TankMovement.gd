@@ -5,6 +5,7 @@ extends Movement
 const gravity = 9
 var motion = Vector3(0,0,0)
 var momentum: float
+const SLIDE = false
 
 func _physics_process(delta):
 	
@@ -17,5 +18,6 @@ func _physics_process(delta):
 
 	var gravity_delta = gravity * Vector3.DOWN
 	var motion_total = motion + gravity_delta
-	parent.move_and_slide(motion_total, Vector3.DOWN, true)
+	print(motion_total)
+	parent.move_and_slide(motion_total, Vector3.DOWN, SLIDE)
 	match_ground_normal(delta, parent)

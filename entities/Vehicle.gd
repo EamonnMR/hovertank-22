@@ -7,11 +7,14 @@ export var turn: float = 5
 
 export var faction: int = 0
 
+# TODO: Load these from Client, make difficulty settings
 const HEALTH_NERF_FACTOR = 0.5
 const SPEED_NERF_FACTOR = 0.9
 const ACCEL_NERF_FACTOR = 0.6
 const TURN_NERF_FACTOR = 0.7
 const DMG_NERF_FACTOR = 0.5
+const COOLDOWN_NERF_FACTOR = 2.0
+const SPREAD_NERF_FACTOR = 1.5
 
 func is_player():
 	return $Controller and $Controller.is_player()
@@ -105,3 +108,5 @@ func _nerf_npc_stats():
 	for turret in get_turrets():
 		for weapon in turret.get_weapons():
 			weapon.dmg_factor = DMG_NERF_FACTOR
+			weapon.get_node("Cooldown").wait_time *= COOLDOWN_NERF_FACTOR
+			weapon.spread *= SPREAD_NERF_FACTOR

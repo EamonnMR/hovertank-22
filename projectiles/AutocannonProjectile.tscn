@@ -9,7 +9,7 @@ radius = 0.2
 mid_height = 2.0
 
 [node name="Projectile" instance=ExtResource( 1 )]
-speed = 70
+speed = 140
 damage = 2
 
 [node name="MeshInstance" type="MeshInstance" parent="." index="1"]

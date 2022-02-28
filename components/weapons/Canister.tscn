@@ -14,8 +14,8 @@ roughness_texture = ExtResource( 2 )
 
 [node name="Weapon" instance=ExtResource( 1 )]
 projectile_scene = ExtResource( 5 )
-dupe_count = 8
-spread = 0.5
+dupe_count = 12
+spread = 0.4
 
 [node name="BurstCooldown" parent="." index="1"]
 wait_time = 0.001

@@ -4,7 +4,7 @@ onready var parent = get_node("../")
 onready var controller = get_node("../Controller")
 
 var hacked = false
-
+var hack_distance: float
 class_name Movement
 
 
@@ -30,9 +30,10 @@ func match_ground_normal(_delta: float, parent: Spatial, factor: float = 0.2):
 			_align_with_y(parent.global_transform, ray_below_normal), 
 			factor
 		)
-		# Hack to prevent weird sticky behavior 
-		if global_transform.basis.y.distance_to(Vector3(0,1.0,0)) <= 0.01:
-			ray_below_normal = Vector3(0.1,1.001, 0.1)
+		# Hack to prevent weird sticky behavior
+		hack_distance = global_transform.basis.y.distance_to(Vector3(0,1.0,0))
+		if hack_distance <= 0.1:
+			global_transform.basis.y = Vector3(0.1,1.001, 0.1)
 			hacked = true
 		else:
 			hacked = false
