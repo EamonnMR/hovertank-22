@@ -4,9 +4,9 @@
 
 [node name="Heat" type="Node"]
 script = ExtResource( 1 )
-minor_incursion_threshold = 1
-major_incursion_threshold = 2
-boss_incursion_threshold = 3
+minor_incursion_threshold = 20
+major_incursion_threshold = 35
+boss_incursion_threshold = 50
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0

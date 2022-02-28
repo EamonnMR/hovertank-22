@@ -4,6 +4,11 @@ var heat: int
 
 signal heat_changed(new_heat)
 
+signal minor_incursion_begun
+signal major_incursion_begun
+signal boss_incursion_begun
+
+
 export var minor_incursion_threshold: int
 export var major_incursion_threshold: int
 export var boss_incursion_threshold: int
@@ -26,11 +31,11 @@ func add_heat(amount: int):
 	emit_signal("heat_changed", heat)
 
 func do_minor_incursion():
-	pass
+	emit_signal("minor_incursion_begun")
 
 func do_major_incursion():
-	pass
+	emit_signal("major_incursion_begun")
 
 func do_boss_incursion():
-	pass
+	emit_signal("boss_incursion_begun")
 
