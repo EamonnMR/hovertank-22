@@ -43,9 +43,6 @@ transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 13.3
 
 [node name="Graphics" parent="." index="2" instance=ExtResource( 7 )]
 
-[node name="Skeleton" parent="Graphics/Armature" index="0"]
-bones/1/bound_children = [ NodePath("Turret") ]
-
 [node name="Cube" parent="Graphics/Armature/Skeleton" index="0"]
 material/0 = SubResource( 1 )
 
@@ -66,7 +63,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.02829, -0.125774, 1.11624 )
 [node name="CollisionShape" type="CollisionShape" parent="." index="3"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.02105, 0 )
 shape = SubResource( 4 )
-disabled = true
 
 [node name="CenterOfMass" type="Spatial" parent="." index="4"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.22237, 0 )
