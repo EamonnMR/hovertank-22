@@ -4,6 +4,7 @@ var camera
 export var speed: float = 30.0
 export var accel: float = 3.0
 export var turn: float = 5
+export var turret_path: NodePath
 
 export var faction: int = 0
 
@@ -77,7 +78,8 @@ func get_center_of_mass():
 	return $CenterOfMass.global_transform.origin
 
 func get_turrets():
-	# TODO: Support multiple turrets
+	if turret_path:
+		return [get_node(turret_path)]
 	if $Graphics/Armature is Skeleton:
 		return  [$Graphics/Armature/Turret]
 	return [$Graphics/Armature/Skeleton/Turret]
