@@ -51,6 +51,11 @@ var WEAPONS = {
 		"name": "Canister Shot",
 		"scene": preload("res://components/weapons/Canister.tscn"),
 		"desc": "Double down close in weapon"
+	},
+	"steinbolt": {
+		"name": "Steinbolt",
+		"scene": preload("res://components/weapons/Steinbolt.tscn"),
+		"desc": "Long range, long reload particle accelerator"
 	}
 }
 

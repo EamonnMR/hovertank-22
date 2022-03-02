@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://environment/World.tscn" type="PackedScene" id=1]
 [ext_resource path="res://levels/tileset.tres" type="Resource" id=2]
@@ -10,7 +10,6 @@
 [ext_resource path="res://entities/vehicles/prefab/EasyScout.tscn" type="PackedScene" id=8]
 [ext_resource path="res://entities/vehicles/prefab/BasicTD.tscn" type="PackedScene" id=9]
 [ext_resource path="res://entities/monsters/Kochab.tscn" type="PackedScene" id=10]
-[ext_resource path="res://entities/Vehicle.gd" type="Script" id=11]
 [ext_resource path="res://assets/yughues_cc0/pattern_144_cement_squares_bolts/normal.png" type="Texture" id=12]
 [ext_resource path="res://assets/yughues_cc0/pattern_144_cement_squares_bolts/diffuse.png" type="Texture" id=13]
 
@@ -248,57 +247,30 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 313.681, 8.3251, 291.56 )
 
 [node name="Vehicle18" parent="." index="57" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 264.51, 5.9313, 271.694 )
-collision_layer = 3
-collision_mask = 3
-script = ExtResource( 11 )
 
 [node name="Vehicle19" parent="." index="58" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 264.51, 5.9313, 286.276 )
-collision_layer = 3
-collision_mask = 3
-script = ExtResource( 11 )
 
 [node name="Vehicle20" parent="." index="59" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 264.51, 5.9313, 297.492 )
-collision_layer = 3
-collision_mask = 3
-script = ExtResource( 11 )
 
 [node name="Vehicle21" parent="." index="60" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 170.696, 5.9313, 180.776 )
-collision_layer = 3
-collision_mask = 3
-script = ExtResource( 11 )
 
 [node name="Vehicle22" parent="." index="61" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 170.696, 5.9313, 195.357 )
-collision_layer = 3
-collision_mask = 3
-script = ExtResource( 11 )
 
 [node name="Vehicle23" parent="." index="62" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 170.696, 5.9313, 206.573 )
-collision_layer = 3
-collision_mask = 3
-script = ExtResource( 11 )
 
 [node name="Vehicle24" parent="." index="63" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 272.821, 5.9313, 201.261 )
-collision_layer = 3
-collision_mask = 3
-script = ExtResource( 11 )
 
 [node name="Vehicle25" parent="." index="64" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 272.821, 5.9313, 215.843 )
-collision_layer = 3
-collision_mask = 3
-script = ExtResource( 11 )
 
 [node name="Vehicle26" parent="." index="65" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 272.821, 5.9313, 227.059 )
-collision_layer = 3
-collision_mask = 3
-script = ExtResource( 11 )
 
 [node name="Kochab" parent="." index="66" instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 370.375, 10.7527, 392.728 )
