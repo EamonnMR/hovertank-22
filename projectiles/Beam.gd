@@ -22,7 +22,10 @@ func do_beam(origin: Vector3, ignore: Array, pen_count):
 		if pen_count < overpen_count:
 			# TODO: Keep track of deducted distance
 			do_beam(collision.position, ignore + [collider], pen_count + 1)
-			
+		else:
+			var beam_length: float = (collision.position - global_transform.origin).length()
+			$Graphics.transform.origin.x += beam_length / 2
+			$Graphics.mesh.height = beam_length
 		
 func project_beam(from: Vector3, ignore: Array) -> Dictionary:
 	var collisionMask = 1
