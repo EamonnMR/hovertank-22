@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://projectiles/Beam.tscn" type="PackedScene" id=1]
+
+[sub_resource type="SpatialMaterial" id=2]
+flags_do_not_receive_shadows = true
+flags_disable_ambient_light = true
+albedo_color = Color( 0.00392157, 0.0666667, 0, 1 )
+emission_enabled = true
+emission = Color( 0.109804, 0.733333, 0, 1 )
+emission_energy = 3.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="CylinderMesh" id=1]
+material = SubResource( 2 )
+top_radius = 0.1
+bottom_radius = 0.1
+radial_segments = 7
+rings = 3
+
+[node name="Spatial" instance=ExtResource( 1 )]
+max_range = 500
+
+[node name="Graphics" parent="." index="0"]
+mesh = SubResource( 1 )

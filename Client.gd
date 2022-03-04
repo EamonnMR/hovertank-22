@@ -50,12 +50,22 @@ var WEAPONS = {
 	"canister": {
 		"name": "Canister Shot",
 		"scene": preload("res://components/weapons/Canister.tscn"),
-		"desc": "Double down close in weapon"
+		"desc": "Double down on close range combat; you won't hit anything else"
 	},
 	"steinbolt": {
 		"name": "Steinbolt",
 		"scene": preload("res://components/weapons/Steinbolt.tscn"),
 		"desc": "Long range, long reload particle accelerator"
+	},
+	"railgun": {
+		"name": "Railgun",
+		"scene": preload("res://components/weapons/Railgun.tscn"),
+		"desc": "Know your target, and what's behind it."
+	},
+	"laser": {
+		"name": "Laser",
+		"scene": preload("res://components/weapons/Laser.tscn"),
+		"desc": "Somewhat worse than the average sunburn"
 	}
 }
 

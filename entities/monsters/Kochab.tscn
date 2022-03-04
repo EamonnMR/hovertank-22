@@ -5,7 +5,7 @@
 [ext_resource path="res://assets/eamonn/kochab/kochab_material.tres" type="Material" id=3]
 [ext_resource path="res://components/Turret.tscn" type="PackedScene" id=4]
 [ext_resource path="res://components/WeaponSlot.tscn" type="PackedScene" id=5]
-[ext_resource path="res://components/weapons/Cannon.tscn" type="PackedScene" id=6]
+[ext_resource path="res://components/weapons/Steinbolt.tscn" type="PackedScene" id=6]
 
 [sub_resource type="SphereShape" id=1]
 radius = 75.1504
@@ -34,13 +34,14 @@ shape = SubResource( 1 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25.6408, 0 )
 
 [node name="Turret" parent="Graphics/Armature/Skeleton3" index="0" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 
 [node name="WeaponSlot" parent="Graphics/Armature/Skeleton3/Turret/ElevationPivot" index="0" instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 primary = true
 
 [node name="Weapon" parent="Graphics/Armature/Skeleton3/Turret/ElevationPivot/WeaponSlot" index="0" instance=ExtResource( 6 )]
+
+[node name="Graphics" parent="Graphics/Armature/Skeleton3/Turret/ElevationPivot/WeaponSlot/Weapon" index="4"]
+visible = false
 
 [node name="Icosphere" parent="Graphics/Armature" index="4"]
 material/0 = ExtResource( 3 )
@@ -55,3 +56,5 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 26.6672, 0 )
 [editable path="Notifier"]
 [editable path="Graphics"]
 [editable path="Graphics/Armature/Skeleton3/Turret"]
+[editable path="Graphics/Armature/Skeleton3/Turret/ElevationPivot/WeaponSlot/Weapon"]
+[editable path="Graphics/Armature/Skeleton3/Turret/ElevationPivot/WeaponSlot/Weapon/Notifier"]

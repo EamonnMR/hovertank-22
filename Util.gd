@@ -8,6 +8,18 @@ func _ready():
 	unit_test_traverse_works_90_traverse()
 	unit_test_traverse_works_270_traverse_looking_forward()
 	unit_test_traverse_works_270_traverse_looking_backward()
+
+func generic_aoe_query(node: Spatial, origin: Vector3, radius: float):
+	var shape: SphereShape = SphereShape.new()
+	shape.radius = radius
+	var query = PhysicsShapeQueryParameters.new()
+	query.collide_with_areas = false
+	query.collide_with_bodies = true
+	query.collision_mask = 2
+	query.set_shape(shape)
+	query.transform.origin = origin
+	return node.get_world().get_direct_space_state().intersect_shape(query)
+
 func _anglemod(angle: float) -> float:
 	# Maybe the reason this isn't a builtin is that it happens whenever an angle is applied?
 	return fmod(angle, PI * 2)

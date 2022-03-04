@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://components/Weapon.tscn" type="PackedScene" id=1]
+[ext_resource path="res://projectiles/LaserBeam.tscn" type="PackedScene" id=2]
+[ext_resource path="res://components/weapons/AutocannonGraphics.tscn" type="PackedScene" id=3]
+
+[node name="Weapon" instance=ExtResource( 1 )]
+projectile_scene = ExtResource( 2 )
+burst_count = 6
+spread = 0.01
+world_projectile = false
+
+[node name="Graphics" parent="." index="0" instance=ExtResource( 3 )]
+
+[node name="Cooldown" parent="." index="1"]
+wait_time = 0.5
+
+[node name="BurstCooldown" parent="." index="2"]
+wait_time = 0.3
+
+[node name="Emerge" type="Spatial" parent="." index="5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.05565, 0, 0 )
+
+[editable path="Notifier"]

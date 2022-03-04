@@ -11,6 +11,7 @@ export var projectile_scene = preload("res://projectiles/Projectile.tscn")
 export var burst_count = 0
 export var dupe_count = 1
 export var spread: float = 0
+export var world_projectile: bool = true  # Disable for beams or other things that should follow the player
 
 export var dmg_factor: float = 1
 
@@ -47,7 +48,10 @@ func _shoot():
 func _create_projectile():
 	var projectile = projectile_scene.instance()
 	projectile.init(iff)
-	world.add_child(projectile)
+	if world_projectile:
+		world.add_child(projectile)
+	else:
+		$Emerge.add_child(projectile)
 	projectile.damage *= dmg_factor
 	# TODO: Also scale splash damage
 	projectile.global_transform = $Emerge.global_transform
