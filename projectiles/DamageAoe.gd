@@ -2,19 +2,18 @@ extends Area
 
 # Remember to connect _on_projectile_impact
 
-export var damage: int = 10
+var damage: int = 0
+export var radius: int = 0
 export var friendly_splash: bool = false
 
 var bodies = []
 onready var parent = get_node("../")
 
-func _on_DamageAoe_body_entered(body):
-	bodies.append(body)
+func _ready():
+	damage = parent.splash_damage
+	parent.connect("impact", self, "do_damage")
 
-func _on_DamageAoe_body_exited(body):
-	bodies.erase(body)
-
-func _on_Projectile_impact():
-	for body in bodies:
-		if friendly_splash or not parent.iff.should_exclude(body):
-			Health.do_damage(body, damage)
+func do_damage():
+	for body in Util.generic_aoe_query(self, self.global_transform.origin, radius):
+		if friendly_splash or not parent.iff.should_exclude(body.collider):
+			Health.do_damage(body.collider, damage)

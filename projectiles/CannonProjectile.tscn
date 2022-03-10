@@ -13,7 +13,9 @@ radius = 0.4
 
 [node name="Projectile" instance=ExtResource( 1 )]
 speed = 160
-damage = 10
+damage = 5
+splash_damage = 15
+already_exploded = true
 explosion = ExtResource( 4 )
 
 [node name="CollisionShape" parent="." index="0"]
@@ -25,6 +27,6 @@ mesh = SubResource( 2 )
 material/0 = ExtResource( 3 )
 
 [node name="DamageAoe" parent="." index="2" instance=ExtResource( 2 )]
-damage = 20
+radius = 20
 
 [editable path="DamageAoe"]

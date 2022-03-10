@@ -53,6 +53,7 @@ func _create_projectile():
 	else:
 		$Emerge.add_child(projectile)
 	projectile.damage *= dmg_factor
+	projectile.splash_damage *= dmg_factor
 	# TODO: Also scale splash damage
 	projectile.global_transform = $Emerge.global_transform
 	projectile.rotate_x(rand_range(-spread/2, spread/2))

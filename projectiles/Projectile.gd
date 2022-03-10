@@ -1,7 +1,8 @@
 extends KinematicBody
 
 export var speed = 50
-export var damage = 20
+export var damage = 0
+export var splash_damage = 0
 export var already_exploded = false
 export var explosion: PackedScene
 signal impact

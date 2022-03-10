@@ -3,8 +3,8 @@ extends Spatial
 export var max_range = 1000
 export var overpen_count = 0
 export var damage = 1
-export var aoe_damage = 0
-export var aoe_radius = 0
+export var splash_damage = 0
+export var splash_radius = 0
 
 var iff: IffProfile
 
@@ -26,12 +26,12 @@ func do_beam(origin: Vector3, ignore: Array, pen_count):
 			do_beam(collision.position, ignore + [collider], pen_count + 1)
 		else:
 			_update_graphics((collision.position - global_transform.origin).length())
-			if aoe_radius:
+			if splash_damage:
 				_do_aoe(collision.position)
 	else:
 		var endpoint = global_transform.origin + global_transform.basis.x * max_range
 		_update_graphics(max_range)
-		if aoe_radius:
+		if splash_damage:
 			_do_aoe(endpoint)
 
 func _update_graphics(beam_length: float):
@@ -45,7 +45,9 @@ func project_beam(from: Vector3, ignore: Array) -> Dictionary:
 	return spaceState.intersect_ray(from, to, ignore, collisionMask)
 
 func _do_aoe(location: Vector3):
-	for result in Util.generic_aoe_query(self, location, aoe_radius):
+	print("Beam AOE: ", location)
+	for result in Util.generic_aoe_query(self, location, splash_radius):
 		if result.has("collider"):
+			print("Beam splashes Hit: ", result.collider.name)
 			if not iff.should_exclude(result.collider):
-				Health.do_damage(result.collider, damage)
+				Health.do_damage(result.collider, splash_damage)
