@@ -49,5 +49,5 @@ func _do_aoe(location: Vector3):
 	for result in Util.generic_aoe_query(self, location, splash_radius):
 		if result.has("collider"):
 			print("Beam splashes Hit: ", result.collider.name)
-			if not iff.should_exclude(result.collider):
+			if not iff.should_exclude(result.collider) and iff.owner != result.collider:
 				Health.do_damage(result.collider, splash_damage)

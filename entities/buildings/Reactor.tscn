@@ -18,6 +18,7 @@ extents = Vector3( 15.0018, 12.7956, 1 )
 radius = 7.70372
 
 [node name="Building" type="StaticBody"]
+collision_layer = 3
 script = ExtResource( 8 )
 faction = 0
 

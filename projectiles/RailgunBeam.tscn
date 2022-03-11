@@ -22,7 +22,7 @@ rings = 3
 
 [node name="Spatial" instance=ExtResource( 1 )]
 overpen_count = 5
-damage = 100
+damage = 25
 
 [node name="Graphics" parent="." index="0"]
 mesh = SubResource( 1 )
