@@ -14,8 +14,5 @@ transform = Transform( 0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0 )
 [node name="Cube" parent="Graphics/Armature/Skeleton" index="0"]
 material/0 = ExtResource( 3 )
 
-[node name="Emerge" type="Spatial" parent="." index="3"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.07501, 0, 0 )
-
 [editable path="Graphics"]
 [editable path="Notifier"]

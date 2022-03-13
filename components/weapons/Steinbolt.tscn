@@ -1,9 +1,38 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://components/Weapon.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/eamonn/weapons/steinbolt/steinbolt.obj" type="ArrayMesh" id=2]
 [ext_resource path="res://components/weapons/Steinbolt_texture.tres" type="Material" id=3]
 [ext_resource path="res://projectiles/SteinboltBeam.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/eamonn/anime_lens_flare.png" type="Texture" id=5]
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_transparent = true
+flags_unshaded = true
+flags_no_depth_test = true
+vertex_color_use_as_albedo = true
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 5 )
+
+[sub_resource type="CurveTexture" id=2]
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0.028, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.5, 0.986364 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+gravity = Vector3( 0, 0, 0 )
+angular_velocity = 100.0
+angular_velocity_curve = SubResource( 2 )
+scale = 15.0
+scale_curve = SubResource( 4 )
+
+[sub_resource type="QuadMesh" id=6]
 
 [node name="Weapon" instance=ExtResource( 1 )]
 projectile_scene = ExtResource( 4 )
@@ -16,7 +45,16 @@ wait_time = 3.0
 mesh = ExtResource( 2 )
 material/0 = ExtResource( 3 )
 
-[node name="Emerge" type="Spatial" parent="." index="5"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.98788, 0, 0 )
+[node name="Emerge" parent="." index="5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.17293, 0, 0 )
+
+[node name="MuzzleFlash" parent="Emerge" index="0"]
+material_override = SubResource( 1 )
+emitting = false
+amount = 1
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource( 5 )
+draw_pass_1 = SubResource( 6 )
 
 [editable path="Notifier"]

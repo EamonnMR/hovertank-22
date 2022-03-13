@@ -27,6 +27,10 @@ line_of_sight = false
 [node name="CollisionShape" parent="Notifier" index="0"]
 shape = SubResource( 1 )
 
+[node name="Emerge" type="Spatial" parent="."]
+
+[node name="MuzzleFlash" type="Particles" parent="Emerge"]
+
 [connection signal="timeout" from="Cooldown" to="." method="_on_Cooldown_timeout"]
 [connection signal="timeout" from="BurstCooldown" to="." method="_on_BurstCooldown_timeout"]
 

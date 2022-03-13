@@ -25,7 +25,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.261146, 0, 0 )
 mesh = ExtResource( 4 )
 material/0 = SubResource( 1 )
 
-[node name="Emerge" type="Spatial" parent="." index="5"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.22929, 0, 0 )
+[node name="Emerge" parent="." index="5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.16557, 0, 0 )
 
 [editable path="Notifier"]

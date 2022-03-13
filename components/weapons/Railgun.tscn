@@ -1,20 +1,22 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://components/Weapon.tscn" type="PackedScene" id=1]
 [ext_resource path="res://projectiles/RailgunBeam.tscn" type="PackedScene" id=2]
 [ext_resource path="res://components/weapons/AutocannonGraphics.tscn" type="PackedScene" id=3]
 
+[sub_resource type="SpatialMaterial" id=1]
+
 [node name="Weapon" instance=ExtResource( 1 )]
 projectile_scene = ExtResource( 2 )
 world_projectile = false
 
-[node name="Emerge" type="Spatial" parent="." index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.09886, 0, 0 )
-
-[node name="Graphics" parent="." index="1" instance=ExtResource( 3 )]
+[node name="Graphics" parent="." index="0" instance=ExtResource( 3 )]
 skeleton = NodePath("../Notifier")
 
-[node name="Cooldown" parent="." index="2"]
+[node name="Cooldown" parent="." index="1"]
 wait_time = 0.5
+
+[node name="MuzzleFlash" parent="Emerge" index="0"]
+material_override = SubResource( 1 )
 
 [editable path="Notifier"]

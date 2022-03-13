@@ -61,7 +61,8 @@ func _create_projectile():
 	
 
 func _effects():
-	print("bang")
+	$Emerge/MuzzleFlash.restart()
+	$Emerge/MuzzleFlash.emitting = true
 	$AudioStreamPlayer3D.play()
 
 func _on_Cooldown_timeout():

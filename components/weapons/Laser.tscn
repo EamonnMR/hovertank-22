@@ -18,7 +18,4 @@ wait_time = 0.5
 [node name="BurstCooldown" parent="." index="2"]
 wait_time = 0.3
 
-[node name="Emerge" type="Spatial" parent="." index="5"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.05565, 0, 0 )
-
 [editable path="Notifier"]
