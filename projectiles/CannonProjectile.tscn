@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://projectiles/Projectile.tscn" type="PackedScene" id=1]
-[ext_resource path="res://projectiles/DamageAoe.tscn" type="PackedScene" id=2]
 [ext_resource path="res://projectiles/RedGlow.tres" type="Material" id=3]
 [ext_resource path="res://effects/impact/CannonImpact.tscn" type="PackedScene" id=4]
 
@@ -13,8 +12,8 @@ radius = 0.4
 
 [node name="Projectile" instance=ExtResource( 1 )]
 speed = 160
-damage = 5
 splash_damage = 15
+splash_radius = 10
 already_exploded = true
 explosion = ExtResource( 4 )
 
@@ -25,8 +24,3 @@ shape = SubResource( 4 )
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.502089, 0, 0 )
 mesh = SubResource( 2 )
 material/0 = ExtResource( 3 )
-
-[node name="DamageAoe" parent="." index="2" instance=ExtResource( 2 )]
-radius = 20
-
-[editable path="DamageAoe"]

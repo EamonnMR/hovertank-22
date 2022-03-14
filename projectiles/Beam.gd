@@ -5,7 +5,7 @@ export var overpen_count = 0
 export var damage = 1
 export var splash_damage = 0
 export var splash_radius = 0
-
+export var explosion: PackedScene
 var iff: IffProfile
 
 func _ready():
@@ -26,13 +26,11 @@ func do_beam(origin: Vector3, ignore: Array, pen_count):
 			do_beam(collision.position, ignore + [collider], pen_count + 1)
 		else:
 			_update_graphics((collision.position - global_transform.origin).length())
-			if splash_damage:
-				_do_aoe(collision.position)
+			_do_explosion(collision.position)
 	else:
 		var endpoint = global_transform.origin + global_transform.basis.x * max_range
 		_update_graphics(max_range)
-		if splash_damage:
-			_do_aoe(endpoint)
+		_do_explosion(endpoint)
 
 func _update_graphics(beam_length: float):
 	$Graphics.transform.origin.x += beam_length / 2
@@ -44,10 +42,10 @@ func project_beam(from: Vector3, ignore: Array) -> Dictionary:
 	var spaceState :PhysicsDirectSpaceState = get_world().direct_space_state
 	return spaceState.intersect_ray(from, to, ignore, collisionMask)
 
-func _do_aoe(location: Vector3):
-	print("Beam AOE: ", location)
-	for result in Util.generic_aoe_query(self, location, splash_radius):
-		if result.has("collider"):
-			print("Beam splashes Hit: ", result.collider.name)
-			if not iff.should_exclude(result.collider) and iff.owner != result.collider:
-				Health.do_damage(result.collider, splash_damage)
+func _do_explosion(location: Vector3):
+	if explosion:
+		var explo = explosion.instance()
+		explo.global_transform.origin = location
+		if splash_damage:
+			explo.init(splash_damage, splash_radius, true, iff)
+		get_tree().get_root().add_child(explo)
