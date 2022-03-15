@@ -3,9 +3,7 @@ extends Spatial
 onready var parent = get_node("../")
 
 func _ready():
-	var aabb = get_node("../Graphics").get_aabb()
-	var scale = get_node("../Graphics").scale.y
-	$Sprite3D.transform.origin.y = (aabb.position.y + aabb.size.y + 2) * scale
+	Util.show_above($Sprite3D, get_node("../Graphics"))
 	parent.add_to_group("objectives")
 	parent.connect("destroyed", self, "_on_parent_destroyed")
 

@@ -9,6 +9,11 @@ func _ready():
 	unit_test_traverse_works_270_traverse_looking_forward()
 	unit_test_traverse_works_270_traverse_looking_backward()
 
+func show_above(child, parent):
+	var aabb = parent.get_aabb()
+	var scale = parent.scale.y
+	child.transform.origin.y = (aabb.position.y + aabb.size.y + 2) * scale
+	
 func generic_aoe_query(node: Spatial, origin: Vector3, radius: float):
 	var shape: SphereShape = SphereShape.new()
 	shape.radius = radius
