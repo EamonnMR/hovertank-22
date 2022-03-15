@@ -10,9 +10,14 @@ export var spawn: PackedScene
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	var signals_by_severity = [
+		"minor",
+		"major",
+		"boss"
+	]
+	Heat.connect(signals_by_severity[severity] + "_incursion_begun", self, "do_spawn")
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func do_spawn():
+	var instance = spawn.instance()
+	instance.transform.origin = transform.origin
+	get_node("../").add_child(instance)
