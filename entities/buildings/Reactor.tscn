@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://asset_sources/buildings/reactor.obj" type="ArrayMesh" id=1]
 [ext_resource path="res://entities/buildings/Reactor.tres" type="Material" id=2]
 [ext_resource path="res://components/energy.tscn" type="PackedScene" id=3]
 [ext_resource path="res://effects/explosions/HeavyMaltechExplosion.tscn" type="PackedScene" id=4]
+[ext_resource path="res://components/meta/NPCHealthBar.tscn" type="PackedScene" id=5]
 [ext_resource path="res://components/Obstacle.tscn" type="PackedScene" id=6]
 [ext_resource path="res://components/Health.gd" type="Script" id=7]
 [ext_resource path="res://entities/Building.gd" type="Script" id=8]
@@ -21,6 +22,9 @@ radius = 7.70372
 collision_layer = 3
 script = ExtResource( 8 )
 faction = 0
+graphics = NodePath("Graphics")
+
+[node name="NPCHealthBar" parent="." instance=ExtResource( 5 )]
 
 [node name="Obstacle" parent="." instance=ExtResource( 6 )]
 radius = 18.0
@@ -40,7 +44,7 @@ shape = SubResource( 4 )
 
 [node name="Health" type="Spatial" parent="."]
 script = ExtResource( 7 )
-max_health = 5
+max_health = 400
 explosion = ExtResource( 4 )
 
 [node name="Graphics" type="MeshInstance" parent="."]

@@ -1,8 +1,11 @@
 extends StaticBody
 
 export var faction: int = -1
-
+export var graphics: NodePath
 signal destroyed
+
+func is_player():
+	return false
 
 func _on_Health_damaged():
 	print("Building took hit")

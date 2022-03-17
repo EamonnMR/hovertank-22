@@ -21,6 +21,7 @@ rings = 3
 
 [node name="Spatial" instance=ExtResource( 1 )]
 max_range = 500
+damage = 4
 
 [node name="Graphics" parent="." index="0"]
 mesh = SubResource( 1 )
