@@ -66,6 +66,11 @@ var WEAPONS = {
 		"name": "Laser",
 		"scene": preload("res://components/weapons/Laser.tscn"),
 		"desc": "Somewhat worse than the average sunburn"
+	},
+	"ripsaw": {
+		"name": "Ripsaw",
+		"scene": preload("res://components/weapons/Ripsaw.tscn"),
+		"desc": "Anything but mini"
 	}
 }
 
