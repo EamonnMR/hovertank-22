@@ -33,11 +33,12 @@ radius = 11.5918
 
 [node name="Vehicle" instance=ExtResource( 1 )]
 accel = 30.0
+graphics = NodePath("Graphics/Armature/Cube")
 
-[node name="Health" parent="." index="0"]
+[node name="Health" parent="." index="1"]
 max_health = 60
 
-[node name="CameraMover" parent="." index="1"]
+[node name="CameraMover" parent="." index="2"]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 6.73174, 0 )
 
 [node name="Graphics" parent="." index="3" instance=ExtResource( 2 )]

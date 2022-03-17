@@ -25,15 +25,16 @@ radius = 15.5608
 speed = 50.0
 accel = 50.0
 turn = 6.0
+graphics = NodePath("Graphics/Armature/Skeleton/Cube")
 
-[node name="Health" parent="." index="0"]
+[node name="Health" parent="." index="1"]
 max_health = 25
-
-[node name="CameraMover" parent="." index="1"]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 7.75431, 0 )
 
 [node name="Graphics" parent="." index="2" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.01416, 0 )
+
+[node name="Skeleton" parent="Graphics/Armature" index="0"]
+bones/1/bound_children = [ NodePath("Turret") ]
 
 [node name="Cube" parent="Graphics/Armature/Skeleton" index="0"]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.979475, 0 )
@@ -96,7 +97,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.51563, 0 )
 transform = Transform( 1, 0, 0, 0, 2.03861, 0, 0, 0, 1, 0, 3.23494, 0 )
 shape = SubResource( 5 )
 
-[node name="Notifier" parent="." index="6"]
+[node name="CameraMover" parent="." index="5"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 7.75431, 0 )
+
+[node name="Notifier" parent="." index="7"]
 cadence = 1.0
 
 [node name="CollisionShape" parent="Notifier" index="0"]

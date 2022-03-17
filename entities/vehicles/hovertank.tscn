@@ -34,6 +34,7 @@ radius = 18.9508
 [node name="Vehicle" instance=ExtResource( 2 )]
 accel = 6.0
 turn = 6.0
+graphics = NodePath("Graphics/Armature/Skeleton/Cube")
 
 [node name="Graphics" parent="." index="0" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.59815, 0 )
@@ -55,11 +56,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.452668 )
 [node name="Cube" parent="Graphics/Armature/Skeleton" index="1"]
 material/0 = SubResource( 2 )
 
-[node name="Health" parent="." index="1"]
+[node name="Health" parent="." index="2"]
 max_health = 45
-
-[node name="CameraMover" parent="." index="2"]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 6.69351, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="." index="3"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.24695, 0 )
@@ -67,6 +65,9 @@ shape = SubResource( 1 )
 
 [node name="CenterOfMass" type="Spatial" parent="." index="4"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.53312, 0 )
+
+[node name="CameraMover" parent="." index="5"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 6.69351, 0 )
 
 [node name="CollisionShape" parent="Notifier" index="0"]
 shape = SubResource( 3 )

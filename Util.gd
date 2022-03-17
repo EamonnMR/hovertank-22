@@ -13,6 +13,17 @@ func show_above(child, parent):
 	var aabb = parent.get_aabb()
 	var scale = parent.scale.y
 	child.transform.origin.y = (aabb.position.y + aabb.size.y + 2) * scale
+
+func get_point_above(parent):
+	var aabb = parent.get_aabb()
+	var scale = parent.scale.y
+	return Vector3(
+		parent.global_transform.origin.x,
+		(aabb.position.y + aabb.size.y + 2) * scale,
+		parent.global_transform.origin.z
+	)
+
+
 	
 func generic_aoe_query(node: Spatial, origin: Vector3, radius: float):
 	var shape: SphereShape = SphereShape.new()
