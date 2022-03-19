@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://components/Weapon.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/eamonn/weapons/steinbolt/steinbolt.obj" type="ArrayMesh" id=2]
 [ext_resource path="res://components/weapons/Steinbolt_texture.tres" type="Material" id=3]
 [ext_resource path="res://projectiles/SteinboltBeam.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/eamonn/anime_lens_flare.png" type="Texture" id=5]
+[ext_resource path="res://assets/StarNinjas_cc0/sword.1.ogg" type="AudioStream" id=6]
 
 [sub_resource type="SpatialMaterial" id=1]
 flags_transparent = true
@@ -17,7 +18,13 @@ particles_anim_v_frames = 1
 particles_anim_loop = false
 albedo_texture = ExtResource( 5 )
 
+[sub_resource type="Curve" id=7]
+min_value = -360.0
+max_value = 360.0
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
 [sub_resource type="CurveTexture" id=2]
+curve = SubResource( 7 )
 
 [sub_resource type="Curve" id=3]
 _data = [ Vector2( 0.028, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.5, 0.986364 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
@@ -40,6 +47,9 @@ world_projectile = false
 
 [node name="Cooldown" parent="." index="0"]
 wait_time = 3.0
+
+[node name="AudioStreamPlayer3D" parent="." index="2"]
+stream = ExtResource( 6 )
 
 [node name="Graphics" type="MeshInstance" parent="." index="4"]
 mesh = ExtResource( 2 )
