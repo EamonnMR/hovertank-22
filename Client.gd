@@ -33,6 +33,12 @@ var VEHICLES = {
 		"scene": preload("res://entities/vehicles/Mecha.tscn"),
 		"movement": "walk",
 		"desc": "Light, by giant robot standards"
+	},
+	"bigwheel": {
+		"name": "Bigwheel IFV",
+		"scene": preload("res://entities/vehicles/Bigwheel.tscn"),
+		"movement": "tank",
+		"desc": "Half tank, half APC, all attitude"
 	}
 }
 

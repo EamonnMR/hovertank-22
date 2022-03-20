@@ -7,7 +7,7 @@
 [ext_resource path="res://components/meta/NPCHealthBar.tscn" type="PackedScene" id=5]
 
 [sub_resource type="CapsuleShape" id=1]
-radius = 2.82614
+radius = 1.22908
 height = 0.002
 
 [node name="Vehicle" type="KinematicBody"]
@@ -32,5 +32,7 @@ shape = SubResource( 1 )
 [node name="Notifier" parent="." instance=ExtResource( 4 )]
 collision_layer = 0
 collision_mask = 2
+
+[node name="CenterOfMass" type="Spatial" parent="."]
 
 [editable path="Notifier"]

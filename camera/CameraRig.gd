@@ -60,6 +60,8 @@ func _handle_topdown_mouse_aim(delta):
 	var result = _project_aim_ray(mouse_pos, false)
 	if "position" in result:
 		$PickerLocation.global_transform.origin = result.position
+		if "collider" in result and result.collider.get_node("CenterOfMass"):
+			$PickerLocation.global_transform_origin.y = result.get_node("CenterOfMass").global_transform.origin.y
 		$PointerMarker.rect_position = $Camera.unproject_position(result.position) - $PointerMarker.rect_size / 2
 
 	# TODO: If there's an object under this, pick and set the picker location to the object's origin

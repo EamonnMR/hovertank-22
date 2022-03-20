@@ -62,16 +62,16 @@ transform = Transform( 0.66, 0, 0, 0, 0.66, -2.15136e-09, 0, 2.15136e-09, 0.66, 
 [node name="Cube" parent="Graphics/Armature" index="2"]
 material/0 = SubResource( 2 )
 
-[node name="CenterOfMass" type="Spatial" parent="." index="4"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.59685, 0 )
-
-[node name="CollisionShape" type="CollisionShape" parent="." index="5"]
+[node name="CollisionShape" type="CollisionShape" parent="." index="4"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 3.69091, 0 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape" parent="Notifier" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.41104, 0 )
 shape = SubResource( 3 )
+
+[node name="CenterOfMass" parent="." index="7"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.21033, 0 )
 
 [editable path="Graphics"]
 [editable path="Graphics/Armature/Turret"]

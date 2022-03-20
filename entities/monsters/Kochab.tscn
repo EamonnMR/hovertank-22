@@ -47,7 +47,7 @@ material/0 = ExtResource( 3 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 23.6102, 0 )
 shape = SubResource( 2 )
 
-[node name="CenterOfMass" type="Spatial" parent="." index="6"]
+[node name="CenterOfMass" parent="." index="6"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 26.6672, 0 )
 
 [node name="CollisionShape" parent="Notifier" index="0"]
