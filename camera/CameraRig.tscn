@@ -69,7 +69,7 @@ __meta__ = {
 }
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.614616, 0.788827, 0, -0.788827, 0.614616, 0, 39.7149, 24.0506 )
+transform = Transform( 1, 0, 0, 0, 0.793863, 0.608097, 0, -0.608097, 0.793863, 0, 7.74947, 24.0506 )
 far = 500.0
 
 [node name="CameraOffset" type="Spatial" parent="."]
@@ -80,7 +80,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.83876, 0 )
 [node name="PitchHelper" type="Spatial" parent="CameraOffset"]
 
 [node name="CameraLocation" type="Spatial" parent="CameraOffset/PitchHelper"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 39.7149, 24.0506 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.74947, 24.0506 )
 
 [node name="RemoteTransform" type="RemoteTransform" parent="CameraOffset/PitchHelper/CameraLocation"]
 remote_path = NodePath("../../../../Camera")
