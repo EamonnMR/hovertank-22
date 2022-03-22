@@ -25,10 +25,12 @@ var current_camera: Camera
 func _input(event):
 	if event is InputEventMouseMotion:
 		aim_smooth_goal -= event.relative
+	if Input.is_action_just_pressed("ui_cancel"):
+		Client.return_to_menu()
 
 func _ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	if third_person:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		current_camera = $CameraOffset/PitchHelper/CameraLocation/Camera
 		current_camera.make_current()
 		base_distance = $CameraOffset/PitchHelper/CameraLocation.transform.origin
@@ -36,6 +38,7 @@ func _ready():
 		#$CameraOffset/PitchHelper/CameraLocation.transform.origin = Vector3(0,0,0)
 		#current_camera.look_at($CameraOffset.to_global(Vector3(0,0,0)), Vector3.UP)
 	else:
+		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 		current_camera = $CameraOffset/PitchHelper/CameraLocation/Camera
 		base_distance = TOPDOWN_OFFSET
 		current_camera.look_at($CameraOffset.to_global(Vector3(0,0,0)), Vector3.UP)
