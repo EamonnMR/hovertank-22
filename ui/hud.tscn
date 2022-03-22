@@ -100,10 +100,14 @@ __meta__ = {
 }
 
 [node name="FPS" type="Label" parent="."]
-margin_left = 831.152
-margin_top = 532.003
-margin_right = 871.152
-margin_bottom = 583.003
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -99.9323
+margin_top = -80.9661
+margin_right = -59.9323
+margin_bottom = -29.9661
 script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
