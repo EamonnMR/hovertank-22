@@ -27,16 +27,18 @@ func _input(event):
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-	base_distance = $CameraOffset/PitchHelper/CameraLocation.transform.origin
 	if third_person:
 		current_camera = $CameraOffset/PitchHelper/CameraLocation/Camera
 		current_camera.make_current()
+		base_distance = $CameraOffset/PitchHelper/CameraLocation.transform.origin
 		#$CameraOffset/PitchHelper/CameraLocation.transform.origin.y *= .1
 		#$CameraOffset/PitchHelper/CameraLocation.transform.origin = Vector3(0,0,0)
 		#current_camera.look_at($CameraOffset.to_global(Vector3(0,0,0)), Vector3.UP)
 	else:
-		current_camera = $Camera
-	
+		current_camera = $CameraOffset/PitchHelper/CameraLocation/Camera
+		base_distance = Vector3(0,100,50)
+		current_camera.look_at($CameraOffset.to_global(Vector3(0,0,0)), Vector3.UP)
+
 func _handle_zoom(delta: float):
 	if Input.is_action_just_pressed("zoom_in"):
 		zoom_in()
@@ -54,7 +56,7 @@ func _process(delta):
 	else:
 		_handle_topdown_mouse_aim(delta)
 	
-	$AimMarker.rect_position = $Camera.unproject_position(aim_position) # - ($AimMarker.rect_size)
+	$AimMarker.rect_position = current_camera.unproject_position(aim_position) # - ($AimMarker.rect_size)
 
 func _handle_topdown_mouse_aim(delta):
 	current_camera.look_at($CameraOffset.to_global(Vector3(0,6,0)), Vector3.UP)
@@ -64,7 +66,7 @@ func _handle_topdown_mouse_aim(delta):
 		$PickerLocation.global_transform.origin = result.position
 		if "collider" in result and result.collider.get_node("CenterOfMass"):
 			$PickerLocation.global_transform.origin.y = result.collider.get_node("CenterOfMass").global_transform.origin.y
-		$PointerMarker.rect_position = $Camera.unproject_position(result.position) - $PointerMarker.rect_size / 2
+		$PointerMarker.rect_position = current_camera.unproject_position(result.position) - $PointerMarker.rect_size / 2
 
 	# TODO: If there's an object under this, pick and set the picker location to the object's origin
 	if "collider" in result and result.collider is StaticBody:

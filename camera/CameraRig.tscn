@@ -68,10 +68,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.793863, 0.608097, 0, -0.608097, 0.793863, 0, 7.74947, 24.0506 )
-far = 500.0
-
 [node name="CameraOffset" type="Spatial" parent="."]
 
 [node name="LookSlightlyAbove" type="Spatial" parent="CameraOffset"]
@@ -82,12 +78,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.83876, 0 )
 [node name="CameraLocation" type="Spatial" parent="CameraOffset/PitchHelper"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.74947, 24.0506 )
 
-[node name="RemoteTransform" type="RemoteTransform" parent="CameraOffset/PitchHelper/CameraLocation"]
-remote_path = NodePath("../../../../Camera")
-update_rotation = false
-update_scale = false
-
 [node name="Camera" type="Camera" parent="CameraOffset/PitchHelper/CameraLocation"]
+current = true
 far = 800.0
 
 [node name="Listener" type="Listener" parent="CameraOffset"]
