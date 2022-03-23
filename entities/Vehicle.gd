@@ -7,6 +7,8 @@ export var turn: float = 5
 export var turret_path: NodePath
 export var graphics: NodePath
 
+export var player_shader: Material
+
 export var faction: int = 0
 
 # TODO: Load these from Client, make difficulty settings
@@ -37,6 +39,7 @@ func _ready():
 		camera = get_node("../CameraRig")
 		$CameraMover.remote_path = camera.get_mover_path()
 		$Notifier.enable_proactive()
+		setup_player_skin()
 	else:
 		$Notifier.disable_proactive()
 	
@@ -113,3 +116,8 @@ func _nerf_npc_stats():
 			weapon.dmg_factor = DMG_NERF_FACTOR
 			weapon.get_node("Cooldown").wait_time *= COOLDOWN_NERF_FACTOR
 			weapon.spread *= SPREAD_NERF_FACTOR
+
+func setup_player_skin():
+	if player_shader:
+		var graphics_node: MeshInstance = get_node(graphics)
+		graphics_node.set_surface_material(0, player_shader)
