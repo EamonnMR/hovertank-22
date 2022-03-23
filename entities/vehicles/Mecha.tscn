@@ -1,28 +1,11 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://entities/Vehicle.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/eamonn/mecha/mecha.escn" type="PackedScene" id=2]
 [ext_resource path="res://components/Turret.tscn" type="PackedScene" id=3]
 [ext_resource path="res://components/WeaponSlot.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/eamonn/mecha/mechaE.png" type="Texture" id=5]
-[ext_resource path="res://assets/eamonn/mecha/mechaC.png" type="Texture" id=6]
-[ext_resource path="res://assets/eamonn/mecha/mechaRM.png" type="Texture" id=7]
-[ext_resource path="res://assets/eamonn/mecha/mechaN.png" type="Texture" id=8]
-
-[sub_resource type="SpatialMaterial" id=2]
-albedo_texture = ExtResource( 6 )
-metallic_texture = ExtResource( 7 )
-metallic_texture_channel = 2
-roughness_texture = ExtResource( 7 )
-emission_enabled = true
-emission = Color( 0, 0, 0, 1 )
-emission_energy = 1.0
-emission_operator = 0
-emission_on_uv2 = false
-emission_texture = ExtResource( 5 )
-normal_enabled = true
-normal_scale = 1.0
-normal_texture = ExtResource( 8 )
+[ext_resource path="res://assets/eamonn/mecha/Mecha_itar.tres" type="Material" id=5]
+[ext_resource path="res://assets/eamonn/mecha/Mecha.tres" type="Material" id=6]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 1.84335
@@ -34,6 +17,7 @@ radius = 11.5918
 [node name="Vehicle" instance=ExtResource( 1 )]
 accel = 30.0
 graphics = NodePath("Graphics/Armature/Cube")
+player_shader = ExtResource( 5 )
 
 [node name="Health" parent="." index="1"]
 max_health = 60
@@ -43,6 +27,9 @@ transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 6.73
 
 [node name="Graphics" parent="." index="3" instance=ExtResource( 2 )]
 transform = Transform( -6.55671e-08, 0, 1.5, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 0, 0, 0 )
+
+[node name="Armature" parent="Graphics" index="0"]
+bones/8/bound_children = [ NodePath("Turret") ]
 
 [node name="Turret" parent="Graphics/Armature" index="0" instance=ExtResource( 3 )]
 transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 0, 2.96149, 0 )
@@ -60,7 +47,7 @@ primary = true
 transform = Transform( 0.66, 0, 0, 0, 0.66, -2.15136e-09, 0, 2.15136e-09, 0.66, -0.464545, -1.39085, -0.562634 )
 
 [node name="Cube" parent="Graphics/Armature" index="2"]
-material/0 = SubResource( 2 )
+material/0 = ExtResource( 6 )
 
 [node name="CollisionShape" type="CollisionShape" parent="." index="4"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 3.69091, 0 )

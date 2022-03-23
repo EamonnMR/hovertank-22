@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://entities/vehicles/scout_spatialmaterial.tres" type="Material" id=1]
 [ext_resource path="res://components/Turret.tscn" type="PackedScene" id=2]
 [ext_resource path="res://entities/Vehicle.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/eamonn/scout/scout.dae" type="PackedScene" id=4]
 [ext_resource path="res://components/WeaponSlot.tscn" type="PackedScene" id=5]
+[ext_resource path="res://entities/vehicles/scout_spatialmaterial_itar.tres" type="Material" id=6]
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 0.0509804, 0.00392157, 0.00392157, 1 )
@@ -26,6 +27,7 @@ speed = 50.0
 accel = 50.0
 turn = 6.0
 graphics = NodePath("Graphics/Armature/Skeleton/Cube")
+player_shader = ExtResource( 6 )
 
 [node name="Health" parent="." index="1"]
 max_health = 25

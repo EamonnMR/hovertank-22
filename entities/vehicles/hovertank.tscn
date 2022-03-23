@@ -23,9 +23,6 @@ player_shader = ExtResource( 4 )
 [node name="Graphics" parent="." index="0" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.59815, 0 )
 
-[node name="Skeleton" parent="Graphics/Armature" index="0"]
-bones/1/bound_children = [ NodePath("Turret") ]
-
 [node name="Turret" parent="Graphics/Armature/Skeleton" index="0" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1915, 0 )
 bone_name = "turret"
