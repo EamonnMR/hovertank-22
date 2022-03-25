@@ -4,7 +4,13 @@ var current_level = 0
 
 var LEVELS = [
 	{
-		"name": "Deep Blue",
+		"name": "Smoking Section",
+		"desc": "Moloch has a foothold here with three reactors. Destroy them.",
+		"scene": "res://levels/Level1.tscn"
+	},
+	{
+		"name": "Dancing With A Ghost",
+		"desc": "An important Moloch pilot is holed up in this fortress. Eliminate them.",
 		"scene": "res://levels/Level1.tscn"
 	}
 ]

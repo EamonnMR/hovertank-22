@@ -9,9 +9,6 @@
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchor_right = 1.0
@@ -28,10 +25,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -305.973
-margin_top = -44.5864
-margin_right = 258.027
-margin_bottom = 197.414
+margin_left = -306.0
+margin_top = -148.0
+margin_right = 311.0
+margin_bottom = 270.0
 texture = ExtResource( 4 )
 expand = true
 stretch_mode = 1
@@ -42,17 +39,15 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -300.0
-margin_top = -189.0
+margin_top = -288.0
 margin_right = 300.0
-margin_bottom = 189.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+margin_bottom = 421.0
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
 margin_right = 600.0
 margin_bottom = 150.0
 texture = ExtResource( 1 )
+stretch_mode = 1
 
 [node name="Selection" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 154.0
@@ -158,10 +153,35 @@ margin_bottom = 57.0
 bbcode_enabled = true
 fit_content_height = true
 
-[node name="LaunchOptions" type="HBoxContainer" parent="VBoxContainer"]
+[node name="Mission" type="VBoxContainer" parent="VBoxContainer"]
 margin_top = 358.0
 margin_right = 600.0
-margin_bottom = 378.0
+margin_bottom = 508.0
+rect_min_size = Vector2( 199, 150 )
+
+[node name="Mission Select" type="Label" parent="VBoxContainer/Mission"]
+margin_right = 600.0
+margin_bottom = 31.0
+text = "Mission
+"
+
+[node name="MenuButton" type="OptionButton" parent="VBoxContainer/Mission"]
+margin_top = 35.0
+margin_right = 600.0
+margin_bottom = 55.0
+rect_min_size = Vector2( 100, 0 )
+
+[node name="Desc" type="RichTextLabel" parent="VBoxContainer/Mission"]
+margin_top = 59.0
+margin_right = 600.0
+margin_bottom = 74.0
+bbcode_enabled = true
+fit_content_height = true
+
+[node name="LaunchOptions" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 512.0
+margin_right = 600.0
+margin_bottom = 532.0
 
 [node name="StartButton" type="Button" parent="VBoxContainer/LaunchOptions"]
 margin_right = 41.0
@@ -189,6 +209,7 @@ margin_bottom = 20.0
 [connection signal="item_selected" from="VBoxContainer/Selection/PrimaryWeaponSelect/MenuButton" to="." method="_on_Primary_selected"]
 [connection signal="item_selected" from="VBoxContainer/Selection/SecondaryWeaponSelect/MenuButton" to="." method="_on_Secondary_selected"]
 [connection signal="item_selected" from="VBoxContainer/Selection/PilotSelect/MenuButton" to="." method="_on_Pilot_selected"]
+[connection signal="item_selected" from="VBoxContainer/Mission/MenuButton" to="." method="_on_level_selected"]
 [connection signal="pressed" from="VBoxContainer/LaunchOptions/StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/LaunchOptions/QuitButton" to="." method="_on_QuitButton_pressed"]
 [connection signal="item_selected" from="VBoxContainer/LaunchOptions/ControllerOption" to="." method="_on_ControllerOption_item_selected"]
