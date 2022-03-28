@@ -15,7 +15,7 @@ func _ready():
 	parent.get_node("Graphics").rotation.y += PI/2
 	
 	var sticky_point = world.stick_to_ground(parent.global_transform.origin)
-	
+	assert(sticky_point)
 	if world.navigation:
 		_create_nav_agent(sticky_point)
 	else:

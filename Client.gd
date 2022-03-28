@@ -11,7 +11,7 @@ var LEVELS = [
 	{
 		"name": "Dancing With A Ghost",
 		"desc": "An important Moloch pilot is holed up in this fortress. Eliminate them.",
-		"scene": "res://levels/Level1.tscn"
+		"scene": "res://levels/Level2.tscn"
 	}
 ]
 

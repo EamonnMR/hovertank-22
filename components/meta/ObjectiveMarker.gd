@@ -3,7 +3,7 @@ extends Spatial
 onready var parent = get_node("../")
 
 func _ready():
-	Util.show_above($Sprite3D, get_node("../Graphics"))
+	Util.show_above($Sprite3D, parent.get_node(parent.graphics))
 	parent.add_to_group("objectives")
 	parent.connect("destroyed", self, "_on_parent_destroyed")
 
