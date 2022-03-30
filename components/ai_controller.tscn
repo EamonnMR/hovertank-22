@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://components/ai_controller.gd" type="Script" id=1]
+[ext_resource path="res://components/AiControllerInfoTag.gd" type="Script" id=2]
+[ext_resource path="res://components/meta/2dIn3d.tscn" type="PackedScene" id=3]
 
 [node name="Controller" type="Spatial"]
 script = ExtResource( 1 )
@@ -8,5 +10,13 @@ script = ExtResource( 1 )
 [node name="RecalcTimer" type="Timer" parent="."]
 wait_time = 5.0
 autostart = true
+
+[node name="2dIn3d" parent="." instance=ExtResource( 3 )]
+
+[node name="AiControllerInfoTag" type="Label" parent="2dIn3d"]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "Bla Bla bla"
+script = ExtResource( 2 )
 
 [connection signal="timeout" from="RecalcTimer" to="." method="_on_RecalcTimer_timeout"]
