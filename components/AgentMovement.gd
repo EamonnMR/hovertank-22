@@ -66,7 +66,7 @@ func _create_nav_agent(position_on_ground):
 		agent.connect("no_movement", self, "_on_agent_no_movement", [agent], CONNECT_DEFERRED)
 
 func _physics_process(delta):
-	if agent: # and agent.isMoving == true:
+	if agent and agent.isMoving == true:
 		if usePrediction:
 			var result: Dictionary = agent.getPredictedMovement(parent.translation, -parent.global_transform.basis.z, lastUpdateTimestamp, deg2rad(2.5))
 			parent.translation = result["position"]
