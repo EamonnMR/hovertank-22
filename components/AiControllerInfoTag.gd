@@ -1,16 +1,15 @@
 extends Label
 
+onready var parent_ai = get_node("../../")
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+func _process(delta):
+	text = "Target: " + _fmt_target()
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _fmt_target():
+	if parent_ai.target:
+		if is_instance_valid(parent_ai.target):
+			return parent_ai.target.name
+		else:
+			return "<invalid>"
+	else:
+		return "<null>"

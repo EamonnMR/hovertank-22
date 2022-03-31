@@ -90,3 +90,11 @@ func _on_agent_no_progress():
 func _on_agent_no_movement():
 	print("agent no movement")
 	controller.recalculate_path()
+
+
+func stop():
+	agent.stop()
+
+func _exit_tree():
+	if world.navigation:
+		world.navigation.removeAgent(agent)

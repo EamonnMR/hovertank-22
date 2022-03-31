@@ -6,7 +6,6 @@ var target: Spatial
 # TODO: Tweak Params
 # export var standoff: false
 # export var min_range
-var path: Array
 
 export var firing_range = 60
 var players_in_area: Array
@@ -41,7 +40,9 @@ func _obtain_target(target):
 func recalculate_path():
 	if target and is_instance_valid(target):
 		get_node("../Movement").navigate_to_position(target.global_transform.origin)
-
+	else:
+		get_node("../Movement").stop()
+		
 func is_shooting_secondary():
 	return is_shooting()
 
