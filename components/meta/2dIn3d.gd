@@ -1,12 +1,14 @@
 extends Control
 
+"For dropping debug overlays into 3d scenes."
+
 export var offset: Vector2
 export var center: bool = true
 export var debug_only: bool = true
 
 func _ready():
 	if (not get_tree().debug_collisions_hint) and debug_only:
-		hide()
+		queue_free()
 
 func _process(delta):
 	if get_viewport().get_camera():

@@ -12,7 +12,6 @@ wait_time = 5.0
 autostart = true
 
 [node name="2dIn3d" parent="." instance=ExtResource( 3 )]
-debug_only = false
 
 [node name="AiControllerInfoTag" type="Label" parent="2dIn3d"]
 margin_right = 40.0

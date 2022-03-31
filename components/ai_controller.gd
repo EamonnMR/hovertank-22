@@ -8,9 +8,6 @@ var target: Spatial
 # export var min_range
 
 export var firing_range = 60
-var players_in_area: Array
-
-const MIN_GOAL_POINT_DIST = 10
 
 func _has_target():
 	return target != null and is_instance_valid(target)
@@ -69,7 +66,7 @@ func _has_los_player(player):
 	var player_pos = player.get_center_of_mass()
 	var space_state = get_world().get_direct_space_state()
 	var result = space_state.intersect_ray(our_pos, player_pos, [get_parent()], 1)
-	var has_los =  result.has("collider") and result.collider == player
+	var has_los = result.has("collider") and result.collider == player
 	return has_los
 
 func alert(alerting_body):
