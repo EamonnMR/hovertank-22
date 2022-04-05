@@ -131,8 +131,8 @@ var CONTROLLERS = {
 }
 
 var CAMERAS = [
-	"Top Down",
-	"Third Person"
+	"Third Person",
+	"Top Down"
 ]
 
 var player_object: Node
@@ -203,7 +203,7 @@ func spawn_player(world: Node):
 	
 	player.faction = 1  # Players always work for ITAR
 	var camera_rig = preload("res://camera/CameraRig.tscn").instance()
-	camera_rig.third_person = bool(selected_camera)
+	camera_rig.third_person = not bool(selected_camera)
 	world.add_child(camera_rig)
 	world.add_child(player)
 	Hud.add_player(player)

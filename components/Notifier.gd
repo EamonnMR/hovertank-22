@@ -4,8 +4,6 @@ export var proactive: bool = false  # Notify anything that comes near, SLOW
 export var line_of_sight: bool= true # 
 export var cadence: float = 0.0 # Notify automatically on regular intervals
 
-var in_proactive_area = []
-
 var notification_source: Node
 var query
 
@@ -24,6 +22,7 @@ func _ready():
 	_setup_query()
 
 func enable_proactive():
+	print("Proactive mode enabled: ")
 	proactive = true
 	$CollisionShape.disabled = false
 
@@ -40,6 +39,7 @@ func notify():
 			_notify_body(result.collider)
 
 func _notify_body(body):
+	print("Notify body: ", body)
 	if body == notification_source:
 		return
 	if not body.has_method("alert"):
@@ -73,5 +73,12 @@ func _line_of_sight(body) -> bool:
 	var space_state = get_world().get_direct_space_state()
 	
 	var result = space_state.intersect_ray(our_pos, body_pos, [notification_source], 1)
-	var has_los =  result.has("collider") and result.collider == body
-	return has_los
+	if result.has("collider"):
+		if result.collider == body:
+			return true
+		else:
+			print("Blocking LOS: ", result.collider)
+			return false
+	else:
+		return false
+

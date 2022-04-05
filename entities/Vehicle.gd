@@ -40,6 +40,7 @@ func _ready():
 		$CameraMover.remote_path = camera.get_mover_path()
 		$Notifier.enable_proactive()
 		setup_player_skin()
+		name = "player"
 	else:
 		$Notifier.disable_proactive()
 	
