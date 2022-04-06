@@ -37,8 +37,8 @@ func take_damage(damage):
 			get_node("../../").add_child(explo)
 		else:
 			print("No explosion for ", get_node("../"))
-		emit_signal("destroyed")
 		already_destroyed = true
+		emit_signal("destroyed")
 	else:
 		emit_signal("damaged")
 

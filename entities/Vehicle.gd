@@ -77,17 +77,18 @@ func _dead():
 	#camera.position = position
 	if not destroyed:
 		emit_signal("destroyed")
+		destroyed = true
 		if destroyed_shader:
 			var graphics_node: MeshInstance = get_node(graphics)
 			graphics_node.set_surface_material(0, destroyed_shader)
-			$Controller.queue_free()
-			$Movement.queue_free()
-			$NPCHealthBar.queue_free()
-			destroyed = true
+			if has_node("NPCHealthBar"):
+				$NPCHealthBar.hide()
+			$Health.health = $Health.max_health / 2
+			$Health.already_destroyed = false
 		else:
 			queue_free()
 	else:
-		print("Beating a dead horse")
+		queue_free()
 
 func set_facing(facing: float):
 	# $GraphicsPivoter.rotation.y = facing

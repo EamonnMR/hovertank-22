@@ -5,6 +5,7 @@ const DetourCrowdAgentParameters:NativeScript = preload("res://addons/godotdetou
 var agent
 var world
 
+
 var lastUpdateTimestamp
 
 export var usePrediction = true
@@ -13,6 +14,7 @@ export var usePrediction = true
 func _ready():
 	world = parent.get_node("../")
 	parent.get_node("Graphics").rotation.y += PI/2
+	parent.connect("destroyed", self, "stop")
 	
 	var sticky_point = world.stick_to_ground(parent.global_transform.origin)
 	assert(sticky_point)
@@ -22,6 +24,8 @@ func _ready():
 		get_tree().get_root().get_node("World").connect("nav_ready", self, "_create_nav_agent", [sticky_point])
 
 func navigate_to_position(position: Vector3):
+	if parent.destroyed:
+		return
 	var maybe_position = world.stick_to_ground(position)
 	# print("Update nav to: ", position)
 	if agent and maybe_position:
@@ -76,8 +80,7 @@ func _physics_process(delta):
 			parent.look_at(parent.translation + agent.velocity, parent.transform.basis.y)
 	# Remember time of update
 	lastUpdateTimestamp = OS.get_ticks_msec()
-	if parent:
-		match_ground_normal(delta, parent)
+	match_ground_normal(delta, parent)
 
 func _on_agent_arrived():
 	print("agent arrived")
@@ -93,7 +96,8 @@ func _on_agent_no_movement():
 
 
 func stop():
-	agent.stop()
+	if agent != null:
+		agent.stop()
 
 func _exit_tree():
 	if world.navigation:
