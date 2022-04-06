@@ -104,6 +104,8 @@ func _modify_aim(aim_y):
 	)
 
 func _process(delta):
+	if parent.destroyed:
+		return
 	var aim_point = parent.get_node("Controller").get_aim_point()
 	var aim_pose = _aim_to_turret_pose(aim_point)
 	if traverse:

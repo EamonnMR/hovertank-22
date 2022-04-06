@@ -1,4 +1,5 @@
 extends KinematicBody
+var destroyed = false
 var camera
 
 export var speed: float = 30.0
@@ -8,6 +9,7 @@ export var turret_path: NodePath
 export var graphics: NodePath
 
 export var player_shader: Material
+export var destroyed_shader: Material
 
 export var faction: int = 0
 
@@ -21,7 +23,7 @@ const COOLDOWN_NERF_FACTOR = 2.0
 const SPREAD_NERF_FACTOR = 1.5
 
 func is_player():
-	return $Controller and $Controller.is_player()
+	return has_node("Controller") and $Controller.is_player()
 
 signal destroyed
 
@@ -55,7 +57,8 @@ func _ready():
 	
 func _physics_process(delta: float):
 	# Movement is handled by the movement component
-	_handle_shooting()
+	if not destroyed:
+		_handle_shooting()
 
 func _handle_shooting():
 	if $Controller.is_shooting():
@@ -72,8 +75,19 @@ func _dead():
 	#remove_child(camera)
 	#get_node("../").add_child(camera)
 	#camera.position = position
-	emit_signal("destroyed")
-	queue_free()
+	if not destroyed:
+		emit_signal("destroyed")
+		if destroyed_shader:
+			var graphics_node: MeshInstance = get_node(graphics)
+			graphics_node.set_surface_material(0, destroyed_shader)
+			$Controller.queue_free()
+			$Movement.queue_free()
+			$NPCHealthBar.queue_free()
+			destroyed = true
+		else:
+			queue_free()
+	else:
+		print("Beating a dead horse")
 
 func set_facing(facing: float):
 	# $GraphicsPivoter.rotation.y = facing
@@ -90,7 +104,8 @@ func get_turrets():
 	return [$Graphics/Armature/Skeleton/Turret]
 
 func alert(source):
-	print("Alert")
+	if destroyed:
+		return
 	if $Controller.has_method("alert"):
 		$Controller.alert(source)
 

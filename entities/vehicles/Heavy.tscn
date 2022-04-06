@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/eamonn/heavy/Heavy.tres" type="Material" id=1]
 [ext_resource path="res://entities/Vehicle.tscn" type="PackedScene" id=2]
 [ext_resource path="res://components/Turret.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/eamonn/heavy/Heavy_itar.tres" type="Material" id=4]
+[ext_resource path="res://assets/eamonn/heavy/Heavy_destroyed.tres" type="Material" id=5]
 [ext_resource path="res://assets/eamonn/heavy/heavy.glb" type="PackedScene" id=7]
 [ext_resource path="res://components/WeaponSlot.tscn" type="PackedScene" id=8]
 
@@ -19,11 +20,15 @@ accel = 10.0
 turn = 4.0
 graphics = NodePath("Graphics/Armature/Skeleton/Cube")
 player_shader = ExtResource( 4 )
+destroyed_shader = ExtResource( 5 )
 
 [node name="Health" parent="." index="1"]
 max_health = 150
 
 [node name="Graphics" parent="." index="2" instance=ExtResource( 7 )]
+
+[node name="Skeleton" parent="Graphics/Armature" index="0"]
+bones/1/bound_children = [ NodePath("Turret") ]
 
 [node name="Cube" parent="Graphics/Armature/Skeleton" index="0"]
 material/0 = ExtResource( 1 )
