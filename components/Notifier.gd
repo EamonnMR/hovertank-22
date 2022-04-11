@@ -22,7 +22,6 @@ func _ready():
 	_setup_query()
 
 func enable_proactive():
-	print("Proactive mode enabled: ")
 	proactive = true
 	$CollisionShape.disabled = false
 
@@ -31,7 +30,6 @@ func disable_proactive():
 	$CollisionShape.disabled = true
 
 func notify():
-	print("Notifier.notify")
 	for result in _bodies_in_area():
 		if result.has("collider"):
 			if result.collider == notification_source:
@@ -39,7 +37,6 @@ func notify():
 			_notify_body(result.collider)
 
 func _notify_body(body):
-	print("Notify body: ", body)
 	if body == notification_source:
 		return
 	if not body.has_method("alert"):
@@ -77,7 +74,6 @@ func _line_of_sight(body) -> bool:
 		if result.collider == body:
 			return true
 		else:
-			print("Blocking LOS: ", result.collider)
 			return false
 	else:
 		return false

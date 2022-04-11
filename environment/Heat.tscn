@@ -8,8 +8,23 @@ minor_incursion_threshold = 20
 major_incursion_threshold = 35
 boss_incursion_threshold = 50
 
-[node name="Timer" type="Timer" parent="."]
+[node name="HeatDecayTimer" type="Timer" parent="."]
 wait_time = 3.0
 autostart = true
 
-[connection signal="timeout" from="Timer" to="." method="add_heat" binds= [ -1 ]]
+[node name="MinorTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="MajorTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="BossTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="timeout" from="HeatDecayTimer" to="." method="add_heat" binds= [ -1 ]]
+[connection signal="timeout" from="MinorTimer" to="." method="_on_MinorTimer_timeout"]
+[connection signal="timeout" from="MajorTimer" to="." method="_on_MajorTimer_timeout"]
+[connection signal="timeout" from="BossTimer" to="." method="_on_BossTimer_timeout"]
