@@ -8,7 +8,7 @@
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 1.22908
-height = 0.002
+height = 1.23
 
 [node name="Vehicle" type="KinematicBody"]
 collision_layer = 3

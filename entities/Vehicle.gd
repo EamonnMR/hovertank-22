@@ -7,11 +7,13 @@ export var accel: float = 3.0
 export var turn: float = 5
 export var turret_path: NodePath
 export var graphics: NodePath
+export var match_ground: bool = true
 
 export var player_shader: Material
 export var destroyed_shader: Material
 
 export var faction: int = 0
+export var wander: bool = true
 
 # TODO: Load these from Client, make difficulty settings
 const HEALTH_NERF_FACTOR = 0.5

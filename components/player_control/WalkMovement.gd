@@ -9,6 +9,7 @@ var motion = Vector3(0,0,0)
 var motion_impulse
 var momentum: float = 0
 var grounded: bool
+export var match_ground: bool = false
 
 func _physics_process(delta):
 	var turn_and_motion_impulse = controller.get_turn_and_motion_impulse(delta, parent.turn)
@@ -27,7 +28,8 @@ func _physics_process(delta):
 	if grounded:
 		motion.y = -0.01 # Need to keep touching floor to keep is_on_floor true
 	parent.move_and_slide_with_snap(motion_total, Vector3.DOWN, Vector3.UP, true)
-	match_ground_normal(delta, parent)
+	if match_ground:
+		match_ground_normal(delta, parent)
 
 	animation_player.play(
 		"walk" if grounded and momentum else "idle",

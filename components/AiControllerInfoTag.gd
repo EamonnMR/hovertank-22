@@ -3,7 +3,10 @@ extends Label
 onready var parent_ai = get_node("../../")
 
 func _process(delta):
-	text = "Target: " + _fmt_target()
+	text = (
+		"Target: " + _fmt_target() + "\n" +
+		"Destination " + _fmt_destination()
+	)
 
 func _fmt_target():
 	if parent_ai.target:
@@ -13,3 +16,9 @@ func _fmt_target():
 			return "<invalid>"
 	else:
 		return "<null>"
+
+func _fmt_destination():
+	if parent_ai.destination != null:
+		return str(parent_ai.destination)
+	else:
+		return "Null"

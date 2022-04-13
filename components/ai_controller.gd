@@ -3,17 +3,22 @@ extends Spatial
 onready var parent = get_node("../")
 onready var navmesh = get_node("../../NavigationMesh") # TODO: Different navmeshes for different movement capabilities
 var target: Spatial
+var destination: Vector3
+
 # TODO: Tweak Params
 # export var standoff: false
 # export var min_range
 
 export var firing_range = 60
 
+export var chase_distance = 30
+
 func _has_target():
 	return target != null and is_instance_valid(target)
 
 func _ready():
 	parent.add_to_group("enemies")
+	call_deferred("recalculate_path")
 
 func is_player():
 	return false
@@ -25,21 +30,38 @@ func get_aim_point() -> Vector3:
 	else:
 		return Vector3()
 
-func _on_RecalcTimer_timeout():
+func recalculate_path():
 	if target:
-		recalculate_path()
-
+		recalculate_path_to_target()
+	else:
+		if parent.wander:
+			print("Picking new wander destination")
+			destination = _random_destination()
+			get_node("../Movement").navigate_to_position(destination)
+		else:
+			get_node("../Movement").stop()
 func _obtain_target(target):
 	print("Target Obtained: ", target)
 	self.target = target
-	recalculate_path()
+	recalculate_path_to_target()
+
+func _random_destination():
+	return parent.global_transform.origin + Vector3(
+			rand_range(-100, 100),
+			rand_range(0, 50),
+			rand_range(-100, 100))
 	
-func recalculate_path():
-	if target and is_instance_valid(target):
-		get_node("../Movement").navigate_to_position(target.global_transform.origin)
-	else:
-		get_node("../Movement").stop()
+func recalculate_path_to_target():
+	var movement = get_node("../Movement")
+	if target and is_instance_valid(target) and _target_far_enough_away_to_chase():
+		movement.navigate_to_position(target.global_transform.origin)
+	else:		
+		movement.stop()
 		
+func _target_far_enough_away_to_chase():
+	return true
+	return target.global_transform.origin.distance_to(global_transform.origin) > chase_distance
+
 func is_shooting_secondary():
 	return is_shooting()
 

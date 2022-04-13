@@ -24,10 +24,11 @@ func _ready():
 		get_tree().get_root().get_node("World").connect("nav_ready", self, "_create_nav_agent", [sticky_point])
 
 func navigate_to_position(position: Vector3):
+	print("Navigation begins: ", parent.name, " to: ", position)
 	if parent.destroyed:
 		return
 	var maybe_position = world.stick_to_ground(position)
-	# print("Update nav to: ", position)
+	print("Update nav to: ", maybe_position)
 	if agent and maybe_position:
 		position = maybe_position
 		agent.moveTowards(position)
@@ -38,7 +39,7 @@ func _create_nav_agent(position_on_ground):
 	print("Create nav agent")
 	var params = DetourCrowdAgentParameters.new()
 	params.position = position_on_ground - Vector3(0, 0.1, 0)
-	params.radius = 0.3
+	params.radius = 1.5
 	params.height = 1.6
 	params.maxAcceleration = parent.accel
 	params.maxSpeed = parent.speed
@@ -61,14 +62,15 @@ func _create_nav_agent(position_on_ground):
 	params.separationWeight = 1.0
 
 	agent = world.navigation.addAgent(params)
-	if agent == null:
-		print("Unable to place agent!")
+	# assert(agent != null, "Check your params. Radius, for example, breaks over 1.5")
+	# TODO: It should probably forward these and let the controller subscribe to them
+	if agent != null:
+		agent.connect("arrived_at_target", controller, "recalculate_path", [agent], CONNECT_DEFERRED)
+		agent.connect("no_progress", controller, "recalculate_path", [agent], CONNECT_DEFERRED)
+		agent.connect("no_movement", controller, "recalculate_path", [agent], CONNECT_DEFERRED)
 	else:
-		print("Able to create nav agent")
-		agent.connect("arrived_at_target", self, "_on_agent_arrived", [agent], CONNECT_DEFERRED)
-		agent.connect("no_progress", self, "_on_agent_no_progress", [agent], CONNECT_DEFERRED)
-		agent.connect("no_movement", self, "_on_agent_no_movement", [agent], CONNECT_DEFERRED)
-
+		parent.get_node("Health").take_damage(1000)
+		print("Unable to place agent for: ", parent.name)
 func _physics_process(delta):
 	if agent and agent.isMoving == true:
 		if usePrediction:
@@ -80,19 +82,8 @@ func _physics_process(delta):
 			parent.look_at(parent.translation + agent.velocity, parent.transform.basis.y)
 	# Remember time of update
 	lastUpdateTimestamp = OS.get_ticks_msec()
-	match_ground_normal(delta, parent)
-
-func _on_agent_arrived():
-	print("agent arrived")
-	controller.recalculate_path()
-
-func _on_agent_no_progress():
-	print("agent no progress")
-	controller.recalculate_path()
-
-func _on_agent_no_movement():
-	print("agent no movement")
-	controller.recalculate_path()
+	#if parent.match_ground:
+	#	match_ground_normal(delta, parent)
 
 
 func stop():
@@ -102,3 +93,6 @@ func stop():
 func _exit_tree():
 	if world.navigation:
 		world.navigation.removeAgent(agent)
+
+func moving():
+	return agent.isMoving

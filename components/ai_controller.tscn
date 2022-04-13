@@ -19,4 +19,4 @@ margin_bottom = 14.0
 text = "Bla Bla bla"
 script = ExtResource( 2 )
 
-[connection signal="timeout" from="RecalcTimer" to="." method="_on_RecalcTimer_timeout"]
+[connection signal="timeout" from="RecalcTimer" to="." method="recalculate_path"]

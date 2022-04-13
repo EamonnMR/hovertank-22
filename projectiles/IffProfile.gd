@@ -18,6 +18,8 @@ func _to_string():
 
 func should_exclude(collider: Node):
 	var collider_faction = collider.get("faction")
+	if collider == owner:
+		return true
 	if collider_faction == null:
 		return false
 	if collider_faction == faction and self.exclude_allies:

@@ -202,7 +202,7 @@ material = SubResource( 1 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 154.772, 8.3251, 400.31 )
 
 [node name="Vehicle3" parent="." index="42" instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 173.104, 8.3251, 400.31 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 173.104, 9.56072, 400.31 )
 
 [node name="Vehicle4" parent="." index="43" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 190.549, 8.3251, 400.31 )
@@ -274,7 +274,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 272.821, 5.9313, 215.843 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 272.821, 5.9313, 227.059 )
 
 [node name="Spatial" parent="." index="66" instance=ExtResource( 11 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 352.893, 37.1331, 248.953 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 267.236, 24.2601, 425.833 )
 spawn = ExtResource( 10 )
 
 [editable path="WorldEnvironment"]

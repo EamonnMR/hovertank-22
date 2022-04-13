@@ -29,11 +29,13 @@ func _explode():
 	var explo = explosion.instance()
 	explo.transform.origin = global_transform.origin
 	if splash_damage:
-		explo.init(splash_damage, splash_radius, true, iff)
+		explo.init(splash_damage, splash_radius, false, iff)
 	get_node("../").add_child(explo)
 
 func _do_impact(collider):
 	print("Shot impact - do damage")
+	if not iff.should_exclude(collider):
+		Health.do_damage(collider, damage)
 	emit_signal("impact")
 	_explode()
 	queue_free()

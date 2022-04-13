@@ -47,5 +47,5 @@ func _do_explosion(location: Vector3):
 		var explo = explosion.instance()
 		explo.global_transform.origin = location
 		if splash_damage:
-			explo.init(splash_damage, splash_radius, true, iff)
+			explo.init(splash_damage, splash_radius, false, iff)
 		get_tree().get_root().add_child(explo)
