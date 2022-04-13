@@ -277,4 +277,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 272.821, 5.9313, 227.059 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 267.236, 24.2601, 425.833 )
 spawn = ExtResource( 10 )
 
+[node name="Vehicle" parent="." index="67" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 126.293, 6.72757, 242.684 )
+
 [editable path="WorldEnvironment"]
