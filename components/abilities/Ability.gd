@@ -13,7 +13,7 @@ func _is_trying():
 	if primary:
 		return controller.use_ability_primary()
 	else:
-		return controller.get_node("Controller").use_ability_secondary()
+		return controller.use_ability_secondary()
 
 func _physics_process(_delta):
 	if not cooldown and _is_trying() and energy.try_subtracting_energy(cost):

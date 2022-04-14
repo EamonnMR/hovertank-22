@@ -1,0 +1,13 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://components/abilities/Ability.tscn" type="PackedScene" id=1]
+[ext_resource path="res://components/abilities/WallSpawn.gd" type="Script" id=2]
+[ext_resource path="res://effects/maltech/TeleportOut.tscn" type="PackedScene" id=3]
+[ext_resource path="res://entities/Building.tscn" type="PackedScene" id=4]
+
+[node name="Ability" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+cost = 5
+heat = 10
+wall_entity = ExtResource( 4 )
+vfx = ExtResource( 3 )

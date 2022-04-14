@@ -190,6 +190,10 @@ func spawn_player(world: Node):
 	primary_ability_instance.primary = true
 	player.add_child(primary_ability_instance)
 	
+	var secondary_ability_instance = preload("res://components/abilities/WallSpawn.tscn").instance()
+	secondary_ability_instance.primary = false
+	player.add_child(secondary_ability_instance)
+	
 	var energy_component = preload("res://components/energy.tscn").instance()
 	energy_component.energy = 100
 	energy_component.max_energy = 100

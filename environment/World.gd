@@ -4,6 +4,8 @@ extends Spatial
 
 signal nav_ready
 
+var nav_is_ready = false
+
 
 const DetourNavigation 	            :NativeScript = preload("res://addons/godotdetour/detournavigation.gdns")
 const DetourNavigationParameters	:NativeScript = preload("res://addons/godotdetour/detournavigationparameters.gdns")
@@ -52,6 +54,7 @@ func _ready():
 	print("Drawing debug mesh")
 	drawDebugMesh()
 	emit_signal("nav_ready")
+	nav_is_ready = true
 	Client.spawn_player(self)
 	
 func toggle_debug_display():
