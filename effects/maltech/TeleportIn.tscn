@@ -22,7 +22,11 @@ scale_random = 1.0
 color_ramp = SubResource( 4 )
 
 [node name="Explosion" instance=ExtResource( 1 )]
+damage = 30
+radius = 10
 
-[node name="Particles" parent="." index="0"]
+[node name="Particles" parent="." index="1"]
 lifetime = 0.5
 process_material = SubResource( 5 )
+
+[editable path="Notifier"]

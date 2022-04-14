@@ -2,6 +2,7 @@ extends "res://components/abilities/Ability.gd"
 
 export var port_out_vfx: PackedScene
 export var port_in_vfx: PackedScene
+onready var iff = IffProfile.new(parent, parent.faction, true)
 
 func activate():
 	
@@ -12,10 +13,11 @@ func activate():
 	port_out.transform.origin = parent.global_transform.origin
 	
 	var port_in = port_in_vfx.instance()
+	
 	port_in.transform.origin = new_pos
 	
-	parent.global_transform.origin = new_pos
-	
 	var world = parent.get_node("../")
+	port_in.init(30, 10, false, iff)
 	world.add_child(port_in)
 	world.add_child(port_out)
+	parent.global_transform.origin = new_pos

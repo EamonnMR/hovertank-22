@@ -23,7 +23,7 @@ faction = 2
 wander = true
 
 [node name="Health" parent="." index="1"]
-max_health = 200
+max_health = 500
 
 [node name="DontGetStuckOnlyCapsulesWork" parent="." index="3"]
 transform = Transform( -4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 0, 2.46796, 0 )
