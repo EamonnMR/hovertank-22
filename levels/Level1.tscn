@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://environment/World.tscn" type="PackedScene" id=1]
 [ext_resource path="res://levels/tileset.tres" type="Resource" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://entities/monsters/IncursionSpawner.tscn" type="PackedScene" id=11]
 [ext_resource path="res://assets/yughues_cc0/pattern_144_cement_squares_bolts/normal.png" type="Texture" id=12]
 [ext_resource path="res://assets/yughues_cc0/pattern_144_cement_squares_bolts/diffuse.png" type="Texture" id=13]
+[ext_resource path="res://entities/Vehicle.gd" type="Script" id=14]
 
 [sub_resource type="ArrayMesh" id=2]
 surfaces/0 = {
@@ -200,84 +201,181 @@ material = SubResource( 1 )
 
 [node name="Vehicle2" parent="." index="41" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 154.772, 8.3251, 400.31 )
+collision_layer = 3
+collision_mask = 3
+script = ExtResource( 14 )
+wander = false
 
 [node name="Vehicle3" parent="." index="42" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 173.104, 9.56072, 400.31 )
+collision_layer = 3
+collision_mask = 3
+script = ExtResource( 14 )
+wander = false
 
 [node name="Vehicle4" parent="." index="43" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 190.549, 8.3251, 400.31 )
+collision_layer = 3
+collision_mask = 3
+script = ExtResource( 14 )
+wander = false
 
 [node name="Vehicle5" parent="." index="44" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 207.412, 8.3251, 400.31 )
+collision_layer = 3
+collision_mask = 3
+script = ExtResource( 14 )
+wander = false
 
 [node name="Vehicle6" parent="." index="45" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 154.772, 8.3251, 412.751 )
+collision_layer = 3
+collision_mask = 3
+script = ExtResource( 14 )
+wander = false
 
 [node name="Vehicle7" parent="." index="46" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 173.104, 8.3251, 412.751 )
+collision_layer = 3
+collision_mask = 3
+script = ExtResource( 14 )
+wander = false
 
 [node name="Vehicle8" parent="." index="47" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 190.549, 8.3251, 412.751 )
+collision_layer = 3
+collision_mask = 3
+script = ExtResource( 14 )
+wander = false
 
 [node name="Vehicle9" parent="." index="48" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 207.412, 8.3251, 412.751 )
+collision_layer = 3
+collision_mask = 3
+script = ExtResource( 14 )
+wander = false
 
 [node name="Vehicle10" parent="." index="49" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 285.023, 8.3251, 395.304 )
+collision_layer = 3
+collision_mask = 3
+script = ExtResource( 14 )
+wander = false
 
 [node name="Vehicle11" parent="." index="50" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 301.885, 8.3251, 395.304 )
+collision_layer = 3
+collision_mask = 3
+script = ExtResource( 14 )
+wander = false
 
 [node name="Vehicle12" parent="." index="51" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 285.023, 8.3251, 407.745 )
+collision_layer = 3
+collision_mask = 3
+script = ExtResource( 14 )
+wander = false
 
 [node name="Vehicle13" parent="." index="52" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 301.885, 8.3251, 407.745 )
+collision_layer = 3
+collision_mask = 3
+script = ExtResource( 14 )
+wander = false
 
 [node name="Vehicle14" parent="." index="53" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 313.303, -4.13407, 285.951 )
+collision_layer = 3
+collision_mask = 3
+script = ExtResource( 14 )
+wander = false
 
 [node name="Vehicle15" parent="." index="54" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 313.681, 8.3251, 279.118 )
+collision_layer = 3
+collision_mask = 3
+script = ExtResource( 14 )
+wander = false
 
 [node name="Vehicle16" parent="." index="55" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 296.818, 8.3251, 291.56 )
+collision_layer = 3
+collision_mask = 3
+script = ExtResource( 14 )
+wander = false
 
 [node name="Vehicle17" parent="." index="56" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 313.681, 8.3251, 291.56 )
+collision_layer = 3
+collision_mask = 3
+script = ExtResource( 14 )
+wander = false
 
 [node name="Vehicle18" parent="." index="57" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 264.51, 5.9313, 271.694 )
+collision_layer = 3
+collision_mask = 3
+script = ExtResource( 14 )
+wander = false
 
 [node name="Vehicle19" parent="." index="58" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 264.51, 5.9313, 286.276 )
+collision_layer = 3
+collision_mask = 3
+script = ExtResource( 14 )
+wander = false
 
 [node name="Vehicle20" parent="." index="59" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 264.51, 5.9313, 297.492 )
+collision_layer = 3
+collision_mask = 3
+script = ExtResource( 14 )
+wander = false
 
 [node name="Vehicle21" parent="." index="60" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 170.696, 5.9313, 180.776 )
+collision_layer = 3
+collision_mask = 3
+script = ExtResource( 14 )
+wander = false
 
 [node name="Vehicle22" parent="." index="61" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 170.696, 5.9313, 195.357 )
+collision_layer = 3
+collision_mask = 3
+script = ExtResource( 14 )
+wander = false
 
 [node name="Vehicle23" parent="." index="62" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 170.696, 5.9313, 206.573 )
+collision_layer = 3
+collision_mask = 3
+script = ExtResource( 14 )
+wander = false
 
 [node name="Vehicle24" parent="." index="63" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 272.821, 5.9313, 201.261 )
+collision_layer = 3
+collision_mask = 3
+script = ExtResource( 14 )
+wander = false
 
 [node name="Vehicle25" parent="." index="64" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 272.821, 5.9313, 215.843 )
+collision_layer = 3
+collision_mask = 3
+script = ExtResource( 14 )
+wander = false
 
 [node name="Vehicle26" parent="." index="65" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 272.821, 5.9313, 227.059 )
+collision_layer = 3
+collision_mask = 3
+script = ExtResource( 14 )
+wander = false
 
 [node name="Spatial" parent="." index="66" instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 267.236, 24.2601, 425.833 )
 spawn = ExtResource( 10 )
-
-[node name="Vehicle" parent="." index="67" instance=ExtResource( 10 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 126.293, 6.72757, 242.684 )
 
 [editable path="WorldEnvironment"]

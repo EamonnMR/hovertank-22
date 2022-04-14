@@ -9,15 +9,12 @@ var query
 
 # These are only used if we're in "active" mode
 func _ready():
-	assert(not(proactive and cadence))
 	if not notification_source:
 		notification_source = get_node("../")
 	if proactive:
 		enable_proactive()
 	else:
 		disable_proactive()
-	if cadence > 0:
-		_setup_cadence_timer()
 		
 	_setup_query()
 
@@ -28,6 +25,8 @@ func enable_proactive():
 func disable_proactive():
 	proactive = false
 	$CollisionShape.disabled = true
+	if cadence > 0:
+		call_deferred("_setup_cadence_timer")
 
 func notify():
 	for result in _bodies_in_area():
@@ -46,9 +45,12 @@ func _notify_body(body):
 	body.alert(notification_source)
 
 func _setup_cadence_timer():
-	# TODO: Create timer with cadence as wait time
-	# Defer a call to add child and connect the timeout to notify
-	pass
+	var timer = Timer.new()
+	timer.one_shot = false
+	timer.autostart = true
+	timer.wait_time = cadence
+	timer.connect("timeout", self, "notify")
+	add_child(timer)
 
 # Gross physics interface code
 

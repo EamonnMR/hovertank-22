@@ -21,7 +21,7 @@ height = 0.5
 extents = Vector3( 5.53459, 1, 3.09492 )
 
 [sub_resource type="SphereShape" id=4]
-radius = 15.5608
+radius = 78.5502
 
 [node name="Vehicle" instance=ExtResource( 3 )]
 speed = 50.0

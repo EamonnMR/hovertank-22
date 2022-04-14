@@ -9,7 +9,7 @@
 [ext_resource path="res://components/WeaponSlot.tscn" type="PackedScene" id=8]
 
 [sub_resource type="SphereShape" id=3]
-radius = 18.716
+radius = 38.8981
 
 [sub_resource type="BoxShape" id=2]
 extents = Vector3( 3.95964, 1.63029, 1.74644 )
