@@ -105,6 +105,9 @@ func _handle_third_person_aim(delta):
 func get_aim_point() -> Vector3:
 	return $PickerLocation.get_global_transform().origin + (AIM_UP_CORRECTION if aim_correct else Vector3(0,0,0))
 
+func get_aim_y() -> float:
+	return current_camera.global_transform.basis.get_euler().y
+
 func get_mover_path() -> NodePath:
 	return $CameraOffset.get_path()
 

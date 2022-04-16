@@ -40,6 +40,9 @@ func _anglemod(angle: float) -> float:
 	# Maybe the reason this isn't a builtin is that it happens whenever an angle is applied?
 	return fmod(angle, PI * 2)
 
+func flatten(vec: Vector3) -> Vector2:
+	return Vector2(vec.x, vec.z)
+
 func constrained_turn(current_rotation: float, max_turn: float, ideal_face: float) -> Array:
 	# This resolves how far and in what direction something should turn in order to match a rotation
 	# given the constraint that it can only move so far in a single frame.

@@ -92,6 +92,7 @@ func _dead():
 	else:
 		queue_free()
 
+
 func set_facing(facing: float):
 	# $GraphicsPivoter.rotation.y = facing
 	rotation.y = facing

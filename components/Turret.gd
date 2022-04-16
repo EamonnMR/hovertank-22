@@ -26,6 +26,8 @@ var unrotated_position: Spatial
 
 var request_turn = 0
 
+var aim_pose # Cache so other things can query it.
+
 const AIM_EXTEND = 1000
 
 func get_primary_slots():
@@ -103,11 +105,14 @@ func _modify_aim(aim_y):
 		PI - aim_y if bone_invert else aim_y 
 	)
 
+func get_aim_y():
+	return _modify_aim(aim_pose.y)
+
 func _process(delta):
 	if parent.destroyed:
 		return
 	var aim_point = parent.get_node("Controller").get_aim_point()
-	var aim_pose = _aim_to_turret_pose(aim_point)
+	aim_pose = _aim_to_turret_pose(aim_point)
 	if traverse:
 		aim_pose.y = _constrain_aim_by_traverse(aim_pose.y)
 	skel.set_bone_pose(

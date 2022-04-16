@@ -5,6 +5,7 @@ onready var parent = get_node("../")
 onready var world = parent.get_node("../")
 export var radius: float = 9
 export var height: float = 20
+export var width: float
 export var square: bool = true
 
 func _ready():
@@ -19,7 +20,7 @@ func _setup_obstacle():
 	if square:
 		obstacle = world.navigation.addBoxObstacle(
 			pos,
-			Vector3(2 * radius, height, 2 * radius),
+			Vector3(2 * radius, height, width if width else radius * 2),
 			global_transform.basis.get_euler().x
 		)
 	else:
