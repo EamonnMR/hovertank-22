@@ -21,7 +21,7 @@ func _setup_obstacle():
 		obstacle = world.navigation.addBoxObstacle(
 			pos,
 			Vector3(2 * radius, height, width if width else radius * 2),
-			global_transform.basis.get_euler().x
+			global_transform.basis.get_euler().y
 		)
 	else:
 		obstacle = world.navigation.addCylinderObstacle(pos, radius, height)

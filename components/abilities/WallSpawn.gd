@@ -4,8 +4,9 @@ export var wall_entity: PackedScene
 export var vfx: PackedScene
 
 func activate():
-	# TODO: make sure you don't fly right through a star/etc
-	var wall_pos = controller.get_aim_point()
+	# TODO: Force pathing entities to update to route around wall
+	
+	var wall_pos = controller.get_aim_point() + Vector3(0,-4,0)
 	var wall = wall_entity.instance()
 	wall.transform.origin = wall_pos
 	
@@ -14,8 +15,7 @@ func activate():
 	
 	var fx = vfx.instance()
 	fx.transform.origin = wall_pos
-	
+	wall.rotation.y = controller.get_aim_y() + PI/2
 	var world = parent.get_node("../")
 	world.add_child(fx)
 	world.add_child(wall)
-	wall.rotation.y = controller.get_aim_y() + PI/2
