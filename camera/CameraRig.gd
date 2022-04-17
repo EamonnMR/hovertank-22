@@ -11,9 +11,9 @@ export var zoom_max = 3.0
 export var zoom_incriment = 0.25
 export var third_person: bool
 
-export var max_pitch = 0
-export var min_pitch = -0.5
-export var mouse_sensitivity = 1
+export var max_pitch = 35
+export var min_pitch = -90
+export var mouse_sensitivity = 2
 
 var zoom = 1.0
 var base_distance: Vector3
@@ -91,6 +91,9 @@ func _project_aim_ray(pos: Vector2, ignore_close: bool):  # Returns ray intersec
 
 func _handle_third_person_aim(delta):
 	aim = lerp(aim, aim_smooth_goal, aim_smooth_lerp * delta)
+	print("Before y: ", aim.y)
+	aim.y = clamp(aim.y, min_pitch, max_pitch)
+	print("After y: ", aim.y)
 	$CameraOffset.rotation_degrees.y = aim.x
 	$CameraOffset/PitchHelper.rotation_degrees.x = aim.y
 	var result = _project_aim_ray(
