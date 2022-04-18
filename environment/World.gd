@@ -5,6 +5,7 @@ extends Spatial
 signal nav_ready
 
 var nav_is_ready = false
+var level_meshes = []
 
 
 const DetourNavigation 	            :NativeScript = preload("res://addons/godotdetour/detournavigation.gdns")
@@ -28,7 +29,6 @@ var rayQueryPos				:Vector3 = Vector3(0, 0, 0)
 var obstacles				:Dictionary = {}
 var agents					:Dictionary = {}
 var shiftDown				:bool = false
-var usePrediction			:bool = true
 var navMeshToDisplay		:int = 0
 var lastUpdateTimestamp		:int = OS.get_ticks_msec()
 var offMeshID				:int = 0
@@ -64,26 +64,24 @@ func toggle_debug_display():
 		navMeshToDisplay = 1
 	drawDebugMesh()
 	
-func toggle_prediction():
-	usePrediction = !usePrediction
-
-func add_obstacle(obstacle):
-	pass
-	# TODO
-
-func get_agent():
-	pass
-	# TODO
-
-func get_level_mesh():
-	#var csgCombiner :CSGShape = get_node("CSGCombiner")
-	#csgCombiner._update_shape()
-	return get_node("HTerrain_FullMesh")
-	# if meshInstance.mesh == null:
-	# 	meshInstance.mesh = arrayMesh
-	# 	meshInstance.create_trimesh_collision()
-	# 	return meshInstance.get_child(0)
-	# return levelStaticBody
+func add_level_mesh(transf: Transform, mesh: Mesh):
+	assert(not nav_is_ready, "cannot add level meshes when nav mesh is already baked. For dynamic obstacles, use obstacle")
+	level_meshes.push_back([transf, mesh])
+	
+func bake_level_mesh():
+	var mesh = ArrayMesh.new()
+	for level_mesh in level_meshes:
+		var transform = level_mesh[0]
+		var arrays = level_mesh[1].surface_get_arrays(0)
+		# TODO: Use transform.xform on each point in the arrays to offset the mesh
+		breakpoint
+		mesh.add_surface_from_arrays(
+			Mesh.PRIMITIVE_TRIANGLES,
+			arrays
+		)
+	var node = MeshInstance.new()
+	node.mesh = mesh
+	return node
 
 # Initializes the navigation
 func initializeNavigation():
@@ -164,7 +162,7 @@ func initializeNavigation():
 	#var markedAreaId = navigation.markConvexArea(vertices, 1.5, 4) # 4 = grass
 
 	# Initialize the navigation with the mesh instance and the parameters
-	navigation.initialize(get_level_mesh(), navParams)
+	navigation.initialize(bake_level_mesh(), navParams)
 
 	# Set a few query filters
 	var weights :Dictionary = {}
@@ -215,98 +213,6 @@ func drawDebugMesh() -> void:
 	# debugMeshInstance.rotation = displayMeshInst.rotation
 	print("Debug mesh drawn")
 	add_child(debugMeshInstance)
-
-
-# Called during physics process updates (doing creation/removal of obstacles and agents, etc.)
-func doSaveLoadRoutine():
-	# Save the current state (twice to see difference between compressed and raw)
-	$Control/TempLbl.bbcode_text = "Saving current state..."
-	yield(get_tree(), "idle_frame")
-	navigation.save("user://navmeshes/stored_navmesh_raw.dat", false)
-	navigation.save("user://navmeshes/stored_navmesh.dat", true)
-	
-	# Clear the navigation
-	$Control/TempLbl.bbcode_text = "Clearing navigation..."
-	yield(get_tree(), "idle_frame")
-	navigation.clear()
-	
-	# Remove all agent references (no need to remove the DetourCrowdAgent, clear() did that)
-	for agent in agents:
-		remove_child(agent)
-		agent.queue_free()
-	agents.clear()
-	
-	# Remove all obstacle references (no need to destroy the DetourObstacle, clear() did that)
-	for obstacle in obstacles:
-		remove_child(obstacle)
-		obstacle.queue_free()
-	obstacles.clear()
-
-	# Remove the debug mesh
-	if debugMeshInstance != null:
-		remove_child(debugMeshInstance)
-		debugMeshInstance.queue_free()
-		debugMeshInstance = null
-	yield(get_tree().create_timer(2.0), "timeout")
-	
-	# Load the state
-	$Control/TempLbl.bbcode_text = "Loading navmesh..."
-	yield(get_tree(), "idle_frame")
-	navigation.load("user://navmeshes/stored_navmesh.dat", true)
-	
-	# Retrieve the lists of agents, marked areas and obstacles and restore our lists
-	var allAgents : Array = navigation.getAgents()
-	var allObstacles : Array = navigation.getObstacles()
-	var allMarkedAreaIDs : Array = navigation.getMarkedAreaIDs()
-	
-	# Re-add agent representations
-	for detourCrowdAgent in allAgents:
-		# Create an agent in Godot
-		var newAgent :Spatial = $Agent.duplicate()
-		newAgent.translation = detourCrowdAgent.position
-		add_child(newAgent)
-		agents[newAgent] = detourCrowdAgent
-	
-	# Re-add obstacles
-	for detourObstacle in allObstacles:
-		# Create an obstacle in Godot
-		var newObstacle :RigidBody = $Obstacle.duplicate()
-		newObstacle.translation = detourObstacle.position
-		newObstacle.translation.y += 0.2
-		add_child(newObstacle)
-		
-		# Create an obstacle in GodotDetour and remember both
-		var targetPos :Vector3 = detourObstacle.position
-		obstacles[newObstacle] = detourObstacle
-	
-	# Draw the debug mesh
-	# Make sure everything loaded by the Navigation has been applied internally after the first internal navigation thread tick
-	# Otherwise, we risk drawing an "unfinished" state
-	# yield(navigation, "navigation_tick_done")
-	# drawDebugMesh()
-	
-	# Done
-	$Control/TempLbl.bbcode_text = ""
-
-# Do something when an agent arrived
-func onAgentArrived(detourAgent, agent :Spatial):
-	print("Detour agent ", detourAgent, " arrived at ", detourAgent.target)
-	var player :AudioStreamPlayer3D = agent.get_node("AudioPlayer")
-	player.play()
-
-# Below code is not a very good way to deal with this, a better way would be to increase the target distance with the number of reports coming in, or the number of agents blocking the way, etc.
-
-# Do something when an agent reports that it couldn't make progress towards its target
-func onAgentNoProgress(detourAgent, distanceLeft :float, agent :Spatial):
-	# print("Detour agent ", detourAgent, " reported progress problem. Distance left: ", distanceLeft)
-	if distanceLeft < 1.5 * agent.scale.x:
-		detourAgent.stop()
-
-# Do something when an agent reports that it didn't move in a second
-func onAgentNoMovement(detourAgent, distanceLeft :float, agent :Spatial):
-	# print("Detour agent ", detourAgent, " reported no movement. Distance left: ", distanceLeft)
-	if distanceLeft < 0.75 * agent.scale.x:
-		detourAgent.stop()
 
 func redraw():
 	var timer :Timer = Timer.new()
