@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://environment/World.tscn" type="PackedScene" id=1]
 [ext_resource path="res://levels/tileset.tres" type="Resource" id=2]
@@ -11,8 +11,7 @@
 [ext_resource path="res://entities/vehicles/prefab/BasicTD.tscn" type="PackedScene" id=9]
 [ext_resource path="res://entities/monsters/Kochab.tscn" type="PackedScene" id=10]
 [ext_resource path="res://entities/monsters/IncursionSpawner.tscn" type="PackedScene" id=11]
-[ext_resource path="res://assets/yughues_cc0/pattern_144_cement_squares_bolts/normal.png" type="Texture" id=12]
-[ext_resource path="res://assets/yughues_cc0/pattern_144_cement_squares_bolts/diffuse.png" type="Texture" id=13]
+[ext_resource path="res://levels/WallTexture.tres" type="Material" id=12]
 [ext_resource path="res://components/level/MapMesh.tscn" type="PackedScene" id=14]
 
 [sub_resource type="ArrayMesh" id=2]
@@ -28,11 +27,44 @@ surfaces/0 = {
 "vertex_count": 16384
 }
 
-[sub_resource type="SpatialMaterial" id=1]
-albedo_texture = ExtResource( 13 )
-normal_enabled = true
-normal_scale = 1.0
-normal_texture = ExtResource( 12 )
+[sub_resource type="CubeMesh" id=3]
+size = Vector3( 320, 30, 2 )
+
+[sub_resource type="ConcavePolygonShape" id=4]
+data = PoolVector3Array( -160, 15, 1, 160, 15, 1, -160, -15, 1, 160, 15, 1, 160, -15, 1, -160, -15, 1, 160, 15, -1, -160, 15, -1, 160, -15, -1, -160, 15, -1, -160, -15, -1, 160, -15, -1, 160, 15, 1, 160, 15, -1, 160, -15, 1, 160, 15, -1, 160, -15, -1, 160, -15, 1, -160, 15, -1, -160, 15, 1, -160, -15, -1, -160, 15, 1, -160, -15, 1, -160, -15, -1, 160, 15, 1, -160, 15, 1, 160, 15, -1, -160, 15, 1, -160, 15, -1, 160, 15, -1, -160, -15, 1, 160, -15, 1, -160, -15, -1, 160, -15, 1, 160, -15, -1, -160, -15, -1 )
+
+[sub_resource type="CubeMesh" id=5]
+size = Vector3( 178, 30, 2 )
+
+[sub_resource type="ConcavePolygonShape" id=6]
+data = PoolVector3Array( -89, 15, 1, 89, 15, 1, -89, -15, 1, 89, 15, 1, 89, -15, 1, -89, -15, 1, 89, 15, -1, -89, 15, -1, 89, -15, -1, -89, 15, -1, -89, -15, -1, 89, -15, -1, 89, 15, 1, 89, 15, -1, 89, -15, 1, 89, 15, -1, 89, -15, -1, 89, -15, 1, -89, 15, -1, -89, 15, 1, -89, -15, -1, -89, 15, 1, -89, -15, 1, -89, -15, -1, 89, 15, 1, -89, 15, 1, 89, 15, -1, -89, 15, 1, -89, 15, -1, 89, 15, -1, -89, -15, 1, 89, -15, 1, -89, -15, -1, 89, -15, 1, 89, -15, -1, -89, -15, -1 )
+
+[sub_resource type="ConcavePolygonShape" id=7]
+data = PoolVector3Array( -89, 15, 1, 89, 15, 1, -89, -15, 1, 89, 15, 1, 89, -15, 1, -89, -15, 1, 89, 15, -1, -89, 15, -1, 89, -15, -1, -89, 15, -1, -89, -15, -1, 89, -15, -1, 89, 15, 1, 89, 15, -1, 89, -15, 1, 89, 15, -1, 89, -15, -1, 89, -15, 1, -89, 15, -1, -89, 15, 1, -89, -15, -1, -89, 15, 1, -89, -15, 1, -89, -15, -1, 89, 15, 1, -89, 15, 1, 89, 15, -1, -89, 15, 1, -89, 15, -1, 89, 15, -1, -89, -15, 1, 89, -15, 1, -89, -15, -1, 89, -15, 1, 89, -15, -1, -89, -15, -1 )
+
+[sub_resource type="CubeMesh" id=8]
+size = Vector3( 89, 30, 2 )
+
+[sub_resource type="ConcavePolygonShape" id=9]
+data = PoolVector3Array( -44.5, 15, 1, 44.5, 15, 1, -44.5, -15, 1, 44.5, 15, 1, 44.5, -15, 1, -44.5, -15, 1, 44.5, 15, -1, -44.5, 15, -1, 44.5, -15, -1, -44.5, 15, -1, -44.5, -15, -1, 44.5, -15, -1, 44.5, 15, 1, 44.5, 15, -1, 44.5, -15, 1, 44.5, 15, -1, 44.5, -15, -1, 44.5, -15, 1, -44.5, 15, -1, -44.5, 15, 1, -44.5, -15, -1, -44.5, 15, 1, -44.5, -15, 1, -44.5, -15, -1, 44.5, 15, 1, -44.5, 15, 1, 44.5, 15, -1, -44.5, 15, 1, -44.5, 15, -1, 44.5, 15, -1, -44.5, -15, 1, 44.5, -15, 1, -44.5, -15, -1, 44.5, -15, 1, 44.5, -15, -1, -44.5, -15, -1 )
+
+[sub_resource type="CubeMesh" id=10]
+size = Vector3( 89, 30, 2 )
+
+[sub_resource type="ConcavePolygonShape" id=11]
+data = PoolVector3Array( -44.5, 15, 1, 44.5, 15, 1, -44.5, -15, 1, 44.5, 15, 1, 44.5, -15, 1, -44.5, -15, 1, 44.5, 15, -1, -44.5, 15, -1, 44.5, -15, -1, -44.5, 15, -1, -44.5, -15, -1, 44.5, -15, -1, 44.5, 15, 1, 44.5, 15, -1, 44.5, -15, 1, 44.5, 15, -1, 44.5, -15, -1, 44.5, -15, 1, -44.5, 15, -1, -44.5, 15, 1, -44.5, -15, -1, -44.5, 15, 1, -44.5, -15, 1, -44.5, -15, -1, 44.5, 15, 1, -44.5, 15, 1, 44.5, 15, -1, -44.5, 15, 1, -44.5, 15, -1, 44.5, 15, -1, -44.5, -15, 1, 44.5, -15, 1, -44.5, -15, -1, 44.5, -15, 1, 44.5, -15, -1, -44.5, -15, -1 )
+
+[sub_resource type="CubeMesh" id=12]
+size = Vector3( 295, 30, 2 )
+
+[sub_resource type="ConcavePolygonShape" id=13]
+data = PoolVector3Array( -147.5, 15, 1, 147.5, 15, 1, -147.5, -15, 1, 147.5, 15, 1, 147.5, -15, 1, -147.5, -15, 1, 147.5, 15, -1, -147.5, 15, -1, 147.5, -15, -1, -147.5, 15, -1, -147.5, -15, -1, 147.5, -15, -1, 147.5, 15, 1, 147.5, 15, -1, 147.5, -15, 1, 147.5, 15, -1, 147.5, -15, -1, 147.5, -15, 1, -147.5, 15, -1, -147.5, 15, 1, -147.5, -15, -1, -147.5, 15, 1, -147.5, -15, 1, -147.5, -15, -1, 147.5, 15, 1, -147.5, 15, 1, 147.5, 15, -1, -147.5, 15, 1, -147.5, 15, -1, 147.5, 15, -1, -147.5, -15, 1, 147.5, -15, 1, -147.5, -15, -1, 147.5, -15, 1, 147.5, -15, -1, -147.5, -15, -1 )
+
+[sub_resource type="CubeMesh" id=14]
+size = Vector3( 136, 30, 2 )
+
+[sub_resource type="ConcavePolygonShape" id=15]
+data = PoolVector3Array( -68, 15, 1, 68, 15, 1, -68, -15, 1, 68, 15, 1, 68, -15, 1, -68, -15, 1, 68, 15, -1, -68, 15, -1, 68, -15, -1, -68, 15, -1, -68, -15, -1, 68, -15, -1, 68, 15, 1, 68, 15, -1, 68, -15, 1, 68, 15, -1, 68, -15, -1, 68, -15, 1, -68, 15, -1, -68, 15, 1, -68, -15, -1, -68, 15, 1, -68, -15, 1, -68, -15, -1, 68, 15, 1, -68, 15, 1, 68, 15, -1, -68, 15, 1, -68, 15, -1, 68, 15, -1, -68, -15, 1, 68, -15, 1, -68, -15, -1, 68, -15, 1, 68, -15, -1, -68, -15, -1 )
 
 [node name="World" instance=ExtResource( 1 )]
 
@@ -60,6 +92,8 @@ shader_params/u_tile_reduction = Plane( 2, 2, 2, 0 )
 visible = false
 mesh = SubResource( 2 )
 material/0 = null
+
+[node name="MapMesh" parent="HTerrain_FullMesh" index="0" instance=ExtResource( 14 )]
 
 [node name="Building" parent="." index="4" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 235.951, 7.45778, 217.626 )
@@ -157,50 +191,96 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 364.828, 4.74786, 366.153 )
 [node name="Building30" parent="." index="33" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 336.231, 4.74786, 367.375 )
 
-[node name="Wall" type="CSGBox" parent="." index="34"]
-transform = Transform( 0.864143, 0, -0.503246, 0, 1, 0, 0.503246, 0, 0.864143, 291.924, 13.1102, 171.3 )
-width = 536.143
-height = 33.722
-material = SubResource( 1 )
+[node name="Wall" type="MeshInstance" parent="." index="34"]
+transform = Transform( 0.852275, 0, -0.523094, 0, 1, 0, 0.523094, 0, 0.852275, 288.15, 15.1548, 158.552 )
+mesh = SubResource( 3 )
+material/0 = ExtResource( 12 )
 
-[node name="Spatial2" parent="Wall" index="0" instance=ExtResource( 14 )]
-transform = Transform( 0.864143, 0, 0.503246, 0, 1, 0, -0.503246, 0, 0.864143, -338.47, -13.1102, -1.1181 )
+[node name="MapMesh" parent="Wall" index="0" instance=ExtResource( 14 )]
+transform = Transform( 0.852275, 0, 0.523094, 0, 1, 0, -0.523094, 0, 0.852275, -328.521, -15.1548, 15.6001 )
 
-[node name="Wall2" type="CSGBox" parent="." index="35"]
-transform = Transform( -0.0201222, 0, -0.999797, 0, 1, 0, 0.999797, 0, -0.0201222, 421.534, 13.1102, 329.836 )
-width = 179.82
-height = 33.722
-material = SubResource( 1 )
+[node name="StaticBody" type="StaticBody" parent="Wall" index="1"]
 
-[node name="Wall3" type="CSGBox" parent="." index="36"]
-transform = Transform( -0.966685, 0, -0.255969, 0, 1, 0, 0.255969, 0, -0.966685, 334.174, 13.1102, 439.78 )
-width = 179.82
-height = 33.722
-material = SubResource( 1 )
+[node name="CollisionShape" type="CollisionShape" parent="Wall/StaticBody" index="0"]
+shape = SubResource( 4 )
 
-[node name="Wall4" type="CSGBox" parent="." index="37"]
-transform = Transform( -0.999934, 0, 0.0115189, 0, 1, 0, -0.0115189, 0, -0.999934, 206.362, 13.1102, 460.369 )
-width = 94.573
-height = 33.722
-material = SubResource( 1 )
+[node name="Wall2" type="MeshInstance" parent="." index="35"]
+transform = Transform( -0.0178538, 0, -0.999841, 0, 1, 0, 0.999841, 0, -0.0178538, 421.908, 15.1548, 330.119 )
+mesh = SubResource( 5 )
+material/0 = ExtResource( 12 )
 
-[node name="Wall5" type="CSGBox" parent="." index="38"]
-transform = Transform( -0.846463, 0, 0.532448, 0, 1, 0, -0.532448, 0, -0.846463, 120.382, 13.1102, 435.393 )
-width = 94.573
-height = 33.722
-material = SubResource( 1 )
+[node name="MapMesh" parent="Wall2" index="0" instance=ExtResource( 14 )]
+transform = Transform( 0.852275, 0, 0.523094, 0, 1, 0, -0.523094, 0, 0.852275, -328.521, -15.1548, 15.6001 )
 
-[node name="Wall6" type="CSGBox" parent="." index="39"]
-transform = Transform( -0.078581, 0, 0.996908, 0, 1, 0, -0.996908, 0, -0.078581, 68.3321, 13.1102, 260.473 )
-width = 320.627
-height = 33.722
-material = SubResource( 1 )
+[node name="StaticBody" type="StaticBody" parent="Wall2" index="1"]
 
-[node name="Wall7" type="CSGBox" parent="." index="40"]
-transform = Transform( 0.913744, 0, 0.40629, 0, 1, 0, -0.40629, 0, 0.913744, 91.0433, 13.1102, 103.423 )
-width = 139.062
-height = 33.722
-material = SubResource( 1 )
+[node name="CollisionShape" type="CollisionShape" parent="Wall2/StaticBody" index="0"]
+shape = SubResource( 6 )
+
+[node name="Wall3" type="MeshInstance" parent="." index="36"]
+transform = Transform( -0.969188, 0, -0.246322, 0, 1, 0, 0.246322, 0, -0.969188, 335.222, 15.1548, 439.871 )
+mesh = SubResource( 5 )
+material/0 = ExtResource( 12 )
+
+[node name="MapMesh" parent="Wall3" index="0" instance=ExtResource( 14 )]
+transform = Transform( 0.852275, 0, 0.523094, 0, 1, 0, -0.523094, 0, 0.852275, -328.521, -15.1548, 15.6001 )
+
+[node name="StaticBody" type="StaticBody" parent="Wall3" index="1"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Wall3/StaticBody" index="0"]
+shape = SubResource( 7 )
+
+[node name="Wall4" type="MeshInstance" parent="." index="37"]
+transform = Transform( -0.999864, 0, 0.0164751, 0, 1, 0, -0.0164751, 0, -0.999864, 204.406, 15.1548, 461.088 )
+mesh = SubResource( 8 )
+material/0 = ExtResource( 12 )
+
+[node name="MapMesh" parent="Wall4" index="0" instance=ExtResource( 14 )]
+transform = Transform( 0.852275, 0, 0.523094, 0, 1, 0, -0.523094, 0, 0.852275, -328.521, -15.1548, 15.6001 )
+
+[node name="StaticBody" type="StaticBody" parent="Wall4" index="1"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Wall4/StaticBody" index="0"]
+shape = SubResource( 9 )
+
+[node name="Wall5" type="MeshInstance" parent="." index="38"]
+transform = Transform( -0.888201, 0, 0.459456, 0, 1, 0, -0.459456, 0, -0.888201, 120.976, 15.1548, 439.651 )
+mesh = SubResource( 10 )
+material/0 = ExtResource( 12 )
+
+[node name="MapMesh" parent="Wall5" index="0" instance=ExtResource( 14 )]
+transform = Transform( 0.852275, 0, 0.523094, 0, 1, 0, -0.523094, 0, 0.852275, -328.521, -15.1548, 15.6001 )
+
+[node name="StaticBody" type="StaticBody" parent="Wall5" index="1"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Wall5/StaticBody" index="0"]
+shape = SubResource( 11 )
+
+[node name="Wall6" type="MeshInstance" parent="." index="39"]
+transform = Transform( -0.188753, 0, 0.982025, 0, 1, 0, -0.982025, 0, -0.188753, 55.4583, 15.1548, 275.359 )
+mesh = SubResource( 12 )
+material/0 = ExtResource( 12 )
+
+[node name="MapMesh" parent="Wall6" index="0" instance=ExtResource( 14 )]
+transform = Transform( 0.852275, 0, 0.523094, 0, 1, 0, -0.523094, 0, 0.852275, -328.521, -15.1548, 15.6001 )
+
+[node name="StaticBody" type="StaticBody" parent="Wall6" index="1"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Wall6/StaticBody" index="0"]
+shape = SubResource( 13 )
+
+[node name="Wall7" type="MeshInstance" parent="." index="40"]
+transform = Transform( 0.912392, 0, 0.409318, 0, 1, 0, -0.409318, 0, 0.912392, 89.5092, 15.1548, 103.359 )
+mesh = SubResource( 14 )
+material/0 = ExtResource( 12 )
+
+[node name="MapMesh" parent="Wall7" index="0" instance=ExtResource( 14 )]
+transform = Transform( 0.852275, 0, 0.523094, 0, 1, 0, -0.523094, 0, 0.852275, -328.521, -15.1548, 15.6001 )
+
+[node name="StaticBody" type="StaticBody" parent="Wall7" index="1"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Wall7/StaticBody" index="0"]
+shape = SubResource( 15 )
 
 [node name="Vehicle2" parent="." index="41" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 154.772, 8.3251, 400.31 )

@@ -83,8 +83,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 141.526, 26.6091, 289.56 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 162.094, 48.1758, 360.636 )
 
 [node name="TestBox" type="MeshInstance" parent="." index="11"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 51.1471, 326.7 )
-visible = false
+transform = Transform( 0.147274, -0.989096, 0, 0.989096, 0.147274, 0, 0, 0, 1, -37.3368, -24.1341, 326.7 )
 mesh = SubResource( 2 )
 material/0 = null
 
