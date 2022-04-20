@@ -18,4 +18,7 @@ wait_time = 0.5
 [node name="BurstCooldown" parent="." index="2"]
 wait_time = 0.3
 
+[node name="Notifier" parent="." index="4"]
+radius = 25.0
+
 [editable path="Notifier"]

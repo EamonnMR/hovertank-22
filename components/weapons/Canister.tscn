@@ -20,6 +20,9 @@ spread = 0.2
 [node name="BurstCooldown" parent="." index="1"]
 wait_time = 0.001
 
+[node name="Notifier" parent="." index="3"]
+radius = 40.0
+
 [node name="Graphics" type="MeshInstance" parent="." index="4"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.261146, 0, 0 )
 mesh = ExtResource( 4 )

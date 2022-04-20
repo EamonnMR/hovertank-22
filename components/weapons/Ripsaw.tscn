@@ -11,6 +11,9 @@ spread = 0.25
 [node name="Cooldown" parent="." index="0"]
 wait_time = 0.015
 
+[node name="Notifier" parent="." index="3"]
+radius = 100.0
+
 [node name="Graphics" parent="." index="5" instance=ExtResource( 3 )]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
 

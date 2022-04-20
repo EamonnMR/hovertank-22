@@ -29,6 +29,9 @@ color_ramp = SubResource( 4 )
 
 [node name="Explosion" instance=ExtResource( 1 )]
 
+[node name="Notifier" parent="." index="0"]
+radius = 30.0
+
 [node name="Particles" parent="." index="1"]
 process_material = SubResource( 9 )
 

@@ -51,6 +51,9 @@ wait_time = 3.0
 [node name="AudioStreamPlayer3D" parent="." index="2"]
 stream = ExtResource( 6 )
 
+[node name="Notifier" parent="." index="3"]
+radius = 100.0
+
 [node name="Graphics" type="MeshInstance" parent="." index="4"]
 mesh = ExtResource( 2 )
 material/0 = ExtResource( 3 )

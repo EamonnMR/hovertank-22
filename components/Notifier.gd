@@ -3,12 +3,14 @@ extends Spatial
 export var proactive: bool = false  # Notify anything that comes near, SLOW
 export var line_of_sight: bool= true # 
 export var cadence: float = 0.0 # Notify automatically on regular intervals
+export var radius: float = 60
 
 var notification_source: Node
 var query
 
 # These are only used if we're in "active" mode
 func _ready():
+	$Shape.shape.radius = radius
 	if not notification_source:
 		notification_source = get_node("../")
 	if proactive:
@@ -20,11 +22,11 @@ func _ready():
 
 func enable_proactive():
 	proactive = true
-	$CollisionShape.disabled = false
+	$Shape.disabled = false
 
 func disable_proactive():
 	proactive = false
-	$CollisionShape.disabled = true
+	$Shape.disabled = true
 	if cadence > 0:
 		call_deferred("_setup_cadence_timer")
 
@@ -59,10 +61,10 @@ func _setup_query():
 	query.collide_with_areas = false
 	query.collide_with_bodies = true
 	query.collision_mask = 2
-	query.set_shape($CollisionShape.shape)
+	query.set_shape($Shape.shape)
 
 func _bodies_in_area() -> Array:
-	query.transform = $CollisionShape.global_transform
+	query.transform = $Shape.global_transform
 	return get_world().get_direct_space_state().intersect_shape(query)
 
 func _line_of_sight(body) -> bool:
@@ -79,4 +81,3 @@ func _line_of_sight(body) -> bool:
 			return false
 	else:
 		return false
-

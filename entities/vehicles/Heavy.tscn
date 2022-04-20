@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/eamonn/heavy/Heavy.tres" type="Material" id=1]
 [ext_resource path="res://entities/Vehicle.tscn" type="PackedScene" id=2]
@@ -10,9 +10,6 @@
 
 [sub_resource type="BoxShape" id=4]
 extents = Vector3( 6.36887, 1.59387, 4.47535 )
-
-[sub_resource type="SphereShape" id=3]
-radius = 120.949
 
 [node name="Vehicle" instance=ExtResource( 2 )]
 speed = 20.0
@@ -50,10 +47,6 @@ shape = SubResource( 4 )
 
 [node name="CameraMover" parent="." index="4"]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 13.3401, 0 )
-
-[node name="CollisionShape" parent="Notifier" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.21647, -0.0146484, 0.0911818 )
-shape = SubResource( 3 )
 
 [editable path="Graphics"]
 [editable path="Graphics/Armature/Skeleton/Turret"]

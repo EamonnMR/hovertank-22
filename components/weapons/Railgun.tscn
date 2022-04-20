@@ -16,6 +16,9 @@ skeleton = NodePath("../Notifier")
 [node name="Cooldown" parent="." index="1"]
 wait_time = 0.5
 
+[node name="Notifier" parent="." index="4"]
+radius = 70.0
+
 [node name="MuzzleFlash" parent="Emerge" index="0"]
 material_override = SubResource( 1 )
 
