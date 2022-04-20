@@ -12,6 +12,8 @@ var grounded: bool
 export var match_ground: bool = false
 
 func _physics_process(delta):
+	if parent.destroyed:
+		return
 	var turn_and_motion_impulse = controller.get_turn_and_motion_impulse(delta, parent.turn)
 	var turn = turn_and_motion_impulse[0]
 	motion_impulse = turn_and_motion_impulse[1]

@@ -10,6 +10,8 @@ export var heat: int
 var cooldown = false
 
 func _is_trying():
+	if parent.destroyed:
+		return
 	if primary:
 		return controller.use_ability_primary()
 	else:

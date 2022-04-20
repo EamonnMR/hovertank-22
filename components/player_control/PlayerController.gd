@@ -23,7 +23,12 @@ func is_shooting_secondary():
 	return false
 
 func _on_player_destroyed():
-	Client.defeat_screen()
-
+	var timer :Timer = Timer.new()
+	timer.set_one_shot(true)
+	timer.set_wait_time(5)
+	timer.connect("timeout", Client, "defeat_screen")
+	get_tree().get_root().add_child(timer)
+	timer.start()
+	queue_free()
 func _get_turret_turn():
 	return parent.get_turrets()[0].request_turn
