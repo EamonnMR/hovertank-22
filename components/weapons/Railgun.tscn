@@ -9,6 +9,7 @@
 [node name="Weapon" instance=ExtResource( 1 )]
 projectile_scene = ExtResource( 2 )
 world_projectile = false
+engagement_range = 150.0
 
 [node name="Graphics" parent="." index="0" instance=ExtResource( 3 )]
 skeleton = NodePath("../Notifier")

@@ -2,16 +2,15 @@ extends Spatial
 
 onready var parent = get_node("../")
 onready var navmesh = get_node("../../NavigationMesh") # TODO: Different navmeshes for different movement capabilities
+onready var firing_range: float = parent.derive_engagement_range()
+onready var chase_distance = firing_range / 2
+
 var target: Spatial
 var destination: Vector3
 
 # TODO: Tweak Params
 # export var standoff: false
 # export var min_range
-
-export var firing_range = 60
-
-export var chase_distance = 30
 
 func _has_target():
 	return target != null and is_instance_valid(target)
@@ -40,6 +39,7 @@ func recalculate_path():
 			get_node("../Movement").navigate_to_position(destination)
 		else:
 			get_node("../Movement").stop()
+
 func _obtain_target(target):
 	print("Target Obtained: ", target)
 	self.target = target
@@ -59,7 +59,6 @@ func recalculate_path_to_target():
 		movement.stop()
 		
 func _target_far_enough_away_to_chase():
-	return true
 	return target.global_transform.origin.distance_to(global_transform.origin) > chase_distance
 
 func is_shooting_secondary():

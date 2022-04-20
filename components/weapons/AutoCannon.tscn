@@ -12,6 +12,7 @@
 projectile_scene = ExtResource( 6 )
 burst_count = 5
 spread = 0.1
+engagement_range = 45.0
 
 [node name="Cooldown" parent="." index="0"]
 wait_time = 0.15

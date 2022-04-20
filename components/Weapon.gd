@@ -12,6 +12,8 @@ export var burst_count = 0
 export var dupe_count = 1
 export var spread: float = 0
 export var world_projectile: bool = true  # Disable for beams or other things that should follow the player
+export var engagement_range: float = 60
+
 
 export var dmg_factor: float = 1
 

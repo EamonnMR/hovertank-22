@@ -44,6 +44,7 @@ scale_curve = SubResource( 4 )
 [node name="Weapon" instance=ExtResource( 1 )]
 projectile_scene = ExtResource( 4 )
 world_projectile = false
+engagement_range = 200.0
 
 [node name="Cooldown" parent="." index="0"]
 wait_time = 3.0

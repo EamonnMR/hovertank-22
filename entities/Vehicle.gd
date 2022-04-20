@@ -141,3 +141,11 @@ func setup_player_skin():
 	if player_shader:
 		var graphics_node: MeshInstance = get_node(graphics)
 		graphics_node.set_surface_material(0, player_shader)
+
+func derive_engagement_range():
+	var weapon_ranges = []
+	for turret in get_turrets():
+		for weapon in turret.get_weapons():
+			weapon_ranges.push_back(weapon.engagement_range)
+	# TODO: average
+	return weapon_ranges[0]

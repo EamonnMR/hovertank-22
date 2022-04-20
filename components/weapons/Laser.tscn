@@ -9,6 +9,7 @@ projectile_scene = ExtResource( 2 )
 burst_count = 6
 spread = 0.01
 world_projectile = false
+engagement_range = 100.0
 
 [node name="Graphics" parent="." index="0" instance=ExtResource( 3 )]
 
