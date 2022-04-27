@@ -45,6 +45,12 @@ var VEHICLES = {
 		"scene": preload("res://entities/vehicles/Bigwheel.tscn"),
 		"movement": "tank",
 		"desc": "Half tank, half APC, all attitude"
+	},
+	"cobra": {
+		"name": "Cobra Light TD",
+		"scene": preload("res://entities/vehicles/rat.tscn"),
+		"movement": "tank",
+		"desc": "Everything sacrified at the alter of speed and a bigger gun"
 	}
 }
 
