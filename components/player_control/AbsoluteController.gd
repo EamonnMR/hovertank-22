@@ -12,5 +12,6 @@ func get_turn_and_motion_impulse(delta, turn_speed) -> Array:
 	if (Input.is_key_pressed(KEY_S)):
 		throttle = -1
 	if not (turn or throttle):
-		turn = _get_turret_turn() * delta * turn_speed
+		if not Input.is_key_pressed(KEY_SHIFT):
+			turn = _get_turret_turn() * delta * turn_speed
 	return [turn, throttle]

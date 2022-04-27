@@ -8,7 +8,9 @@ func _ready():
 	unit_test_traverse_works_90_traverse()
 	unit_test_traverse_works_270_traverse_looking_forward()
 	unit_test_traverse_works_270_traverse_looking_backward()
-
+	#unit_test_traverse_works_bone_invert()
+	#unit_test_traverse_works_with_bone_offset()
+	
 func show_above(child, parent):
 	var aabb = parent.get_aabb()
 	var scale = parent.scale.y
@@ -155,3 +157,19 @@ func unit_test_traverse_works_270_traverse_looking_backward():
 	print("new aim: ", rad2deg(new_aim))
 	assert(turret.bounds_in_front == false)
 	assert(rad2deg(new_aim) == 10)
+	
+#func unit_test_traverse_works_bone_invert():
+#	print("unit_test_traverse_works_bone_invert")
+#	var turret = Turret.new()
+#	turret.traverse_degrees = 90
+#	turret.bone_invert = true
+#	turret._setup_traverse()
+#	var new_aim = turret._constrain_aim_by_traverse(deg2rad(10))
+#	print("new aim: ", rad2deg(new_aim))
+#	assert(rad2deg(new_aim) == 10)
+#	
+#	var newer_aim = rad2deg(turret._constrain_aim_by_traverse(deg2rad(90)))
+#	print("newer_aim: ", newer_aim)
+#	assert(rad2deg(newer_aim) == 45)
+#	
+#	assert(turret.bounds_in_front == false)

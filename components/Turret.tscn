@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://components/Turret.gd" type="Script" id=1]
+[ext_resource path="res://components/meta/2dIn3d.tscn" type="PackedScene" id=2]
+[ext_resource path="res://components/TurretInfoTag.gd" type="Script" id=3]
 
 [sub_resource type="CubeMesh" id=1]
 size = Vector3( 3, 3, 3 )
@@ -18,3 +20,11 @@ material/0 = null
 [node name="UnrotatedPositionMover" type="RemoteTransform" parent="."]
 update_rotation = false
 update_scale = false
+
+[node name="2dIn3d" parent="." instance=ExtResource( 2 )]
+debug_only = false
+
+[node name="TurretInfoTag" type="Label" parent="2dIn3d"]
+margin_right = 40.0
+margin_bottom = 14.0
+script = ExtResource( 3 )
