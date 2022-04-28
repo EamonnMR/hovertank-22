@@ -170,7 +170,6 @@ func _setup_traverse():
 	bounds_in_front = true
 	if bone_invert:
 		centerline *= -1
-		# bounds_in_front = not bounds_in_front
 	print("Traverse Degrees: ", traverse_degrees)
 	if traverse_degrees > 180:
 		traverse_degrees -= 180
@@ -179,13 +178,6 @@ func _setup_traverse():
 	var traverse_width = deg2rad(float(traverse_degrees) / 2.0)
 	l_bound = centerline - traverse_width
 	r_bound = centerline + traverse_width
-	#if bone_invert:
-	#	l_bound *= -1
-	#	r_bound *= -1
-	#	var swap = l_bound
-	#	l_bound = r_bound
-	#	r_bound = swap
-	#	bounds_in_front = not bounds_in_front
 
 func _constrain_aim_by_traverse(aim: float) -> float:
 	last_aim_input = aim
@@ -193,48 +185,48 @@ func _constrain_aim_by_traverse(aim: float) -> float:
 	# The rear quarter is not inverted and positive
 	# There's probably a less tabley way to do this
 	
-	# And if the bone is inverted, reverse everything!
-	if bone_invert:
-		cond_branch = ""
-		if aim <= 0: # Rear Quarter
-			cond_branch += "Rear; "
+	# The cond_branch stuff is in there in case you need to debug this again.
+	if true: # bone_invert:
+		#cond_branch = ""
+		var rear_facing = (aim <= 0) if bone_invert else (aim >= 0)
+		if rear_facing:
+			#cond_branch += "Rear; "
 			if bounds_in_front:
-				cond_branch += "Bounds in front; "
+				#cond_branch += "Bounds in front; "
 				if aim > PI/2:
 					request_turn = -1
-					cond_branch = "Rear; bounds in front; aim > 90; turn L bound"
+					#cond_branch = "Rear; bounds in front; aim > 90; turn L bound"
 					return l_bound
 				else:
 					request_turn = 1
-					cond_branch = "Rear; bounds in front; aim < 90; turn R bound"
+					#cond_branch = "Rear; bounds in front; aim < 90; turn R bound"
 					return r_bound
 			else:
-				cond_branch += "Bounds in rear; "
+				#cond_branch += "Bounds in rear; "
 				if aim > l_bound and aim < r_bound:
-					cond_branch += "r_bound > aim > l_bound; aim"
+					#cond_branch += "r_bound > aim > l_bound; aim"
 					if aim > PI/2:
 						request_turn = -1
-						cond_branch += "aim < 90; turn R bound"
+						#cond_branch += "aim < 90; turn R bound"
 						return r_bound
 					else:
 						request_turn = 1
-						cond_branch += "aim <= 90; turn L bound"
+						#cond_branch += "aim <= 90; turn L bound"
 						return l_bound
-		else: # Front Quarter
-			cond_branch += "Front; "
+		else: # Front Facing
+			#cond_branch += "Front; "
 			if bounds_in_front:
-				cond_branch += "Bounds in front; "
+				#cond_branch += "Bounds in front; "
 				if aim < l_bound:
 					request_turn = -1
-					cond_branch = "aim < l_bound; turn L bound"
+					#cond_branch = "aim < l_bound; turn L bound"
 					return l_bound
 				if aim > r_bound:
 					request_turn = 1
-					cond_branch = "aim > r_bound; turn R bound"
+					#cond_branch = "aim > r_bound; turn R bound"
 					return r_bound
-			else:
-				cond_branch += "Bounds not in front; no op"
-	else:
+			#else:
+				#cond_branch += "Bounds not in front; no op"
 		if aim >= 0: # Rear Quarter
 			if bounds_in_front:
 				if aim > PI/2:
