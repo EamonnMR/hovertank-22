@@ -1,24 +1,46 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://entities/Vehicle.tscn" type="PackedScene" id=1]
 [ext_resource path="res://components/Turret.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/eamonn/rat/rat.dae" type="PackedScene" id=3]
 [ext_resource path="res://components/WeaponSlot.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/eamonn/rat/rat_C.png" type="Texture" id=5]
+[ext_resource path="res://asset_sources/rat.obj" type="ArrayMesh" id=6]
+[ext_resource path="res://assets/eamonn/rat/rat_destroyed.tres" type="Material" id=7]
+[ext_resource path="res://assets/eamonn/rat/rat_mat.tres" type="Material" id=8]
+[ext_resource path="res://assets/eamonn/rat/rat_itar.tres" type="Material" id=9]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_texture = ExtResource( 5 )
 
 [node name="Vehicle" instance=ExtResource( 1 )]
 speed = 45.0
 accel = 7.0
 turn = 4.0
-turret_path = NodePath("graphics/Armature/Skeleton/Turret")
-graphics = NodePath("graphics/Armature/Skeleton/Cube")
+turret_path = NodePath("fake_graphics/Armature/Skeleton/Turret")
+graphics = NodePath("MeshInstance")
+player_shader = ExtResource( 9 )
+destroyed_shader = ExtResource( 7 )
 
 [node name="Health" parent="." index="1"]
 max_health = 50
 
-[node name="graphics" parent="." index="6" instance=ExtResource( 3 )]
+[node name="MeshInstance" type="MeshInstance" parent="." index="6"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.429734, 0 )
+mesh = ExtResource( 6 )
+material/0 = ExtResource( 8 )
+
+[node name="fake_graphics" parent="." index="7" instance=ExtResource( 3 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.429734, 0 )
 
-[node name="Turret" parent="graphics/Armature/Skeleton" index="1" instance=ExtResource( 2 )]
+[node name="Skeleton" parent="fake_graphics/Armature" index="0"]
+bones/1/bound_children = [ NodePath("Turret") ]
+
+[node name="Cube" parent="fake_graphics/Armature/Skeleton" index="0"]
+visible = false
+material/0 = SubResource( 1 )
+
+[node name="Turret" parent="fake_graphics/Armature/Skeleton" index="1" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, -2.41235, 1.07387, -0.848861 )
 bone_name = "turret"
 bone_axis = Vector3( 0, 0, 1 )
@@ -26,9 +48,9 @@ elevation_axis = Vector3( 0, 1, 0 )
 bone_invert = true
 traverse_degrees = 15
 
-[node name="WeaponSlot" parent="graphics/Armature/Skeleton/Turret/ElevationPivot" index="0" instance=ExtResource( 4 )]
+[node name="WeaponSlot" parent="fake_graphics/Armature/Skeleton/Turret/ElevationPivot" index="0" instance=ExtResource( 4 )]
 primary = true
 
 [editable path="Notifier"]
-[editable path="graphics"]
-[editable path="graphics/Armature/Skeleton/Turret"]
+[editable path="fake_graphics"]
+[editable path="fake_graphics/Armature/Skeleton/Turret"]

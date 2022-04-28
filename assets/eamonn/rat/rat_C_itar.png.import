@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/rat_RM.png-6ea70a6b6f6f90a8414a1f5d5172c1dc.s3tc.stex"
-path.etc2="res://.import/rat_RM.png-6ea70a6b6f6f90a8414a1f5d5172c1dc.etc2.stex"
+path.s3tc="res://.import/rat_C_itar.png-78f9b4b9849b9dc5f06482dc66c49eab.s3tc.stex"
+path.etc2="res://.import/rat_C_itar.png-78f9b4b9849b9dc5f06482dc66c49eab.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/eamonn/rat/rat_RM.png"
-dest_files=[ "res://.import/rat_RM.png-6ea70a6b6f6f90a8414a1f5d5172c1dc.s3tc.stex", "res://.import/rat_RM.png-6ea70a6b6f6f90a8414a1f5d5172c1dc.etc2.stex" ]
+source_file="res://assets/eamonn/rat/rat_C_itar.png"
+dest_files=[ "res://.import/rat_C_itar.png-78f9b4b9849b9dc5f06482dc66c49eab.s3tc.stex", "res://.import/rat_C_itar.png-78f9b4b9849b9dc5f06482dc66c49eab.etc2.stex" ]
 
 [params]
 
@@ -22,10 +22,10 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=true
-flags/filter=true
+flags/filter=false
 flags/mipmaps=true
 flags/anisotropic=false
-flags/srgb=2
+flags/srgb=1
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
