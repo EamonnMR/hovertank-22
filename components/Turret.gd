@@ -58,11 +58,6 @@ func get_weapons():
 func _ready():
 	if traverse_degrees:
 		_setup_traverse()
-	parent = self
-	while not (parent is Vehicle):
-		print(parent)
-		parent = parent.get_node("../")
-	assert(parent is Vehicle)
 	
 	assert($ElevationPivot.get_children().size() > 0)
 	for slot in $ElevationPivot.get_children():

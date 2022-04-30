@@ -1,10 +1,12 @@
-extends KinematicBody
+extends Spatial
+
+class_name VehicleCore
+onready var parent = get_node("../")
 var destroyed = false
+signal destroyed
+
 var camera
 
-export var speed: float = 30.0
-export var accel: float = 3.0
-export var turn: float = 5
 export var turret_path: NodePath
 export var graphics: NodePath
 export var match_ground: bool = true
@@ -17,20 +19,13 @@ export var wander: bool = true
 
 # TODO: Load these from Client, make difficulty settings
 const HEALTH_NERF_FACTOR = 0.5
-const SPEED_NERF_FACTOR = 0.9
-const ACCEL_NERF_FACTOR = 0.6
-const TURN_NERF_FACTOR = 0.7
 const DMG_NERF_FACTOR = 0.5
 const COOLDOWN_NERF_FACTOR = 2.0
 const SPREAD_NERF_FACTOR = 1.5
 
 func is_player():
-	return has_node("Controller") and $Controller.is_player()
-
-signal destroyed
-
-class_name Vehicle
-
+	return parent.has_node("Controller") and parent.get_node("Controller").is_player()
+	
 func _ready():
 	# If this wasn't spawned as a player, add AI to it
 	# TODO: This isn't as elegant as I'd like
@@ -38,13 +33,13 @@ func _ready():
 		add_ai()
 		_nerf_npc_stats()
 	
-	if is_player():
+	if parent.is_player():
 		# TODO: Not great for SOC
 		camera = get_node("../CameraRig")
 		$CameraMover.remote_path = camera.get_mover_path()
 		$Notifier.enable_proactive()
 		setup_player_skin()
-		name = "player"
+		parent.name = "player"
 	else:
 		$Notifier.disable_proactive()
 	
@@ -92,11 +87,6 @@ func _dead():
 	else:
 		queue_free()
 
-
-func set_facing(facing: float):
-	# $GraphicsPivoter.rotation.y = facing
-	rotation.y = facing
-
 func get_center_of_mass():
 	return $CenterOfMass.global_transform.origin
 
@@ -124,12 +114,10 @@ func add_ai():
 	add_child(controller)
 
 func _nerf_npc_stats():
+	parent.nerf_npc_stats_base()
+	
 	$Health.max_health *= HEALTH_NERF_FACTOR
 	$Health.health = $Health.max_health
-	
-	speed *= SPEED_NERF_FACTOR
-	accel *= ACCEL_NERF_FACTOR
-	turn *= TURN_NERF_FACTOR
 	
 	for turret in get_turrets():
 		for weapon in turret.get_weapons():
