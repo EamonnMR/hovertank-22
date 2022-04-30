@@ -2,7 +2,7 @@
 
 [ext_resource path="res://entities/vehicles/scout_spatialmaterial.tres" type="Material" id=1]
 [ext_resource path="res://components/Turret.tscn" type="PackedScene" id=2]
-[ext_resource path="res://entities/Vehicle.tscn" type="PackedScene" id=3]
+[ext_resource path="res://entities/KinematicVehicle.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/eamonn/scout/scout.dae" type="PackedScene" id=4]
 [ext_resource path="res://components/WeaponSlot.tscn" type="PackedScene" id=5]
 [ext_resource path="res://entities/vehicles/scout_spatialmaterial_itar.tres" type="Material" id=6]

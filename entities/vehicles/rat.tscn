@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://entities/Vehicle.tscn" type="PackedScene" id=1]
+[ext_resource path="res://entities/KinematicVehicle.tscn" type="PackedScene" id=1]
 [ext_resource path="res://components/Turret.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/eamonn/rat/rat.dae" type="PackedScene" id=3]
 [ext_resource path="res://components/WeaponSlot.tscn" type="PackedScene" id=4]

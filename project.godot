@@ -57,7 +57,7 @@ _global_script_classes=[ {
 "base": "KinematicBody",
 "class": "Vehicle",
 "language": "GDScript",
-"path": "res://entities/Vehicle.gd"
+"path": "res://entities/VehicleCore.gd"
 }, {
 "base": "Spatial",
 "class": "Weapon",
