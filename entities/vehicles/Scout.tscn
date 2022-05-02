@@ -24,9 +24,6 @@ extents = Vector3( 5.53459, 1, 3.09492 )
 speed = 50.0
 accel = 50.0
 turn = 6.0
-graphics = NodePath("Graphics/Armature/Skeleton/Cube")
-player_shader = ExtResource( 6 )
-destroyed_shader = ExtResource( 7 )
 
 [node name="Health" parent="." index="1"]
 max_health = 25
@@ -100,6 +97,12 @@ radius = 40.0
 
 [node name="CenterOfMass" parent="." index="7"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.30673, 0 )
+
+[node name="VehicleCore" parent="." index="8"]
+turret_path = NodePath("../Graphics/Armature/Skeleton/Turret")
+graphics = NodePath("../Graphics/Armature/Skeleton/Cube")
+player_shader = ExtResource( 6 )
+destroyed_shader = ExtResource( 7 )
 
 [editable path="Graphics"]
 [editable path="Graphics/Armature/Skeleton/Turret"]

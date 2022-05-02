@@ -15,14 +15,17 @@ const SPEED_NERF_FACTOR = 0.9
 const ACCEL_NERF_FACTOR = 0.6
 const TURN_NERF_FACTOR = 0.7
 
+func graphics():
+	return core.get_node(core.graphics)
+
 func alert(source):
-	return core.alert(source)
+	return get_node("VehicleCore").alert(source)
 
 func is_player():
-	return core.is_player()
+	return get_node("VehicleCore").is_player()
 
 func get_center_of_mass():
-	return core.get_center_of_mass()
+	return get_node("VehicleCore").get_center_of_mass()
 	
 func nerf_npc_stats_base():
 	speed *= SPEED_NERF_FACTOR

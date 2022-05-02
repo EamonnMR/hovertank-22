@@ -14,7 +14,7 @@ func _ready():
 
 func _set_position():
 	var parent = get_node("../")
-	Util.show_above(self, parent.get_node(parent.graphics))
+	Util.show_above(self, parent.graphics())
 
 func _update():
 	if parent_health.health != parent_health.max_health:

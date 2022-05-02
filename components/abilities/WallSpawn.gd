@@ -11,7 +11,7 @@ func activate():
 	wall.transform.origin = wall_pos
 	
 	# This isn't really the public API and should be refactored into one
-	var turret = parent.get_turrets()[0]
+	var turret = parent.core.get_turrets()[0]
 	
 	var fx = vfx.instance()
 	fx.transform.origin = wall_pos

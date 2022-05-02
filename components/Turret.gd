@@ -59,6 +59,8 @@ func _ready():
 	if traverse_degrees:
 		_setup_traverse()
 	
+	parent = _get_parent()
+	
 	assert($ElevationPivot.get_children().size() > 0)
 	for slot in $ElevationPivot.get_children():
 		if slot.has_weapon():
@@ -70,7 +72,7 @@ func _ready():
 	for weapon in primary_weapons + secondary_weapons:
 		weapon.init(IffProfile.new(
 			parent,
-			parent.faction,
+			parent.get_node("VehicleCore").faction,
 			false
 		))
 	
@@ -248,3 +250,10 @@ func _constrain_aim_by_traverse(aim: float) -> float:
 					return r_bound
 	request_turn = 0
 	return aim
+
+func _get_parent():
+	var maybe_parent = self
+	while not (maybe_parent.has_node("VehicleCore")):
+		print(maybe_parent)
+		maybe_parent = maybe_parent.get_node("../")
+	return maybe_parent

@@ -13,7 +13,11 @@ export var usePrediction = true
 
 func _ready():
 	world = parent.get_node("../")
-	parent.get_node("Graphics").rotation.y += PI/2
+	var par: Node = parent
+	print(parent)
+	print(par.get_children())
+	
+	parent.get_node("VehicleCore").graphics.rotation.y += PI/2
 	parent.connect("destroyed", self, "stop")
 	
 	var sticky_point = world.stick_to_ground(parent.global_transform.origin)

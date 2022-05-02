@@ -205,13 +205,13 @@ func spawn_player(world: Node):
 	energy_component.max_energy = 100
 	player.add_child(energy_component)
 	
-	for turret in player.get_turrets():
+	for turret in player.get_node("VehicleCore").get_turrets():
 		for slot in turret.get_primary_slots():
 			slot.add_child(WEAPONS[selected_primary].scene.instance())
 		for slot in turret.get_secondary_slots():
 			slot.add_child(WEAPONS[selected_secondary].scene.instance())
 	
-	player.faction = 1  # Players always work for ITAR
+	player.get_node("VehicleCore").faction = 1  # Players always work for ITAR
 	var camera_rig = preload("res://camera/CameraRig.tscn").instance()
 	camera_rig.third_person = not bool(selected_camera)
 	world.add_child(camera_rig)

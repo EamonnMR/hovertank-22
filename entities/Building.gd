@@ -7,6 +7,9 @@ signal destroyed
 func is_player():
 	return false
 
+func graphics():
+	return get_node(graphics)
+
 func _on_Health_damaged():
 	print("Building took hit")
 	# TODO: Switch out graphics for smashed version, play effects

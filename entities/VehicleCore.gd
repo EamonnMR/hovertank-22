@@ -2,6 +2,7 @@ extends Spatial
 
 class_name VehicleCore
 onready var parent = get_node("../")
+onready var controller = parent.get_node("Controller")
 var destroyed = false
 signal destroyed
 
@@ -24,29 +25,29 @@ const COOLDOWN_NERF_FACTOR = 2.0
 const SPREAD_NERF_FACTOR = 1.5
 
 func is_player():
-	return parent.has_node("Controller") and parent.get_node("Controller").is_player()
+	return controller and controller.is_player()
 	
 func _ready():
 	# If this wasn't spawned as a player, add AI to it
 	# TODO: This isn't as elegant as I'd like
-	if not has_node("Controller"):
+	if not has_node("../Controller"):
 		add_ai()
 		_nerf_npc_stats()
 	
 	if parent.is_player():
 		# TODO: Not great for SOC
-		camera = get_node("../CameraRig")
-		$CameraMover.remote_path = camera.get_mover_path()
-		$Notifier.enable_proactive()
+		camera = get_node("../../CameraRig")
+		get_node("../CameraMover").remote_path = camera.get_mover_path()
+		get_node("../Notifier").enable_proactive()
 		setup_player_skin()
 		parent.name = "player"
 	else:
-		$Notifier.disable_proactive()
+		get_node("../Notifier").disable_proactive()
 	
 	
 	var map = get_node("../../")
 	# connect("destroyed", map, "unit_destroyed")
-	$Health.connect("destroyed", self, "_dead")
+	get_node("../Health").connect("destroyed", self, "_dead")
 	#if ProjectSettings.get_setting("Prefs/controller"):
 		#add_child(preload("res://GamepadController.tscn").instance())
 	#else:
@@ -58,11 +59,11 @@ func _physics_process(delta: float):
 		_handle_shooting()
 
 func _handle_shooting():
-	if $Controller.is_shooting():
+	if controller.is_shooting():
 		for turret in get_turrets():
 			turret.try_shoot_primary()
 		# TODO: Multi Turret vehicles
-	if $Controller.is_shooting_secondary():
+	if controller.is_shooting_secondary():
 		for turret in get_turrets():
 			turret.try_shoot_secondary()
 
@@ -79,29 +80,29 @@ func _dead():
 			var graphics_node: MeshInstance = get_node(graphics)
 			graphics_node.set_surface_material(0, destroyed_shader)
 			if has_node("NPCHealthBar"):
-				$NPCHealthBar.hide()
-			$Health.health = $Health.max_health / 2
-			$Health.already_destroyed = false
+				get_node("../NPCHealthBar").hide()
+			get_node("../Health").health = get_node("../Health").max_health / 2
+			get_node("../Health").already_destroyed = false
 		else:
 			queue_free()
 	else:
 		queue_free()
 
 func get_center_of_mass():
-	return $CenterOfMass.global_transform.origin
+	return get_node("../CenterOfMass").global_transform.origin
 
 func get_turrets():
 	if turret_path:
 		return [get_node(turret_path)]
-	if $Graphics/Armature is Skeleton:
-		return  [$Graphics/Armature/Turret]
-	return [$Graphics/Armature/Skeleton/Turret]
+	if get_node("../Graphics/Armature") is Skeleton:
+		return  [get_node("../Graphics/Armature/Turret")]
+	return [get_node("../Graphics/Armature/Skeleton/Turret")]
 
 func alert(source):
 	if destroyed:
 		return
-	if $Controller.has_method("alert"):
-		$Controller.alert(source)
+	if controller.has_method("alert"):
+		controller.alert(source)
 
 func add_ai():
 	var mover = preload("res://components/AgentMovement.tscn").instance()
@@ -110,14 +111,14 @@ func add_ai():
 	mover.name = "Movement"
 	controller.name = "Controller"
 	
-	add_child(mover)
-	add_child(controller)
+	parent.add_child(mover)
+	parent.add_child(controller)
 
 func _nerf_npc_stats():
 	parent.nerf_npc_stats_base()
 	
-	$Health.max_health *= HEALTH_NERF_FACTOR
-	$Health.health = $Health.max_health
+	get_node("../Health").max_health *= HEALTH_NERF_FACTOR
+	get_node("../Health").health = get_node("../Health").max_health
 	
 	for turret in get_turrets():
 		for weapon in turret.get_weapons():

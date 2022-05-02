@@ -2,7 +2,7 @@ extends "res://components/abilities/Ability.gd"
 
 export var port_out_vfx: PackedScene
 export var port_in_vfx: PackedScene
-onready var iff = IffProfile.new(parent, parent.faction, true)
+onready var iff = IffProfile.new(parent, parent.get_node("VehicleCore").faction, true)
 
 func activate():
 	
