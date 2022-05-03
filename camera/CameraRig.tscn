@@ -47,9 +47,6 @@ __meta__ = {
 [node name="AimMarker" type="Control" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="TextureRect" type="TextureRect" parent="AimMarker"]
 margin_left = -94.9597

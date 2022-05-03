@@ -17,8 +17,8 @@ func _ready():
 	print(parent)
 	print(par.get_children())
 	
-	parent.get_node("VehicleCore").graphics.rotation.y += PI/2
-	parent.connect("destroyed", self, "stop")
+	parent.graphics().rotation.y += PI/2
+	parent.get_node("VehicleCore").connect("destroyed", self, "stop")
 	
 	var sticky_point = world.stick_to_ground(parent.global_transform.origin)
 	assert(sticky_point)
@@ -29,7 +29,8 @@ func _ready():
 
 func navigate_to_position(position: Vector3):
 	print("Navigation begins: ", parent.name, " to: ", position)
-	if parent.destroyed:
+	if parent.core.destroyed:
+
 		return
 	var maybe_position = world.stick_to_ground(position)
 	print("Update nav to: ", maybe_position)

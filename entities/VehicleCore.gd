@@ -31,8 +31,8 @@ func _ready():
 	# If this wasn't spawned as a player, add AI to it
 	# TODO: This isn't as elegant as I'd like
 	if not has_node("../Controller"):
-		add_ai()
 		_nerf_npc_stats()
+		call_deferred("add_ai")
 	
 	if parent.is_player():
 		# TODO: Not great for SOC
@@ -59,6 +59,8 @@ func _physics_process(delta: float):
 		_handle_shooting()
 
 func _handle_shooting():
+	if not controller or destroyed:
+		return
 	if controller.is_shooting():
 		for turret in get_turrets():
 			turret.try_shoot_primary()
@@ -84,9 +86,9 @@ func _dead():
 			get_node("../Health").health = get_node("../Health").max_health / 2
 			get_node("../Health").already_destroyed = false
 		else:
-			queue_free()
+			parent.queue_free()
 	else:
-		queue_free()
+		parent.queue_free()
 
 func get_center_of_mass():
 	return get_node("../CenterOfMass").global_transform.origin
@@ -101,13 +103,12 @@ func get_turrets():
 func alert(source):
 	if destroyed:
 		return
-	if controller.has_method("alert"):
+	if controller and controller.has_method("alert"):
 		controller.alert(source)
 
 func add_ai():
 	var mover = preload("res://components/AgentMovement.tscn").instance()
 	var controller = preload("res://components/ai_controller.tscn").instance()
-	
 	mover.name = "Movement"
 	controller.name = "Controller"
 	

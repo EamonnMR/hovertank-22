@@ -110,7 +110,7 @@ func get_aim_y():
 	return _modify_aim(aim_pose.y)
 
 func _process(delta):
-	if parent.destroyed:
+	if parent.core.destroyed:
 		return
 	var aim_point = parent.get_node("Controller").get_aim_point()
 	aim_pose = _aim_to_turret_pose(aim_point)
@@ -252,8 +252,14 @@ func _constrain_aim_by_traverse(aim: float) -> float:
 	return aim
 
 func _get_parent():
+	var valid_parent_types = [
+		VehicleBody,
+		KinematicBody,
+	]
 	var maybe_parent = self
-	while not (maybe_parent.has_node("VehicleCore")):
-		print(maybe_parent)
-		maybe_parent = maybe_parent.get_node("../")
-	return maybe_parent
+	while parent != get_tree().get_root():
+			maybe_parent = maybe_parent.get_node("../")
+			for type in valid_parent_types:
+				if maybe_parent is type:
+					return maybe_parent 
+	assert(false)
