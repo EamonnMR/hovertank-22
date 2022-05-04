@@ -3,7 +3,6 @@ extends KinematicBody
 onready var core = get_node("VehicleCore")
 
 var destroyed = false
-var camera
 
 export var speed: float = 30.0
 export var accel: float = 3.0

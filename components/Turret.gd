@@ -122,10 +122,10 @@ func _process(delta):
 	)
 	$ElevationPivot.rotation = aim_pose.x * elevation_axis
 	
-	if parent.camera:
+	if parent.core.camera:
 		var ray_result: Dictionary = project_ray()
 		if ray_result.has("position"):
-			parent.camera.set_turret_point(ray_result.position)
+			parent.core.camera.set_turret_point(ray_result.position)
 
 func project_ray():
 	# What is the turret pointing at right now?
