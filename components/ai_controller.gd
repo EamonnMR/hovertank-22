@@ -67,7 +67,7 @@ func is_shooting_secondary():
 func is_shooting():
 	# TODO: Only when gun is ready to fire
 	if is_instance_valid(target) and target.global_transform.origin.distance_to(global_transform.origin) < firing_range:
-		var raycast_result = get_node("../").get_turrets()[0].project_ray()
+		var raycast_result = get_node("../VehicleCore").get_turrets()[0].project_ray()
 		# TODO: If Raycast has result at all
 		if raycast_result.has("collider"):
 			if raycast_result.collider == self:
@@ -103,7 +103,10 @@ func use_ability_primary():
 func use_ability_secondary():
 	return false
 	
+	
 func _is_foe(entity: Node) -> bool:
-	if entity.get_node("VehicleCore"):
+	if entity.has_node("VehicleCore"):
+		var fac = entity.get_node("VehicleCore").faction
+		var myfac = parent.core.faction
 		return entity.get_node("VehicleCore").faction != parent.core.faction
 	return false

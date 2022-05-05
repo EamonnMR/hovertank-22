@@ -108,7 +108,7 @@ func alert(source):
 
 func add_ai():
 	var mover = preload("res://components/AgentMovement.tscn").instance()
-	var controller = preload("res://components/ai_controller.tscn").instance()
+	controller = preload("res://components/ai_controller.tscn").instance()
 	mover.name = "Movement"
 	controller.name = "Controller"
 	

@@ -88,7 +88,7 @@ func _physics_process(delta):
 	# Remember time of update
 	lastUpdateTimestamp = OS.get_ticks_msec()
 	#if parent.match_ground:
-	#	match_ground_normal(delta, parent)
+	match_ground_normal(delta, parent)
 
 
 func stop():
