@@ -33,12 +33,13 @@ func recalculate_path():
 	if target:
 		recalculate_path_to_target()
 	else:
-		if parent.core.wander:
-			print("Picking new wander destination")
-			destination = _random_destination()
-			get_node("../Movement").navigate_to_position(destination)
-		else:
-			get_node("../Movement").stop()
+		if get_node("../Movement"):
+			if parent.core.wander:
+				print("Picking new wander destination")
+				destination = _random_destination()
+				get_node("../Movement").navigate_to_position(destination)
+			else:
+				get_node("../Movement").stop()
 
 func _obtain_target(target):
 	print("Target Obtained: ", target)
@@ -91,6 +92,8 @@ func _has_los_player(player):
 	return has_los
 
 func alert(alerting_body):
+	if not parent:
+		return
 	if not parent.core.destroyed:
 		if _is_foe(alerting_body):
 			print("Alert!")

@@ -26,7 +26,7 @@ var unrotated_position: Spatial
 
 var request_turn = 0
 
-var aim_pose # Cache so other things can query it.
+var aim_pose: Vector2 # Cache so other things can query it.
 
 const AIM_EXTEND = 1000
 

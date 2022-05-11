@@ -1,5 +1,7 @@
 extends Movement
 
+# TODO: Somewhere in this class, we're moving something we shouldn't.
+
 const DetourCrowdAgentParameters:NativeScript = preload("res://addons/godotdetour/detourcrowdagentparameters.gdns")
 
 var agent
@@ -17,7 +19,8 @@ func _ready():
 	print(parent)
 	print(par.get_children())
 	
-	parent.graphics().rotation.y += PI/2
+	# TODO: This is leading to wonkyness because it's rotating just the skeleton.
+	parent.get_node("Graphics").rotation.y += PI/2
 	parent.get_node("VehicleCore").connect("destroyed", self, "stop")
 	
 	var sticky_point = world.stick_to_ground(parent.global_transform.origin)

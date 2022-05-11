@@ -9,8 +9,8 @@
 [node name="Skeleton" parent="Graphics/Armature" index="0"]
 bones/1/bound_children = [ NodePath("Turret") ]
 
-[node name="Turret" parent="Graphics/Armature/Skeleton" index="1"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46416, 2.84734, 0 )
+[node name="ElevationPivot" parent="Graphics/Armature/Skeleton/Turret" index="2"]
+transform = Transform( 0.0275378, 0, 0.999621, 0, 1, 0, -0.999621, 0, 0.0275378, 2.38419e-07, 0, 0 )
 
 [node name="Weapon" parent="Graphics/Armature/Skeleton/Turret/ElevationPivot/WeaponSlot" index="0" instance=ExtResource( 2 )]
 

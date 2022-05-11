@@ -21,6 +21,9 @@ max_health = 150
 
 [node name="Graphics" parent="." index="2" instance=ExtResource( 7 )]
 
+[node name="Armature" parent="Graphics" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+
 [node name="Cube" parent="Graphics/Armature/Skeleton" index="0"]
 material/0 = ExtResource( 1 )
 
@@ -29,8 +32,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46416, 2.84734, 0 )
 bone_name = "Turret"
 traverse_degrees = 90
 
-[node name="ElevationPivot" parent="Graphics/Armature/Skeleton/Turret" index="1"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125774, 0 )
+[node name="ElevationPivot" parent="Graphics/Armature/Skeleton/Turret" index="2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 
 [node name="WeaponSlot" parent="Graphics/Armature/Skeleton/Turret/ElevationPivot" index="0" instance=ExtResource( 8 )]
 primary = true
