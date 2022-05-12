@@ -24,6 +24,9 @@ max_health = 150
 [node name="Armature" parent="Graphics" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 
+[node name="Skeleton" parent="Graphics/Armature" index="0"]
+bones/1/bound_children = [ NodePath("Turret") ]
+
 [node name="Cube" parent="Graphics/Armature/Skeleton" index="0"]
 material/0 = ExtResource( 1 )
 
@@ -53,7 +56,6 @@ turret_path = NodePath("../Graphics/Armature/Skeleton/Turret")
 graphics = NodePath("../Graphics/Armature/Skeleton/Cube")
 player_shader = ExtResource( 5 )
 destroyed_shader = ExtResource( 4 )
-faction = 1
 
 [editable path="Graphics"]
 [editable path="Graphics/Armature/Skeleton/Turret"]
