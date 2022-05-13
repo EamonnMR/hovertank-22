@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://components/player_control/TankMovement.gd" type="Script" id=1]
-[ext_resource path="res://components/Movement.tscn" type="PackedScene" id=2]
 
-[node name="Movement" instance=ExtResource( 2 )]
+[node name="Spatial" type="Spatial"]
 script = ExtResource( 1 )

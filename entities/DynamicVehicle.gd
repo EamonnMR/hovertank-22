@@ -9,10 +9,17 @@ export var accel: float = 3.0
 export var turn: float = 5
 export var match_ground: bool = true
 
+export var engine_torque = 100
+export var max_steering = 1
+
 # TODO: Load these from Client, make difficulty settings
 const SPEED_NERF_FACTOR = 0.9
 const ACCEL_NERF_FACTOR = 0.6
 const TURN_NERF_FACTOR = 0.7
+
+func get_power():
+	# TODO: Implement power curve, gears, etc
+	return engine_torque
 
 func graphics():
 	return core.get_node(core.graphics)

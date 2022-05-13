@@ -19,37 +19,31 @@ var VEHICLES = {
 	"heavy": {
 		"name": "Dozer TD",
 		"scene": preload("res://entities/vehicles/Heavy.tscn"),
-		"movement": "tank",
 		"desc": "Tank Destroyer large enough for the whole crew to stand in the turret. Can only fire forward."
 	},
 	"scout": {
 		"name": "Scout Rover",
 		"scene": preload("res://entities/vehicles/Scout.tscn"),
-		"movement": "tank",
 		"desc": "Six wheels of fun"
 	},
 	"hovertank": {
 		"name": "Hover Tank",
 		"scene": preload("res://entities/vehicles/hovertank.tscn"),
-		"movement": "hover",
 		"desc": "Nothing changes your perspective like being a meter off the ground"
 	},
 	"mecha": {
 		"name": "Cassidy Mech",
 		"scene": preload("res://entities/vehicles/Mecha.tscn"),
-		"movement": "walk",
 		"desc": "Light, by giant robot standards"
 	},
 	"bigwheel": {
 		"name": "Bigwheel IFV",
 		"scene": preload("res://entities/vehicles/Bigwheel.tscn"),
-		"movement": "tank",
 		"desc": "Half tank, half APC, all attitude"
 	},
 	"cobra": {
 		"name": "Cobra Light TD",
 		"scene": preload("res://entities/vehicles/rat.tscn"),
-		"movement": "tank",
 		"desc": "Everything sacrified at the alter of speed and a bigger gun"
 	}
 }
@@ -109,13 +103,6 @@ var PILOTS = {
 		"name": "Drone",
 		"desc": "Former Moloch Drone, grown for Maltech-use. Probably isn't going to revert to some secret sleeper agent conditioning... probably."
 	}
-}
-
-var MOVEMENT = {
-	"tank": preload("res://components/player_control/TankMovement.tscn"),
-	"hover": preload("res://components/player_control/HoverMovement.tscn"),
-	"walk": preload("res://components/player_control/WalkMovement.tscn"),
-	"wheels": preload("res://components/player_control/WheelsMovement.tscn")
 }
 
 var FACTIONS = [
@@ -186,10 +173,7 @@ func spawn_player(world: Node):
 	
 	var controller_instance = CONTROLLERS[selected_control_scheme].instance()
 	controller_instance.name = "Controller"
-	var movement_instance = MOVEMENT[VEHICLES[selected_vehicle].movement].instance()
-	movement_instance.name = "Movement"
-	
-	player.add_child(movement_instance)
+
 	player.add_child(controller_instance)
 	
 	var primary_ability_instance = preload("res://components/abilities/Teleport.tscn").instance()

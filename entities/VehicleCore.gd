@@ -14,6 +14,7 @@ export var match_ground: bool = true
 
 export var player_shader: Material
 export var destroyed_shader: Material
+export var movement_type: PackedScene
 
 export var faction: int = 0
 export var wander: bool = true
@@ -30,9 +31,12 @@ func is_player():
 func _ready():
 	# If this wasn't spawned as a player, add AI to it
 	# TODO: This isn't as elegant as I'd like
-	if not has_node("../Controller"):
+	if has_node("../Controller"):
+		call_deferred("add_movement")
+	else:
 		_nerf_npc_stats()
 		call_deferred("add_ai")
+		
 	
 	if parent.is_player():
 		# TODO: Not great for SOC
@@ -114,6 +118,12 @@ func add_ai():
 	
 	parent.add_child(mover)
 	parent.add_child(controller)
+	
+func add_movement():
+	var mover = movement_type.instance()
+	mover.name = "Movement"
+	parent.add_child(mover)
+	parent.get_node("DontGetStuckOnlyCapsulesWork").queue_free()
 
 func _nerf_npc_stats():
 	parent.nerf_npc_stats_base()
