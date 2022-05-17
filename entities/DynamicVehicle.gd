@@ -1,6 +1,9 @@
-extends VehicleBody
+extends RigidBody
 
 onready var core = get_node("VehicleCore")
+
+var engine_force: float
+var steering: float
 
 var destroyed = false
 

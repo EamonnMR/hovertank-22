@@ -254,12 +254,12 @@ func _constrain_aim_by_traverse(aim: float) -> float:
 func _get_parent():
 	var valid_parent_types = [
 		VehicleBody,
-		KinematicBody,
+		RigidBody,
 	]
 	var maybe_parent = self
 	while parent != get_tree().get_root():
-			maybe_parent = maybe_parent.get_node("../")
-			for type in valid_parent_types:
-				if maybe_parent is type:
-					return maybe_parent 
+		maybe_parent = maybe_parent.get_node("../")
+		for type in valid_parent_types:
+			if maybe_parent is type:
+				return maybe_parent 
 	assert(false)

@@ -67,7 +67,7 @@ data = PoolVector3Array( -68, 15, 1, 68, 15, 1, -68, -15, 1, 68, 15, 1, 68, -15,
 [node name="World" instance=ExtResource( 1 )]
 
 [node name="SpawnPoint" parent="." index="1"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 112.097, 20.6493, 294.384 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 65.0516, 393.5, 44.9205 )
 
 [node name="HTerrain" type="Spatial" parent="." index="2"]
 script = ExtResource( 3 )
