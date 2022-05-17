@@ -66,4 +66,8 @@ func set_wheel_traction(wheels: Array, traction: bool):
 			
 func set_track_power(tracks, power):
 	for track in tracks:
-		track.engine_force = 100000 # power
+		track.engine_force = power
+		if not power:
+			track.brake = 10
+		else:
+			track.brake = 0
