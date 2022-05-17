@@ -10,6 +10,8 @@ var right_tracks = []
 
 var track_count = 0
 
+var brake_power = 5
+
 func _ready():
 	for child in parent.get_children():
 		if child is VehicleWheel:
@@ -32,7 +34,6 @@ func _physics_process(delta):
 	var turn_and_motion_impulse = controller.get_turn_and_motion_impulse(delta, parent.turn)
 	var turn = turn_and_motion_impulse[0]
 	var motion_impulse = turn_and_motion_impulse[1]
-	
 	parent.engine_force = motion_impulse * parent.get_power()
 	parent.steering = turn * parent.max_steering
 
@@ -40,34 +41,55 @@ func _physics_process(delta):
 	
 func differential_power_for_steering():
 	var power = parent.engine_force / track_count
-	if parent.steering == 0:
-		set_wheel_traction(left_wheels, true)
-		set_wheel_traction(right_wheels, true)
-		set_track_power(left_tracks, power)
-		set_track_power(right_tracks, power)
-	if parent.steering < 0:
-		set_wheel_traction(left_wheels, true)
-		set_wheel_traction(right_wheels, false)
-		set_track_power(left_tracks, power * 2)
-		set_track_power(right_tracks, 0)
-	if parent.steering > 0:
+	if power:
+		if parent.steering == 0:
+			set_wheel_traction(left_wheels, true)
+			set_wheel_traction(right_wheels, true)
+			set_track_power(left_tracks, power)
+			set_track_power(right_tracks, power)
+		if parent.steering < 0:
+			set_wheel_traction(left_wheels, true)
+			set_wheel_traction(right_wheels, false)
+			set_track_power(left_tracks, power * 2)
+			set_track_power(right_tracks, 0)
+		if parent.steering > 0:
+			set_wheel_traction(left_wheels, false)
+			set_wheel_traction(right_wheels, true)
+			set_track_power(left_tracks, 0)
+			set_track_power(right_tracks, power * 2)
+	else:
+		# Turning in place
+		power = parent.get_power() / track_count
 		set_wheel_traction(left_wheels, false)
-		set_wheel_traction(right_wheels, true)
-		set_track_power(left_tracks, 0)
-		set_track_power(right_tracks, power * 2)
-
+		set_wheel_traction(right_wheels, false)
+		if parent.steering == 0:
+			set_track_power(left_tracks, 0)
+			set_track_power(right_tracks, 0)
+		# Double power to turn in place cause why not
+		if parent.steering < 0:
+			set_track_power(left_tracks, 2 * power)
+			set_track_power(right_tracks, -2 * power)
+		if parent.steering > 0:
+			set_track_power(left_tracks, -2 * power)
+			set_track_power(right_tracks, 2 * power)
 func set_wheel_traction(wheels: Array, traction: bool):
 	for wheel in wheels:
 		wheel.use_as_traction = traction
 		if traction:
 			wheel.brake = 0
 		else:
-			wheel.brake = 10
+			wheel.brake = 5
 			
 func set_track_power(tracks, power):
 	for track in tracks:
 		track.engine_force = power
 		if not power:
-			track.brake = 10
+			track.brake = 5
 		else:
 			track.brake = 0
+
+func boolify(value: float) -> int:
+	if value:
+		return 1
+	else:
+		return 0
