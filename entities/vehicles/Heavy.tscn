@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://assets/eamonn/heavy/Heavy.tres" type="Material" id=1]
 [ext_resource path="res://entities/DynamicVehicle.gd" type="Script" id=2]
@@ -23,8 +23,6 @@ extents = Vector3( 6.36887, 1.59387, 4.47535 )
 radius = 1.22908
 height = 1.23
 
-[sub_resource type="CubeMesh" id=5]
-
 [sub_resource type="BoxShape" id=6]
 
 [node name="Vehicle" type="RigidBody"]
@@ -32,6 +30,8 @@ script = ExtResource( 2 )
 speed = 20.0
 accel = 10.0
 turn = 4.0
+engine_torque = 400000
+brake_power = 15
 
 [node name="NPCHealthBar" parent="." instance=ExtResource( 11 )]
 
@@ -95,6 +95,7 @@ movement_type = ExtResource( 9 )
 
 [node name="Track" type="VehicleBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.90593 )
+mass = 100.0
 engine_force = 10.0
 script = ExtResource( 10 )
 right = true
@@ -106,12 +107,6 @@ use_as_traction = true
 wheel_radius = 1.0
 right = true
 
-[node name="MeshInstance2" type="MeshInstance" parent="Track/VehicleWheel"]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0 )
-mesh = SubResource( 5 )
-skeleton = NodePath("../../..")
-material/0 = null
-
 [node name="VehicleWheel2" parent="Track" instance=ExtResource( 6 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.8983, 0, -0.120674 )
 engine_force = 10.0
@@ -121,36 +116,35 @@ right = true
 
 [node name="VehicleWheel3" parent="Track" instance=ExtResource( 6 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.161301, 0, -0.120674 )
+use_as_traction = true
 wheel_radius = 1.0
 right = true
 
 [node name="VehicleWheel4" parent="Track" instance=ExtResource( 6 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.39974, 0, -0.120674 )
+use_as_traction = true
 wheel_radius = 1.0
 right = true
 
 [node name="VehicleWheel5" parent="Track" instance=ExtResource( 6 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.96979, 0, -0.120674 )
+use_as_traction = true
 wheel_radius = 1.0
 right = true
 
 [node name="VehicleWheel6" parent="Track" instance=ExtResource( 6 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.20824, 0, -0.120674 )
+use_as_traction = true
 wheel_radius = 1.0
 right = true
 
-[node name="MeshInstance" type="MeshInstance" parent="Track"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.313609 )
-mesh = SubResource( 5 )
-skeleton = NodePath("../..")
-material/0 = null
-
 [node name="ShapeWithoutThisVehicleBodyDoesNotWork" type="CollisionShape" parent="Track"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.45718, 1.33708, -1.51514 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.769767, 0 )
 shape = SubResource( 6 )
 
 [node name="Track2" type="VehicleBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.906 )
+mass = 100.0
 engine_force = 10.0
 script = ExtResource( 10 )
 left = true
@@ -162,47 +156,38 @@ use_as_traction = true
 wheel_radius = 1.0
 right = true
 
-[node name="MeshInstance2" type="MeshInstance" parent="Track2/VehicleWheel"]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0 )
-mesh = SubResource( 5 )
-skeleton = NodePath("../../..")
-material/0 = null
-
 [node name="VehicleWheel2" parent="Track2" instance=ExtResource( 6 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.8983, 0, -0.120674 )
 engine_force = 10.0
-use_as_traction = true
 wheel_radius = 1.0
 right = true
 
 [node name="VehicleWheel3" parent="Track2" instance=ExtResource( 6 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.161301, 0, -0.120674 )
+use_as_traction = true
 wheel_radius = 1.0
 right = true
 
 [node name="VehicleWheel4" parent="Track2" instance=ExtResource( 6 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.39974, 0, -0.120674 )
+use_as_traction = true
 wheel_radius = 1.0
 right = true
 
 [node name="VehicleWheel5" parent="Track2" instance=ExtResource( 6 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.96979, 0, -0.120674 )
+use_as_traction = true
 wheel_radius = 1.0
 right = true
 
 [node name="VehicleWheel6" parent="Track2" instance=ExtResource( 6 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.20824, 0, -0.120674 )
+use_as_traction = true
 wheel_radius = 1.0
 right = true
 
-[node name="MeshInstance" type="MeshInstance" parent="Track2"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.313609 )
-mesh = SubResource( 5 )
-skeleton = NodePath("../..")
-material/0 = null
-
 [node name="ShapeWithoutThisVehicleBodyDoesNotWork" type="CollisionShape" parent="Track2"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.45718, 1.33708, -1.51514 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.982718, 0 )
 shape = SubResource( 6 )
 
 [editable path="Graphics"]
