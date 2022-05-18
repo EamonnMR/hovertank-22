@@ -13,6 +13,8 @@ export var turn: float = 5
 export var match_ground: bool = true
 
 export var engine_torque = 400
+export var turn_fudge = 2
+export var brake_power = 5
 export var max_steering = 1
 
 # TODO: Load these from Client, make difficulty settings

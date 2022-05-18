@@ -67,24 +67,25 @@ func differential_power_for_steering():
 			set_track_power(right_tracks, 0)
 		# Double power to turn in place cause why not
 		if parent.steering < 0:
-			set_track_power(left_tracks, 2 * power)
-			set_track_power(right_tracks, -2 * power)
+			set_track_power(left_tracks, parent.turn_fudge * power)
+			set_track_power(right_tracks, -1 * parent.turn_fudge * power)
 		if parent.steering > 0:
-			set_track_power(left_tracks, -2 * power)
-			set_track_power(right_tracks, 2 * power)
+			set_track_power(left_tracks, -1 * parent.turn_fudge * power)
+			set_track_power(right_tracks, parent.turn_fudge * power)
+
 func set_wheel_traction(wheels: Array, traction: bool):
 	for wheel in wheels:
 		wheel.use_as_traction = traction
 		if traction:
 			wheel.brake = 0
 		else:
-			wheel.brake = 5
+			wheel.brake = parent.brake_power
 			
 func set_track_power(tracks, power):
 	for track in tracks:
 		track.engine_force = power
 		if not power:
-			track.brake = 5
+			track.brake = parent.brake_power
 		else:
 			track.brake = 0
 
