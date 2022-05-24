@@ -4,9 +4,13 @@ extends VehicleBody
 
 export var left: bool
 export var right: bool
+export var friction_slip: float
 
 func _ready():
 	call_deferred("setup_node_weirdness")
+	for wheel in get_children():
+		if wheel is VehicleWheel:
+			wheel.wheel_friction_slip = friction_slip
 
 func check_diff():
 	var gp = global_transform.origin

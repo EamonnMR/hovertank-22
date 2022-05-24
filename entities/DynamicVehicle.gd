@@ -12,6 +12,8 @@ export var accel: float = 3.0
 export var turn: float = 5
 export var match_ground: bool = true
 
+export var traction = 1.0
+
 export var engine_torque = 400
 export var turn_fudge = 2
 export var brake_power = 5

@@ -255,6 +255,7 @@ func _get_parent():
 	var valid_parent_types = [
 		VehicleBody,
 		RigidBody,
+		KinematicBody,
 	]
 	var maybe_parent = self
 	while parent != get_tree().get_root():

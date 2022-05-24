@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://assets/eamonn/heavy/Heavy.tres" type="Material" id=1]
 [ext_resource path="res://entities/DynamicVehicle.gd" type="Script" id=2]
@@ -9,7 +9,6 @@
 [ext_resource path="res://assets/eamonn/heavy/heavy.glb" type="PackedScene" id=7]
 [ext_resource path="res://components/WeaponSlot.tscn" type="PackedScene" id=8]
 [ext_resource path="res://components/player_control/TankMovement.tscn" type="PackedScene" id=9]
-[ext_resource path="res://components/Track.gd" type="Script" id=10]
 [ext_resource path="res://components/meta/NPCHealthBar.tscn" type="PackedScene" id=11]
 [ext_resource path="res://effects/explosions/GenericExplosion.tscn" type="PackedScene" id=12]
 [ext_resource path="res://components/Notifier.tscn" type="PackedScene" id=13]
@@ -23,14 +22,12 @@ extents = Vector3( 6.36887, 1.59387, 4.47535 )
 radius = 1.22908
 height = 1.23
 
-[sub_resource type="BoxShape" id=6]
-
-[node name="Vehicle" type="RigidBody"]
+[node name="Vehicle" type="VehicleBody"]
 script = ExtResource( 2 )
 speed = 20.0
 accel = 10.0
 turn = 4.0
-engine_torque = 400000
+engine_torque = 100
 brake_power = 15
 
 [node name="NPCHealthBar" parent="." instance=ExtResource( 11 )]
@@ -93,102 +90,82 @@ player_shader = ExtResource( 5 )
 destroyed_shader = ExtResource( 4 )
 movement_type = ExtResource( 9 )
 
-[node name="Track" type="VehicleBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.90593 )
-mass = 100.0
-engine_force = 10.0
-script = ExtResource( 10 )
-right = true
-
-[node name="VehicleWheel" parent="Track" instance=ExtResource( 6 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.13674, 0, -0.120674 )
+[node name="VehicleWheel" parent="." instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.13674, 0, 4.78526 )
 engine_force = 10.0
 use_as_traction = true
-wheel_radius = 1.0
+wheel_radius = 2.0
 right = true
 
-[node name="VehicleWheel2" parent="Track" instance=ExtResource( 6 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.8983, 0, -0.120674 )
+[node name="VehicleWheel2" parent="." instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.8983, 0, 4.78526 )
 engine_force = 10.0
 use_as_traction = true
-wheel_radius = 1.0
+wheel_radius = 2.0
 right = true
 
-[node name="VehicleWheel3" parent="Track" instance=ExtResource( 6 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.161301, 0, -0.120674 )
+[node name="VehicleWheel3" parent="." instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.161301, 0, 4.78526 )
 use_as_traction = true
-wheel_radius = 1.0
+wheel_radius = 2.0
 right = true
 
-[node name="VehicleWheel4" parent="Track" instance=ExtResource( 6 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.39974, 0, -0.120674 )
+[node name="VehicleWheel4" parent="." instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.39974, 0, 4.78526 )
 use_as_traction = true
-wheel_radius = 1.0
+wheel_radius = 2.0
 right = true
 
-[node name="VehicleWheel5" parent="Track" instance=ExtResource( 6 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.96979, 0, -0.120674 )
+[node name="VehicleWheel5" parent="." instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.96979, 0, 4.78526 )
 use_as_traction = true
-wheel_radius = 1.0
+wheel_radius = 2.0
+wheel_friction_slip = 2.0
 right = true
 
-[node name="VehicleWheel6" parent="Track" instance=ExtResource( 6 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.20824, 0, -0.120674 )
+[node name="VehicleWheel6" parent="." instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.20824, 0, 4.78526 )
 use_as_traction = true
-wheel_radius = 1.0
+wheel_radius = 2.0
+wheel_friction_slip = 2.0
 right = true
 
-[node name="ShapeWithoutThisVehicleBodyDoesNotWork" type="CollisionShape" parent="Track"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.769767, 0 )
-shape = SubResource( 6 )
-
-[node name="Track2" type="VehicleBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.906 )
-mass = 100.0
+[node name="VehicleWheel7" parent="." instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.13674, 0, -5.02667 )
 engine_force = 10.0
-script = ExtResource( 10 )
+use_as_traction = true
+wheel_radius = 2.0
 left = true
 
-[node name="VehicleWheel" parent="Track2" instance=ExtResource( 6 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.13674, 0, -0.120674 )
+[node name="VehicleWheel8" parent="." instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.8983, 0, -5.02667 )
 engine_force = 10.0
+wheel_radius = 2.0
+left = true
+
+[node name="VehicleWheel9" parent="." instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.161301, 0, -5.02667 )
 use_as_traction = true
-wheel_radius = 1.0
-right = true
+wheel_radius = 2.0
+left = true
 
-[node name="VehicleWheel2" parent="Track2" instance=ExtResource( 6 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.8983, 0, -0.120674 )
-engine_force = 10.0
-wheel_radius = 1.0
-right = true
-
-[node name="VehicleWheel3" parent="Track2" instance=ExtResource( 6 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.161301, 0, -0.120674 )
+[node name="VehicleWheel10" parent="." instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.39974, 0, -5.02667 )
 use_as_traction = true
-wheel_radius = 1.0
-right = true
+wheel_radius = 2.0
+left = true
 
-[node name="VehicleWheel4" parent="Track2" instance=ExtResource( 6 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.39974, 0, -0.120674 )
+[node name="VehicleWheel11" parent="." instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.96979, 0, -5.02667 )
 use_as_traction = true
-wheel_radius = 1.0
-right = true
+wheel_radius = 2.0
+left = true
 
-[node name="VehicleWheel5" parent="Track2" instance=ExtResource( 6 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.96979, 0, -0.120674 )
+[node name="VehicleWheel12" parent="." instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.20824, 0, -5.02667 )
 use_as_traction = true
-wheel_radius = 1.0
-right = true
-
-[node name="VehicleWheel6" parent="Track2" instance=ExtResource( 6 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.20824, 0, -0.120674 )
-use_as_traction = true
-wheel_radius = 1.0
-right = true
-
-[node name="ShapeWithoutThisVehicleBodyDoesNotWork" type="CollisionShape" parent="Track2"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.982718, 0 )
-shape = SubResource( 6 )
+wheel_radius = 2.0
+left = true
 
 [editable path="Graphics"]
 [editable path="Graphics/Armature/Skeleton/Turret"]
