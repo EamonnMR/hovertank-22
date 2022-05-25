@@ -8,9 +8,9 @@ script/source = "extends Label
 
 func _process(delta):
 	text = \"\"
-	for i in get_node(\"../../\").left_tracks:
+	for i in get_node(\"../../\").left_wheels:
 		text += \"L engine_force: \" + str(i.engine_force) + \"\\n\"
-	for i in get_node(\"../../\").right_tracks:
+	for i in get_node(\"../../\").right_wheels:
 		text += \"R engine_force: \" + str(i.engine_force) + \"\\n\"
 "
 

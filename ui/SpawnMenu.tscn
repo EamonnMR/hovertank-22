@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/eamonn/logo.png" type="Texture" id=1]
 [ext_resource path="res://ui/SpawnMenu.gd" type="Script" id=2]
-[ext_resource path="res://assets/documerica_pd/Abandoned_Barn_Succumbs_to_the_Elements,_and_an_Adjoining_House_Which_Is_Empty_Off_Route_-800_near_Barnesville,_Ohio._07-1974_(3769914962).jpg" type="Texture" id=3]
+[ext_resource path="res://assets/documerica_pd/A_HUNDRED-MILE_RIBBON_OF_SAND_DUNES_SEPARATES_THE_CHOCOLATE_MOUNTAINS_OF_SOUTHERN_CALIFORNIA_FROM_THE_IMPERIAL..._-_NARA_-_547717.jpg" type="Texture" id=3]
 [ext_resource path="res://assets/eamonn/darken.png" type="Texture" id=4]
 
 [node name="SpawnMenu" type="Control"]
@@ -16,9 +16,6 @@ anchor_bottom = 1.0
 texture = ExtResource( 3 )
 expand = true
 stretch_mode = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="TextureRect2" type="TextureRect" parent="."]
 anchor_left = 0.5
@@ -129,30 +126,6 @@ margin_bottom = 57.0
 bbcode_enabled = true
 fit_content_height = true
 
-[node name="PilotSelect" type="VBoxContainer" parent="VBoxContainer/Selection"]
-margin_left = 312.0
-margin_right = 412.0
-margin_bottom = 200.0
-
-[node name="Label" type="Label" parent="VBoxContainer/Selection/PilotSelect"]
-margin_right = 100.0
-margin_bottom = 14.0
-text = "Pilot"
-
-[node name="MenuButton" type="OptionButton" parent="VBoxContainer/Selection/PilotSelect"]
-margin_top = 18.0
-margin_right = 100.0
-margin_bottom = 38.0
-rect_min_size = Vector2( 100, 0 )
-text = "Select"
-
-[node name="Desc" type="RichTextLabel" parent="VBoxContainer/Selection/PilotSelect"]
-margin_top = 42.0
-margin_right = 100.0
-margin_bottom = 57.0
-bbcode_enabled = true
-fit_content_height = true
-
 [node name="Mission" type="VBoxContainer" parent="VBoxContainer"]
 margin_top = 358.0
 margin_right = 600.0
@@ -200,17 +173,10 @@ margin_right = 178.0
 margin_bottom = 20.0
 text = "Controller"
 
-[node name="CameraOption" type="OptionButton" parent="VBoxContainer/LaunchOptions"]
-margin_left = 182.0
-margin_right = 211.0
-margin_bottom = 20.0
-
 [connection signal="item_selected" from="VBoxContainer/Selection/VehicleSelect/MenuButton" to="." method="_on_Vehicle_selected"]
 [connection signal="item_selected" from="VBoxContainer/Selection/PrimaryWeaponSelect/MenuButton" to="." method="_on_Primary_selected"]
 [connection signal="item_selected" from="VBoxContainer/Selection/SecondaryWeaponSelect/MenuButton" to="." method="_on_Secondary_selected"]
-[connection signal="item_selected" from="VBoxContainer/Selection/PilotSelect/MenuButton" to="." method="_on_Pilot_selected"]
 [connection signal="item_selected" from="VBoxContainer/Mission/MenuButton" to="." method="_on_level_selected"]
 [connection signal="pressed" from="VBoxContainer/LaunchOptions/StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/LaunchOptions/QuitButton" to="." method="_on_QuitButton_pressed"]
 [connection signal="item_selected" from="VBoxContainer/LaunchOptions/ControllerOption" to="." method="_on_ControllerOption_item_selected"]
-[connection signal="item_selected" from="VBoxContainer/LaunchOptions/CameraOption" to="." method="_on_CameraOption_item_selected"]

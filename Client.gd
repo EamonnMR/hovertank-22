@@ -16,16 +16,6 @@ var LEVELS = [
 ]
 
 var VEHICLES = {
-	"heavy": {
-		"name": "Dozer TD",
-		"scene": preload("res://entities/vehicles/Heavy.tscn"),
-		"desc": "Tank Destroyer large enough for the whole crew to stand in the turret. Can only fire forward."
-	},
-	"scout": {
-		"name": "Scout Rover",
-		"scene": preload("res://entities/vehicles/Scout.tscn"),
-		"desc": "Six wheels of fun"
-	},
 	"hovertank": {
 		"name": "Hover Tank",
 		"scene": preload("res://entities/vehicles/hovertank.tscn"),
@@ -35,11 +25,6 @@ var VEHICLES = {
 		"name": "Cassidy Mech",
 		"scene": preload("res://entities/vehicles/Mecha.tscn"),
 		"desc": "Light, by giant robot standards"
-	},
-	"bigwheel": {
-		"name": "Bigwheel IFV",
-		"scene": preload("res://entities/vehicles/Bigwheel.tscn"),
-		"desc": "Half tank, half APC, all attitude"
 	},
 	"cobra": {
 		"name": "Cobra Light TD",
@@ -86,29 +71,10 @@ var WEAPONS = {
 	}
 }
 
-var PILOTS = {
-	"rev": {
-		"name": "Revenant",
-		"desc": "During an early Incursion, the Revenant made a solo expedition into [i]Their Place[/i] and, uniquely, returned to tell the tale."
-	},
-	"pro": {
-		"name": "The Professional",
-		"desc": "Unspeakable horror from another dimension, sworn to hunt maltech users across the multiverse. I guess they've got problems out there too."
-	},
-	"doc": {
-		"name": "Doc",
-		"desc": "Special dispensation was granted to allow them to keep using their maltech parts... for a price: piloting vehicles for The Pact."
-	},
-	"drn": {
-		"name": "Drone",
-		"desc": "Former Moloch Drone, grown for Maltech-use. Probably isn't going to revert to some secret sleeper agent conditioning... probably."
-	}
-}
 
 var FACTIONS = [
-	{"name": "Moloch"},
-	{"name": "ITAR"},
-	{"name": "The Others"}
+	{"name": "Alliance"},
+	{"name": "Rebels"}
 ]
 
 var selected_vehicle: String
@@ -119,14 +85,8 @@ var selected_pilot: String
 var selected_camera: bool
 
 var CONTROLLERS = {
-	"absolute": preload("res://components/player_control/AbsoluteController.tscn"),
-	"cardinal": preload("res://components/player_control/CardinalController.tscn")
+	"absolute": preload("res://components/player_control/AbsoluteController.tscn")
 }
-
-var CAMERAS = [
-	"Third Person",
-	"Top Down"
-]
 
 var player_object: Node
 
@@ -135,8 +95,6 @@ func _ready():
 	set_controller_selection(0)
 	set_primary_selection(0)
 	set_secondary_selection(1)
-	set_pilot_selection(0)
-	set_camera_selection(0)
 
 func set_vehicle_selection(index: int):
 	var keys = VEHICLES.keys()
@@ -157,11 +115,6 @@ func set_secondary_selection(index: int):
 	var keys = WEAPONS.keys()
 	var byindex = keys[index]
 	selected_secondary = WEAPONS.keys()[index]
-
-func set_pilot_selection(index: int):
-	var keys = PILOTS.keys()
-	var byindex = keys[index]
-	selected_pilot = PILOTS.keys()[index]
 	
 func set_camera_selection(index: int):
 	selected_camera = bool(index)

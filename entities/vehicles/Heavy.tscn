@@ -28,6 +28,7 @@ speed = 20.0
 accel = 10.0
 turn = 4.0
 engine_torque = 100
+turn_fudge = 1
 brake_power = 15
 
 [node name="NPCHealthBar" parent="." instance=ExtResource( 11 )]
@@ -40,9 +41,6 @@ explosion = ExtResource( 12 )
 
 [node name="Armature" parent="Graphics" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-
-[node name="Skeleton" parent="Graphics/Armature" index="0"]
-bones/1/bound_children = [ NodePath("Turret") ]
 
 [node name="Cube" parent="Graphics/Armature/Skeleton" index="0"]
 material/0 = ExtResource( 1 )

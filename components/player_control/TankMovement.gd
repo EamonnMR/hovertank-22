@@ -36,10 +36,11 @@ func _physics_process(delta):
 	var motion_impulse = turn_and_motion_impulse[1]
 	
 	parent.steering = turn * parent.max_steering
-	differential_power_for_steering(motion_impulse * parent.get_power())
+	differential_power_for_steering(motion_impulse)
 	
-func differential_power_for_steering(power: float):
-	if power:
+func differential_power_for_steering(impulse: float):
+	if impulse:
+		var power = parent.get_power() * impulse
 		if parent.steering == 0:
 			set_wheel_power(left_wheels, power)
 			set_wheel_power(right_wheels, power)
@@ -56,6 +57,7 @@ func differential_power_for_steering(power: float):
 			set_track_power(left_tracks, 0)
 			set_track_power(right_tracks, power * 2)
 	else:
+		var power = parent.turn_fudge * parent.get_power()
 		# Turning in place
 		if parent.steering == 0:
 			set_track_power(left_tracks, 0)
