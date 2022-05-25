@@ -1,15 +1,22 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://entities/KinematicVehicle.tscn" type="PackedScene" id=1]
+[ext_resource path="res://entities/DynamicVehicle.tscn" type="PackedScene" id=1]
 [ext_resource path="res://components/Turret.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/eamonn/rat/rat.dae" type="PackedScene" id=3]
 [ext_resource path="res://components/WeaponSlot.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/eamonn/rat/rat_C.png" type="Texture" id=5]
 [ext_resource path="res://asset_sources/rat.obj" type="ArrayMesh" id=6]
+[ext_resource path="res://components/DiffWheel.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/eamonn/rat/rat_mat.tres" type="Material" id=8]
+[ext_resource path="res://assets/eamonn/rat/rat_destroyed.tres" type="Material" id=13]
+[ext_resource path="res://assets/eamonn/rat/rat_itar.tres" type="Material" id=14]
+[ext_resource path="res://components/player_control/TankMovement.tscn" type="PackedScene" id=15]
 
-[sub_resource type="SpatialMaterial" id=1]
+[sub_resource type="SpatialMaterial" id=2]
 albedo_texture = ExtResource( 5 )
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 4.32296, 1, 2.25775 )
 
 [node name="Vehicle" instance=ExtResource( 1 )]
 speed = 45.0
@@ -27,9 +34,12 @@ material/0 = ExtResource( 8 )
 [node name="fake_graphics" parent="." index="7" instance=ExtResource( 3 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.429734, 0 )
 
+[node name="Skeleton" parent="fake_graphics/Armature" index="0"]
+bones/1/bound_children = [ NodePath("Turret") ]
+
 [node name="Cube" parent="fake_graphics/Armature/Skeleton" index="0"]
 visible = false
-material/0 = SubResource( 1 )
+material/0 = SubResource( 2 )
 
 [node name="Turret" parent="fake_graphics/Armature/Skeleton" index="1" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, -2.41235, 1.07387, -0.848861 )
@@ -41,6 +51,57 @@ traverse_degrees = 15
 
 [node name="WeaponSlot" parent="fake_graphics/Armature/Skeleton/Turret/ElevationPivot" index="0" instance=ExtResource( 4 )]
 primary = true
+
+[node name="VehicleCore" parent="." index="8"]
+turret_path = NodePath("../fake_graphics/Armature/Skeleton/Turret")
+graphics = NodePath("../MeshInstance")
+player_shader = ExtResource( 14 )
+destroyed_shader = ExtResource( 13 )
+movement_type = ExtResource( 15 )
+
+[node name="VehicleWheel" parent="." index="9" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.71946, 0.48566, 2.55578 )
+wheel_radius = 1.0
+right = true
+
+[node name="VehicleWheel2" parent="." index="10" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.5303, 0.48566, 2.55578 )
+wheel_radius = 1.0
+right = true
+
+[node name="VehicleWheel3" parent="." index="11" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.564119, 0.48566, 2.55578 )
+wheel_radius = 1.0
+right = true
+
+[node name="VehicleWheel4" parent="." index="12" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.39492, 0.48566, 2.55578 )
+wheel_radius = 1.0
+right = true
+
+[node name="VehicleWheel5" parent="." index="13" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.71946, 0.48566, -2.575 )
+wheel_radius = 1.0
+left = true
+
+[node name="VehicleWheel6" parent="." index="14" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.5303, 0.48566, -2.575 )
+wheel_radius = 1.0
+left = true
+
+[node name="VehicleWheel7" parent="." index="15" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.564119, 0.48566, -2.575 )
+wheel_radius = 1.0
+left = true
+
+[node name="VehicleWheel8" parent="." index="16" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.39492, 0.48566, -2.575 )
+wheel_radius = 1.0
+left = true
+
+[node name="CollisionShape" type="CollisionShape" parent="." index="17"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1471, 0 )
+shape = SubResource( 3 )
 
 [editable path="Notifier"]
 [editable path="fake_graphics"]
