@@ -19,9 +19,6 @@ accel = 6.0
 [node name="Graphics" parent="." index="0" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.19464, 0 )
 
-[node name="Skeleton" parent="Graphics/Armature" index="0"]
-bones/1/bound_children = [ NodePath("Turret") ]
-
 [node name="Cube001" parent="Graphics/Armature/Skeleton" index="0"]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0 )
 material/0 = ExtResource( 4 )

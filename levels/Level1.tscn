@@ -292,7 +292,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 89.0214, 5.80665, 115.399 )
 mode = 2
 
 [node name="Skeleton" parent="Vehicle/Graphics/Armature" index="0"]
-bones/1/bound_children = [  ]
+bones/1/bound_children = [ NodePath("Turret") ]
 
 [node name="Turret" parent="Vehicle/Graphics/Armature/Skeleton" index="1"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46416, 2.84734, 0 )

@@ -5,12 +5,12 @@ var current_level = 0
 var LEVELS = [
 	{
 		"name": "Smoking Section",
-		"desc": "Moloch has a foothold here with three reactors. Destroy them.",
+		"desc": "You want to strike a blow against the Domains? They're storing a fuel in an under-guarded outpost. Should burn real well.",
 		"scene": "res://levels/Level1.tscn"
 	},
 	{
 		"name": "Dancing With A Ghost",
-		"desc": "An important Moloch pilot is holed up in this fortress. Eliminate them.",
+		"desc": "An opportunity presents itself; a general is making an inspection of this outpost to raise morale. Lower it.",
 		"scene": "res://levels/Level2.tscn"
 	}
 ]
@@ -19,17 +19,17 @@ var VEHICLES = {
 	"hovertank": {
 		"name": "Hover Tank",
 		"scene": preload("res://entities/vehicles/hovertank.tscn"),
-		"desc": "Nothing changes your perspective like being a meter off the ground"
+		"desc": "If any nation could field more than a handful of these, they'd already run the planet."
 	},
 	"mecha": {
 		"name": "Cassidy Mech",
 		"scene": preload("res://entities/vehicles/Mecha.tscn"),
-		"desc": "Light, by giant robot standards"
+		"desc": "Light, by giant robot standards."
 	},
 	"cobra": {
 		"name": "Cobra Light TD",
 		"scene": preload("res://entities/vehicles/rat.tscn"),
-		"desc": "Everything sacrified at the alter of speed and a bigger gun"
+		"desc": "Everything sacrified at the altar of speed and a bigger gun. Mounts no secondary weapon. Handling is, well, you'll see."
 	}
 }
 
@@ -73,7 +73,7 @@ var WEAPONS = {
 
 
 var FACTIONS = [
-	{"name": "Alliance"},
+	{"name": "Domains"},
 	{"name": "Rebels"}
 ]
 
@@ -81,8 +81,6 @@ var selected_vehicle: String
 var selected_control_scheme: String
 var selected_primary: String
 var selected_secondary: String
-var selected_pilot: String
-var selected_camera: bool
 
 var CONTROLLERS = {
 	"absolute": preload("res://components/player_control/AbsoluteController.tscn")
@@ -116,9 +114,6 @@ func set_secondary_selection(index: int):
 	var byindex = keys[index]
 	selected_secondary = WEAPONS.keys()[index]
 	
-func set_camera_selection(index: int):
-	selected_camera = bool(index)
-
 func spawn_player(world: Node):
 	Heat.heat = 0
 	var player = VEHICLES[selected_vehicle].scene.instance()
@@ -150,7 +145,7 @@ func spawn_player(world: Node):
 	
 	player.get_node("VehicleCore").faction = 1  # Players always work for ITAR
 	var camera_rig = preload("res://camera/CameraRig.tscn").instance()
-	camera_rig.third_person = not bool(selected_camera)
+	camera_rig.third_person = true
 	world.add_child(camera_rig)
 	world.add_child(player)
 	Hud.add_player(player)
