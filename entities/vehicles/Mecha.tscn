@@ -1,10 +1,13 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://entities/KinematicVehicle.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/eamonn/mecha/mecha.escn" type="PackedScene" id=2]
 [ext_resource path="res://components/Turret.tscn" type="PackedScene" id=3]
 [ext_resource path="res://components/WeaponSlot.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/eamonn/mecha/Mecha_destroyed.tres" type="Material" id=5]
 [ext_resource path="res://assets/eamonn/mecha/Mecha.tres" type="Material" id=6]
+[ext_resource path="res://components/player_control/WalkMovement.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/eamonn/mecha/Mecha_itar.tres" type="Material" id=8]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 1.84335
@@ -49,6 +52,13 @@ radius = 45.0
 
 [node name="CenterOfMass" parent="." index="7"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.21033, 0 )
+
+[node name="VehicleCore" parent="." index="8"]
+turret_path = NodePath("../Graphics/Armature/Turret")
+graphics = NodePath("../Graphics/Armature/Cube")
+player_shader = ExtResource( 8 )
+destroyed_shader = ExtResource( 5 )
+movement_type = ExtResource( 7 )
 
 [editable path="Graphics"]
 [editable path="Graphics/Armature/Turret"]
