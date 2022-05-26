@@ -1,5 +1,9 @@
 extends Label
 
+onready var parent = get_node("../../")
+
 func _process(delta):
-	var aim_pose = get_node("../../").aim_pose
-	text = "Yaw: " + str(aim_pose.x) + "\n" + "Pitch: " + str(aim_pose.y)
+	text = "l_bound: " + str(rad2deg(parent.l_bound)) + "\n" + \
+		"r_bound: " + str(rad2deg(parent.r_bound)) + "\n" + \
+		"aim: " + str(rad2deg(parent.last_aim_input)) + "\n" + \
+		"branch: " + parent.cond_branch

@@ -288,11 +288,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 267.236, 24.2601, 425.833 )
 spawn = ExtResource( 10 )
 
 [node name="Vehicle" parent="." index="42" instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 89.0214, 5.80665, 115.399 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 174.328, 19.5387, 308.208 )
 mode = 2
-
-[node name="Skeleton" parent="Vehicle/Graphics/Armature" index="0"]
-bones/1/bound_children = [ NodePath("Turret") ]
 
 [node name="Turret" parent="Vehicle/Graphics/Armature/Skeleton" index="1"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46416, 2.84734, 0 )
