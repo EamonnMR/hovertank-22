@@ -115,7 +115,6 @@ func set_secondary_selection(index: int):
 	selected_secondary = WEAPONS.keys()[index]
 	
 func spawn_player(world: Node):
-	Heat.heat = 0
 	var player = VEHICLES[selected_vehicle].scene.instance()
 	player_object = player
 	
