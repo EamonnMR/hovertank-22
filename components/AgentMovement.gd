@@ -1,5 +1,7 @@
 extends Movement
 
+# TODO: Somewhere in this class, we're moving something we shouldn't.
+
 const DetourCrowdAgentParameters:NativeScript = preload("res://addons/godotdetour/detourcrowdagentparameters.gdns")
 
 var agent
@@ -13,8 +15,13 @@ export var usePrediction = true
 
 func _ready():
 	world = parent.get_node("../")
+	var par: Node = parent
+	print(parent)
+	print(par.get_children())
+	
+	# TODO: This is leading to wonkyness because it's rotating just the skeleton.
 	parent.get_node("Graphics").rotation.y += PI/2
-	parent.connect("destroyed", self, "stop")
+	parent.get_node("VehicleCore").connect("destroyed", self, "stop")
 	
 	var sticky_point = world.stick_to_ground(parent.global_transform.origin)
 	assert(sticky_point)
@@ -25,7 +32,8 @@ func _ready():
 
 func navigate_to_position(position: Vector3):
 	print("Navigation begins: ", parent.name, " to: ", position)
-	if parent.destroyed:
+	if parent.core.destroyed:
+
 		return
 	var maybe_position = world.stick_to_ground(position)
 	print("Update nav to: ", maybe_position)
@@ -83,7 +91,7 @@ func _physics_process(delta):
 	# Remember time of update
 	lastUpdateTimestamp = OS.get_ticks_msec()
 	#if parent.match_ground:
-	#	match_ground_normal(delta, parent)
+	match_ground_normal(delta, parent)
 
 
 func stop():

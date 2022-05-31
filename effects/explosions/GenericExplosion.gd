@@ -10,6 +10,7 @@ func init(damage: int = 0, radius: int = 0, friendly_splash: bool = false, iff: 
 	self.radius = radius
 	self.friendly_splash = friendly_splash
 	self.iff = iff
+	$Notifier.notification_source = iff.owner
 
 func immediate_damage():
 	call_deferred("do_damage")

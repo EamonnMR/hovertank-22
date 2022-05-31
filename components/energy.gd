@@ -21,7 +21,9 @@ func is_full():
 
 func _ready():
 	energy = max_energy
-	parent.connect("destroyed", self, "_parent_destroyed")
+	# TODO: Figure out to handle this across _things_
+	# Maybe parent this to VehicleCore?
+	# parent.get_node("VehicleCore").connect("destroyed", self, "_parent_destroyed")
 
 func _parent_destroyed():
 	var pickup_scene = preload("res://entities/pickups/PowerPickup.tscn")

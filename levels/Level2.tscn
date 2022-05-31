@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://environment/World.tscn" type="PackedScene" id=1]
 [ext_resource path="res://addons/zylann.hterrain/hterrain.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://entities/monsters/IncursionSpawner.tscn" type="PackedScene" id=8]
 [ext_resource path="res://entities/vehicles/prefab/BasicTD.tscn" type="PackedScene" id=9]
 [ext_resource path="res://components/level/MapMesh.tscn" type="PackedScene" id=10]
+[ext_resource path="res://entities/KinematicVehicle.gd" type="Script" id=11]
 
 [sub_resource type="ArrayMesh" id=1]
 surfaces/0 = {
@@ -61,6 +62,9 @@ material/0 = null
 
 [node name="Vehicle" parent="." index="4" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 84.4986, 26.6326, 309.789 )
+collision_layer = 3
+collision_mask = 3
+script = ExtResource( 11 )
 
 [node name="Vehicle2" parent="." index="5" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 70.4943, 23.2276, 324.352 )

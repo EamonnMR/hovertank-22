@@ -26,7 +26,7 @@ var unrotated_position: Spatial
 
 var request_turn = 0
 
-var aim_pose # Cache so other things can query it.
+var aim_pose: Vector2 # Cache so other things can query it.
 
 const AIM_EXTEND = 1000
 
@@ -58,11 +58,8 @@ func get_weapons():
 func _ready():
 	if traverse_degrees:
 		_setup_traverse()
-	parent = self
-	while not (parent is Vehicle):
-		print(parent)
-		parent = parent.get_node("../")
-	assert(parent is Vehicle)
+	
+	parent = _get_parent()
 	
 	assert($ElevationPivot.get_children().size() > 0)
 	for slot in $ElevationPivot.get_children():
@@ -75,7 +72,7 @@ func _ready():
 	for weapon in primary_weapons + secondary_weapons:
 		weapon.init(IffProfile.new(
 			parent,
-			parent.faction,
+			parent.get_node("VehicleCore").faction,
 			false
 		))
 	
@@ -113,7 +110,7 @@ func get_aim_y():
 	return _modify_aim(aim_pose.y)
 
 func _process(delta):
-	if parent.destroyed:
+	if parent.core.destroyed:
 		return
 	var aim_point = parent.get_node("Controller").get_aim_point()
 	aim_pose = _aim_to_turret_pose(aim_point)
@@ -125,10 +122,10 @@ func _process(delta):
 	)
 	$ElevationPivot.rotation = aim_pose.x * elevation_axis
 	
-	if parent.camera:
+	if parent.core.camera:
 		var ray_result: Dictionary = project_ray()
 		if ray_result.has("position"):
-			parent.camera.set_turret_point(ray_result.position)
+			parent.core.camera.set_turret_point(ray_result.position)
 
 func project_ray():
 	# What is the turret pointing at right now?
@@ -186,47 +183,51 @@ func _constrain_aim_by_traverse(aim: float) -> float:
 	# There's probably a less tabley way to do this
 	
 	# The cond_branch stuff is in there in case you need to debug this again.
-	if true: # bone_invert:
-		#cond_branch = ""
+	cond_branch = ""
+	request_turn = 0
+	if bone_invert and aim >= l_bound and aim <= r_bound:
+		cond_branch = "this is fine"
+		return aim
+	else:
 		var rear_facing = (aim <= 0) if bone_invert else (aim >= 0)
 		if rear_facing:
-			#cond_branch += "Rear; "
+			cond_branch += "Rear; "
 			if bounds_in_front:
-				#cond_branch += "Bounds in front; "
+				cond_branch += "Bounds in front; "
 				if aim > PI/2:
 					request_turn = -1
-					#cond_branch = "Rear; bounds in front; aim > 90; turn L bound"
+					cond_branch += "Rear; bounds in front; aim > 90; turn L bound"
 					return l_bound
 				else:
 					request_turn = 1
-					#cond_branch = "Rear; bounds in front; aim < 90; turn R bound"
+					cond_branch += "Rear; bounds in front; aim < 90; turn R bound"
 					return r_bound
 			else:
-				#cond_branch += "Bounds in rear; "
+				cond_branch += "Bounds in rear; "
 				if aim > l_bound and aim < r_bound:
-					#cond_branch += "r_bound > aim > l_bound; aim"
+					cond_branch += "r_bound > aim > l_bound; aim"
 					if aim > PI/2:
 						request_turn = -1
-						#cond_branch += "aim < 90; turn R bound"
+						cond_branch += "aim < 90; turn R bound"
 						return r_bound
 					else:
 						request_turn = 1
-						#cond_branch += "aim <= 90; turn L bound"
+						cond_branch += "aim <= 90; turn L bound"
 						return l_bound
 		else: # Front Facing
-			#cond_branch += "Front; "
+			cond_branch += "Front; "
 			if bounds_in_front:
-				#cond_branch += "Bounds in front; "
+				cond_branch += "Bounds in front; "
 				if aim < l_bound:
 					request_turn = -1
-					#cond_branch = "aim < l_bound; turn L bound"
+					cond_branch += "aim < l_bound; turn L bound"
 					return l_bound
 				if aim > r_bound:
 					request_turn = 1
-					#cond_branch = "aim > r_bound; turn R bound"
+					cond_branch += "aim > r_bound; turn R bound"
 					return r_bound
-			#else:
-				#cond_branch += "Bounds not in front; no op"
+			else:
+				cond_branch += "Bounds not in front; no op"
 		if aim >= 0: # Rear Quarter
 			if bounds_in_front:
 				if aim > PI/2:
@@ -253,3 +254,17 @@ func _constrain_aim_by_traverse(aim: float) -> float:
 					return r_bound
 	request_turn = 0
 	return aim
+
+func _get_parent():
+	var valid_parent_types = [
+		VehicleBody,
+		RigidBody,
+		KinematicBody,
+	]
+	var maybe_parent = self
+	while parent != get_tree().get_root():
+		maybe_parent = maybe_parent.get_node("../")
+		for type in valid_parent_types:
+			if maybe_parent is type:
+				return maybe_parent 
+	assert(false)

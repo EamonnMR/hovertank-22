@@ -2,7 +2,7 @@ extends Spatial
 
 onready var parent = get_node("../")
 onready var navmesh = get_node("../../NavigationMesh") # TODO: Different navmeshes for different movement capabilities
-onready var firing_range: float = parent.derive_engagement_range()
+onready var firing_range: float = parent.get_node("VehicleCore").derive_engagement_range()
 onready var chase_distance = firing_range / 2
 
 var target: Spatial
@@ -33,12 +33,13 @@ func recalculate_path():
 	if target:
 		recalculate_path_to_target()
 	else:
-		if parent.wander:
-			print("Picking new wander destination")
-			destination = _random_destination()
-			get_node("../Movement").navigate_to_position(destination)
-		else:
-			get_node("../Movement").stop()
+		if get_node("../Movement"):
+			if parent.core.wander:
+				print("Picking new wander destination")
+				destination = _random_destination()
+				get_node("../Movement").navigate_to_position(destination)
+			else:
+				get_node("../Movement").stop()
 
 func _obtain_target(target):
 	print("Target Obtained: ", target)
@@ -67,7 +68,7 @@ func is_shooting_secondary():
 func is_shooting():
 	# TODO: Only when gun is ready to fire
 	if is_instance_valid(target) and target.global_transform.origin.distance_to(global_transform.origin) < firing_range:
-		var raycast_result = get_node("../").get_turrets()[0].project_ray()
+		var raycast_result = get_node("../VehicleCore").get_turrets()[0].project_ray()
 		# TODO: If Raycast has result at all
 		if raycast_result.has("collider"):
 			if raycast_result.collider == self:
@@ -83,7 +84,7 @@ func is_shooting():
 		return false
 
 func _has_los_player(player):
-	var our_pos = 	get_parent().get_center_of_mass()
+	var our_pos = parent.get_center_of_mass()
 	var player_pos = player.get_center_of_mass()
 	var space_state = get_world().get_direct_space_state()
 	var result = space_state.intersect_ray(our_pos, player_pos, [get_parent()], 1)
@@ -91,7 +92,9 @@ func _has_los_player(player):
 	return has_los
 
 func alert(alerting_body):
-	if not parent.destroyed:
+	if not parent:
+		return
+	if not parent.core.destroyed:
 		if _is_foe(alerting_body):
 			print("Alert!")
 			if not _has_target():
@@ -103,8 +106,10 @@ func use_ability_primary():
 func use_ability_secondary():
 	return false
 	
+	
 func _is_foe(entity: Node) -> bool:
-	var entity_fac = entity.get("faction")
-	if entity_fac == null:
-		return false
-	return entity_fac != parent.faction
+	if entity.has_node("VehicleCore"):
+		var fac = entity.get_node("VehicleCore").faction
+		var myfac = parent.core.faction
+		return entity.get_node("VehicleCore").faction != parent.core.faction
+	return false

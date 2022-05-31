@@ -30,5 +30,6 @@ func _on_player_destroyed():
 	get_tree().get_root().add_child(timer)
 	timer.start()
 	queue_free()
+	
 func _get_turret_turn():
-	return parent.get_turrets()[0].request_turn
+	return parent.core.get_turrets()[0].request_turn
