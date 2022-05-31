@@ -6,10 +6,14 @@
 [sub_resource type="SphereShape" id=3]
 radius = 0.213653
 
-[node name="Projectile" type="KinematicBody"]
+[node name="Projectile" type="RigidBody"]
 collision_layer = 0
+contacts_reported = 1
+contact_monitor = true
 script = ExtResource( 1 )
 explosion = ExtResource( 2 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 shape = SubResource( 3 )
+
+[connection signal="body_entered" from="." to="." method="do_impact"]

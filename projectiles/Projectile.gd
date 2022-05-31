@@ -1,4 +1,4 @@
-extends KinematicBody
+extends RigidBody
 
 export var speed = 50
 export var damage = 0
@@ -12,18 +12,16 @@ var iff: IffProfile
 
 func init(iff: IffProfile):
 	self.iff = iff
-	add_collision_exception_with(iff.owner)
-	
-func _physics_process(delta):
-	var collision: KinematicCollision = move_and_collide(
-		global_transform.basis.x * speed * delta
+
+func _ready():
+	add_collision_exception_with(self.iff.owner)
+	call_deferred("initial_velocity")
+
+func initial_velocity():
+	apply_central_impulse(
+		(speed / mass) * transform.basis.x
 	)
-	
-	if collision:
-		var collider = collision.collider
-		
-		_do_impact(collider)
-	
+
 func _explode():
 	# TODO: Calculate ricochet angle
 	var explo = explosion.instance()
@@ -32,7 +30,7 @@ func _explode():
 		explo.init(splash_damage, splash_radius, false, iff)
 	get_node("../").add_child(explo)
 
-func _do_impact(collider):
+func do_impact(collider):
 	print("Shot impact - do damage")
 	if not iff.should_exclude(collider):
 		Health.do_damage(collider, damage)
