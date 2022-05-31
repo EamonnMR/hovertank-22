@@ -29,7 +29,7 @@ func get_power():
 	return engine_torque
 
 func graphics():
-	return core.get_node(core.graphics)
+	return get_node("VehicleCore").get_node(get_node("VehicleCore").graphics)
 
 func alert(source):
 	return get_node("VehicleCore").alert(source)

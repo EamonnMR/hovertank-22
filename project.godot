@@ -96,7 +96,6 @@ Procgen="*res://Procgen.tscn"
 Util="*res://Util.gd"
 Client="*res://Client.tscn"
 Hud="*res://ui/hud.tscn"
-Heat="*res://environment/Heat.tscn"
 
 [editor_plugins]
 

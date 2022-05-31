@@ -1,20 +1,15 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://ui/hud.gd" type="Script" id=1]
 [ext_resource path="res://assets/danc_cc_by/health_under.png" type="Texture" id=2]
 [ext_resource path="res://assets/danc_cc_by/health_over.png" type="Texture" id=3]
 [ext_resource path="res://assets/danc_cc_by/healthpack.png" type="Texture" id=4]
-[ext_resource path="res://assets/eamonn/power.png" type="Texture" id=5]
-[ext_resource path="res://assets/danc_cc_by/skull.png" type="Texture" id=6]
 [ext_resource path="res://ui/FPS.gd" type="Script" id=7]
 
 [node name="HUD" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="TopLeft" type="Control" parent="."]
 margin_right = 40.0
@@ -39,62 +34,11 @@ margin_right = 123.5
 margin_bottom = 39.0
 texture = ExtResource( 4 )
 
-[node name="EnergyWidget" type="TextureProgress" parent="TopLeft"]
-margin_left = 15.0
-margin_top = 71.0
-margin_right = 94.0
-margin_bottom = 111.0
-rect_scale = Vector2( 2, 2 )
-texture_under = ExtResource( 2 )
-texture_progress = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TextureRect" type="TextureRect" parent="TopLeft/EnergyWidget"]
-margin_left = 83.5
-margin_top = -1.0
-margin_right = 123.5
-margin_bottom = 39.0
-texture = ExtResource( 5 )
-
 [node name="TopRight" type="Control" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -103.998
 margin_bottom = 157.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HeatWidget" type="TextureProgress" parent="TopRight"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -39.5001
-margin_top = 72.8951
-margin_right = 39.5
-margin_bottom = 112.895
-rect_rotation = -90.0
-rect_scale = Vector2( 2, 2 )
-texture_under = ExtResource( 2 )
-texture_progress = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TextureRect" type="TextureRect" parent="TopRight"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -54.4611
-margin_top = 86.3798
-margin_right = -14.4611
-margin_bottom = 126.38
-rect_scale = Vector2( 2, 2 )
-texture = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

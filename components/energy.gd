@@ -29,7 +29,6 @@ func _parent_destroyed():
 	var pickup_scene = preload("res://entities/pickups/PowerPickup.tscn")
 	var pickups = []
 	var half_energy = int(energy / 2)
-	Heat.add_heat(half_energy)
 	while half_energy >= 20:
 		half_energy -= 20
 		pickups.append(pickup_scene.instance())
