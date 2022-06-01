@@ -2,12 +2,11 @@
 
 ![A hovertank in-game](screen03.jpg)
 
-
 Vehicular combat in godot
 
 [Mapping guide](http://blog.eamonnmr.com/2022/03/making-a-hovertank-level/)
 
-Includes HTerrain and GodotDetour (MIT)
+Includes HTerrain and GodotDetour (MIT). Large chunks of the Godot Detour demo are incorporated into world.gd. The code (not assets) are MIT licensed.
 
 Assets are credited by folder and licensed as noted. My own assets are in the Eamonn folder.
 
