@@ -1,12 +1,17 @@
-Open World Top Down
+## Hovertank '22
 
-Includes HTerrain, Navigation Lite, and GodotDetour (MIT)
+![A hovertank in-game](screen03.jpg)
 
-Make sure you:
 
-git clone with simlinks
+Vehicular combat in godot
 
-git clone your submodules
+[Mapping guide](http://blog.eamonnmr.com/2022/03/making-a-hovertank-level/)
+
+Includes HTerrain and GodotDetour (MIT)
+
+Assets are credited by folder and licensed as noted. My own assets are in the Eamonn folder.
+
+I've built a binary for GodotDetour for Linux and Windows but for other platforms you'll need to build it.
 
 go into godotdetour, set up the native library as described in its docs: https://github.com/TheSHEEEP/godotdetour
 

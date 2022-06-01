@@ -86,7 +86,8 @@ _global_script_class_icons={
 
 [application]
 
-config/name="owtd"
+config/name="Hovertank 22"
+config/description="Game of mobile armored combat"
 run/main_scene="res://ui/SpawnMenu.tscn"
 config/icon="res://icon.png"
 

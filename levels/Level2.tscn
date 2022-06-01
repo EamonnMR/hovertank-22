@@ -77,9 +77,6 @@ shape = SubResource( 3 )
 [node name="Vehicle2" parent="." index="5" instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 128.34, 25.2886, 291.271 )
 
-[node name="Skeleton" parent="Vehicle2/Graphics/Armature" index="0"]
-bones/1/bound_children = [ NodePath("Turret") ]
-
 [node name="Turret" parent="Vehicle2/Graphics/Armature/Skeleton" index="1"]
 transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 1.82709, 0.81222 )
 
@@ -89,9 +86,6 @@ transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 1.82709, 0.81222 )
 
 [node name="Vehicle3" parent="." index="6" instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 128.34, 25.2886, 265.339 )
-
-[node name="Skeleton" parent="Vehicle3/Graphics/Armature" index="0"]
-bones/1/bound_children = [ NodePath("Turret") ]
 
 [node name="Turret" parent="Vehicle3/Graphics/Armature/Skeleton" index="1"]
 transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 1.82709, 0.81222 )
@@ -103,9 +97,6 @@ transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 1.82709, 0.81222 )
 [node name="Vehicle4" parent="." index="7" instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 79.691, 25.2886, 291.271 )
 
-[node name="Skeleton" parent="Vehicle4/Graphics/Armature" index="0"]
-bones/1/bound_children = [ NodePath("Turret") ]
-
 [node name="Turret" parent="Vehicle4/Graphics/Armature/Skeleton" index="1"]
 transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 1.82709, 0.81222 )
 
@@ -116,9 +107,6 @@ transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 1.82709, 0.81222 )
 [node name="Vehicle5" parent="." index="8" instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 79.691, 25.2886, 265.339 )
 
-[node name="Skeleton" parent="Vehicle5/Graphics/Armature" index="0"]
-bones/1/bound_children = [ NodePath("Turret") ]
-
 [node name="Turret" parent="Vehicle5/Graphics/Armature/Skeleton" index="1"]
 transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 1.82709, 0.81222 )
 
@@ -128,9 +116,6 @@ transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 1.82709, 0.81222 )
 
 [node name="Vehicle" parent="." index="9" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 103.076, 26.4381, 278.82 )
-
-[node name="Skeleton" parent="Vehicle/Graphics/Armature" index="0"]
-bones/1/bound_children = [ NodePath("Turret") ]
 
 [node name="Turret" parent="Vehicle/Graphics/Armature/Skeleton" index="1"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46416, 2.84734, 0 )
