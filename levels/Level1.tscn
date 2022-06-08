@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://environment/World.tscn" type="PackedScene" id=1]
 [ext_resource path="res://levels/tileset.tres" type="Resource" id=2]
@@ -16,6 +16,8 @@
 [ext_resource path="res://components/level/MapMesh.tscn" type="PackedScene" id=14]
 [ext_resource path="res://entities/vehicles/prefab/EasyScout.tscn" type="PackedScene" id=15]
 [ext_resource path="res://entities/vehicles/prefab/LightSniper.tscn" type="PackedScene" id=16]
+[ext_resource path="res://ui/transmission.tscn" type="PackedScene" id=18]
+[ext_resource path="res://assets/eamonn/audio/voiceover/l1_ops.wav" type="AudioStream" id=19]
 
 [sub_resource type="ArrayMesh" id=2]
 surfaces/0 = {
@@ -331,9 +333,16 @@ shape = SubResource( 16 )
 
 [node name="ObjectiveMarker" parent="ExitDoor" index="1" instance=ExtResource( 10 )]
 
+[node name="Control" parent="." index="51" instance=ExtResource( 18 )]
+visible = false
+
+[node name="AudioStreamPlayer" parent="Control" index="0"]
+stream = ExtResource( 19 )
+
 [editable path="WorldEnvironment"]
 [editable path="Vehicle"]
 [editable path="Vehicle/Graphics"]
 [editable path="Vehicle/Graphics/Armature/Skeleton/Turret"]
 [editable path="Vehicle/Notifier"]
 [editable path="ExitDoor"]
+[editable path="Control"]
