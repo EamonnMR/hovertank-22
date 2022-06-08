@@ -5,7 +5,7 @@ var current_level = 0
 var LEVELS = [
 	{
 		"name": "Smoking Section",
-		"desc": "You want to strike a blow against the Domains? They're storing a fuel in an under-guarded outpost. Should burn real well.",
+		"desc": "Stranded, surrounded, and just woken up from cryo.",
 		"scene": "res://levels/Level1.tscn"
 	},
 	{
@@ -19,7 +19,7 @@ var VEHICLES = {
 	"hovertank": {
 		"name": "Hover Tank",
 		"scene": preload("res://entities/vehicles/hovertank.tscn"),
-		"desc": "If any nation could field more than a handful of these, they'd already run the planet."
+		"desc": "A standard Warp Ranger choice."
 	},
 	"mecha": {
 		"name": "Cassidy Mech",
@@ -37,12 +37,12 @@ var WEAPONS = {
 	"cannon": {
 		"name": "Heavy Cannon",
 		"scene": preload("res://components/weapons/Cannon.tscn"),
-		"desc": "Real big"
+		"desc": "Standard heavy weapon. Decent splash."
 	},
 	"autocanon": {
 		"name": "Autocannon",
 		"scene": preload("res://components/weapons/AutoCannon.tscn"),
-		"desc": "Real fast"
+		"desc": "Standard light weapon. Limited utility against armored vehicles."
 	},
 	"canister": {
 		"name": "Canister Shot",
@@ -52,17 +52,17 @@ var WEAPONS = {
 	"steinbolt": {
 		"name": "Steinbolt",
 		"scene": preload("res://components/weapons/Steinbolt.tscn"),
-		"desc": "Long range, long reload particle accelerator"
+		"desc": "Mind the delay. Enjoy the fireworks."
 	},
 	"railgun": {
 		"name": "Railgun",
 		"scene": preload("res://components/weapons/Railgun.tscn"),
-		"desc": "Know your target, and what's behind it."
+		"desc": "Know your target, and what's behind it. And what's behind that..."
 	},
 	"laser": {
 		"name": "Laser",
 		"scene": preload("res://components/weapons/Laser.tscn"),
-		"desc": "Somewhat worse than the average sunburn"
+		"desc": "Somewhat worse than the average sunburn."
 	},
 	"ripsaw": {
 		"name": "Ripsaw",
