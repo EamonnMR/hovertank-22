@@ -43,34 +43,45 @@ var WEAPONS = {
 		"name": "Autocannon",
 		"scene": preload("res://components/weapons/AutoCannon.tscn"),
 		"desc": "Standard light weapon. Limited utility against armored vehicles."
-	},
-	"canister": {
-		"name": "Canister Shot",
-		"scene": preload("res://components/weapons/Canister.tscn"),
-		"desc": "Double down on close range combat; you won't hit anything else"
-	},
-	"steinbolt": {
-		"name": "Steinbolt",
-		"scene": preload("res://components/weapons/Steinbolt.tscn"),
-		"desc": "Mind the delay. Enjoy the fireworks."
-	},
-	"railgun": {
-		"name": "Railgun",
-		"scene": preload("res://components/weapons/Railgun.tscn"),
-		"desc": "Know your target, and what's behind it. And what's behind that..."
-	},
-	"laser": {
-		"name": "Laser",
-		"scene": preload("res://components/weapons/Laser.tscn"),
-		"desc": "Somewhat worse than the average sunburn."
-	},
-	"ripsaw": {
-		"name": "Ripsaw",
-		"scene": preload("res://components/weapons/Ripsaw.tscn"),
-		"desc": "Anything but mini"
 	}
 }
+	
+var SPECIAL_WEAPONS = [
+	{
+		"name": "Canister Shot",
+		"scene": preload("res://components/weapons/Canister.tscn"),
+		"desc": "Double down on close range combat; you won't hit anything else",
+		"ammo_pickup_count": 20
+	},
 
+	{
+		"name": "Steinbolt",
+		"scene": preload("res://components/weapons/Steinbolt.tscn"),
+		"desc": "Mind the delay. Enjoy the fireworks.",
+		"ammo_pickup_count": 4
+	},
+
+	{
+		"name": "Railgun",
+		"scene": preload("res://components/weapons/Railgun.tscn"),
+		"desc": "Know your target, and what's behind it. And what's behind that...",
+		"ammo_pickup_count": 12
+	},
+	
+	{
+		"name": "Laser",
+		"scene": preload("res://components/weapons/Laser.tscn"),
+		"desc": "Somewhat worse than the average sunburn.",
+		"ammo_pickup_count": 30
+	},
+	
+	{
+		"name": "Ripsaw",
+		"scene": preload("res://components/weapons/Ripsaw.tscn"),
+		"desc": "Anything but mini",
+		"ammo_pickup_count": 60
+	}
+]
 
 var FACTIONS = [
 	{"name": "Domains"},

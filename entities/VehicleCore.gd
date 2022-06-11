@@ -19,6 +19,10 @@ export var movement_type: PackedScene
 export var faction: int = 0
 export var wander: bool = true
 
+export var special_ammo_counts = []
+var special_weapon_selected: bool
+var current_special_weapon: int
+
 # TODO: Load these from Client, make difficulty settings
 const HEALTH_NERF_FACTOR = 0.5
 const DMG_NERF_FACTOR = 0.5
@@ -31,6 +35,10 @@ func is_player():
 func _ready():
 	# If this wasn't spawned as a player, add AI to it
 	# TODO: This isn't as elegant as I'd like
+	
+	for _i in Client.SPECIAL_WEAPONS:
+		special_ammo_counts.append(10)
+	
 	if has_node("../Controller"):
 		call_deferred("add_movement")
 	else:
@@ -65,6 +73,14 @@ func _physics_process(delta: float):
 func _handle_shooting():
 	if not controller or destroyed:
 		return
+		
+	if controller.next_weapon():
+		switch_to_next_special_weapon()
+	
+	if controller.previous_weapon():
+		switch_to_previous_special_weapon()
+	
+		
 	if controller.is_shooting():
 		for turret in get_turrets():
 			turret.try_shoot_primary()
@@ -149,3 +165,48 @@ func derive_engagement_range():
 			weapon_ranges.push_back(weapon.engagement_range)
 	# TODO: average
 	return weapon_ranges[0]
+
+func consume_special_ammo(special_ammo_id: int) -> bool:
+	if special_ammo_counts[special_ammo_id] == 0:
+		call_deferred("switch_to_next_special_weapon")
+		return false
+	else:
+		special_ammo_counts[special_ammo_id] -= 1
+		return true
+
+func switch_to_specific_special(special_id):
+	if special_ammo_counts[special_id] > 0:
+		for slot in get_node(turret_path).secondary_slots:
+			slot.select_special_weapon(special_id)
+		current_special_weapon = special_id
+	else:
+		return false
+
+func switch_to_next_special_weapon():
+	if not switch_to_specific_special(
+		(current_special_weapon + 1) % sw_count()
+	):
+		for i in range(1, sw_count()):
+			var index = (current_special_weapon + i) % sw_count()
+			if switch_to_specific_special(index):
+				break
+		
+		switch_to_default_weapon()
+			
+func switch_to_previous_special_weapon():
+	if not switch_to_specific_special(
+		(sw_count() + (current_special_weapon - 1)) % sw_count()
+	):
+		for i in range(1, sw_count()):
+			var index = (current_special_weapon + i) % sw_count()
+			if switch_to_specific_special(index):
+				break
+		
+		switch_to_default_weapon()
+
+func switch_to_default_weapon():
+	for slot in get_node(turret_path).secondary_slots:
+		slot.return_default_weapon()
+
+func sw_count():
+	return len(Client.SPECIAL_WEAPONS)

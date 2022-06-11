@@ -24,3 +24,9 @@ func get_aim_point() -> Vector3:
 
 func get_aim_y() -> float:
 	return cam_rig.get_aim_y()
+
+func next_weapon():
+	return Input.is_action_just_pressed("next_weapon")
+	
+func previous_weapon():
+	return Input.is_action_just_pressed("previous_weapon")

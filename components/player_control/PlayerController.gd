@@ -4,6 +4,12 @@ class_name PlayerController
 
 onready var parent = get_node("../")
 
+func next_weapon():
+	return false
+	
+func previous_weapon():
+	return false
+
 func _ready():
 	get_node("../").add_to_group("players")
 	get_node("../").connect("destroyed", self, "_on_player_destroyed")

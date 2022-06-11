@@ -12,6 +12,12 @@ var destination: Vector3
 # export var standoff: false
 # export var min_range
 
+func next_weapon():
+	return false
+
+func previous_weapon():
+	return true
+
 func _has_target():
 	return target != null and is_instance_valid(target)
 

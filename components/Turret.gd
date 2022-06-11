@@ -7,8 +7,9 @@ var parent
 
 class_name Turret
 
-var primary_weapons = []
-var secondary_weapons = []
+var primary_slots = []
+var secondary_slots = []
+
 
 # Hacks for wonky models; ignore unless your model is wonky
 export var bone_axis: Vector3 = Vector3(0,1,0)
@@ -65,16 +66,9 @@ func _ready():
 	for slot in $ElevationPivot.get_children():
 		if slot.has_weapon():
 			if slot.primary:
-				primary_weapons.append(slot.get_weapon())
+				primary_slots.append(slot)
 			else:
-				secondary_weapons.append(slot.get_weapon())
-	
-	for weapon in primary_weapons + secondary_weapons:
-		weapon.init(IffProfile.new(
-			parent,
-			parent.get_node("VehicleCore").faction,
-			false
-		))
+				secondary_slots.append(slot)
 	
 	# This uses two extra nodes per turret
 	unrotated_position = Spatial.new()
@@ -94,12 +88,12 @@ func _aim_to_turret_pose(aim_point: Vector3) -> Vector2:
 	return Vector2(euler.x, euler.y)
 
 func try_shoot_primary():
-	for weapon in primary_weapons:
-		weapon.try_shoot()
+	for slot in primary_slots:
+		slot.get_weapon().try_shoot()
 	
 func try_shoot_secondary():
-	for weapon in secondary_weapons:
-		weapon.try_shoot()
+	for slot in secondary_slots:
+		slot.get_weapon().try_shoot()
 
 func _modify_aim(aim_y):
 	return bone_offset + (
@@ -132,7 +126,6 @@ func project_ray():
 	var collisionMask = 1
 	# The pathfinding system only likes to interact with things that are stuck to the ground
 	
-	#var first_weapon_emergepoint = primary_weapons[0]
 	var first_weapon_emergepoint = $ElevationPivot
 	var from = first_weapon_emergepoint.global_transform.origin
 	var to = first_weapon_emergepoint.to_global(Vector3(AIM_EXTEND, 0, 0))
