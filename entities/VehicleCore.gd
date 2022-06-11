@@ -75,10 +75,14 @@ func _handle_shooting():
 		return
 		
 	if controller.next_weapon():
+		print("Switch to next weapon")
 		switch_to_next_special_weapon()
-	
-	if controller.previous_weapon():
-		switch_to_previous_special_weapon()
+
+	#if controller.previous_weapon():
+	#	var pw = controller.previous_weapon()
+	#	breakpoint
+	#	print("Switch to previous weapon")
+	#	switch_to_previous_special_weapon()
 	
 		
 	if controller.is_shooting():
@@ -179,15 +183,16 @@ func switch_to_specific_special(special_id):
 		for slot in get_node(turret_path).secondary_slots:
 			slot.select_special_weapon(special_id)
 		current_special_weapon = special_id
+		return true
 	else:
 		return false
 
 func switch_to_next_special_weapon():
 	if not switch_to_specific_special(
-		(current_special_weapon + 1) % sw_count()
+		sw_mod(current_special_weapon + 1)
 	):
 		for i in range(1, sw_count()):
-			var index = (current_special_weapon + i) % sw_count()
+			var index = sw_mod(current_special_weapon + i)
 			if switch_to_specific_special(index):
 				break
 		
@@ -195,10 +200,10 @@ func switch_to_next_special_weapon():
 			
 func switch_to_previous_special_weapon():
 	if not switch_to_specific_special(
-		(sw_count() + (current_special_weapon - 1)) % sw_count()
+		sw_mod(current_special_weapon - 1)
 	):
 		for i in range(1, sw_count()):
-			var index = (current_special_weapon + i) % sw_count()
+			var index = sw_mod(current_special_weapon + i)
 			if switch_to_specific_special(index):
 				break
 		
@@ -210,3 +215,7 @@ func switch_to_default_weapon():
 
 func sw_count():
 	return len(Client.SPECIAL_WEAPONS)
+
+func sw_mod(index: int) -> int:
+	var count = sw_count()
+	return (count + index) % count

@@ -10,12 +10,6 @@ func is_shooting():
 func is_shooting_secondary():
 	return Input.is_action_pressed("shoot_secondary")
 
-func use_ability_primary():
-	return Input.is_action_just_released("ability_primary")
-
-func use_ability_secondary():
-	return Input.is_action_just_released("ability_secondary")
-
 func is_player():
 	return true
 
@@ -29,4 +23,4 @@ func next_weapon():
 	return Input.is_action_just_pressed("next_weapon")
 	
 func previous_weapon():
-	return Input.is_action_just_pressed("previous_weapon")
+	return Input.is_action_just_pressed("next_weapon")

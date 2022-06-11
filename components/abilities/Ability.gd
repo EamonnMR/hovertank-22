@@ -12,10 +12,10 @@ var cooldown = false
 func _is_trying():
 	if parent.destroyed:
 		return
-	if primary:
-		return controller.use_ability_primary()
-	else:
-		return controller.use_ability_secondary()
+	#if primary:
+	#	return controller.use_ability_primary()
+	#else:
+	#	return controller.use_ability_secondary()
 
 func _physics_process(_delta):
 	if not cooldown and _is_trying() and energy.try_subtracting_energy(cost):
