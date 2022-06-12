@@ -51,35 +51,45 @@ var SPECIAL_WEAPONS = [
 		"name": "Canister Shot",
 		"scene": preload("res://components/weapons/Canister.tscn"),
 		"desc": "Double down on close range combat; you won't hit anything else",
-		"ammo_pickup_count": 20
+		"ammo_pickup_count": 20,
+		"max_ammo": 100,
+		"icon_tex": load("res://assets/danc_cc_by/brown_double.png")
 	},
 
 	{
 		"name": "Steinbolt",
 		"scene": preload("res://components/weapons/Steinbolt.tscn"),
 		"desc": "Mind the delay. Enjoy the fireworks.",
-		"ammo_pickup_count": 4
+		"ammo_pickup_count": 4,
+		"max_ammo": 6,
+		"icon_tex": load("res://assets/danc_cc_by/blue_gadget.png")
 	},
 
 	{
 		"name": "Railgun",
 		"scene": preload("res://components/weapons/Railgun.tscn"),
 		"desc": "Know your target, and what's behind it. And what's behind that...",
-		"ammo_pickup_count": 12
+		"ammo_pickup_count": 12,
+		"max_ammo": 24,
+		"icon_tex": load("res://assets/danc_cc_by/blue_chunky.png")
 	},
 	
 	{
 		"name": "Laser",
 		"scene": preload("res://components/weapons/Laser.tscn"),
 		"desc": "Somewhat worse than the average sunburn.",
-		"ammo_pickup_count": 30
+		"ammo_pickup_count": 30,
+		"max_ammo": 90,
+		"icon_tex": load("res://assets/danc_cc_by/green_wedge.png")
 	},
 	
 	{
 		"name": "Ripsaw",
 		"scene": preload("res://components/weapons/Ripsaw.tscn"),
 		"desc": "Anything but mini",
-		"ammo_pickup_count": 60
+		"ammo_pickup_count": 60,
+		"max_ammo": 300,
+		"icon_tex": load("res://assets/danc_cc_by/minigun.png")
 	}
 ]
 

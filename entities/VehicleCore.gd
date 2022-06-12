@@ -37,7 +37,7 @@ func _ready():
 	# TODO: This isn't as elegant as I'd like
 	
 	for _i in Client.SPECIAL_WEAPONS:
-		special_ammo_counts.append(10)
+		special_ammo_counts.push_back(0)
 	
 	if has_node("../Controller"):
 		call_deferred("add_movement")
@@ -178,11 +178,15 @@ func consume_special_ammo(special_ammo_id: int) -> bool:
 		special_ammo_counts[special_ammo_id] -= 1
 		return true
 
+func can_add_special_ammo(special_id: int) -> bool:
+	return special_ammo_counts[special_id] < Client.SPECIAL_WEAPONS[special_id].max_ammo
+
 func switch_to_specific_special(special_id):
 	if special_ammo_counts[special_id] > 0:
 		for slot in get_node(turret_path).secondary_slots:
 			slot.select_special_weapon(special_id)
 		current_special_weapon = special_id
+		special_weapon_selected = true
 		return true
 	else:
 		return false
@@ -212,6 +216,15 @@ func switch_to_previous_special_weapon():
 func switch_to_default_weapon():
 	for slot in get_node(turret_path).secondary_slots:
 		slot.return_default_weapon()
+	special_weapon_selected = false
+
+func add_special_ammo(special_id):
+	var weapon_dat = Client.SPECIAL_WEAPONS[special_id]
+	special_ammo_counts[special_id] += weapon_dat.ammo_pickup_count
+	if special_ammo_counts[special_id] > weapon_dat.max_ammo:
+		special_ammo_counts[special_id] = weapon_dat.max_ammo
+	if not special_weapon_selected:
+		switch_to_specific_special(special_id)
 
 func sw_count():
 	return len(Client.SPECIAL_WEAPONS)

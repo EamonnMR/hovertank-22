@@ -27,9 +27,16 @@ func _ready():
 	
 	if has_weapon():
 		stored_default_weapon = get_weapon()
+		stored_default_weapon.init(iff_profile)
 	if not primary:
-		for special_weapon_data in Client.SPECIAL_WEAPONS:
-			special_weapons.append(special_weapon_data.scene.instance())
+		for special_weapon_id in range(len(Client.SPECIAL_WEAPONS)):
+			var special_weapon_data = Client.SPECIAL_WEAPONS[special_weapon_id]
+			var weapon = special_weapon_data.scene.instance()
+			weapon.init(iff_profile, special_weapon_id)
+			special_weapons.append(weapon)
+	
+	if stored_default_weapon:
+		stored_default_weapon.init(iff_profile)
 	
 	for weapon in special_weapons + [stored_default_weapon]:
 		if weapon:
@@ -48,4 +55,3 @@ func return_default_weapon():
 	remove_child(get_weapon())
 	if stored_default_weapon:
 		add_child(stored_default_weapon)
-	breakpoint

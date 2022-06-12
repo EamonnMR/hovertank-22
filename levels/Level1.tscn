@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://environment/World.tscn" type="PackedScene" id=1]
 [ext_resource path="res://levels/tileset.tres" type="Resource" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://components/level/MapMesh.tscn" type="PackedScene" id=14]
 [ext_resource path="res://entities/vehicles/prefab/EasyScout.tscn" type="PackedScene" id=15]
 [ext_resource path="res://entities/vehicles/prefab/LightSniper.tscn" type="PackedScene" id=16]
+[ext_resource path="res://entities/pickups/AmmoPickup.tscn" type="PackedScene" id=17]
 [ext_resource path="res://ui/transmission.tscn" type="PackedScene" id=18]
 [ext_resource path="res://assets/eamonn/audio/voiceover/l1_ops.wav" type="AudioStream" id=19]
 
@@ -310,9 +311,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 308.786, 16.4498, 209.223 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 174.328, 12.0296, 308.208 )
 mode = 2
 
-[node name="Skeleton" parent="Vehicle/Graphics/Armature" index="0"]
-bones/1/bound_children = [ NodePath("Turret") ]
-
 [node name="Turret" parent="Vehicle/Graphics/Armature/Skeleton" index="1"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46416, 2.84734, 0 )
 
@@ -338,6 +336,9 @@ visible = false
 
 [node name="AudioStreamPlayer" parent="Control" index="0"]
 stream = ExtResource( 19 )
+
+[node name="Pickup" parent="." index="52" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 339.479, 9.22392, 399.552 )
 
 [editable path="WorldEnvironment"]
 [editable path="Vehicle"]

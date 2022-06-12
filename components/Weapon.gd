@@ -1,10 +1,13 @@
 extends Spatial
 
+class_name Weapon
+
 var cooldown: bool = false
 var burst_cooldown: bool = false
 var burst_counter: int = 0
+var core: VehicleCore = null
+var special_id
 var iff: IffProfile
-class_name Weapon
 
 onready var world = get_tree().get_root().get_node("World")
 export var projectile_scene = preload("res://projectiles/Projectile.tscn")
@@ -21,7 +24,7 @@ func _ready():
 	assert($Graphics)
 	assert($Emerge)
 
-func init(iff: IffProfile):
+func init(iff: IffProfile, special_id=null):
 	self.iff = iff
 	if not iff.owner.is_player():
 		print(iff.owner, " is not player, no need for an alert area")
@@ -29,10 +32,14 @@ func init(iff: IffProfile):
 	else:
 		print(iff.owner, " is player, keep alert area")
 	$Notifier.notification_source = iff.owner
+	if special_id:
+		self.special_id=special_id
+		self.core = iff.owner.get_node("VehicleCore")
 
 func try_shoot():
 	if not cooldown and not burst_cooldown:
-		_shoot()
+		if special_id == null or core.consume_special_ammo(special_id):
+			_shoot()
 
 func _shoot():
 	if burst_count:

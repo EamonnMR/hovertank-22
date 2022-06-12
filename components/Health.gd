@@ -17,11 +17,14 @@ func _ready():
 		health = max_health
 
 func heal(amount):
-	if health <= max_health:
+	if can_heal():
 		health += amount
 		if health >= max_health:
 			health = max_health
 		emit_signal("healed")
+
+func can_heal():
+	return health < max_health
 
 func take_damage(damage):
 	if health <= 0:  # Beating a dead horse

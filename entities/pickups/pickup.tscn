@@ -21,4 +21,9 @@ shape = SubResource( 1 )
 [node name="CollisionShape" type="CollisionShape" parent="PickupArea"]
 shape = SubResource( 2 )
 
+[node name="Sprite3D" type="Sprite3D" parent="."]
+opacity = 0.75
+pixel_size = 0.5
+billboard = 1
+
 [connection signal="body_entered" from="PickupArea" to="." method="_on_PickupArea_body_entered"]
