@@ -19,9 +19,6 @@ export var movement_type: PackedScene
 export var faction: int = 0
 export var wander: bool = true
 
-export var special_ammo_counts = []
-var special_weapon_selected: bool
-var current_special_weapon: int
 
 # TODO: Load these from Client, make difficulty settings
 const HEALTH_NERF_FACTOR = 0.5
@@ -35,9 +32,6 @@ func is_player():
 func _ready():
 	# If this wasn't spawned as a player, add AI to it
 	# TODO: This isn't as elegant as I'd like
-	
-	for _i in Client.SPECIAL_WEAPONS:
-		special_ammo_counts.push_back(0)
 	
 	if has_node("../Controller"):
 		call_deferred("add_movement")
@@ -76,14 +70,7 @@ func _handle_shooting():
 		
 	if controller.next_weapon():
 		print("Switch to next weapon")
-		switch_to_next_special_weapon()
-
-	#if controller.previous_weapon():
-	#	var pw = controller.previous_weapon()
-	#	breakpoint
-	#	print("Switch to previous weapon")
-	#	switch_to_previous_special_weapon()
-	
+		get_node("../AmmoManager").switch_to_next_special_weapon()
 		
 	if controller.is_shooting():
 		for turret in get_turrets():
@@ -169,66 +156,3 @@ func derive_engagement_range():
 			weapon_ranges.push_back(weapon.engagement_range)
 	# TODO: average
 	return weapon_ranges[0]
-
-func consume_special_ammo(special_ammo_id: int) -> bool:
-	if special_ammo_counts[special_ammo_id] == 0:
-		call_deferred("switch_to_next_special_weapon")
-		return false
-	else:
-		special_ammo_counts[special_ammo_id] -= 1
-		return true
-
-func can_add_special_ammo(special_id: int) -> bool:
-	return special_ammo_counts[special_id] < Client.SPECIAL_WEAPONS[special_id].max_ammo
-
-func switch_to_specific_special(special_id):
-	if special_ammo_counts[special_id] > 0:
-		for slot in get_node(turret_path).secondary_slots:
-			slot.select_special_weapon(special_id)
-		current_special_weapon = special_id
-		special_weapon_selected = true
-		return true
-	else:
-		return false
-
-func switch_to_next_special_weapon():
-	if not switch_to_specific_special(
-		sw_mod(current_special_weapon + 1)
-	):
-		for i in range(1, sw_count()):
-			var index = sw_mod(current_special_weapon + i)
-			if switch_to_specific_special(index):
-				break
-		
-		switch_to_default_weapon()
-			
-func switch_to_previous_special_weapon():
-	if not switch_to_specific_special(
-		sw_mod(current_special_weapon - 1)
-	):
-		for i in range(1, sw_count()):
-			var index = sw_mod(current_special_weapon + i)
-			if switch_to_specific_special(index):
-				break
-		
-		switch_to_default_weapon()
-
-func switch_to_default_weapon():
-	for slot in get_node(turret_path).secondary_slots:
-		slot.return_default_weapon()
-	special_weapon_selected = false
-
-func add_special_ammo(special_id):
-	var weapon_dat = Client.SPECIAL_WEAPONS[special_id]
-	special_ammo_counts[special_id] += weapon_dat.ammo_pickup_count
-	if special_ammo_counts[special_id] > weapon_dat.max_ammo:
-		special_ammo_counts[special_id] = weapon_dat.max_ammo
-	if not special_weapon_selected:
-		switch_to_specific_special(special_id)
-
-func sw_count():
-	return len(Client.SPECIAL_WEAPONS)
-
-func sw_mod(index: int) -> int:
-	var count = sw_count()
-	return (count + index) % count

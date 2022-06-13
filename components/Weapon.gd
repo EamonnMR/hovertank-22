@@ -5,7 +5,7 @@ class_name Weapon
 var cooldown: bool = false
 var burst_cooldown: bool = false
 var burst_counter: int = 0
-var core: VehicleCore = null
+var ammo_manager
 var special_id
 var iff: IffProfile
 
@@ -34,11 +34,11 @@ func init(iff: IffProfile, special_id=null):
 	$Notifier.notification_source = iff.owner
 	if special_id:
 		self.special_id=special_id
-		self.core = iff.owner.get_node("VehicleCore")
+		self.ammo_manager = iff.owner.get_node("AmmoManager")
 
 func try_shoot():
 	if not cooldown and not burst_cooldown:
-		if special_id == null or core.consume_special_ammo(special_id):
+		if special_id == null or ammo_manager.consume_special_ammo(special_id):
 			_shoot()
 
 func _shoot():

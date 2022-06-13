@@ -144,18 +144,8 @@ func spawn_player(world: Node):
 
 	player.add_child(controller_instance)
 	
-	var primary_ability_instance = preload("res://components/abilities/Teleport.tscn").instance()
-	primary_ability_instance.primary = true
-	player.add_child(primary_ability_instance)
-	
-	var secondary_ability_instance = preload("res://components/abilities/WallSpawn.tscn").instance()
-	secondary_ability_instance.primary = false
-	player.add_child(secondary_ability_instance)
-	
-	var energy_component = preload("res://components/energy.tscn").instance()
-	energy_component.energy = 100
-	energy_component.max_energy = 100
-	player.add_child(energy_component)
+	var ammo_component = preload("res://components/AmmoManager.tscn").instance()
+	player.add_child(ammo_component)
 	
 	for turret in player.get_node("VehicleCore").get_turrets():
 		for slot in turret.get_primary_slots():
