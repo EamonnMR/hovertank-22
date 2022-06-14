@@ -26,11 +26,16 @@ var VEHICLES = {
 		"scene": preload("res://entities/vehicles/Mecha.tscn"),
 		"desc": "Light, by giant robot standards."
 	},
-	"cobra": {
-		"name": "Cobra Light TD",
-		"scene": preload("res://entities/vehicles/rat.tscn"),
-		"desc": "Everything sacrified at the altar of speed and a bigger gun. Mounts no secondary weapon. Handling is, well, you'll see."
+	"tilter": {
+		"name": "Tilter Halftrack",
+		"scene": preload("res://entities/vehicles/Tilter.tscn"),
+		"desc": "Very narrow traverse, high speed. Saddle up"
 	}
+	#"cobra": {
+	#	"name": "Cobra Light TD",
+	#	"scene": preload("res://entities/vehicles/rat.tscn"),
+	#	"desc": "Everything sacrified at the altar of speed and a bigger gun. Mounts no secondary weapon. Handling is, well, you'll see."
+	#}
 }
 
 var WEAPONS = {
