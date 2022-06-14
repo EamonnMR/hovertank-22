@@ -48,6 +48,14 @@ var WEAPONS = {
 	
 var SPECIAL_WEAPONS = [
 	{
+		"name": "Laser",
+		"scene": preload("res://components/weapons/Laser.tscn"),
+		"desc": "Somewhat worse than the average sunburn.",
+		"ammo_pickup_count": 30,
+		"max_ammo": 90,
+		"icon_tex": load("res://assets/danc_cc_by/green_wedge.png")
+	},
+	{
 		"name": "Canister Shot",
 		"scene": preload("res://components/weapons/Canister.tscn"),
 		"desc": "Double down on close range combat; you won't hit anything else",
@@ -72,15 +80,6 @@ var SPECIAL_WEAPONS = [
 		"ammo_pickup_count": 12,
 		"max_ammo": 24,
 		"icon_tex": load("res://assets/danc_cc_by/blue_chunky.png")
-	},
-	
-	{
-		"name": "Laser",
-		"scene": preload("res://components/weapons/Laser.tscn"),
-		"desc": "Somewhat worse than the average sunburn.",
-		"ammo_pickup_count": 30,
-		"max_ammo": 90,
-		"icon_tex": load("res://assets/danc_cc_by/green_wedge.png")
 	},
 	
 	{

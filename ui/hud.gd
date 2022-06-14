@@ -3,6 +3,7 @@ extends Control
 var player
 
 onready var health_widget = $TopLeft/HealthWidget
+onready var ammo_widget = $CenterTop/AmmoCounts
 
 func add_player(player):
 	var world = get_node("../World")

@@ -32,7 +32,7 @@ func init(iff: IffProfile, special_id=null):
 	else:
 		print(iff.owner, " is player, keep alert area")
 	$Notifier.notification_source = iff.owner
-	if special_id:
+	if special_id != null:
 		self.special_id=special_id
 		self.ammo_manager = iff.owner.get_node("AmmoManager")
 

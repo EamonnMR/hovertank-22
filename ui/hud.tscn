@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://ui/hud.gd" type="Script" id=1]
 [ext_resource path="res://assets/danc_cc_by/health_under.png" type="Texture" id=2]
 [ext_resource path="res://assets/danc_cc_by/health_over.png" type="Texture" id=3]
 [ext_resource path="res://assets/danc_cc_by/healthpack.png" type="Texture" id=4]
+[ext_resource path="res://ui/AmmoCounts.gd" type="Script" id=5]
 [ext_resource path="res://ui/FPS.gd" type="Script" id=7]
 
 [node name="HUD" type="Control"]
@@ -56,3 +57,15 @@ script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="CenterTop" type="Control" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -20.0
+margin_right = 20.0
+margin_bottom = 40.0
+
+[node name="AmmoCounts" type="HBoxContainer" parent="CenterTop"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 5 )
