@@ -17,7 +17,7 @@ export var traction = 1.0
 export var engine_torque = 400
 export var turn_fudge = 2
 export var brake_power = 5
-export var max_steering = 1
+export var max_steering = 90
 
 # TODO: Load these from Client, make difficulty settings
 const SPEED_NERF_FACTOR = 0.9
