@@ -21,8 +21,8 @@ height = 0.5
 radial_segments = 8
 
 [sub_resource type="CapsuleShape" id=2]
-radius = 0.717112
-height = 2.35712
+radius = 1.15087
+height = 2.98534
 
 [sub_resource type="SpatialMaterial" id=3]
 albedo_texture = ExtResource( 3 )
@@ -57,19 +57,23 @@ skeleton = NodePath("")
 material/0 = null
 
 [node name="VehicleWheel2" type="VehicleWheel" parent="." index="1"]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.38956, 0.795059, 1.09198 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.38956, 0.693635, 1.09198 )
 engine_force = 1000.0
 use_as_traction = true
 wheel_radius = 0.7
 
 [node name="VehicleWheel3" type="VehicleWheel" parent="." index="2"]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.39, 0.795, -1.092 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.39, 0.693576, -1.092 )
 engine_force = 1000.0
 use_as_traction = true
 wheel_radius = 0.7
 
 [node name="Health" parent="." index="4"]
 max_health = 50
+
+[node name="DontGetStuckOnlyCapsulesWork" parent="." index="6"]
+shape = null
+disabled = true
 
 [node name="VehicleCore" parent="." index="9"]
 turret_path = NodePath("../Graphics/Armature/Skeleton/Turret")
@@ -78,26 +82,27 @@ movement_type = ExtResource( 2 )
 wander = false
 
 [node name="CollisionShape" type="CollisionShape" parent="." index="10"]
-transform = Transform( -0.0387366, 0, -0.999249, 0, 1, 0, 0.999249, 0, -0.0387366, -0.471546, 1.1471, 0 )
+transform = Transform( -0.0387366, 0, -0.999249, 0, 1, 0, 0.999249, 0, -0.0387366, -0.471546, 1.57081, 0 )
 shape = SubResource( 2 )
 
 [node name="Graphics" parent="." index="11" instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1362, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25908, 0 )
 
 [node name="Skeleton" parent="Graphics/Armature" index="0"]
 bones/1/bound_children = [ NodePath("Turret") ]
 
 [node name="Turret" parent="Graphics/Armature/Skeleton" index="0" instance=ExtResource( 7 )]
 bone_name = "Bone.001"
+traverse_degrees = 15
 
 [node name="ElevationPivot" parent="Graphics/Armature/Skeleton/Turret" index="2"]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.57508, 1.24259, 0 )
 
 [node name="WeaponSlot" parent="Graphics/Armature/Skeleton/Turret/ElevationPivot" index="0" instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.32309, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0930679, 0, -1.86883 )
 
 [node name="WeaponSlot2" parent="Graphics/Armature/Skeleton/Turret/ElevationPivot" index="1" instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.323, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.007482, 0, 1.22266 )
 primary = true
 
 [node name="Cube" parent="Graphics/Armature" index="1"]
