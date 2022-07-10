@@ -9,7 +9,7 @@ var TOPDOWN_OFFSET = Vector3(0,100,50)
 export var zoom_min = 0.01
 export var zoom_max = 3.0
 export var zoom_incriment = 0.25
-export var third_person: bool
+export var third_person: bool = false
 
 export var max_pitch = 35
 export var min_pitch = -90

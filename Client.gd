@@ -159,7 +159,7 @@ func spawn_player(world: Node):
 	
 	player.get_node("VehicleCore").faction = 1  # Players always work for ITAR
 	var camera_rig = preload("res://camera/CameraRig.tscn").instance()
-	camera_rig.third_person = true
+	camera_rig.third_person = true # false
 	world.add_child(camera_rig)
 	world.add_child(player)
 	Hud.add_player(player)

@@ -99,7 +99,7 @@ traverse_degrees = 15
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.57508, 1.24259, 0 )
 
 [node name="WeaponSlot" parent="Graphics/Armature/Skeleton/Turret/ElevationPivot" index="0" instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0930679, 0, -1.86883 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.093068, 0, -1.12662 )
 
 [node name="WeaponSlot2" parent="Graphics/Armature/Skeleton/Turret/ElevationPivot" index="1" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.007482, 0, 1.22266 )
