@@ -1,14 +1,13 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://assets/eamonn/heavy/Heavy.tres" type="Material" id=1]
-[ext_resource path="res://entities/DynamicVehicle.gd" type="Script" id=2]
+[ext_resource path="res://entities/KinematicVehicle.gd" type="Script" id=2]
 [ext_resource path="res://components/Turret.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/eamonn/heavy/Heavy_destroyed.tres" type="Material" id=4]
 [ext_resource path="res://assets/eamonn/heavy/Heavy_itar.tres" type="Material" id=5]
-[ext_resource path="res://components/DiffWheel.tscn" type="PackedScene" id=6]
+[ext_resource path="res://components/player_control/KinematicTankMovement.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/eamonn/heavy/heavy.glb" type="PackedScene" id=7]
 [ext_resource path="res://components/WeaponSlot.tscn" type="PackedScene" id=8]
-[ext_resource path="res://components/player_control/TankMovement.tscn" type="PackedScene" id=9]
 [ext_resource path="res://components/meta/NPCHealthBar.tscn" type="PackedScene" id=11]
 [ext_resource path="res://effects/explosions/GenericExplosion.tscn" type="PackedScene" id=12]
 [ext_resource path="res://components/Notifier.tscn" type="PackedScene" id=13]
@@ -22,16 +21,13 @@ extents = Vector3( 6.36887, 1.59387, 4.47535 )
 radius = 1.22908
 height = 1.23
 
-[node name="Vehicle" type="VehicleBody"]
+[node name="Vehicle" type="KinematicBody"]
 collision_layer = 3
 collision_mask = 3
 script = ExtResource( 2 )
 speed = 20.0
 accel = 10.0
 turn = 4.0
-engine_torque = 100
-turn_fudge = 1
-brake_power = 15
 
 [node name="NPCHealthBar" parent="." instance=ExtResource( 11 )]
 
@@ -43,6 +39,9 @@ explosion = ExtResource( 12 )
 
 [node name="Armature" parent="Graphics" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="Skeleton" parent="Graphics/Armature" index="0"]
+bones/1/bound_children = [ NodePath("Turret") ]
 
 [node name="Cube" parent="Graphics/Armature/Skeleton" index="0"]
 material/0 = ExtResource( 1 )
@@ -88,84 +87,7 @@ turret_path = NodePath("../Graphics/Armature/Skeleton/Turret")
 graphics = NodePath("../Graphics/Armature/Skeleton/Cube")
 player_shader = ExtResource( 5 )
 destroyed_shader = ExtResource( 4 )
-movement_type = ExtResource( 9 )
-
-[node name="VehicleWheel" parent="." instance=ExtResource( 6 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.13674, 0, 4.78526 )
-engine_force = 10.0
-use_as_traction = true
-wheel_radius = 2.0
-right = true
-
-[node name="VehicleWheel2" parent="." instance=ExtResource( 6 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.8983, 0, 4.78526 )
-engine_force = 10.0
-use_as_traction = true
-wheel_radius = 2.0
-right = true
-
-[node name="VehicleWheel3" parent="." instance=ExtResource( 6 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.161301, 0, 4.78526 )
-use_as_traction = true
-wheel_radius = 2.0
-right = true
-
-[node name="VehicleWheel4" parent="." instance=ExtResource( 6 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.39974, 0, 4.78526 )
-use_as_traction = true
-wheel_radius = 2.0
-right = true
-
-[node name="VehicleWheel5" parent="." instance=ExtResource( 6 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.96979, 0, 4.78526 )
-use_as_traction = true
-wheel_radius = 2.0
-wheel_friction_slip = 2.0
-right = true
-
-[node name="VehicleWheel6" parent="." instance=ExtResource( 6 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.20824, 0, 4.78526 )
-use_as_traction = true
-wheel_radius = 2.0
-wheel_friction_slip = 2.0
-right = true
-
-[node name="VehicleWheel7" parent="." instance=ExtResource( 6 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.13674, 0, -5.02667 )
-engine_force = 10.0
-use_as_traction = true
-wheel_radius = 2.0
-left = true
-
-[node name="VehicleWheel8" parent="." instance=ExtResource( 6 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.8983, 0, -5.02667 )
-engine_force = 10.0
-wheel_radius = 2.0
-left = true
-
-[node name="VehicleWheel9" parent="." instance=ExtResource( 6 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.161301, 0, -5.02667 )
-use_as_traction = true
-wheel_radius = 2.0
-left = true
-
-[node name="VehicleWheel10" parent="." instance=ExtResource( 6 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.39974, 0, -5.02667 )
-use_as_traction = true
-wheel_radius = 2.0
-left = true
-
-[node name="VehicleWheel11" parent="." instance=ExtResource( 6 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.96979, 0, -5.02667 )
-use_as_traction = true
-wheel_radius = 2.0
-left = true
-
-[node name="VehicleWheel12" parent="." instance=ExtResource( 6 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.20824, 0, -5.02667 )
-use_as_traction = true
-wheel_radius = 2.0
-left = true
+movement_type = ExtResource( 6 )
 
 [editable path="Graphics"]
 [editable path="Graphics/Armature/Skeleton/Turret"]

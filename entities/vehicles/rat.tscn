@@ -33,9 +33,6 @@ material/0 = ExtResource( 8 )
 [node name="fake_graphics" parent="." index="7" instance=ExtResource( 3 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.429734, 0 )
 
-[node name="Skeleton" parent="fake_graphics/Armature" index="0"]
-bones/1/bound_children = [ NodePath("Turret") ]
-
 [node name="Cube" parent="fake_graphics/Armature/Skeleton" index="0"]
 visible = false
 material/0 = SubResource( 2 )
