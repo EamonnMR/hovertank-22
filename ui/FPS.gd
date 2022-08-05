@@ -7,4 +7,4 @@ func _ready():
 	pass
 
 func _process(delta):
-	text = "FPS: " + str(Engine.get_frames_per_second()) + "\n" + "OWTD TEST"
+	text = "FPS: " + str(Engine.get_frames_per_second()) + "\n" + "Hovertank '22 TEST"
