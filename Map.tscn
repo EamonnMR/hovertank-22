@@ -13,6 +13,7 @@ textures = [ [ ExtResource( 4 ) ], [ ExtResource( 5 ) ] ]
 
 [node name="HTerrain" type="Spatial"]
 script = ExtResource( 1 )
+lod_scale = 2.0
 map_scale = Vector3( 2, 1, 2 )
 _terrain_data = ExtResource( 3 )
 chunk_size = 32

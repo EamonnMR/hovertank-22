@@ -14,6 +14,7 @@ export var usePrediction = true
 
 
 func _ready():
+	return
 	world = parent.get_node("../")
 	var par: Node = parent
 	print(parent)
@@ -25,12 +26,13 @@ func _ready():
 	
 	var sticky_point = world.stick_to_ground(parent.global_transform.origin)
 	assert(sticky_point)
-	if world.navigation:
-		_create_nav_agent(sticky_point)
-	else:
-		get_tree().get_root().get_node("World").connect("nav_ready", self, "_create_nav_agent", [sticky_point])
+	#if world.navigation:
+	#	_create_nav_agent(sticky_point)
+	#else:
+	#	get_tree().get_root().get_node("World").connect("nav_ready", self, "_create_nav_agent", [sticky_point])
 
 func navigate_to_position(position: Vector3):
+	return
 	print("Navigation begins: ", parent.name, " to: ", position)
 	if parent.core.destroyed:
 
@@ -99,8 +101,9 @@ func stop():
 		agent.stop()
 
 func _exit_tree():
-	if world.navigation:
-		world.navigation.removeAgent(agent)
+	pass
+	#if world.navigation:
+	#	world.navigation.removeAgent(agent)
 
 func moving():
 	return agent.isMoving

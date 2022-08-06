@@ -40,9 +40,6 @@ explosion = ExtResource( 12 )
 [node name="Armature" parent="Graphics" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 
-[node name="Skeleton" parent="Graphics/Armature" index="0"]
-bones/1/bound_children = [ NodePath("Turret") ]
-
 [node name="Cube" parent="Graphics/Armature/Skeleton" index="0"]
 material/0 = ExtResource( 1 )
 

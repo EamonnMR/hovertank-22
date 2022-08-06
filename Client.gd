@@ -142,29 +142,30 @@ func set_secondary_selection(index: int):
 func spawn_player(world: Node):
 	var player = VEHICLES[selected_vehicle].scene.instance()
 	player_object = player
-	
+	#breakpoint
 	var controller_instance = CONTROLLERS[selected_control_scheme].instance()
 	controller_instance.name = "Controller"
-
+	#breakpoint
 	player.add_child(controller_instance)
-	
+	#breakpoint
 	var ammo_component = preload("res://components/AmmoManager.tscn").instance()
 	player.add_child(ammo_component)
-	
+	#breakpoint
 	for turret in player.get_node("VehicleCore").get_turrets():
 		for slot in turret.get_primary_slots():
 			slot.add_child(WEAPONS[selected_primary].scene.instance())
 		for slot in turret.get_secondary_slots():
 			slot.add_child(WEAPONS[selected_secondary].scene.instance())
-	
+	#breakpoint
 	player.get_node("VehicleCore").faction = 1  # Players always work for ITAR
 	var camera_rig = preload("res://camera/CameraRig.tscn").instance()
 	camera_rig.third_person = true # false
+	#breakpoint
 	world.add_child(camera_rig)
 	world.add_child(player)
 	Hud.add_player(player)
 	player.global_transform.origin = world.get_node("SpawnPoint").global_transform.origin
-
+	#breakpoint
 
 func start_level():
 	get_tree().change_scene(LEVELS[current_level].scene)

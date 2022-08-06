@@ -46,7 +46,8 @@ func stick_to_ground(point: Vector3):
 	else:
 		return result.position - Vector3(0, 0.2, 0)
 
-func _ready():
+#func _ready():
+func bla():
 	print("initializeNavigation")
 	yield(get_tree(), "idle_frame")
 	yield(initializeNavigation(), "completed")
