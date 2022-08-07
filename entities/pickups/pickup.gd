@@ -19,8 +19,6 @@ func _ready():
 	)
 	
 func _physics_process(delta):
-	print(global_transform.origin)
-	print(velocity)
 	velocity += -1 * velocity * drag + Vector3.DOWN * gravity * delta
 	var collision = move_and_collide(velocity * delta)
 	if false: # collision:
