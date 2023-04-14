@@ -2,8 +2,8 @@ extends Control
 
 var player
 
-onready var health_widget = $TopLeft/HealthWidget
-onready var ammo_widget = $CenterTop/AmmoCounts
+@onready var health_widget = $TopLeft/HealthWidget
+@onready var ammo_widget = $CenterTop/AmmoCounts
 
 func add_player(player):
 	var world = get_node("../World")
@@ -13,7 +13,7 @@ func add_player(player):
 	for objective in get_tree().get_nodes_in_group("objectives"):
 		pass
 		# TODO: Offscreen Indicators
-		#var indicator = preload("OffscreenIndicator.tscn").instance()
+		#var indicator = preload("OffscreenIndicator.tscn").instantiate()
 		#indicator.setup(objective)
 		#add_child(indicator)
 

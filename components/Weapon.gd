@@ -1,4 +1,4 @@
-extends Spatial
+extends Node3D
 
 class_name Weapon
 
@@ -9,16 +9,16 @@ var ammo_manager
 var special_id
 var iff: IffProfile
 
-onready var world = get_tree().get_root().get_node("World")
-export var projectile_scene = preload("res://projectiles/Projectile.tscn")
-export var burst_count = 0
-export var dupe_count = 1
-export var spread: float = 0
-export var world_projectile: bool = true  # Disable for beams or other things that should follow the player
-export var engagement_range: float = 60
+@onready var world = get_tree().get_root().get_node("World")
+@export var projectile_scene = preload("res://projectiles/Projectile.tscn")
+@export var burst_count = 0
+@export var dupe_count = 1
+@export var spread: float = 0
+@export var world_projectile: bool = true  # Disable for beams or other things that should follow the player
+@export var engagement_range: float = 60
 
 
-export var dmg_factor: float = 1
+@export var dmg_factor: float = 1
 
 func _ready():
 	assert($Graphics)
@@ -55,7 +55,7 @@ func _shoot():
 	_effects()
 
 func _create_projectile():
-	var projectile = projectile_scene.instance()
+	var projectile = projectile_scene.instantiate()
 	projectile.init(iff)
 	if world_projectile:
 		world.add_child(projectile)
@@ -65,8 +65,8 @@ func _create_projectile():
 	projectile.splash_damage *= dmg_factor
 	# TODO: Also scale splash damage
 	projectile.global_transform = $Emerge.global_transform
-	projectile.rotate_x(rand_range(-spread/2, spread/2))
-	projectile.rotate_y(rand_range(-spread/2, spread/2))
+	projectile.rotate_x(randf_range(-spread/2, spread/2))
+	projectile.rotate_y(randf_range(-spread/2, spread/2))
 	
 
 func _effects():

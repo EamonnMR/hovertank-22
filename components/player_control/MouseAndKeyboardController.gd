@@ -2,7 +2,7 @@ extends PlayerController
 
 class_name MouseAndKeyboardController
 
-onready var cam_rig = get_node("../../CameraRig")
+@onready var cam_rig = get_node("../../CameraRig")
 
 func is_shooting():
 	return Input.is_action_pressed("shoot")

@@ -1,11 +1,11 @@
-extends Spatial
+extends Node3D
 
-export var max_range = 1000
-export var overpen_count = 0
-export var damage = 1
-export var splash_damage = 0
-export var splash_radius = 0
-export var explosion: PackedScene
+@export var max_range = 1000
+@export var overpen_count = 0
+@export var damage = 1
+@export var splash_damage = 0
+@export var splash_radius = 0
+@export var explosion: PackedScene
 var iff: IffProfile
 
 func _ready():
@@ -39,12 +39,12 @@ func _update_graphics(beam_length: float):
 func project_beam(from: Vector3, ignore: Array) -> Dictionary:
 	var collisionMask = 1
 	var to = from + global_transform.basis.x * max_range 
-	var spaceState :PhysicsDirectSpaceState = get_world().direct_space_state
+	var spaceState :PhysicsDirectSpaceState3D = get_world_3d().direct_space_state
 	return spaceState.intersect_ray(from, to, ignore, collisionMask)
 
 func _do_explosion(location: Vector3):
 	if explosion:
-		var explo = explosion.instance()
+		var explo = explosion.instantiate()
 		explo.global_transform.origin = location
 		if splash_damage:
 			explo.init(splash_damage, splash_radius, false, iff)

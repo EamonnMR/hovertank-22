@@ -10,7 +10,7 @@ func start():
 	Hud.add_child(self)
 	show()
 	$AudioStreamPlayer.play()
-	parent.connect("tree_exited", self, "queue_free")
+	parent.connect("tree_exited",Callable(self,"queue_free"))
 
 func _on_AudioStreamPlayer_finished():
 	queue_free()

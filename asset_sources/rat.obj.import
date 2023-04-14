@@ -1,20 +1,21 @@
 [remap]
 
 importer="wavefront_obj"
+importer_version=1
 type="Mesh"
-path="res://.import/rat.obj-00fba7b48b2e2882bb684d1ced752cb2.mesh"
+uid="uid://ddhwbf6gopxst"
+path="res://.godot/imported/rat.obj-00fba7b48b2e2882bb684d1ced752cb2.mesh"
 
 [deps]
 
-files=[ "res://.import/rat.obj-00fba7b48b2e2882bb684d1ced752cb2.mesh" ]
+files=["res://.godot/imported/rat.obj-00fba7b48b2e2882bb684d1ced752cb2.mesh"]
 
 source_file="res://asset_sources/rat.obj"
-dest_files=[ "res://.import/rat.obj-00fba7b48b2e2882bb684d1ced752cb2.mesh", "res://.import/rat.obj-00fba7b48b2e2882bb684d1ced752cb2.mesh" ]
+dest_files=["res://.godot/imported/rat.obj-00fba7b48b2e2882bb684d1ced752cb2.mesh", "res://.godot/imported/rat.obj-00fba7b48b2e2882bb684d1ced752cb2.mesh"]
 
 [params]
 
 generate_tangents=true
-scale_mesh=Vector3( 1, 1, 1 )
-offset_mesh=Vector3( 0, 0, 0 )
-octahedral_compression=true
-optimize_mesh_flags=4286
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

@@ -1,8 +1,8 @@
-extends BoneAttachment
+extends BoneAttachment3D
 
-onready var skel = get_node("../")
-onready var turret_bone = skel.find_bone(bone_name)
-onready var turret_pose = skel.get_bone_pose(skel.find_bone("turret"))
+@onready var skel = get_node("../")
+@onready var turret_bone = skel.find_bone(bone_name)
+@onready var turret_pose = skel.get_bone_pose(skel.find_bone("turret"))
 var parent
 
 class_name Turret
@@ -12,18 +12,18 @@ var secondary_slots = []
 
 
 # Hacks for wonky models; ignore unless your model is wonky
-export var bone_axis: Vector3 = Vector3(0,1,0)
-export var elevation_axis: Vector3 = Vector3(0,0,1)
-export var bone_invert: bool = false
-export var bone_offset = PI/2
-export var traverse_degrees: int = 0
+@export var bone_axis: Vector3 = Vector3(0,1,0)
+@export var elevation_axis: Vector3 = Vector3(0,0,1)
+@export var bone_invert: bool = false
+@export var bone_offset = PI/2
+@export var traverse_degrees: int = 0
 
 var traverse: bool = false
 var l_bound: float = 0
 var r_bound: float = 0
 var bounds_in_front: bool = true
 
-var unrotated_position: Spatial
+var unrotated_position: Node3D
 
 var request_turn = 0
 
@@ -71,7 +71,7 @@ func _ready():
 				secondary_slots.append(slot)
 	
 	# This uses two extra nodes per turret
-	unrotated_position = Spatial.new()
+	unrotated_position = Node3D.new()
 	call_deferred("_add_position_tracker")
 
 func _aim_to_turret_pose(aim_point: Vector3) -> Vector2:
@@ -82,7 +82,7 @@ func _aim_to_turret_pose(aim_point: Vector3) -> Vector2:
 	var local_point = unrotated_position.to_local(aim_point)
 	# var local_point = get_parent().to_local(aim_point)
 	# TODO Ballistic calculation goes here
-	var euler = Transform.IDENTITY.looking_at(
+	var euler = Transform3D.IDENTITY.looking_at(
 		local_point, Vector3.UP
 	).basis.get_euler()
 	return Vector2(euler.x, euler.y)
@@ -129,7 +129,7 @@ func project_ray():
 	var first_weapon_emergepoint = $ElevationPivot
 	var from = first_weapon_emergepoint.global_transform.origin
 	var to = first_weapon_emergepoint.to_global(Vector3(AIM_EXTEND, 0, 0))
-	var spaceState :PhysicsDirectSpaceState = get_world().direct_space_state
+	var spaceState :PhysicsDirectSpaceState3D = get_world_3d().direct_space_state
 	var result :Dictionary = spaceState.intersect_ray(from, to, [], collisionMask)
 	return result
 	#$TurretPointMarker.show()
@@ -148,7 +148,7 @@ func _add_position_tracker():
 	unrotated_position.name = "PositionFor" + name
 	# Entire skeleton is the parent, not the bone
 	get_parent().add_child(unrotated_position)
-	print("Position For Path: ", unrotated_position.get_path())
+	print("Position For Path3D: ", unrotated_position.get_path())
 	$UnrotatedPositionMover.remote_path = unrotated_position.get_path()
 
 func _exit_tree():
@@ -165,7 +165,7 @@ func _setup_traverse():
 		traverse_degrees -= 180
 		centerline = -1 * centerline
 		bounds_in_front = not bounds_in_front
-	var traverse_width = deg2rad(float(traverse_degrees) / 2.0)
+	var traverse_width = deg_to_rad(float(traverse_degrees) / 2.0)
 	l_bound = centerline - traverse_width
 	r_bound = centerline + traverse_width
 
@@ -250,9 +250,9 @@ func _constrain_aim_by_traverse(aim: float) -> float:
 
 func _get_parent():
 	var valid_parent_types = [
-		VehicleBody,
-		RigidBody,
-		KinematicBody,
+		VehicleBody3D,
+		RigidBody3D,
+		CharacterBody3D,
 	]
 	var maybe_parent = self
 	while parent != get_tree().get_root():

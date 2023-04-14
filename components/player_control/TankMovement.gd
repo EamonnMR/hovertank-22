@@ -14,13 +14,13 @@ var brake_power = 5
 
 func _ready():
 	for child in parent.get_children():
-		if child is VehicleWheel:
+		if child is VehicleWheel3D:
 			if child.right:
 				right_wheels.append(child)
 			if child.left:
 				left_wheels.append(child)
 	for child in parent.get_children():
-		if child is VehicleBody:
+		if child is VehicleBody3D:
 			if child.right:
 				right_tracks.append(child)
 			if child.left:

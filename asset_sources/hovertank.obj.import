@@ -1,20 +1,21 @@
 [remap]
 
 importer="wavefront_obj"
+importer_version=1
 type="Mesh"
-path="res://.import/hovertank.obj-12f0f937ae3a276d4d86c840917bb6f6.mesh"
+uid="uid://eaip2krqyseq"
+path="res://.godot/imported/hovertank.obj-12f0f937ae3a276d4d86c840917bb6f6.mesh"
 
 [deps]
 
-files=[ "res://.import/hovertank.obj-12f0f937ae3a276d4d86c840917bb6f6.mesh" ]
+files=["res://.godot/imported/hovertank.obj-12f0f937ae3a276d4d86c840917bb6f6.mesh"]
 
 source_file="res://asset_sources/hovertank.obj"
-dest_files=[ "res://.import/hovertank.obj-12f0f937ae3a276d4d86c840917bb6f6.mesh", "res://.import/hovertank.obj-12f0f937ae3a276d4d86c840917bb6f6.mesh" ]
+dest_files=["res://.godot/imported/hovertank.obj-12f0f937ae3a276d4d86c840917bb6f6.mesh", "res://.godot/imported/hovertank.obj-12f0f937ae3a276d4d86c840917bb6f6.mesh"]
 
 [params]
 
 generate_tangents=true
-scale_mesh=Vector3( 1, 1, 1 )
-offset_mesh=Vector3( 0, 0, 0 )
-octahedral_compression=true
-optimize_mesh_flags=4286
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

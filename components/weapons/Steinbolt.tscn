@@ -4,10 +4,10 @@
 [ext_resource path="res://assets/eamonn/weapons/steinbolt/steinbolt.obj" type="ArrayMesh" id=2]
 [ext_resource path="res://components/weapons/Steinbolt_texture.tres" type="Material" id=3]
 [ext_resource path="res://projectiles/SteinboltBeam.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/eamonn/anime_lens_flare.png" type="Texture" id=5]
+[ext_resource path="res://assets/eamonn/anime_lens_flare.png" type="Texture2D" id=5]
 [ext_resource path="res://assets/StarNinjas_cc0/sword.1.ogg" type="AudioStream" id=6]
 
-[sub_resource type="SpatialMaterial" id=1]
+[sub_resource type="StandardMaterial3D" id=1]
 flags_transparent = true
 flags_unshaded = true
 flags_no_depth_test = true
@@ -32,7 +32,7 @@ _data = [ Vector2( 0.028, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.5, 0.986364 ), 0.0, 0.
 [sub_resource type="CurveTexture" id=4]
 curve = SubResource( 3 )
 
-[sub_resource type="ParticlesMaterial" id=5]
+[sub_resource type="ParticleProcessMaterial" id=5]
 gravity = Vector3( 0, 0, 0 )
 angular_velocity = 100.0
 angular_velocity_curve = SubResource( 2 )
@@ -55,12 +55,12 @@ stream = ExtResource( 6 )
 [node name="Notifier" parent="." index="3"]
 radius = 100.0
 
-[node name="Graphics" type="MeshInstance" parent="." index="4"]
+[node name="Graphics" type="MeshInstance3D" parent="." index="4"]
 mesh = ExtResource( 2 )
 material/0 = ExtResource( 3 )
 
 [node name="Emerge" parent="." index="5"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.17293, 0, 0 )
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.17293, 0, 0 )
 
 [node name="MuzzleFlash" parent="Emerge" index="0"]
 material_override = SubResource( 1 )

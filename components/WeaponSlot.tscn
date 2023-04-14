@@ -2,5 +2,5 @@
 
 [ext_resource path="res://components/WeaponSlot.gd" type="Script" id=1]
 
-[node name="WeaponSlot" type="Spatial"]
+[node name="WeaponSlot" type="Node3D"]
 script = ExtResource( 1 )

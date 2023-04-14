@@ -1,8 +1,0 @@
-{
-	"contains_albedo": true,
-	"resolution": 512,
-	"src": {
-		"a": "res://assets/yughues_cc0/pattern_80_mossy_rock/height.png",
-		"rgb": "res://assets/yughues_cc0/pattern_80_mossy_rock/diffus.png"
-	}
-}

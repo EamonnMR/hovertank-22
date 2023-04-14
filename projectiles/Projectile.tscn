@@ -3,17 +3,17 @@
 [ext_resource path="res://projectiles/Projectile.gd" type="Script" id=1]
 [ext_resource path="res://effects/impact/ShotImpact.tscn" type="PackedScene" id=2]
 
-[sub_resource type="SphereShape" id=3]
+[sub_resource type="SphereShape3D" id=3]
 radius = 0.213653
 
-[node name="Projectile" type="RigidBody"]
+[node name="Projectile" type="RigidBody3D"]
 collision_layer = 0
-contacts_reported = 1
+max_contacts_reported = 1
 contact_monitor = true
 script = ExtResource( 1 )
 explosion = ExtResource( 2 )
 
-[node name="CollisionShape" type="CollisionShape" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource( 3 )
 
 [connection signal="body_entered" from="." to="." method="do_impact"]

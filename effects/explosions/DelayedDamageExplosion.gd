@@ -5,6 +5,6 @@ func immediate_damage():
 	pass
 
 func _ready():
-	._ready()
+	super._ready()
 	assert($Lifetime.wait_time > $DamageDelay.wait_time)
 	

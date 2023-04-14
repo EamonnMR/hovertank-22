@@ -1,16 +1,16 @@
-extends Spatial
+extends Node3D
 
-export var proactive: bool = false  # Notify anything that comes near, SLOW
-export var line_of_sight: bool= true # 
-export var cadence: float = 0.0 # Notify automatically on regular intervals
-export var radius: float = 60
+@export var proactive: bool = false  # Notify anything that comes near, SLOW
+@export var line_of_sight: bool= true # 
+@export var cadence: float = 0.0 # Notify automatically on regular intervals
+@export var radius: float = 60
 
 var notification_source: Node
 var query
 
 # These are only used if we're in "active" mode
 func _ready():
-	$Shape.shape.radius = radius
+	$Shape3D.shape.radius = radius
 	if not notification_source:
 		notification_source = get_node("../")
 	if proactive:
@@ -22,11 +22,11 @@ func _ready():
 
 func enable_proactive():
 	proactive = true
-	$Shape.disabled = false
+	$Shape3D.disabled = false
 
 func disable_proactive():
 	proactive = false
-	$Shape.disabled = true
+	$Shape3D.disabled = true
 	if cadence > 0:
 		call_deferred("_setup_cadence_timer")
 
@@ -51,27 +51,27 @@ func _setup_cadence_timer():
 	timer.one_shot = false
 	timer.autostart = true
 	timer.wait_time = cadence
-	timer.connect("timeout", self, "notify")
+	timer.connect("timeout",Callable(self,"notify"))
 	add_child(timer)
 
 # Gross physics interface code
 
 func _setup_query():
-	query = PhysicsShapeQueryParameters.new()
+	query = PhysicsShapeQueryParameters3D.new()
 	query.collide_with_areas = false
 	query.collide_with_bodies = true
 	query.collision_mask = 2
-	query.set_shape($Shape.shape)
+	query.set_shape($Shape3D.shape)
 
 func _bodies_in_area() -> Array:
-	query.transform = $Shape.global_transform
-	return get_world().get_direct_space_state().intersect_shape(query)
+	query.transform = $Shape3D.global_transform
+	return get_world_3d().get_direct_space_state().intersect_shape(query)
 
 func _line_of_sight(body) -> bool:
 	var our_pos = 	notification_source.get_center_of_mass()
 	var body_pos = body.get_center_of_mass()
 	
-	var space_state = get_world().get_direct_space_state()
+	var space_state = get_world_3d().get_direct_space_state()
 	
 	var result = space_state.intersect_ray(our_pos, body_pos, [notification_source], 1)
 	if result.has("collider"):

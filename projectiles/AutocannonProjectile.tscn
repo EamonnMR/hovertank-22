@@ -6,13 +6,13 @@
 [sub_resource type="CapsuleMesh" id=1]
 material = ExtResource( 2 )
 radius = 0.2
-mid_height = 2.0
+height = 2.0
 
 [node name="Projectile" instance=ExtResource( 1 )]
 speed = 140
 damage = 4
 
-[node name="MeshInstance" type="MeshInstance" parent="." index="1"]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.952375, 0, 0 )
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="1"]
+transform = Transform3D( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.952375, 0, 0 )
 mesh = SubResource( 1 )
 material/0 = null

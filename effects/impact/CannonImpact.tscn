@@ -3,10 +3,10 @@
 [ext_resource path="res://effects/explosions/GenericExplosion.tscn" type="PackedScene" id=1]
 
 [sub_resource type="Gradient" id=3]
-offsets = PoolRealArray( 0, 0.111111, 0.4, 1 )
-colors = PoolColorArray( 1, 0.483048, 0.460938, 1, 1, 0.275085, 0.132812, 1, 0, 0, 0, 1, 0.486328, 0.486328, 0.486328, 0 )
+offsets = PackedFloat32Array( 0, 0.111111, 0.4, 1 )
+colors = PackedColorArray( 1, 0.483048, 0.460938, 1, 1, 0.275085, 0.132812, 1, 0, 0, 0, 1, 0.486328, 0.486328, 0.486328, 0 )
 
-[sub_resource type="GradientTexture" id=4]
+[sub_resource type="GradientTexture2D" id=4]
 gradient = SubResource( 3 )
 
 [sub_resource type="Curve" id=7]
@@ -15,7 +15,7 @@ _data = [ Vector2( 0, 0.406818 ), 0.0, 0.0, 0, 0, Vector2( 0.368421, 0.997727 ),
 [sub_resource type="CurveTexture" id=8]
 curve = SubResource( 7 )
 
-[sub_resource type="ParticlesMaterial" id=9]
+[sub_resource type="ParticleProcessMaterial" id=9]
 emission_shape = 1
 emission_sphere_radius = 1.0
 spread = 180.0

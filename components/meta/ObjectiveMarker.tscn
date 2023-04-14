@@ -1,12 +1,12 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://components/meta/ObjectiveMarker.gd" type="Script" id=1]
-[ext_resource path="res://assets/danc_cc_by/marker.png" type="Texture" id=2]
+[ext_resource path="res://assets/danc_cc_by/marker.png" type="Texture2D" id=2]
 
-[node name="ObjectiveMarker" type="Spatial"]
+[node name="ObjectiveMarker" type="Node3D"]
 script = ExtResource( 1 )
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform( 20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0 )
+transform = Transform3D( 20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0 )
 billboard = 1
 texture = ExtResource( 2 )

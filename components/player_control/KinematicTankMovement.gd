@@ -19,5 +19,9 @@ func _physics_process(delta):
 
 	var gravity_delta = gravity * Vector3.DOWN
 	var motion_total = motion + gravity_delta
-	parent.move_and_slide(motion_total, Vector3.DOWN, SLIDE)
+	parent.set_velocity(motion_total)
+	parent.set_up_direction(Vector3.DOWN)
+	parent.set_floor_stop_on_slope_enabled(SLIDE)
+	parent.move_and_slide()
+	parent.velocity
 	match_ground_normal(delta, parent)

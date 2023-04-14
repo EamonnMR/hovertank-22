@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://u7yktcjl6dny"]
+
+[ext_resource type="ArrayMesh" uid="uid://d1dhx74ymgdll" path="res://asset_sources/tiles/cross_tile.obj" id="1_se3nk"]
+[ext_resource type="ArrayMesh" uid="uid://c824ijoutg3bb" path="res://asset_sources/tiles/flat_tile.obj" id="2_0o3d1"]
+[ext_resource type="ArrayMesh" uid="uid://cg3011fboty1x" path="res://asset_sources/tiles/wall_tile.obj" id="3_l4r7a"]
+[ext_resource type="ArrayMesh" uid="uid://efuet6tayktu" path="res://asset_sources/tiles/wall90.obj" id="4_od10l"]
+
+[node name="Tiles" type="Node3D"]
+
+[node name="CrossTile" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 13.1089)
+mesh = ExtResource("1_se3nk")
+
+[node name="FlatTile" type="MeshInstance3D" parent="."]
+mesh = ExtResource("2_0o3d1")
+
+[node name="WallTile" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.0831, 0, -0.213165)
+mesh = ExtResource("3_l4r7a")
+
+[node name="Wall90" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.4217, 0, 12.7025)
+mesh = ExtResource("4_od10l")

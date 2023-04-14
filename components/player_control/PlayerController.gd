@@ -2,7 +2,7 @@ extends Node
 
 class_name PlayerController
 
-onready var parent = get_node("../")
+@onready var parent = get_node("../")
 
 func next_weapon():
 	return false
@@ -12,7 +12,7 @@ func previous_weapon():
 
 func _ready():
 	get_node("../").add_to_group("players")
-	get_node("../").connect("destroyed", self, "_on_player_destroyed")
+	get_node("../").connect("destroyed",Callable(self,"_on_player_destroyed"))
 func get_turn_and_motion_impulse(delta, turn_speed) -> Array:
 	return [0.0, 0]
 
@@ -32,7 +32,7 @@ func _on_player_destroyed():
 	var timer :Timer = Timer.new()
 	timer.set_one_shot(true)
 	timer.set_wait_time(5)
-	timer.connect("timeout", Client, "defeat_screen")
+	timer.connect("timeout",Callable(Client,"defeat_screen"))
 	get_tree().get_root().add_child(timer)
 	timer.start()
 	queue_free()

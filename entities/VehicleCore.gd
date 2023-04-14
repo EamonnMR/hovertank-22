@@ -1,23 +1,23 @@
-extends Spatial
+extends Node3D
 
 class_name VehicleCore
-onready var parent = get_node("../")
-onready var controller = parent.get_node("Controller")
+@onready var parent = get_node("../")
+@onready var controller = parent.get_node("Controller")
 var destroyed = false
 signal destroyed
 
 var camera
 
-export var turret_path: NodePath
-export var graphics: NodePath
-export var match_ground: bool = true
+@export var turret_path: NodePath
+@export var graphics: NodePath
+@export var match_ground: bool = true
 
-export var player_shader: Material
-export var destroyed_shader: Material
-export var movement_type: PackedScene
+@export var player_shader: Material
+@export var destroyed_shader: Material
+@export var movement_type: PackedScene
 
-export var faction: int = 0
-export var wander: bool = true
+@export var faction: int = 0
+@export var wander: bool = true
 
 
 # TODO: Load these from Client, make difficulty settings
@@ -52,12 +52,12 @@ func _ready():
 	
 	
 	var map = get_node("../../")
-	# connect("destroyed", map, "unit_destroyed")
-	get_node("../Health").connect("destroyed", self, "_dead")
+	# connect("destroyed",Callable(map,"unit_destroyed"))
+	get_node("../Health").connect("destroyed",Callable(self,"_dead"))
 	#if ProjectSettings.get_setting("Prefs/controller"):
-		#add_child(preload("res://GamepadController.tscn").instance())
+		#add_child(preload("res://GamepadController.tscn").instantiate())
 	#else:
-	# add_child(preload("res://components/player_control/MouseAndKeyboardController.tscn").instance())
+	# add_child(preload("res://components/player_control/MouseAndKeyboardController.tscn").instantiate())
 	
 func _physics_process(delta: float):
 	# Movement is handled by the movement component
@@ -90,8 +90,8 @@ func _dead():
 		emit_signal("destroyed")
 		destroyed = true
 		if destroyed_shader:
-			var graphics_node: MeshInstance = get_node(graphics)
-			graphics_node.set_surface_material(0, destroyed_shader)
+			var graphics_node: MeshInstance3D = get_node(graphics)
+			graphics_node.set_surface_override_material(0, destroyed_shader)
 			if has_node("NPCHealthBar"):
 				get_node("../NPCHealthBar").hide()
 			get_node("../Health").health = get_node("../Health").max_health / 2
@@ -107,9 +107,9 @@ func get_center_of_mass():
 func get_turrets():
 	if turret_path:
 		return [get_node(turret_path)]
-	if get_node("../Graphics/Armature") is Skeleton:
+	if get_node("../Graphics/Armature") is Skeleton3D:
 		return  [get_node("../Graphics/Armature/Turret")]
-	return [get_node("../Graphics/Armature/Skeleton/Turret")]
+	return [get_node("../Graphics/Armature/Skeleton3D/Turret")]
 
 func alert(source):
 	if destroyed:
@@ -118,8 +118,8 @@ func alert(source):
 		controller.alert(source)
 
 func add_ai():
-	var mover = preload("res://components/AgentMovement.tscn").instance()
-	controller = preload("res://components/ai_controller.tscn").instance()
+	var mover = preload("res://components/AgentMovement.tscn").instantiate()
+	controller = preload("res://components/ai_controller.tscn").instantiate()
 	mover.name = "Movement"
 	controller.name = "Controller"
 	
@@ -127,7 +127,7 @@ func add_ai():
 	parent.add_child(controller)
 	
 func add_movement():
-	var mover = movement_type.instance()
+	var mover = movement_type.instantiate()
 	mover.name = "Movement"
 	parent.add_child(mover)
 	parent.get_node("DontGetStuckOnlyCapsulesWork").queue_free()
@@ -146,8 +146,8 @@ func _nerf_npc_stats():
 
 func setup_player_skin():
 	if player_shader:
-		var graphics_node: MeshInstance = get_node(graphics)
-		graphics_node.set_surface_material(0, player_shader)
+		var graphics_node: MeshInstance3D = get_node(graphics)
+		graphics_node.set_surface_override_material(0, player_shader)
 
 func derive_engagement_range():
 	var weapon_ranges = []

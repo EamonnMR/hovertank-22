@@ -8,7 +8,7 @@
 [ext_resource path="res://assets/eamonn/hovertank/itar_material.tres" type="Material" id=6]
 [ext_resource path="res://components/Turret.tscn" type="PackedScene" id=7]
 
-[sub_resource type="CylinderShape" id=1]
+[sub_resource type="CylinderShape3D" id=1]
 radius = 3.60023
 height = 2.608
 
@@ -17,51 +17,51 @@ accel = 6.0
 turn = 6.0
 
 [node name="Graphics" parent="." index="0" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.59815, 0 )
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.59815, 0 )
 
-[node name="Skeleton" parent="Graphics/Armature" index="0"]
+[node name="Skeleton3D" parent="Graphics/Armature" index="0"]
 bones/1/bound_children = [ NodePath("Turret") ]
 
-[node name="Turret" parent="Graphics/Armature/Skeleton" index="0" instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1915, 0 )
+[node name="Turret" parent="Graphics/Armature/Skeleton3D" index="0" instance=ExtResource( 7 )]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1915, 0 )
 bone_name = "turret"
 
-[node name="ElevationPivot" parent="Graphics/Armature/Skeleton/Turret" index="2"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.272089, 0 )
+[node name="ElevationPivot" parent="Graphics/Armature/Skeleton3D/Turret" index="2"]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.272089, 0 )
 
-[node name="WeaponSlot" parent="Graphics/Armature/Skeleton/Turret/ElevationPivot" index="0" instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.368944 )
+[node name="WeaponSlot" parent="Graphics/Armature/Skeleton3D/Turret/ElevationPivot" index="0" instance=ExtResource( 3 )]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.368944 )
 primary = true
 
-[node name="WeaponSlot2" parent="Graphics/Armature/Skeleton/Turret/ElevationPivot" index="1" instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.452668 )
+[node name="WeaponSlot2" parent="Graphics/Armature/Skeleton3D/Turret/ElevationPivot" index="1" instance=ExtResource( 3 )]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.452668 )
 
-[node name="Cube" parent="Graphics/Armature/Skeleton" index="1"]
+[node name="Cube" parent="Graphics/Armature/Skeleton3D" index="1"]
 material/0 = ExtResource( 5 )
 
 [node name="Health" parent="." index="2"]
 max_health = 45
 
-[node name="CollisionShape" type="CollisionShape" parent="." index="3"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.24695, 0 )
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="3"]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.24695, 0 )
 shape = SubResource( 1 )
 
 [node name="CameraMover" parent="." index="4"]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 6.69351, 0 )
+transform = Transform3D( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 6.69351, 0 )
 
 [node name="Notifier" parent="." index="6"]
 radius = 55.0
 
 [node name="CenterOfMass" parent="." index="7"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.41556, 0 )
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.41556, 0 )
 
 [node name="VehicleCore" parent="." index="8"]
-turret_path = NodePath("../Graphics/Armature/Skeleton/Turret")
-graphics = NodePath("../Graphics/Armature/Skeleton/Cube")
+turret_path = NodePath("../Graphics/Armature/Skeleton3D/Turret")
+graphics = NodePath("../Graphics/Armature/Skeleton3D/Cube")
 player_shader = ExtResource( 6 )
 movement_type = ExtResource( 4 )
 wander = false
 
 [editable path="Graphics"]
-[editable path="Graphics/Armature/Skeleton/Turret"]
+[editable path="Graphics/Armature/Skeleton3D/Turret"]
 [editable path="Notifier"]

@@ -10,7 +10,7 @@ var world
 
 var lastUpdateTimestamp
 
-export var usePrediction = true
+@export var usePrediction = true
 
 
 func _ready():
@@ -21,14 +21,14 @@ func _ready():
 	
 	# TODO: This is leading to wonkyness because it's rotating just the skeleton.
 	parent.get_node("Graphics").rotation.y += PI/2
-	parent.get_node("VehicleCore").connect("destroyed", self, "stop")
+	parent.get_node("VehicleCore").connect("destroyed",Callable(self,"stop"))
 	
 	var sticky_point = world.stick_to_ground(parent.global_transform.origin)
 	assert(sticky_point)
 	if world.navigation:
 		_create_nav_agent(sticky_point)
 	else:
-		get_tree().get_root().get_node("World").connect("nav_ready", self, "_create_nav_agent", [sticky_point])
+		get_tree().get_root().get_node("World").connect("nav_ready",Callable(self,"_create_nav_agent").bind(sticky_point))
 
 func navigate_to_position(position: Vector3):
 	print("Navigation begins: ", parent.name, " to: ", position)
@@ -70,26 +70,26 @@ func _create_nav_agent(position_on_ground):
 	params.separationWeight = 1.0
 
 	agent = world.navigation.addAgent(params)
-	# assert(agent != null, "Check your params. Radius, for example, breaks over 1.5")
+	# assert(agent != null) #,"Check your params. Radius, for example, breaks over 1.5")
 	# TODO: It should probably forward these and let the controller subscribe to them
 	if agent != null:
-		agent.connect("arrived_at_target", controller, "recalculate_path", [agent], CONNECT_DEFERRED)
-		agent.connect("no_progress", controller, "recalculate_path", [agent], CONNECT_DEFERRED)
-		agent.connect("no_movement", controller, "recalculate_path", [agent], CONNECT_DEFERRED)
+		agent.connect("arrived_at_target",Callable(controller,"recalculate_path").bind(agent),CONNECT_DEFERRED)
+		agent.connect("no_progress",Callable(controller,"recalculate_path").bind(agent),CONNECT_DEFERRED)
+		agent.connect("no_movement",Callable(controller,"recalculate_path").bind(agent),CONNECT_DEFERRED)
 	else:
 		parent.get_node("Health").take_damage(1000)
 		print("Unable to place agent for: ", parent.name)
 func _physics_process(delta):
 	if agent and agent.isMoving == true:
 		if usePrediction:
-			var result: Dictionary = agent.getPredictedMovement(parent.translation, -parent.global_transform.basis.z, lastUpdateTimestamp, deg2rad(2.5))
-			parent.translation = result["position"]
-			parent.look_at(parent.translation + result["direction"], parent.transform.basis.y)
+			var result: Dictionary = agent.getPredictedMovement(parent.position, -parent.global_transform.basis.z, lastUpdateTimestamp, deg_to_rad(2.5))
+			parent.position = result["position"]
+			parent.look_at(parent.position + result["direction"], parent.transform.basis.y)
 		else:
-			parent.translation = agent.position
-			parent.look_at(parent.translation + agent.velocity, parent.transform.basis.y)
+			parent.position = agent.position
+			parent.look_at(parent.position + agent.velocity, parent.transform.basis.y)
 	# Remember time of update
-	lastUpdateTimestamp = OS.get_ticks_msec()
+	lastUpdateTimestamp = Time.get_ticks_msec()
 	#if parent.match_ground:
 	match_ground_normal(delta, parent)
 

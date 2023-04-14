@@ -1,20 +1,21 @@
 [remap]
 
 importer="wavefront_obj"
+importer_version=1
 type="Mesh"
-path="res://.import/steinbolt.obj-7a74ea0cb02be591cfe94cb2dbc20a26.mesh"
+uid="uid://dfub4toju82i8"
+path="res://.godot/imported/steinbolt.obj-7a74ea0cb02be591cfe94cb2dbc20a26.mesh"
 
 [deps]
 
-files=[ "res://.import/steinbolt.obj-7a74ea0cb02be591cfe94cb2dbc20a26.mesh" ]
+files=["res://.godot/imported/steinbolt.obj-7a74ea0cb02be591cfe94cb2dbc20a26.mesh"]
 
 source_file="res://assets/eamonn/weapons/steinbolt/steinbolt.obj"
-dest_files=[ "res://.import/steinbolt.obj-7a74ea0cb02be591cfe94cb2dbc20a26.mesh", "res://.import/steinbolt.obj-7a74ea0cb02be591cfe94cb2dbc20a26.mesh" ]
+dest_files=["res://.godot/imported/steinbolt.obj-7a74ea0cb02be591cfe94cb2dbc20a26.mesh", "res://.godot/imported/steinbolt.obj-7a74ea0cb02be591cfe94cb2dbc20a26.mesh"]
 
 [params]
 
 generate_tangents=true
-scale_mesh=Vector3( 1, 1, 1 )
-offset_mesh=Vector3( 0, 0, 0 )
-octahedral_compression=true
-optimize_mesh_flags=4286
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

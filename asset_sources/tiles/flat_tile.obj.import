@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://c824ijoutg3bb"
+path="res://.godot/imported/flat_tile.obj-d3a08d2b260307c8c2ff1f8a94a9134d.mesh"
+
+[deps]
+
+files=["res://.godot/imported/flat_tile.obj-d3a08d2b260307c8c2ff1f8a94a9134d.mesh"]
+
+source_file="res://asset_sources/tiles/flat_tile.obj"
+dest_files=["res://.godot/imported/flat_tile.obj-d3a08d2b260307c8c2ff1f8a94a9134d.mesh", "res://.godot/imported/flat_tile.obj-d3a08d2b260307c8c2ff1f8a94a9134d.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

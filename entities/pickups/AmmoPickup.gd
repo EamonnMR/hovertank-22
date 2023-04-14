@@ -1,6 +1,6 @@
 extends Pickup
 
-export var special_id: int
+@export var special_id: int
 
 func _ready():
 	$Sprite3D.texture = Client.SPECIAL_WEAPONS[special_id].icon_tex

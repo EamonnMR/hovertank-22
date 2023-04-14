@@ -1,4 +1,4 @@
-extends Spatial
+extends Node3D
 
 const RAYCAST_MASK = 1
 var aim_position: Vector3
@@ -6,21 +6,21 @@ var aim_correct = false
 var AIM_UP_CORRECTION = Vector3(0,1,0) # We don't want to be aiming right at the ground all the time
 var zoom_target = 1.0
 var TOPDOWN_OFFSET = Vector3(0,100,50)
-export var zoom_min = 0.01
-export var zoom_max = 3.0
-export var zoom_incriment = 0.25
-export var third_person: bool = false
+@export var zoom_min = 0.01
+@export var zoom_max = 3.0
+@export var zoom_incriment = 0.25
+@export var third_person: bool = false
 
-export var max_pitch = 35
-export var min_pitch = -90
-export var mouse_sensitivity = 2
+@export var max_pitch = 35
+@export var min_pitch = -90
+@export var mouse_sensitivity = 2
 
 var zoom = 1.0
 var base_distance: Vector3
 var aim: Vector2
 var aim_smooth_goal: Vector2
 var aim_smooth_lerp = 10
-var current_camera: Camera
+var current_camera: Camera3D
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -31,7 +31,7 @@ func _input(event):
 func _ready():
 	if third_person:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		current_camera = $CameraOffset/PitchHelper/CameraLocation/Camera
+		current_camera = $CameraOffset/PitchHelper/CameraLocation/Camera3D
 		current_camera.make_current()
 		base_distance = $CameraOffset/PitchHelper/CameraLocation.transform.origin
 		#$CameraOffset/PitchHelper/CameraLocation.transform.origin.y *= .1
@@ -39,7 +39,7 @@ func _ready():
 		#current_camera.look_at($CameraOffset.to_global(Vector3(0,0,0)), Vector3.UP)
 	else:
 		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-		current_camera = $CameraOffset/PitchHelper/CameraLocation/Camera
+		current_camera = $CameraOffset/PitchHelper/CameraLocation/Camera3D
 		base_distance = TOPDOWN_OFFSET
 		current_camera.look_at($CameraOffset.to_global(Vector3(0,0,0)), Vector3.UP)
 
@@ -60,7 +60,7 @@ func _process(delta):
 	else:
 		_handle_topdown_mouse_aim(delta)
 	
-	$AimMarker.rect_position = current_camera.unproject_position(aim_position) # - ($AimMarker.rect_size)
+	$AimMarker.position = current_camera.unproject_position(aim_position) # - ($AimMarker.size)
 
 func _handle_topdown_mouse_aim(delta):
 	current_camera.look_at($CameraOffset.to_global(Vector3(0,6,0)), Vector3.UP)
@@ -70,10 +70,10 @@ func _handle_topdown_mouse_aim(delta):
 		$PickerLocation.global_transform.origin = result.position
 		if "collider" in result and result.collider.get_node("CenterOfMass"):
 			$PickerLocation.global_transform.origin.y = result.collider.get_node("CenterOfMass").global_transform.origin.y
-		$PointerMarker.rect_position = current_camera.unproject_position(result.position) - $PointerMarker.rect_size / 2
+		$PointerMarker.position = current_camera.unproject_position(result.position) - $PointerMarker.size / 2
 
 	# TODO: If there's an object under this, pick and set the picker location to the object's origin
-	if "collider" in result and result.collider is StaticBody:
+	if "collider" in result and result.collider is StaticBody3D:
 		aim_correct = true
 	else:
 		aim_correct = false
@@ -85,7 +85,7 @@ func _project_aim_ray(pos: Vector2, ignore_close: bool):  # Returns ray intersec
 		from = from + current_camera.project_ray_normal(pos) * base_distance.length() * zoom_target
 
 	var to = from + current_camera.project_ray_normal(pos) * 1000
-	var space_state = get_world().direct_space_state
+	var space_state = get_world_3d().direct_space_state
 	var result = space_state.intersect_ray(from, to, [Client.player_object], RAYCAST_MASK)
 	return result
 
@@ -96,7 +96,7 @@ func _handle_third_person_aim(delta):
 	$CameraOffset/PitchHelper.rotation_degrees.x = aim.y
 	var result = _project_aim_ray(
 		# Middle of screen:
-		$PointerMarker.rect_position + $PointerMarker.rect_size / 2,
+		$PointerMarker.position + $PointerMarker.size / 2,
 		true
 	)
 	if "position" in result:

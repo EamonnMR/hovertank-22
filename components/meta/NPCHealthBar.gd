@@ -5,8 +5,8 @@ var base_width: float
 func _ready():
 	call_deferred("_free_if_player")
 	parent_health = get_node("../Health")
-	parent_health.connect("damaged", self, "_update")
-	parent_health.connect("healed", self, "_update")
+	parent_health.connect("damaged",Callable(self,"_update"))
+	parent_health.connect("healed",Callable(self,"_update"))
 
 func _set_position():
 	var parent = get_node("../")

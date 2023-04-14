@@ -1,11 +1,11 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/eamonn/weapons/autocannon.obj" type="ArrayMesh" id=1]
-[ext_resource path="res://assets/eamonn/weapons/autocannon/autocannon_RM.png" type="Texture" id=2]
-[ext_resource path="res://assets/eamonn/weapons/autocannon/autocannon_C.png" type="Texture" id=3]
-[ext_resource path="res://assets/eamonn/weapons/autocannon/autocannon_N.png" type="Texture" id=4]
+[ext_resource path="res://assets/eamonn/weapons/autocannon/autocannon_RM.png" type="Texture2D" id=2]
+[ext_resource path="res://assets/eamonn/weapons/autocannon/autocannon_C.png" type="Texture2D" id=3]
+[ext_resource path="res://assets/eamonn/weapons/autocannon/autocannon_N.png" type="Texture2D" id=4]
 
-[sub_resource type="SpatialMaterial" id=1]
+[sub_resource type="StandardMaterial3D" id=1]
 albedo_texture = ExtResource( 3 )
 metallic_texture = ExtResource( 2 )
 metallic_texture_channel = 2
@@ -14,6 +14,6 @@ normal_enabled = true
 normal_scale = 1.0
 normal_texture = ExtResource( 4 )
 
-[node name="Graphics" type="MeshInstance"]
+[node name="Graphics" type="MeshInstance3D"]
 mesh = ExtResource( 1 )
 material/0 = SubResource( 1 )

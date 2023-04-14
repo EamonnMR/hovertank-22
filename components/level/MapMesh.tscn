@@ -2,5 +2,5 @@
 
 [ext_resource path="res://components/level/MapMesh.gd" type="Script" id=1]
 
-[node name="MapMesh" type="Spatial"]
+[node name="MapMesh" type="Node3D"]
 script = ExtResource( 1 )

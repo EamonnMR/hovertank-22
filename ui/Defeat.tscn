@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://assets/documerica_pd/Colorado-river-at-sunrise--30-miles-north-of-yuma-may-1972_7136534745_o.jpg" type="Texture" id=1]
+[ext_resource path="res://assets/documerica_pd/Colorado-river-at-sunrise--30-miles-north-of-yuma-may-1972_7136534745_o.jpg" type="Texture2D" id=1]
 [ext_resource path="res://ui/Defeat.gd" type="Script" id=2]
 
 [node name="Defeat" type="Control"]
@@ -20,11 +20,11 @@ expand = true
 [node name="Label" type="Label" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -168.889
-margin_top = 30.2905
-margin_right = -126.889
-margin_bottom = 44.2905
-rect_scale = Vector2( 8, 8 )
+offset_left = -168.889
+offset_top = 30.2905
+offset_right = -126.889
+offset_bottom = 44.2905
+scale = Vector2( 8, 8 )
 text = "Defeat"
 
 [node name="Retry" type="Button" parent="."]
@@ -32,10 +32,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -128.435
-margin_top = -10.0
-margin_right = -60.4352
-margin_bottom = 10.0
+offset_left = -128.435
+offset_top = -10.0
+offset_right = -60.4352
+offset_bottom = 10.0
 text = "retry"
 
 [node name="Menu" type="Button" parent="."]
@@ -43,10 +43,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -34.0
-margin_top = -10.0
-margin_right = 34.0
-margin_bottom = 10.0
+offset_left = -34.0
+offset_top = -10.0
+offset_right = 34.0
+offset_bottom = 10.0
 text = "menu"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -57,10 +57,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 62.217
-margin_top = -10.0
-margin_right = 130.217
-margin_bottom = 10.0
+offset_left = 62.217
+offset_top = -10.0
+offset_right = 130.217
+offset_bottom = 10.0
 text = "quit"
 __meta__ = {
 "_edit_use_anchors_": false

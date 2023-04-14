@@ -1,11 +1,11 @@
-extends Spatial
+extends Node3D
 
-onready var parent = get_node("../")
-onready var navmesh = get_node("../../NavigationMesh") # TODO: Different navmeshes for different movement capabilities
-onready var firing_range: float = parent.get_node("VehicleCore").derive_engagement_range()
-onready var chase_distance = firing_range / 2
+@onready var parent = get_node("../")
+@onready var navmesh = get_node("../../NavigationMesh") # TODO: Different navmeshes for different movement capabilities
+@onready var firing_range: float = parent.get_node("VehicleCore").derive_engagement_range()
+@onready var chase_distance = firing_range / 2
 
-var target: Spatial
+var target: Node3D
 var destination: Vector3
 
 # TODO: Tweak Params
@@ -54,9 +54,9 @@ func _obtain_target(target):
 
 func _random_destination():
 	return parent.global_transform.origin + Vector3(
-			rand_range(-100, 100),
-			rand_range(0, 50),
-			rand_range(-100, 100))
+			randf_range(-100, 100),
+			randf_range(0, 50),
+			randf_range(-100, 100))
 	
 func recalculate_path_to_target():
 	var movement = get_node("../Movement")
@@ -92,7 +92,7 @@ func is_shooting():
 func _has_los_player(player):
 	var our_pos = parent.get_center_of_mass()
 	var player_pos = player.get_center_of_mass()
-	var space_state = get_world().get_direct_space_state()
+	var space_state = get_world_3d().get_direct_space_state()
 	var result = space_state.intersect_ray(our_pos, player_pos, [get_parent()], 1)
 	var has_los = result.has("collider") and result.collider == player
 	return has_los

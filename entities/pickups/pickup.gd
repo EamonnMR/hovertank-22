@@ -1,21 +1,21 @@
-extends KinematicBody
+extends CharacterBody3D
 
 class_name Pickup
 
 var velocity: Vector3
-export var start_move_speed = 30
-export var gravity = 35.0
-export var drag = 0.01
-export var velo_retained_on_bounce = 0.8
+@export var start_move_speed = 30
+@export var gravity = 35.0
+@export var drag = 0.01
+@export var velo_retained_on_bounce = 0.8
 var initialized = false
 
 func _ready():
 	velocity =(
 		global_transform.basis.x
-		* rand_range(0, start_move_speed)
+		* randf_range(0, start_move_speed)
 	).rotated(
 		Vector3(0, 1, 0),
-		rand_range(0, PI * 2)
+		randf_range(0, PI * 2)
 	)
 	
 func _physics_process(delta):

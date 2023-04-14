@@ -1,17 +1,17 @@
-extends Spatial
+extends Node3D
 
-export var special_ammo_counts = []
+@export var special_ammo_counts = []
 var special_weapon_selected: bool
 var current_special_weapon: int
 
 signal ammo_count_changed(special_ammo_counts, current_special_weapon)
 
-onready var core = get_node("../VehicleCore")
+@onready var core = get_node("../VehicleCore")
 
 func _ready():
 	for i in sw_count():
 		special_ammo_counts.push_back(1)
-	connect("ammo_count_changed", Hud.ammo_widget, 'update_ammo_count')
+	connect("ammo_count_changed",Callable(Hud.ammo_widget,'update_ammo_count'))
 	call_deferred("emit_signal", "ammo_count_changed", special_ammo_counts)
 	
 func consume_special_ammo(special_ammo_id: int) -> bool:

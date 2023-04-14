@@ -2,6 +2,6 @@
 
 [ext_resource path="res://components/DiffWheel.gd" type="Script" id=1]
 
-[node name="VehicleWheel" type="VehicleWheel"]
+[node name="VehicleWheel3D" type="VehicleWheel3D"]
 wheel_friction_slip = 1.0
 script = ExtResource( 1 )

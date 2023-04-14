@@ -1,23 +1,23 @@
-extends RigidBody
+extends RigidBody3D
 
-onready var core = get_node("VehicleCore")
+@onready var core = get_node("VehicleCore")
 
 var engine_force: float
 var steering: float
 
 var destroyed = false
 
-export var speed: float = 30.0
-export var accel: float = 3.0
-export var turn: float = 5
-export var match_ground: bool = true
+@export var speed: float = 30.0
+@export var accel: float = 3.0
+@export var turn: float = 5
+@export var match_ground: bool = true
 
-export var traction = 1.0
+@export var traction = 1.0
 
-export var engine_torque = 400
-export var turn_fudge = 2
-export var brake_power = 5
-export var max_steering = 90
+@export var engine_torque = 400
+@export var turn_fudge = 2
+@export var brake_power = 5
+@export var max_steering = 90
 
 # TODO: Load these from Client, make difficulty settings
 const SPEED_NERF_FACTOR = 0.9

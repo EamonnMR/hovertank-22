@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://ui/hud.gd" type="Script" id=1]
-[ext_resource path="res://assets/danc_cc_by/health_under.png" type="Texture" id=2]
-[ext_resource path="res://assets/danc_cc_by/health_over.png" type="Texture" id=3]
-[ext_resource path="res://assets/danc_cc_by/healthpack.png" type="Texture" id=4]
+[ext_resource path="res://assets/danc_cc_by/health_under.png" type="Texture2D" id=2]
+[ext_resource path="res://assets/danc_cc_by/health_over.png" type="Texture2D" id=3]
+[ext_resource path="res://assets/danc_cc_by/healthpack.png" type="Texture2D" id=4]
 [ext_resource path="res://ui/AmmoCounts.gd" type="Script" id=5]
 [ext_resource path="res://ui/FPS.gd" type="Script" id=7]
 
@@ -13,15 +13,15 @@ anchor_bottom = 1.0
 script = ExtResource( 1 )
 
 [node name="TopLeft" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="HealthWidget" type="TextureProgress" parent="TopLeft"]
-margin_left = 14.0
-margin_top = 17.0
-margin_right = 93.0
-margin_bottom = 57.0
-rect_scale = Vector2( 2, 2 )
+[node name="HealthWidget" type="TextureProgressBar" parent="TopLeft"]
+offset_left = 14.0
+offset_top = 17.0
+offset_right = 93.0
+offset_bottom = 57.0
+scale = Vector2( 2, 2 )
 texture_under = ExtResource( 2 )
 texture_progress = ExtResource( 3 )
 __meta__ = {
@@ -29,17 +29,17 @@ __meta__ = {
 }
 
 [node name="TextureRect" type="TextureRect" parent="TopLeft/HealthWidget"]
-margin_left = 83.5
-margin_top = -1.0
-margin_right = 123.5
-margin_bottom = 39.0
+offset_left = 83.5
+offset_top = -1.0
+offset_right = 123.5
+offset_bottom = 39.0
 texture = ExtResource( 4 )
 
 [node name="TopRight" type="Control" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -103.998
-margin_bottom = 157.0
+offset_left = -103.998
+offset_bottom = 157.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -49,10 +49,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -99.9323
-margin_top = -80.9661
-margin_right = -59.9323
-margin_bottom = -29.9661
+offset_left = -99.9323
+offset_top = -80.9661
+offset_right = -59.9323
+offset_bottom = -29.9661
 script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -61,11 +61,11 @@ __meta__ = {
 [node name="CenterTop" type="Control" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -20.0
-margin_right = 20.0
-margin_bottom = 40.0
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
 
 [node name="AmmoCounts" type="HBoxContainer" parent="CenterTop"]
-margin_right = 40.0
-margin_bottom = 40.0
+offset_right = 40.0
+offset_bottom = 40.0
 script = ExtResource( 5 )

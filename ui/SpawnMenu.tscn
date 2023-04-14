@@ -1,177 +1,135 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=5 format=3 uid="uid://bfaxn5ntdic38"]
 
-[ext_resource path="res://assets/eamonn/logo.png" type="Texture" id=1]
-[ext_resource path="res://ui/SpawnMenu.gd" type="Script" id=2]
-[ext_resource path="res://assets/documerica_pd/A_HUNDRED-MILE_RIBBON_OF_SAND_DUNES_SEPARATES_THE_CHOCOLATE_MOUNTAINS_OF_SOUTHERN_CALIFORNIA_FROM_THE_IMPERIAL..._-_NARA_-_547717.jpg" type="Texture" id=3]
-[ext_resource path="res://assets/eamonn/darken.png" type="Texture" id=4]
+[ext_resource type="Texture2D" uid="uid://cu4p5yk6h2c6x" path="res://assets/eamonn/logo.png" id="1"]
+[ext_resource type="Script" path="res://ui/SpawnMenu.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://b034unctdllmp" path="res://assets/documerica_pd/A_HUNDRED-MILE_RIBBON_OF_SAND_DUNES_SEPARATES_THE_CHOCOLATE_MOUNTAINS_OF_SOUTHERN_CALIFORNIA_FROM_THE_IMPERIAL..._-_NARA_-_547717.jpg" id="3"]
+[ext_resource type="Texture2D" uid="uid://bngmgoatt13xw" path="res://assets/eamonn/darken.png" id="4"]
 
 [node name="SpawnMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 2 )
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 3 )
-expand = true
-stretch_mode = 1
+texture = ExtResource("3")
+expand_mode = 5
 
 [node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -306.0
-margin_top = -148.0
-margin_right = 311.0
-margin_bottom = 270.0
-texture = ExtResource( 4 )
-expand = true
+offset_left = -306.0
+offset_top = -148.0
+offset_right = 311.0
+offset_bottom = 270.0
+texture = ExtResource("4")
+expand_mode = 1
 stretch_mode = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -300.0
-margin_top = -288.0
-margin_right = 300.0
-margin_bottom = 421.0
+offset_left = -300.0
+offset_top = -288.0
+offset_right = 300.0
+offset_bottom = 421.0
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
-margin_right = 600.0
-margin_bottom = 150.0
-texture = ExtResource( 1 )
+layout_mode = 2
+texture = ExtResource("1")
 stretch_mode = 1
 
 [node name="Selection" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 154.0
-margin_right = 600.0
-margin_bottom = 354.0
-rect_min_size = Vector2( 0, 200 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
 
 [node name="VehicleSelect" type="VBoxContainer" parent="VBoxContainer/Selection"]
-margin_right = 100.0
-margin_bottom = 200.0
+layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/Selection/VehicleSelect"]
-margin_right = 100.0
-margin_bottom = 14.0
+layout_mode = 2
 text = "Vehicle"
 
 [node name="MenuButton" type="OptionButton" parent="VBoxContainer/Selection/VehicleSelect"]
-margin_top = 18.0
-margin_right = 100.0
-margin_bottom = 38.0
-rect_min_size = Vector2( 100, 0 )
-text = "Select"
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
 
 [node name="Desc" type="RichTextLabel" parent="VBoxContainer/Selection/VehicleSelect"]
-margin_top = 42.0
-margin_right = 100.0
-margin_bottom = 57.0
+layout_mode = 2
 bbcode_enabled = true
-fit_content_height = true
 
 [node name="PrimaryWeaponSelect" type="VBoxContainer" parent="VBoxContainer/Selection"]
-margin_left = 104.0
-margin_right = 204.0
-margin_bottom = 200.0
+layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/Selection/PrimaryWeaponSelect"]
-margin_right = 100.0
-margin_bottom = 14.0
+layout_mode = 2
 text = "Primary"
 
 [node name="MenuButton" type="OptionButton" parent="VBoxContainer/Selection/PrimaryWeaponSelect"]
-margin_top = 18.0
-margin_right = 100.0
-margin_bottom = 38.0
-rect_min_size = Vector2( 100, 0 )
-text = "Select"
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
 
 [node name="Desc" type="RichTextLabel" parent="VBoxContainer/Selection/PrimaryWeaponSelect"]
-margin_top = 42.0
-margin_right = 100.0
-margin_bottom = 57.0
+layout_mode = 2
 bbcode_enabled = true
-fit_content_height = true
 
 [node name="SecondaryWeaponSelect" type="VBoxContainer" parent="VBoxContainer/Selection"]
-margin_left = 208.0
-margin_right = 308.0
-margin_bottom = 200.0
+layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/Selection/SecondaryWeaponSelect"]
-margin_right = 100.0
-margin_bottom = 14.0
+layout_mode = 2
 text = "Secondary"
 
 [node name="MenuButton" type="OptionButton" parent="VBoxContainer/Selection/SecondaryWeaponSelect"]
-margin_top = 18.0
-margin_right = 100.0
-margin_bottom = 38.0
-rect_min_size = Vector2( 100, 0 )
-text = "Select"
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
 
 [node name="Desc" type="RichTextLabel" parent="VBoxContainer/Selection/SecondaryWeaponSelect"]
-margin_top = 42.0
-margin_right = 100.0
-margin_bottom = 57.0
+layout_mode = 2
 bbcode_enabled = true
-fit_content_height = true
 
 [node name="Mission" type="VBoxContainer" parent="VBoxContainer"]
-margin_top = 358.0
-margin_right = 600.0
-margin_bottom = 508.0
-rect_min_size = Vector2( 199, 150 )
+custom_minimum_size = Vector2(199, 150)
+layout_mode = 2
 
 [node name="Mission Select" type="Label" parent="VBoxContainer/Mission"]
-margin_right = 600.0
-margin_bottom = 31.0
+layout_mode = 2
 text = "Mission
 "
 
 [node name="MenuButton" type="OptionButton" parent="VBoxContainer/Mission"]
-margin_top = 35.0
-margin_right = 600.0
-margin_bottom = 55.0
-rect_min_size = Vector2( 100, 0 )
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
 
 [node name="Desc" type="RichTextLabel" parent="VBoxContainer/Mission"]
-margin_top = 59.0
-margin_right = 600.0
-margin_bottom = 74.0
+layout_mode = 2
 bbcode_enabled = true
-fit_content_height = true
 
 [node name="LaunchOptions" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 512.0
-margin_right = 600.0
-margin_bottom = 532.0
+layout_mode = 2
 
 [node name="StartButton" type="Button" parent="VBoxContainer/LaunchOptions"]
-margin_right = 41.0
-margin_bottom = 20.0
+layout_mode = 2
 text = "Start"
 
 [node name="QuitButton" type="Button" parent="VBoxContainer/LaunchOptions"]
-margin_left = 45.0
-margin_right = 82.0
-margin_bottom = 20.0
+layout_mode = 2
 text = "quit"
 
 [node name="ControllerOption" type="OptionButton" parent="VBoxContainer/LaunchOptions"]
-margin_left = 86.0
-margin_right = 178.0
-margin_bottom = 20.0
-text = "Controller"
+layout_mode = 2
 
 [connection signal="item_selected" from="VBoxContainer/Selection/VehicleSelect/MenuButton" to="." method="_on_Vehicle_selected"]
 [connection signal="item_selected" from="VBoxContainer/Selection/PrimaryWeaponSelect/MenuButton" to="." method="_on_Primary_selected"]

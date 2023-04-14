@@ -1,11 +1,11 @@
-extends RigidBody
+extends RigidBody3D
 
-export var speed = 50
-export var damage = 0
-export var splash_damage = 0
-export var splash_radius = 0
-export var already_exploded = false
-export var explosion: PackedScene
+@export var speed = 50
+@export var damage = 0
+@export var splash_damage = 0
+@export var splash_radius = 0
+@export var already_exploded = false
+@export var explosion: PackedScene
 signal impact
 
 var iff: IffProfile
@@ -24,7 +24,7 @@ func initial_velocity():
 
 func _explode():
 	# TODO: Calculate ricochet angle
-	var explo = explosion.instance()
+	var explo = explosion.instantiate()
 	explo.transform.origin = global_transform.origin
 	if splash_damage:
 		explo.init(splash_damage, splash_radius, false, iff)

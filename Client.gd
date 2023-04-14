@@ -24,7 +24,7 @@ var VEHICLES = {
 	"mecha": {
 		"name": "Cassidy Mech",
 		"scene": preload("res://entities/vehicles/Mecha.tscn"),
-		"desc": "Light, by giant robot standards."
+		"desc": "Light3D, by giant robot standards."
 	},
 	"tilter": {
 		"name": "Tilter Halftrack",
@@ -32,7 +32,7 @@ var VEHICLES = {
 		"desc": "Very narrow traverse, high speed. Saddle up"
 	},
 	"cobra": {
-		"name": "Cobra Light TD",
+		"name": "Cobra Light3D TD",
 		"scene": preload("res://entities/vehicles/rat.tscn"),
 		"desc": "Everything sacrified at the altar of speed and a bigger gun. Mounts no secondary weapon. Handling is, well, you'll see."
 	}
@@ -140,25 +140,25 @@ func set_secondary_selection(index: int):
 	selected_secondary = WEAPONS.keys()[index]
 	
 func spawn_player(world: Node):
-	var player = VEHICLES[selected_vehicle].scene.instance()
+	var player = VEHICLES[selected_vehicle].scene.instantiate()
 	player_object = player
 	
-	var controller_instance = CONTROLLERS[selected_control_scheme].instance()
+	var controller_instance = CONTROLLERS[selected_control_scheme].instantiate()
 	controller_instance.name = "Controller"
 
 	player.add_child(controller_instance)
 	
-	var ammo_component = preload("res://components/AmmoManager.tscn").instance()
+	var ammo_component = preload("res://components/AmmoManager.tscn").instantiate()
 	player.add_child(ammo_component)
 	
 	for turret in player.get_node("VehicleCore").get_turrets():
 		for slot in turret.get_primary_slots():
-			slot.add_child(WEAPONS[selected_primary].scene.instance())
+			slot.add_child(WEAPONS[selected_primary].scene.instantiate())
 		for slot in turret.get_secondary_slots():
-			slot.add_child(WEAPONS[selected_secondary].scene.instance())
+			slot.add_child(WEAPONS[selected_secondary].scene.instantiate())
 	
 	player.get_node("VehicleCore").faction = 1  # Players always work for ITAR
-	var camera_rig = preload("res://camera/CameraRig.tscn").instance()
+	var camera_rig = preload("res://camera/CameraRig.tscn").instantiate()
 	camera_rig.third_person = true # false
 	world.add_child(camera_rig)
 	world.add_child(player)
@@ -167,13 +167,13 @@ func spawn_player(world: Node):
 
 
 func start_level():
-	get_tree().change_scene(LEVELS[current_level].scene)
+	get_tree().change_scene_to_file(LEVELS[current_level].scene)
 
 func return_to_menu():
-	get_tree().change_scene("res://ui/SpawnMenu.tscn")
+	get_tree().change_scene_to_file("res://ui/SpawnMenu.tscn")
 
 func defeat_screen():
-	get_tree().change_scene("res://ui/Defeat.tscn")
+	get_tree().change_scene_to_file("res://ui/Defeat.tscn")
 
 func victory_screen():
-	get_tree().change_scene("res://ui/Victory.tscn")
+	get_tree().change_scene_to_file("res://ui/Victory.tscn")

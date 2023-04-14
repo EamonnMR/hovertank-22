@@ -12,9 +12,9 @@ signal boss_incursion_begun
 
 var current_incursion_level: int
 
-export var minor_incursion_threshold: int
-export var major_incursion_threshold: int
-export var boss_incursion_threshold: int
+@export var minor_incursion_threshold: int
+@export var major_incursion_threshold: int
+@export var boss_incursion_threshold: int
 
 
 var minor_incursion_active = false

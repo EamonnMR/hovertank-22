@@ -1,6 +1,6 @@
 extends Label
 
-onready var parent_ai = get_node("../../")
+@onready var parent_ai = get_node("../../")
 
 func _process(delta):
 	text = (

@@ -2,7 +2,7 @@
 
 [ext_resource path="res://projectiles/DamageAoe.gd" type="Script" id=1]
 
-[node name="DamageAoe" type="Area"]
+[node name="DamageAoe" type="Area3D"]
 script = ExtResource( 1 )
 
 [connection signal="body_entered" from="." to="." method="_on_DamageAoe_body_entered"]

@@ -1,7 +1,7 @@
-extends StaticBody
+extends StaticBody3D
 
-export var faction: int = -1
-export var graphics: NodePath
+@export var faction: int = -1
+@export var graphics: NodePath
 signal destroyed
 
 func is_player():

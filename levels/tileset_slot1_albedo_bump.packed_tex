@@ -1,8 +1,0 @@
-{
-	"contains_albedo": true,
-	"resolution": 512,
-	"src": {
-		"a": "res://assets/yughues_cc0/pattern_79_worn_stone/height.png",
-		"rgb": "res://assets/yughues_cc0/pattern_79_worn_stone/diffus.png"
-	}
-}

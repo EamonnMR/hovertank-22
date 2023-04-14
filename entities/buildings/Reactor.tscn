@@ -9,16 +9,16 @@
 [ext_resource path="res://components/Health.gd" type="Script" id=7]
 [ext_resource path="res://entities/Building.gd" type="Script" id=8]
 
-[sub_resource type="BoxShape" id=2]
-extents = Vector3( 15.0094, 3.37158, 15.603 )
+[sub_resource type="BoxShape3D" id=2]
+size = Vector3( 15.0094, 3.37158, 15.603 )
 
-[sub_resource type="BoxShape" id=3]
-extents = Vector3( 15.0018, 12.7956, 1 )
+[sub_resource type="BoxShape3D" id=3]
+size = Vector3( 15.0018, 12.7956, 1 )
 
-[sub_resource type="SphereShape" id=4]
+[sub_resource type="SphereShape3D" id=4]
 radius = 7.70372
 
-[node name="Building" type="StaticBody"]
+[node name="Building" type="StaticBody3D"]
 collision_layer = 3
 script = ExtResource( 8 )
 faction = 0
@@ -30,30 +30,30 @@ graphics = NodePath("Graphics")
 radius = 18.0
 height = 15.0
 
-[node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.64691, 0, 0 )
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.64691, 0, 0 )
 shape = SubResource( 2 )
 
-[node name="CollisionShape2" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.65094, 0, 0 )
+[node name="CollisionShape2" type="CollisionShape3D" parent="."]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.65094, 0, 0 )
 shape = SubResource( 3 )
 
-[node name="CollisionShape3" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.14375, 10.7923, 0 )
+[node name="CollisionShape3" type="CollisionShape3D" parent="."]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.14375, 10.7923, 0 )
 shape = SubResource( 4 )
 
-[node name="Health" type="Spatial" parent="."]
+[node name="Health" type="Node3D" parent="."]
 script = ExtResource( 7 )
 max_health = 400
 explosion = ExtResource( 4 )
 
-[node name="Graphics" type="MeshInstance" parent="."]
-transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
+[node name="Graphics" type="MeshInstance3D" parent="."]
+transform = Transform3D( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
 mesh = ExtResource( 1 )
 material/0 = ExtResource( 2 )
 
 [node name="Energy" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.50935, 10.2228, 0 )
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.50935, 10.2228, 0 )
 energy = 300
 max_energy = 300
 

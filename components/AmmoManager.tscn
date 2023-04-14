@@ -2,5 +2,5 @@
 
 [ext_resource path="res://components/AmmoManager.gd" type="Script" id=1]
 
-[node name="AmmoManager" type="Spatial"]
+[node name="AmmoManager" type="Node3D"]
 script = ExtResource( 1 )

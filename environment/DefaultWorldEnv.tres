@@ -1,6 +1,6 @@
 [gd_resource type="Environment" load_steps=2 format=2]
 
-[sub_resource type="ProceduralSky" id=4]
+[sub_resource type="Sky" id=4]
 sky_energy = 0.5
 ground_energy = 0.2
 sun_color = Color( 0.984314, 0.8, 0.0784314, 1 )

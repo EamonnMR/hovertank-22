@@ -2,14 +2,14 @@
 
 [ext_resource path="res://effects/explosions/HugeExplosion.tscn" type="PackedScene" id=1]
 
-[sub_resource type="SphereShape" id=12]
+[sub_resource type="SphereShape3D" id=12]
 radius = 92.8027
 
 [sub_resource type="Gradient" id=10]
-offsets = PoolRealArray( 0, 0.111111, 0.389222, 1 )
-colors = PoolColorArray( 0.957886, 0.460938, 1, 1, 0.886719, 0.453751, 0.879954, 1, 0.515068, 0.27626, 0.832031, 1, 0.486328, 0.486328, 0.486328, 0 )
+offsets = PackedFloat32Array( 0, 0.111111, 0.389222, 1 )
+colors = PackedColorArray( 0.957886, 0.460938, 1, 1, 0.886719, 0.453751, 0.879954, 1, 0.515068, 0.27626, 0.832031, 1, 0.486328, 0.486328, 0.486328, 0 )
 
-[sub_resource type="GradientTexture" id=11]
+[sub_resource type="GradientTexture2D" id=11]
 gradient = SubResource( 10 )
 
 [sub_resource type="Curve" id=7]
@@ -18,7 +18,7 @@ _data = [ Vector2( 0, 0.406818 ), 0.0, 0.0, 0, 0, Vector2( 0.368421, 0.997727 ),
 [sub_resource type="CurveTexture" id=8]
 curve = SubResource( 7 )
 
-[sub_resource type="ParticlesMaterial" id=9]
+[sub_resource type="ParticleProcessMaterial" id=9]
 emission_shape = 1
 emission_sphere_radius = 10.0
 spread = 180.0
@@ -35,7 +35,7 @@ color_ramp = SubResource( 11 )
 damage = 35
 radius = 30
 
-[node name="CollisionShape" parent="Notifier" index="0"]
+[node name="CollisionShape3D" parent="Notifier" index="0"]
 shape = SubResource( 12 )
 
 [node name="Particles" parent="." index="1"]

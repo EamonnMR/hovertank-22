@@ -1,0 +1,8 @@
+res://default_env.tres
+res://effects/misc_particle_data/AutoCannonEffect.tres
+res://environment/TileLibrary.tscn
+res://maps/e1m1.tscn
+res://environment/World.gd
+res://environment/TileLibraryExported.tres
+res://environment/TileLibrary.tres
+res://ui/SpawnMenu.tscn

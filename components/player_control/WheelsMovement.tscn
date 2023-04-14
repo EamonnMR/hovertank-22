@@ -2,5 +2,5 @@
 
 [ext_resource path="res://components/player_control/WheelsMovement.gd" type="Script" id=1]
 
-[node name="Spatial" type="Spatial"]
+[node name="Node3D" type="Node3D"]
 script = ExtResource( 1 )

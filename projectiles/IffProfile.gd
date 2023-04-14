@@ -6,7 +6,7 @@ var owner: Node
 var faction: int
 var exclude_allies: bool
 
-func _init(owner: Node, faction: int, exclude_allies: bool):
+func _init(owner: Node,faction: int,exclude_allies: bool):
 	self.owner = owner
 	self.faction = faction
 	self.exclude_allies = exclude_allies

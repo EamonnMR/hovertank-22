@@ -1,20 +1,21 @@
 [remap]
 
 importer="wavefront_obj"
+importer_version=1
 type="Mesh"
-path="res://.import/rat_mirror_applied.obj-e0139c28622d1b6b0ca14d5cf17d0d4a.mesh"
+uid="uid://dgw4frasafpxw"
+path="res://.godot/imported/rat_mirror_applied.obj-e0139c28622d1b6b0ca14d5cf17d0d4a.mesh"
 
 [deps]
 
-files=[ "res://.import/rat_mirror_applied.obj-e0139c28622d1b6b0ca14d5cf17d0d4a.mesh" ]
+files=["res://.godot/imported/rat_mirror_applied.obj-e0139c28622d1b6b0ca14d5cf17d0d4a.mesh"]
 
 source_file="res://asset_sources/rat_mirror_applied.obj"
-dest_files=[ "res://.import/rat_mirror_applied.obj-e0139c28622d1b6b0ca14d5cf17d0d4a.mesh", "res://.import/rat_mirror_applied.obj-e0139c28622d1b6b0ca14d5cf17d0d4a.mesh" ]
+dest_files=["res://.godot/imported/rat_mirror_applied.obj-e0139c28622d1b6b0ca14d5cf17d0d4a.mesh", "res://.godot/imported/rat_mirror_applied.obj-e0139c28622d1b6b0ca14d5cf17d0d4a.mesh"]
 
 [params]
 
 generate_tangents=true
-scale_mesh=Vector3( 1, 1, 1 )
-offset_mesh=Vector3( 0, 0, 0 )
-octahedral_compression=true
-optimize_mesh_flags=4286
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

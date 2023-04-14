@@ -1,7 +1,7 @@
 extends Movement
 
 # Movement for player vehicles which can turn in place and don't hover
-onready var animation_player = get_node("../Graphics/Armature/AnimationPlayer")
+@onready var animation_player = get_node("../Graphics/Armature/AnimationPlayer")
 
 const gravity = -900
 const animation_transition_speed = 0.25
@@ -9,7 +9,7 @@ var motion = Vector3(0,0,0)
 var motion_impulse
 var momentum: float = 0
 var grounded: bool
-export var match_ground: bool = false
+@export var match_ground: bool = false
 
 func _physics_process(delta):
 	if parent.destroyed:
@@ -29,7 +29,12 @@ func _physics_process(delta):
 	grounded = parent.is_on_floor()
 	if grounded:
 		motion.y = -0.01 # Need to keep touching floor to keep is_on_floor true
-	parent.move_and_slide_with_snap(motion_total, Vector3.DOWN, Vector3.UP, true)
+	parent.set_velocity(motion_total)
+	# TODOConverter40 looks that snap in Godot 4.0 is float, not vector like in Godot 3 - previous value `Vector3.DOWN`
+	parent.set_up_direction(Vector3.UP)
+	parent.set_floor_stop_on_slope_enabled(true)
+	parent.move_and_slide()
+	parent.velocity
 	if match_ground:
 		match_ground_normal(delta, parent)
 

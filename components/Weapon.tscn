@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/cyberduck_cc0/shot_03.ogg" type="AudioStream" id=2]
 [ext_resource path="res://components/Notifier.tscn" type="PackedScene" id=3]
 
-[node name="Weapon" type="Spatial"]
+[node name="Weapon" type="Node3D"]
 script = ExtResource( 1 )
 
 [node name="Cooldown" type="Timer" parent="."]
@@ -21,7 +21,7 @@ stream = ExtResource( 2 )
 [node name="Notifier" parent="." instance=ExtResource( 3 )]
 line_of_sight = false
 
-[node name="Emerge" type="Spatial" parent="."]
+[node name="Emerge" type="Node3D" parent="."]
 
 [node name="MuzzleFlash" type="Particles" parent="Emerge"]
 

@@ -1,7 +1,7 @@
-extends Spatial
+extends Node3D
 
-onready var parent = get_node("../")
-onready var controller = get_node("../Controller")
+@onready var parent = get_node("../")
+@onready var controller = get_node("../Controller")
 
 class_name Movement
 
@@ -20,17 +20,17 @@ func update_momentum(momentum: float, delta: float, motion_impulse: int) -> floa
 		else:
 			return sign(momentum) * max_diff
 
-func match_ground_normal(_delta: float, parent: Spatial, factor: float = 0.2):
+func match_ground_normal(_delta: float, parent: Node3D, factor: float = 0.2):
 	# see: http://kidscancode.org/godot_recipes/3d/3d_align_surface
-	var ray_below_normal = $RayCast.get_collision_normal()
+	var ray_below_normal = $RayCast3D.get_collision_normal()
 	if ray_below_normal != Vector3(0, 0, 0):
 		parent.global_transform = parent.global_transform.interpolate_with(
 			_align_with_y(parent.global_transform, ray_below_normal), 
 			factor
 		)
 
-func _align_with_y(xform: Transform, new_y: Vector3) -> Transform:
-	#var xform = Transform(transform)
+func _align_with_y(xform: Transform3D, new_y: Vector3) -> Transform3D:
+	#var xform = Transform3D(transform)
 	xform.basis.y = new_y
 	xform.basis.x = -xform.basis.z.cross(new_y)
 	xform.basis = xform.basis.orthonormalized()

@@ -1,8 +1,8 @@
-extends Spatial
+extends Node3D
 
 class_name WeaponSlot
 
-export var primary: bool # Primary or secondary
+@export var primary: bool # Primary or secondary
 var special_weapons = []
 var stored_default_weapon: Node
 var iff_profile = null
@@ -31,7 +31,7 @@ func _ready():
 	if not primary:
 		for special_weapon_id in range(len(Client.SPECIAL_WEAPONS)):
 			var special_weapon_data = Client.SPECIAL_WEAPONS[special_weapon_id]
-			var weapon = special_weapon_data.scene.instance()
+			var weapon = special_weapon_data.scene.instantiate()
 			weapon.init(iff_profile, special_weapon_id)
 			special_weapons.append(weapon)
 	

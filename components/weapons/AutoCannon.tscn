@@ -23,7 +23,7 @@ wait_time = 0.5
 [node name="Graphics" parent="." index="2" instance=ExtResource( 2 )]
 
 [node name="Emerge" parent="." index="5"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.03299, 0, 0 )
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.03299, 0, 0 )
 
 [node name="MuzzleFlash" parent="Emerge" index="0"]
 material_override = ExtResource( 3 )

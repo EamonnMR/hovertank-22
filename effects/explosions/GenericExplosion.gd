@@ -1,8 +1,8 @@
-extends Spatial
+extends Node3D
 
-export var damage: int = true
-export var radius: int = true
-export var friendly_splash: bool = false
+@export var damage: int = true
+@export var radius: int = true
+@export var friendly_splash: bool = false
 var iff: IffProfile
 
 func init(damage: int = 0, radius: int = 0, friendly_splash: bool = false, iff: IffProfile = null):

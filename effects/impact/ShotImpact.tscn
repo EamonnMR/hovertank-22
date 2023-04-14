@@ -2,7 +2,7 @@
 
 [ext_resource path="res://effects/explosions/GenericExplosion.tscn" type="PackedScene" id=1]
 
-[sub_resource type="ParticlesMaterial" id=1]
+[sub_resource type="ParticleProcessMaterial" id=1]
 lifetime_randomness = 0.5
 direction = Vector3( 0, 1, 0 )
 spread = 20.29

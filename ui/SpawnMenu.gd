@@ -1,10 +1,10 @@
 extends Control
 
-onready var vehicle_dd: OptionButton = $VBoxContainer/Selection/VehicleSelect/MenuButton
-onready var primary_dd: OptionButton = $VBoxContainer/Selection/PrimaryWeaponSelect/MenuButton
-onready var secondary_dd: OptionButton = $VBoxContainer/Selection/SecondaryWeaponSelect/MenuButton
-onready var controller_dd: OptionButton = $VBoxContainer/LaunchOptions/ControllerOption
-onready var missions_dd: OptionButton = $VBoxContainer/Mission/MenuButton
+@onready var vehicle_dd: OptionButton = $VBoxContainer/Selection/VehicleSelect/MenuButton
+@onready var primary_dd: OptionButton = $VBoxContainer/Selection/PrimaryWeaponSelect/MenuButton
+@onready var secondary_dd: OptionButton = $VBoxContainer/Selection/SecondaryWeaponSelect/MenuButton
+@onready var controller_dd: OptionButton = $VBoxContainer/LaunchOptions/ControllerOption
+@onready var missions_dd: OptionButton = $VBoxContainer/Mission/MenuButton
 
 func _ready():
 	for i in Client.VEHICLES:
@@ -56,11 +56,11 @@ func _on_level_selected(index):
 
 func update_text():
 	
-	$VBoxContainer/Selection/VehicleSelect/Desc.bbcode_text = \
+	$VBoxContainer/Selection/VehicleSelect/Desc.text = \
 		Client.VEHICLES[Client.selected_vehicle].desc
-	$VBoxContainer/Selection/PrimaryWeaponSelect/Desc.bbcode_text = \
+	$VBoxContainer/Selection/PrimaryWeaponSelect/Desc.text = \
 		Client.WEAPONS[Client.selected_primary].desc
-	$VBoxContainer/Selection/SecondaryWeaponSelect/Desc.bbcode_text = \
+	$VBoxContainer/Selection/SecondaryWeaponSelect/Desc.text = \
 		Client.WEAPONS[Client.selected_secondary].desc
-	$VBoxContainer/Mission/Desc.bbcode_text = \
+	$VBoxContainer/Mission/Desc.text = \
 		Client.LEVELS[Client.current_level].desc

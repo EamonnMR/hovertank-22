@@ -1,11 +1,11 @@
-extends Spatial
+extends Node3D
 
-onready var parent = get_node("../")
-onready var controller = parent.get_node("Controller")
-onready var energy = parent.get_node("Energy")
-export var primary: bool
-export var cost: int
-export var heat: int
+@onready var parent = get_node("../")
+@onready var controller = parent.get_node("Controller")
+@onready var energy = parent.get_node("Energy")
+@export var primary: bool
+@export var cost: int
+@export var heat: int
 
 var cooldown = false
 

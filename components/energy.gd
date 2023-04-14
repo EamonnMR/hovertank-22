@@ -1,8 +1,8 @@
-extends Spatial
-onready var parent = get_node("../")
+extends Node3D
+@onready var parent = get_node("../")
 
-export var energy: int
-export var max_energy: int
+@export var energy: int
+@export var max_energy: int
 
 func try_subtracting_energy(amount: int):
 	print("try_subtracting_energy: ", amount, " from: ", energy, "result: ", energy <= amount)
@@ -23,7 +23,7 @@ func _ready():
 	energy = max_energy
 	# TODO: Figure out to handle this across _things_
 	# Maybe parent this to VehicleCore?
-	# parent.get_node("VehicleCore").connect("destroyed", self, "_parent_destroyed")
+	# parent.get_node("VehicleCore").connect("destroyed",Callable(self,"_parent_destroyed"))
 
 func _parent_destroyed():
 	var pickup_scene = preload("res://entities/pickups/PowerPickup.tscn")
@@ -31,7 +31,7 @@ func _parent_destroyed():
 	var half_energy = int(energy / 2)
 	while half_energy >= 20:
 		half_energy -= 20
-		pickups.append(pickup_scene.instance())
+		pickups.append(pickup_scene.instantiate())
 	
 	for pickup in pickups:
 		pickup.transform.origin = global_transform.origin
