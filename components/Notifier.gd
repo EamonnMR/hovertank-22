@@ -73,7 +73,9 @@ func _line_of_sight(body) -> bool:
 	
 	var space_state = get_world_3d().get_direct_space_state()
 	
-	var result = space_state.intersect_ray(our_pos, body_pos, [notification_source], 1)
+	var result = space_state.intersect_ray(PhysicsRayQueryParameters3D.create(
+		our_pos, body_pos, 1, [notification_source]
+	))
 	if result.has("collider"):
 		if result.collider == body:
 			return true

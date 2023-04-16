@@ -25,7 +25,7 @@ Hud="*res://ui/hud.tscn"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/zylann.hterrain/plugin.cfg")
+enabled=PackedStringArray()
 
 [importer_defaults]
 

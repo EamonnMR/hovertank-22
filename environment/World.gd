@@ -38,7 +38,7 @@ func bake_level_mesh():
 		var xform = level_mesh[0]
 		# var xform = Transform3D()
 		# xform.origin = transform.origin / 10
-		var arrays = level_mesh[1].surface_get_arrays(0)
+		var arrays = level_mesh[1].surface_get_amovementrrays(0)
 		var xformed_arrays = []
 		for array in arrays:
 			# This depends on the implementation details of the mesh internals

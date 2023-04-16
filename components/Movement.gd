@@ -1,9 +1,10 @@
 extends Node3D
 
+class_name Movement
+
+
 @onready var parent = get_node("../")
 @onready var controller = get_node("../Controller")
-
-class_name Movement
 
 
 func update_momentum(momentum: float, delta: float, motion_impulse: int) -> float:

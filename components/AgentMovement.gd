@@ -2,8 +2,6 @@ extends Movement
 
 # TODO: Somewhere in this class, we're moving something we shouldn't.
 
-const DetourCrowdAgentParameters:NativeScript = preload("res://addons/godotdetour/detourcrowdagentparameters.gdns")
-
 var agent
 var world
 

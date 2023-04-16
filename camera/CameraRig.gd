@@ -86,7 +86,9 @@ func _project_aim_ray(pos: Vector2, ignore_close: bool):  # Returns ray intersec
 
 	var to = from + current_camera.project_ray_normal(pos) * 1000
 	var space_state = get_world_3d().direct_space_state
-	var result = space_state.intersect_ray(from, to, [Client.player_object], RAYCAST_MASK)
+	var result = space_state.intersect_ray(PhysicsRayQueryParameters3D.create(
+		from, to, RAYCAST_MASK, [Client.player_object]
+	))
 	return result
 
 func _handle_third_person_aim(delta):

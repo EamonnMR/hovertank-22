@@ -9,7 +9,8 @@ var obstacle
 @export var square: bool = true
 
 func _ready():
-	parent.transform.origin = world.stick_to_ground(global_transform.origin)
+	# TODO: Stick to ground
+	#parent.transform.origin = world.stick_to_ground(global_transform.origin)
 	if world.nav_is_ready:
 		_setup_obstacle()
 	else:

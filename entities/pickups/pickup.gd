@@ -2,7 +2,6 @@ extends CharacterBody3D
 
 class_name Pickup
 
-var velocity: Vector3
 @export var start_move_speed = 30
 @export var gravity = 35.0
 @export var drag = 0.01

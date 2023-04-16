@@ -3,7 +3,7 @@ extends Node3D
 class_name VehicleCore
 @onready var parent = get_node("../")
 @onready var controller = parent.get_node("Controller")
-var destroyed = false
+var already_destroyed = false
 signal destroyed
 
 var camera
@@ -53,7 +53,7 @@ func _ready():
 	
 	var map = get_node("../../")
 	# connect("destroyed",Callable(map,"unit_destroyed"))
-	get_node("../Health").connect("destroyed",Callable(self,"_dead"))
+	get_node("../Health").destroyed.connect(self._dead)
 	#if ProjectSettings.get_setting("Prefs/controller"):
 		#add_child(preload("res://GamepadController.tscn").instantiate())
 	#else:
@@ -61,11 +61,11 @@ func _ready():
 	
 func _physics_process(delta: float):
 	# Movement is handled by the movement component
-	if not destroyed:
+	if not already_destroyed:
 		_handle_shooting()
 
 func _handle_shooting():
-	if not controller or destroyed:
+	if not controller or already_destroyed:
 		return
 		
 	if controller.next_weapon():
@@ -86,9 +86,9 @@ func _dead():
 	#remove_child(camera)
 	#get_node("../").add_child(camera)
 	#camera.position = position
-	if not destroyed:
+	if not already_destroyed:
 		emit_signal("destroyed")
-		destroyed = true
+		already_destroyed = true
 		if destroyed_shader:
 			var graphics_node: MeshInstance3D = get_node(graphics)
 			graphics_node.set_surface_override_material(0, destroyed_shader)
@@ -112,7 +112,7 @@ func get_turrets():
 	return [get_node("../Graphics/Armature/Skeleton3D/Turret")]
 
 func alert(source):
-	if destroyed:
+	if already_destroyed:
 		return
 	if controller and controller.has_method("alert"):
 		controller.alert(source)

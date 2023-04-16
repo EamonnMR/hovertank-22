@@ -1,0 +1,9 @@
+https://docs.godotengine.org/en/stable/tutorials/navigation/navigation_introduction_3d.html
+
+> Obstacles are intended as a last resort option for constantly moving objects that cannot be re(baked) to a navigation mesh efficiently. This node also only works if RVO processing is being used.
+
+This suggests that the norm is to rebake the nav mesh. The move, then, is probably to rebake the mesh when buildings are destroyed.
+
+We can bake navigation mesh at runtime with navigation region.bake_navigation_mesh
+
+It may be profitable to break the map into multiple navigation regions so that we don't need to do large rebakes when buildings are destroyed.

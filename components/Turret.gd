@@ -1,11 +1,11 @@
 extends BoneAttachment3D
 
+class_name Turret
+
 @onready var skel = get_node("../")
 @onready var turret_bone = skel.find_bone(bone_name)
 @onready var turret_pose = skel.get_bone_pose(skel.find_bone("turret"))
 var parent
-
-class_name Turret
 
 var primary_slots = []
 var secondary_slots = []
@@ -129,8 +129,10 @@ func project_ray():
 	var first_weapon_emergepoint = $ElevationPivot
 	var from = first_weapon_emergepoint.global_transform.origin
 	var to = first_weapon_emergepoint.to_global(Vector3(AIM_EXTEND, 0, 0))
-	var spaceState :PhysicsDirectSpaceState3D = get_world_3d().direct_space_state
-	var result :Dictionary = spaceState.intersect_ray(from, to, [], collisionMask)
+	var spaceState: PhysicsDirectSpaceState3D = get_world_3d().direct_space_state
+	var result: Dictionary = spaceState.intersect_ray(PhysicsRayQueryParameters3D.create(
+		from, to, collisionMask, []
+	))
 	return result
 	#$TurretPointMarker.show()
 	#$TurretPointMarker.global_transform.origin = unrotated_position.global_transform.origin
@@ -249,15 +251,11 @@ func _constrain_aim_by_traverse(aim: float) -> float:
 	return aim
 
 func _get_parent():
-	var valid_parent_types = [
-		VehicleBody3D,
-		RigidBody3D,
-		CharacterBody3D,
-	]
 	var maybe_parent = self
 	while parent != get_tree().get_root():
 		maybe_parent = maybe_parent.get_node("../")
-		for type in valid_parent_types:
-			if maybe_parent is type:
+		if maybe_parent is VehicleBody3D \
+			or maybe_parent is RigidBody3D \
+			or maybe_parent is CharacterBody3D:
 				return maybe_parent 
 	assert(false)

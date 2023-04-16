@@ -40,7 +40,9 @@ func project_beam(from: Vector3, ignore: Array) -> Dictionary:
 	var collisionMask = 1
 	var to = from + global_transform.basis.x * max_range 
 	var spaceState :PhysicsDirectSpaceState3D = get_world_3d().direct_space_state
-	return spaceState.intersect_ray(from, to, ignore, collisionMask)
+	return spaceState.intersect_ray(PhysicsRayQueryParameters3D.create(
+		from, to, collisionMask, ignore
+	))
 
 func _do_explosion(location: Vector3):
 	if explosion:

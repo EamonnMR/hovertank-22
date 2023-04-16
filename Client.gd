@@ -4,14 +4,9 @@ var current_level = 0
 
 var LEVELS = [
 	{
-		"name": "Smoking Section",
-		"desc": "Stranded, surrounded, and just woken up from cryo.",
-		"scene": "res://levels/Level1.tscn"
-	},
-	{
-		"name": "Dancing With A Ghost",
-		"desc": "An opportunity presents itself; a general is making an inspection of this outpost to raise morale. Lower it.",
-		"scene": "res://levels/Level2.tscn"
+		"name": "Episode 1 Mission 1",
+		"desc": "Let's try rebuilding the game with tiles.",
+		"scene": "res://maps/e1m1.tscn"
 	}
 ]
 
@@ -24,7 +19,7 @@ var VEHICLES = {
 	"mecha": {
 		"name": "Cassidy Mech",
 		"scene": preload("res://entities/vehicles/Mecha.tscn"),
-		"desc": "Light3D, by giant robot standards."
+		"desc": "Light, by giant robot standards."
 	},
 	"tilter": {
 		"name": "Tilter Halftrack",
