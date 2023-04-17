@@ -93,14 +93,16 @@ func _has_los_player(player):
 	var our_pos = parent.get_center_of_mass()
 	var player_pos = player.get_center_of_mass()
 	var space_state = get_world_3d().get_direct_space_state()
-	var result = space_state.intersect_ray(our_pos, player_pos, [get_parent()], 1)
+	var result: Dictionary = space_state.intersect_ray(PhysicsRayQueryParameters3D.create(
+		our_pos, player_pos, 1, [get_parent()]
+	))
 	var has_los = result.has("collider") and result.collider == player
 	return has_los
 
 func alert(alerting_body):
 	if not parent:
 		return
-	if not parent.core.destroyed:
+	if not parent.core.already_destroyed:
 		if _is_foe(alerting_body):
 			print("Alert!")
 			if not _has_target():

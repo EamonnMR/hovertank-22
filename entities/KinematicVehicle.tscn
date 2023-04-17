@@ -1,36 +1,36 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=8 format=3 uid="uid://b4pnub8wm7go5"]
 
-[ext_resource path="res://entities/KinematicVehicle.gd" type="Script" id=1]
-[ext_resource path="res://effects/explosions/GenericExplosion.tscn" type="PackedScene" id=2]
-[ext_resource path="res://components/Notifier.tscn" type="PackedScene" id=3]
-[ext_resource path="res://components/meta/NPCHealthBar.tscn" type="PackedScene" id=4]
-[ext_resource path="res://components/Health.tscn" type="PackedScene" id=5]
-[ext_resource path="res://components/VehicleCore.tscn" type="PackedScene" id=6]
+[ext_resource type="Script" path="res://entities/KinematicVehicle.gd" id="1"]
+[ext_resource type="PackedScene" path="res://effects/explosions/GenericExplosion.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://components/Notifier.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://components/meta/NPCHealthBar.tscn" id="4"]
+[ext_resource type="PackedScene" path="res://components/Health.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://ovgpc7fhghvd" path="res://components/VehicleCore.tscn" id="6"]
 
-[sub_resource type="CapsuleShape3D" id=1]
-radius = 1.22908
+[sub_resource type="CapsuleShape3D" id="1"]
+radius = 0.615
 height = 1.23
 
 [node name="Vehicle" type="CharacterBody3D"]
 collision_layer = 3
 collision_mask = 3
-script = ExtResource( 1 )
+script = ExtResource("1")
 
-[node name="NPCHealthBar" parent="." instance=ExtResource( 4 )]
+[node name="NPCHealthBar" parent="." instance=ExtResource("4")]
 
-[node name="Health" parent="." instance=ExtResource( 5 )]
-explosion = ExtResource( 2 )
+[node name="Health" parent="." instance=ExtResource("5")]
+explosion = ExtResource("2")
 
 [node name="CameraMover" type="RemoteTransform3D" parent="."]
-transform = Transform3D( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1.51908, 0 )
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1.51908, 0)
 update_rotation = false
 update_scale = false
 
 [node name="DontGetStuckOnlyCapsulesWork" type="CollisionShape3D" parent="."]
-transform = Transform3D( -4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 0, 1.97993, 0 )
-shape = SubResource( 1 )
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 0, 1.97993, 0)
+shape = SubResource("1")
 
-[node name="Notifier" parent="." instance=ExtResource( 3 )]
+[node name="Notifier" parent="." instance=ExtResource("3")]
 collision_layer = 0
 collision_mask = 2
 proactive = true
@@ -39,6 +39,6 @@ cadence = 1.0
 
 [node name="CenterOfMass" type="Node3D" parent="."]
 
-[node name="VehicleCore" parent="." instance=ExtResource( 6 )]
+[node name="VehicleCore" parent="." instance=ExtResource("6")]
 
 [editable path="Notifier"]

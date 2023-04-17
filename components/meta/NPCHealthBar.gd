@@ -20,8 +20,8 @@ func _update():
 	region_rect.end.x = base_width * parent_health.health / parent_health.max_health
 
 func _free_if_player():
-	if get_node("../").is_player():
-		queue_free()
-	else:
-		base_width = region_rect.end.x
-		call_deferred("_set_position")
+	#if get_node("../").is_player():
+	#	queue_free()
+	#else:
+	base_width = region_rect.end.x
+	call_deferred("_set_position")

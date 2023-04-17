@@ -1,7 +1,12 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://jjsv17eu7d4g"]
 
-[ext_resource path="res://components/AgentMovement.gd" type="Script" id=1]
-[ext_resource path="res://components/Movement.tscn" type="PackedScene" id=2]
+[ext_resource type="Script" path="res://components/NewAgentMovement.gd" id="2_x78bx"]
 
-[node name="Movement" instance=ExtResource( 2 )]
-script = ExtResource( 1 )
+[node name="Movement" type="Node3D"]
+script = ExtResource("2_x78bx")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.675037, 0)
+target_position = Vector3(0, -6, 0)
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]

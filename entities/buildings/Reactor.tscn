@@ -21,13 +21,11 @@ radius = 7.70372
 collision_layer = 3
 script = ExtResource("8")
 faction = 0
-graphics = NodePath("Graphics")
+graphics_path = NodePath("Graphics")
 
 [node name="NPCHealthBar" parent="." instance=ExtResource("5")]
 
 [node name="Obstacle" parent="." instance=ExtResource("6")]
-radius = 18.0
-height = 15.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.64691, 0, 0)

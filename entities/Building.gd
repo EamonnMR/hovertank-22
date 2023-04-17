@@ -1,14 +1,14 @@
 extends StaticBody3D
 
 @export var faction: int = -1
-@export var graphics: NodePath
+@export var graphics_path: NodePath
 signal destroyed
 
 func is_player():
 	return false
 
 func graphics():
-	return get_node(graphics)
+	return get_node(graphics_path)
 
 func _on_Health_damaged():
 	print("Building took hit")
