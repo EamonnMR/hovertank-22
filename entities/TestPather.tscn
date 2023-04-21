@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://ctu7pvw7rvxit"]
+
+[ext_resource type="Script" path="res://entities/TestPather.gd" id="1_db047"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_dxpoo"]
+
+[node name="TestPather" type="CharacterBody3D"]
+script = ExtResource("1_db047")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+debug_enabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_dxpoo")

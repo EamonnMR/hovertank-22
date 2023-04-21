@@ -29,6 +29,7 @@ anchors_preset = 0
 
 [node name="TurretInfo" parent="Graphics/Armature/Skeleton3D/Turret/2dIn3d2" index="0"]
 layout_mode = 0
+offset_bottom = 23.0
 
 [node name="ElevationPivot" parent="Graphics/Armature/Skeleton3D/Turret" index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.272089, 0)
