@@ -58,16 +58,12 @@ autostart = true
 [node name="SpawnPoint" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 3, -35)
 
-[node name="TestPather" parent="." instance=ExtResource("8_lnhju")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.73166, 1.74765, -38.1784)
-
-[node name="TestPather2" parent="." instance=ExtResource("8_lnhju")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.3943, 1.74764, 21.8907)
-
-[node name="TestPather3" parent="." instance=ExtResource("8_lnhju")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.3685, 1.74764, -37.587)
-
 [node name="TestPather4" parent="." instance=ExtResource("8_lnhju")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.5711, 1.74764, 32.344)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.0281, 2.43908, -7.84956)
+
+[node name="Target" parent="TestPather4" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.7015, 0.542503, -3.42047)
 
 [connection signal="timeout" from="RebakeTimer" to="." method="_on_rebake_timer_timeout"]
+
+[editable path="TestPather4"]

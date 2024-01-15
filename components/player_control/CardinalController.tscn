@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://bvu4fvrk3vhgm"]
 
-[ext_resource path="res://components/player_control/MouseAndKeyboardController.tscn" type="PackedScene" id=1]
-[ext_resource path="res://components/player_control/CardinalController.gd" type="Script" id=2]
+[ext_resource type="PackedScene" path="res://components/player_control/MouseAndKeyboardController.tscn" id="1"]
+[ext_resource type="Script" path="res://components/player_control/CardinalController.gd" id="2"]
 
-[node name="MouseAndKeyboardController" instance=ExtResource( 1 )]
-script = ExtResource( 2 )
+[node name="MouseAndKeyboardController" instance=ExtResource("1")]
+script = ExtResource("2")

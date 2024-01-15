@@ -1,29 +1,29 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=5 format=3 uid="uid://cobx6jiim6h88"]
 
-[ext_resource path="res://assets/hackcraft.de_cc0/crosshair3.png" type="Texture2D" id=1]
-[ext_resource path="res://camera/CameraRig.gd" type="Script" id=2]
-[ext_resource path="res://assets/hackcraft.de_cc0/crosshair0.png" type="Texture2D" id=3]
+[ext_resource type="Texture2D" uid="uid://drqpp1pdclm0j" path="res://assets/hackcraft.de_cc0/crosshair3.png" id="1"]
+[ext_resource type="Script" path="res://camera/CameraRig.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://wxd1nmm278a7" path="res://assets/hackcraft.de_cc0/crosshair0.png" id="3"]
 
-[sub_resource type="SphereMesh" id=1]
+[sub_resource type="SphereMesh" id="1"]
 
 [node name="CameraRig" type="Node3D"]
-script = ExtResource( 2 )
+script = ExtResource("2")
 
 [node name="InvisibleControlForGettingMousePos" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="PickerLocation" type="Node3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PickerLocation"]
 visible = false
-mesh = SubResource( 1 )
-material/0 = null
+mesh = SubResource("1")
 
 [node name="PointerMarker" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -36,40 +36,38 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TextureRect" type="TextureRect" parent="PointerMarker"]
+layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
-scale = Vector2( 3, 3 )
-texture = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+scale = Vector2(3, 3)
+texture = ExtResource("1")
 
 [node name="AimMarker" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="TextureRect" type="TextureRect" parent="AimMarker"]
+layout_mode = 0
 offset_left = -94.9597
 offset_top = -93.852
 offset_right = -30.9597
 offset_bottom = -29.852
-scale = Vector2( 3, 3 )
-texture = ExtResource( 3 )
-expand = true
+scale = Vector2(3, 3)
+texture = ExtResource("3")
+expand_mode = 1
 stretch_mode = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="CameraOffset" type="Node3D" parent="."]
 
 [node name="LookSlightlyAbove" type="Node3D" parent="CameraOffset"]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.83876, 0 )
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.83876, 0)
 
 [node name="PitchHelper" type="Node3D" parent="CameraOffset"]
 
 [node name="CameraLocation" type="Node3D" parent="CameraOffset/PitchHelper"]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.74947, 24.0506 )
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.74947, 24.0506)
 
 [node name="Camera3D" type="Camera3D" parent="CameraOffset/PitchHelper/CameraLocation"]
 current = true

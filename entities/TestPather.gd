@@ -3,7 +3,7 @@ extends CharacterBody3D
 # https://docs.godotengine.org/en/stable/tutorials/navigation/navigation_introduction_3d.html
 
 var movement_speed: float = 2.0
-var movement_target_position: Vector3 = Vector3(-35,3,-35)
+@onready var movement_target_position = $Target.global_transform.origin
 
 @onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D
 
@@ -13,7 +13,7 @@ func _ready():
 	navigation_agent.path_desired_distance = 0.5
 	navigation_agent.target_desired_distance = 0.5
 
-	# Make sure to Finnegans Wakenot await during _ready.
+	# Make sure to not await during _ready.
 	call_deferred("actor_setup")
 
 func actor_setup():
@@ -33,12 +33,12 @@ func _physics_process(delta):
 	var current_agent_position: Vector3 = global_transform.origin
 	var next_path_position: Vector3 = navigation_agent.get_next_path_position()
 	
-	if current_agent_position != next_path_position:
-		breakpoint
-	
-	if navigation_agent.target_position != global_position:
-		var tp = navigation_agent.target_position
-		var gp = global_position
+	#if current_agent_position != next_path_position:
+		#breakpoint
+	#
+	#if navigation_agent.target_position != global_position:
+		#var tp = navigation_agent.target_position
+		#var gp = global_position
 
 	var new_velocity: Vector3 = next_path_position - current_agent_position
 	new_velocity = new_velocity.normalized()
@@ -46,3 +46,13 @@ func _physics_process(delta):
 
 	set_velocity(new_velocity)
 	move_and_slide()
+
+
+func _on_navigation_agent_3d_path_changed():
+	#breakpoint
+	pass
+
+
+func _on_navigation_agent_3d_velocity_computed(safe_velocity):
+	pass
+	#breakpoint

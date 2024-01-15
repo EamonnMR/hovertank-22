@@ -1,14 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://ctu7pvw7rvxit"]
+[gd_scene load_steps=4 format=3 uid="uid://ctu7pvw7rvxit"]
 
 [ext_resource type="Script" path="res://entities/TestPather.gd" id="1_db047"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_dxpoo"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_aqedo"]
+
 [node name="TestPather" type="CharacterBody3D"]
 script = ExtResource("1_db047")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+navigation_layers = 128
 debug_enabled = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_dxpoo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_aqedo")
+
+[node name="Target" type="Node3D" parent="."]
+
+[connection signal="path_changed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_path_changed"]
+[connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
