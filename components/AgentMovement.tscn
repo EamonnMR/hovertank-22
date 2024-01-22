@@ -2,11 +2,6 @@
 
 [ext_resource type="Script" path="res://components/NewAgentMovement.gd" id="2_x78bx"]
 
-[node name="Movement" type="Node3D"]
+[node name="Movement" type="NavigationAgent3D"]
+navigation_layers = 128
 script = ExtResource("2_x78bx")
-
-[node name="RayCast3D" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.675037, 0)
-target_position = Vector3(0, -6, 0)
-
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]

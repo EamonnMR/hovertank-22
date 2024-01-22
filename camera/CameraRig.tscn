@@ -70,7 +70,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.83876, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.74947, 24.0506)
 
 [node name="Camera3D" type="Camera3D" parent="CameraOffset/PitchHelper/CameraLocation"]
+projection = 1
 current = true
+size = 75.0
+near = 0.001
 far = 800.0
 
 [node name="AudioListener3D" type="AudioListener3D" parent="CameraOffset"]

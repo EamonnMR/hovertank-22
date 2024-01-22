@@ -5,7 +5,7 @@ var aim_position: Vector3
 var aim_correct = false
 var AIM_UP_CORRECTION = Vector3(0,1,0) # We don't want to be aiming right at the ground all the time
 var zoom_target = 1.0
-var TOPDOWN_OFFSET = Vector3(0,20,10)
+var TOPDOWN_OFFSET = Vector3(10,20,10)
 @export var zoom_min = 0.01
 @export var zoom_max = 3.0
 @export var zoom_incriment = 0.25
