@@ -38,6 +38,9 @@ func navigate_to_position(position: Vector3):
 func _physics_process(delta):
 	#if $NavigationAgent3D.is_navigation_finished() or not navigating:
 	#	return
+	
+	if parent.get_node("VehicleCore").already_destroyed:
+		return
 
 	var current_agent_position: Vector3 = parent.global_transform.origin
 	var next_path_position: Vector3 = get_next_path_position()
@@ -47,6 +50,7 @@ func _physics_process(delta):
 	new_velocity = new_velocity * parent.speed
 
 	parent.set_velocity(new_velocity)
+	# TODO: Face movement direction
 	parent.move_and_slide()
 	#parent.match_grown_normal()
 

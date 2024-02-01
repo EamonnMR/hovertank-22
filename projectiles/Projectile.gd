@@ -25,10 +25,10 @@ func initial_velocity():
 func _explode():
 	# TODO: Calculate ricochet angle
 	var explo = explosion.instantiate()
-	explo.transform.origin = global_transform.origin
 	if splash_damage:
 		explo.init(splash_damage, splash_radius, false, iff)
 	get_node("../").add_child(explo)
+	explo.global_transform.origin = global_transform.origin
 
 func do_impact(collider):
 	print("Shot impact - do damage")

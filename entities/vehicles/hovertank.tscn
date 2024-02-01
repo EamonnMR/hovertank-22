@@ -7,9 +7,9 @@
 [ext_resource type="Material" path="res://assets/eamonn/hovertank/itar_material.tres" id="6"]
 [ext_resource type="PackedScene" path="res://components/Turret.tscn" id="7"]
 
-[sub_resource type="CylinderShape3D" id="1"]
-height = 2.608
-radius = 3.60023
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mvfti"]
+radius = 1.48344
+height = 13.572
 
 [node name="Vehicle" instance=ExtResource("2")]
 accel = 6.0
@@ -45,8 +45,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.452668)
 max_health = 45
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.24695, 0)
-shape = SubResource("1")
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 0, 2.24695, 0)
+shape = SubResource("CapsuleShape3D_mvfti")
 
 [node name="CameraMover" parent="." index="4"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 6.69351, 0)

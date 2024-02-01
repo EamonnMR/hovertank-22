@@ -117,8 +117,10 @@ func use_ability_secondary():
 	
 	
 func _is_foe(entity: Node) -> bool:
-	if entity.has_node("VehicleCore"):
-		var fac = entity.get_node("VehicleCore").faction
-		var myfac = parent.core.faction
-		return entity.get_node("VehicleCore").faction != parent.core.faction
+	if is_instance_valid(entity):
+		if entity.has_node("VehicleCore"):
+			var fac = entity.get_node("VehicleCore").faction
+			var myfac = parent.core.faction
+			return entity.get_node("VehicleCore").faction != parent.core.faction
+		return false
 	return false
