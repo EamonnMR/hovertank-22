@@ -12,7 +12,7 @@ var LEVELS = [
 
 var VEHICLES = {
 	"hovertank": {
-		"name": "Hover Tank",
+		"name": "Slammer Hovertank",
 		"scene": preload("res://entities/vehicles/hovertank.tscn"),
 		"desc": "A standard Warp Ranger choice."
 	},
@@ -27,7 +27,7 @@ var VEHICLES = {
 		"desc": "Very narrow traverse, high speed. Saddle up"
 	},
 	"cobra": {
-		"name": "Cobra Light3D TD",
+		"name": "Cobra Light TD",
 		"scene": preload("res://entities/vehicles/rat.tscn"),
 		"desc": "Everything sacrified at the altar of speed and a bigger gun. Mounts no secondary weapon. Handling is, well, you'll see."
 	}

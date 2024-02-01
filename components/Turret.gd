@@ -104,15 +104,15 @@ func get_aim_y():
 	return _modify_aim(aim_pose.y)
 
 func _process(delta):
-	if parent.core.destroyed:
+	if parent.core.already_destroyed:
 		return
 	var aim_point = parent.get_node("Controller").get_aim_point()
 	aim_pose = _aim_to_turret_pose(aim_point)
 	if traverse:
 		aim_pose.y = _constrain_aim_by_traverse(aim_pose.y)
-	skel.set_bone_pose(
+	skel.set_bone_pose_rotation(
 		turret_bone,
-		turret_pose.rotated(bone_axis, _modify_aim(aim_pose.y))
+		Quaternion(bone_axis, _modify_aim(aim_pose.y))
 	)
 	$ElevationPivot.rotation = aim_pose.x * elevation_axis
 	
@@ -133,9 +133,9 @@ func project_ray():
 	var result: Dictionary = spaceState.intersect_ray(PhysicsRayQueryParameters3D.create(
 		from, to, collisionMask, []
 	))
+	$TurretPointMarker.show()
+	$TurretPointMarker.global_transform.origin = unrotated_position.global_transform.origin
 	return result
-	#$TurretPointMarker.show()
-	#$TurretPointMarker.global_transform.origin = unrotated_position.global_transform.origin
 	if result.has("position"):
 		pass
 		# $TurretPointMarker.show()

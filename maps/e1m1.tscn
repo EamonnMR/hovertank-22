@@ -63,6 +63,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.70248, 3, -35)
 [node name="NPC" parent="." instance=ExtResource("7_5ne22")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79.8228, 4.34167, 120.783)
 
+[node name="Turret" parent="NPC/Graphics/Armature/Skeleton3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46416, 2.84734, 0)
+
 [node name="Weapon" parent="NPC/Graphics/Armature/Skeleton3D/Turret/ElevationPivot/WeaponSlot" index="0" instance=ExtResource("8_t8aub")]
 
 [node name="Weapon" parent="NPC/Graphics/Armature/Skeleton3D/Turret/ElevationPivot/WeaponSlot2" index="0" instance=ExtResource("9_c6pbt")]

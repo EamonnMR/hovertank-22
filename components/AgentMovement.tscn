@@ -4,4 +4,5 @@
 
 [node name="Movement" type="NavigationAgent3D"]
 navigation_layers = 128
+debug_path_custom_color = Color(0.67131, 0, 0.238032, 1)
 script = ExtResource("2_x78bx")
