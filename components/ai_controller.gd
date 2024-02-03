@@ -101,7 +101,7 @@ func _has_los_player(player):
 	return has_los
 
 func alert(alerting_body):
-	if not parent:
+	if not parent or not is_instance_valid(alerting_body):
 		return
 	if not parent.core.already_destroyed:
 		if _is_foe(alerting_body):

@@ -3,7 +3,7 @@
 [ext_resource type="ArrayMesh" uid="uid://ve55gt2irrfr" path="res://asset_sources/buildings/reactor.obj" id="1"]
 [ext_resource type="PackedScene" path="res://components/energy.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://clbo0mpjygqac" path="res://effects/explosions/HeavyMaltechExplosion.tscn" id="4"]
-[ext_resource type="PackedScene" path="res://components/meta/NPCHealthBar.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://b6y5nm0kyrmrf" path="res://components/meta/NPCHealthBar.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://bsnjo13ow2rar" path="res://components/Obstacle.tscn" id="6"]
 [ext_resource type="Script" path="res://components/Health.gd" id="7"]
 [ext_resource type="Script" path="res://entities/Building.gd" id="8"]

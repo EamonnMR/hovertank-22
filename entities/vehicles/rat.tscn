@@ -10,8 +10,8 @@
 [ext_resource type="Material" path="res://assets/eamonn/rat/rat_itar.tres" id="14"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5yj1w"]
-radius = 1.67633
-height = 3.66195
+radius = 1.48491
+height = 7.73282
 
 [node name="Vehicle" instance=ExtResource("1")]
 speed = 45.0
@@ -41,6 +41,10 @@ bone_invert = true
 traverse_degrees = 25
 
 [node name="WeaponSlot" parent="fake_graphics/Armature/Skeleton3D/Turret/ElevationPivot" index="0" instance=ExtResource("4")]
+transform = Transform3D(1, 0, -3.34075e-22, 0, 1, 0, -3.34075e-22, 0, 1, 0.362883, 0, 0)
+
+[node name="WeaponSlot2" parent="fake_graphics/Armature/Skeleton3D/Turret/ElevationPivot" index="1" instance=ExtResource("4")]
+transform = Transform3D(1, 0, -3.34075e-22, 0, 1, 0, -3.34075e-22, 0, 1, -0.22218, 5.96046e-08, -0.354804)
 primary = true
 
 [node name="VehicleCore" parent="." index="8"]
@@ -51,7 +55,7 @@ destroyed_shader = ExtResource("13")
 movement_type = ExtResource("7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="9"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.78311, 0)
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0.289472, 1.57284, 0)
 shape = SubResource("CapsuleShape3D_5yj1w")
 
 [editable path="Notifier"]

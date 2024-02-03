@@ -92,6 +92,7 @@ var SPECIAL_WEAPONS = [
 	}
 ]
 
+
 var FACTIONS = [
 	{"name": "Domains"},
 	{"name": "Rebels"}

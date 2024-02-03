@@ -8,6 +8,7 @@
 
 [node name="CameraRig" type="Node3D"]
 script = ExtResource("2")
+aim_mask = 128
 
 [node name="InvisibleControlForGettingMousePos" type="Control" parent="."]
 layout_mode = 3

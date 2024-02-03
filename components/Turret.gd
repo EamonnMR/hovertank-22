@@ -133,7 +133,7 @@ func project_ray():
 	var result: Dictionary = spaceState.intersect_ray(PhysicsRayQueryParameters3D.create(
 		from, to, collisionMask, []
 	))
-	$TurretPointMarker.show()
+	#$TurretPointMarker.show()
 	$TurretPointMarker.global_transform.origin = unrotated_position.global_transform.origin
 	return result
 	if result.has("position"):

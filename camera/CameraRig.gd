@@ -1,9 +1,9 @@
 extends Node3D
 
-const RAYCAST_MASK = 1
+
 var aim_position: Vector3
-var aim_correct = false
-var AIM_UP_CORRECTION = Vector3(0,1,0) # We don't want to be aiming right at the ground all the time
+var aim_correct = true
+var AIM_UP_CORRECTION = Vector3.UP * 1 # We don't want to be aiming right at the ground all the time
 var zoom_target = 1.0
 var TOPDOWN_OFFSET = Vector3(10,20,10)
 @export var zoom_min = 0.01
@@ -14,6 +14,7 @@ var TOPDOWN_OFFSET = Vector3(10,20,10)
 @export var max_pitch = 35
 @export var min_pitch = -90
 @export var mouse_sensitivity = 2
+@export_flags_3d_physics var aim_mask
 
 var zoom = 1.0
 var base_distance: Vector3
@@ -73,10 +74,10 @@ func _handle_topdown_mouse_aim(delta):
 		$PointerMarker.position = current_camera.unproject_position(result.position) - $PointerMarker.size / 2
 
 	# TODO: If there's an object under this, pick and set the picker location to the object's origin
-	if "collider" in result and result.collider is StaticBody3D:
-		aim_correct = true
-	else:
-		aim_correct = false
+	#if "collider" in result and result.collider is StaticBody3D:
+		#aim_correct = true
+	#else:
+		#aim_correct = false
 
 func _project_aim_ray(pos: Vector2, ignore_close: bool):  # Returns ray intersection result
 	var from = current_camera.project_ray_origin(pos)
@@ -87,7 +88,7 @@ func _project_aim_ray(pos: Vector2, ignore_close: bool):  # Returns ray intersec
 	var to = from + current_camera.project_ray_normal(pos) * 1000
 	var space_state = get_world_3d().direct_space_state
 	var result = space_state.intersect_ray(PhysicsRayQueryParameters3D.create(
-		from, to, RAYCAST_MASK, [Client.player_object]
+		from, to, aim_mask, [Client.player_object]
 	))
 	return result
 

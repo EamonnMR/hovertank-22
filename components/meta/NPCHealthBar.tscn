@@ -1,13 +1,14 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://b6y5nm0kyrmrf"]
 
-[ext_resource path="res://components/meta/NPCHealthBar.gd" type="Script" id=1]
-[ext_resource path="res://assets/danc_cc_by/healthbar.png" type="Texture2D" id=2]
+[ext_resource type="Script" path="res://components/meta/NPCHealthBar.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://bxqd0uoq4egby" path="res://assets/danc_cc_by/healthbar.png" id="2"]
 
 [node name="NPCHealthBar" type="Sprite3D"]
 visible = false
+modulate = Color(0.862745, 0.313726, 0.278431, 0.654902)
 pixel_size = 0.2
 billboard = 1
-texture = ExtResource( 2 )
+texture = ExtResource("2")
 region_enabled = true
-region_rect = Rect2( 0, 0, 70, 11 )
-script = ExtResource( 1 )
+region_rect = Rect2(0, 0, 70, 11)
+script = ExtResource("1")

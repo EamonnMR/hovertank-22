@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" path="res://components/player_control/KinematicTankMovement.tscn" id="6"]
 [ext_resource type="PackedScene" uid="uid://clh73eb6c0g1i" path="res://assets/eamonn/heavy/heavy.glb" id="7"]
 [ext_resource type="PackedScene" uid="uid://ckyo6ben5yv0x" path="res://components/WeaponSlot.tscn" id="8"]
-[ext_resource type="PackedScene" path="res://components/meta/NPCHealthBar.tscn" id="11"]
+[ext_resource type="PackedScene" uid="uid://b6y5nm0kyrmrf" path="res://components/meta/NPCHealthBar.tscn" id="11"]
 [ext_resource type="PackedScene" uid="uid://qje1n1sr1xup" path="res://effects/explosions/GenericExplosion.tscn" id="12"]
 [ext_resource type="PackedScene" path="res://components/Notifier.tscn" id="13"]
 [ext_resource type="PackedScene" uid="uid://dvl7xybwwlqcy" path="res://components/Health.tscn" id="14"]

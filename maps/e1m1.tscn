@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b8321hi8r85xc"]
+[gd_scene load_steps=14 format=3 uid="uid://b8321hi8r85xc"]
 
 [ext_resource type="Script" path="res://environment/World.gd" id="1_fllej"]
 [ext_resource type="PackedScene" uid="uid://bbwxn0srvxlbq" path="res://entities/buildings/Reactor.tscn" id="2_28t2n"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://8uk5ssmajufh" path="res://entities/vehicles/Heavy.tscn" id="7_5ne22"]
 [ext_resource type="PackedScene" uid="uid://bh4hxh6ojcyot" path="res://components/weapons/Canister.tscn" id="8_t8aub"]
 [ext_resource type="PackedScene" uid="uid://chotgrswtmlak" path="res://components/weapons/AutoCannon.tscn" id="9_c6pbt"]
+[ext_resource type="PackedScene" uid="uid://c0o5bc1eq4u51" path="res://entities/pickups/AmmoPickup.tscn" id="9_trjvy"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mqmem"]
 
@@ -66,6 +67,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.62899, 4.34167, 74.3567)
 [node name="Cube" parent="NPC/Graphics/Armature/Skeleton3D" index="0"]
 transform = Transform3D(-0.0290731, 0, 0.999577, 0, 1, 0, -0.999577, 0, -0.0290731, 0, 0, 0)
 
+[node name="ElevationPivot" parent="NPC/Graphics/Armature/Skeleton3D/Turret" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.43568, -3.01103)
+
 [node name="Weapon" parent="NPC/Graphics/Armature/Skeleton3D/Turret/ElevationPivot/WeaponSlot" index="0" instance=ExtResource("8_t8aub")]
 
 [node name="Weapon" parent="NPC/Graphics/Armature/Skeleton3D/Turret/ElevationPivot/WeaponSlot2" index="0" instance=ExtResource("9_c6pbt")]
@@ -99,6 +103,18 @@ transform = Transform3D(-0.0290731, 0, 0.999577, 0, 1, 0, -0.999577, 0, -0.02907
 [node name="Weapon" parent="NPC4/Graphics/Armature/Skeleton3D/Turret/ElevationPivot/WeaponSlot" index="0" instance=ExtResource("8_t8aub")]
 
 [node name="Weapon" parent="NPC4/Graphics/Armature/Skeleton3D/Turret/ElevationPivot/WeaponSlot2" index="0" instance=ExtResource("9_c6pbt")]
+
+[node name="Pickup" parent="." instance=ExtResource("9_trjvy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.8318, 2.43568, 29.52)
+special_id = 0
+
+[node name="Pickup2" parent="." instance=ExtResource("9_trjvy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.06044, 2.43568, 29.52)
+special_id = 1
+
+[node name="Pickup3" parent="." instance=ExtResource("9_trjvy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.53028, 2.43568, 29.52)
+special_id = 2
 
 [connection signal="timeout" from="RebakeTimer" to="." method="_on_rebake_timer_timeout"]
 
