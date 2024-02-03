@@ -61,6 +61,10 @@ func constrained_turn(current_rotation: float, max_turn: float, ideal_face: floa
 		return [max_turn, false]
 	else:
 		return [ideal_turn, true]
+		
+func constrained_turn_with_no_possibility_of_reverse(current_rotation, max_turn, ideal_face) -> Array:
+	var constrained = constrained_turn(current_rotation, max_turn, ideal_face)
+	return [constrained[0], 1, constrained[1]]
 
 func constrained_turn_with_possibility_of_reverse(current_rotation, max_turn, ideal_face) -> Array:
 	# Returns [turn: float, invert_movement: (1 or -1), is_ideal: bool]

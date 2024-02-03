@@ -1,14 +1,25 @@
 extends MouseAndKeyboardController
 
 # Facings to radians
-const E = PI * 0
-const SE = PI * .25
-const S = PI * .5
-const SW = PI * .75
-const W = PI * 1
-const NW = PI * 1.25
-const N = PI * 1.5
-const NE = PI * 1.75
+#const E = PI * 0
+#const SE = PI * .25
+#const S = PI * .5
+#const SW = PI * .75
+#const W = PI * 1
+#const NW = PI * 1.25
+#const N = PI * 1.5
+#const NE = PI * 1.75
+
+const NE = PI * 0
+const E = PI * .25
+const SE = PI * .5
+const S = PI * .75
+const SW = PI * 1
+const W = PI * 1.25
+const NW = PI * 1.5
+const N = PI * 1.75
+
+
 
 func get_cardinal_motion_and_facing() -> Array:
 	var ideal_face = null
@@ -57,7 +68,8 @@ func get_turn_and_motion_impulse(delta, turn_speed) -> Array:
 	var ideal_face = motion_and_facing[1]
 	var turn = 0.0
 	if ideal_face != null:
-		var turn_sign_and_is_ideal = Util.constrained_turn_with_possibility_of_reverse(
+		# TODO: Fix the possibility of reverse function, set some vehicles as having a reverse gear
+		var turn_sign_and_is_ideal = Util.constrained_turn_with_no_possibility_of_reverse(
 			parent.rotation.y, delta * turn_speed, ideal_face
 		)
 		turn = turn_sign_and_is_ideal[0]

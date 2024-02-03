@@ -103,7 +103,8 @@ var selected_primary: String
 var selected_secondary: String
 
 var CONTROLLERS = {
-	"absolute": preload("res://components/player_control/AbsoluteController.tscn")
+	"absolute": preload("res://components/player_control/AbsoluteController.tscn"),
+	"relative": preload("res://components/player_control/CardinalController.tscn")
 }
 
 var player_object: Node
