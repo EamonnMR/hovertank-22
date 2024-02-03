@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://4d1w4wb63dyx"]
 
-[sub_resource type="SeparationRayShape3D" id=3]
+[sub_resource type="SeparationRayShape3D" id="3"]
 length = 1.58936
 
 [node name="Hover" type="CollisionShape3D"]
-transform = Transform3D( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 1.61275, 0 )
-shape = SubResource( 3 )
+transform = Transform3D(1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 1.61275, 0)
+shape = SubResource("3")

@@ -1,17 +1,17 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://dbvc2sivymcig"]
 
-[ext_resource path="res://components/Weapon.tscn" type="PackedScene" id=1]
-[ext_resource path="res://components/weapons/AutocannonGraphics.tscn" type="PackedScene" id=2]
-[ext_resource path="res://projectiles/LaserBeam.tscn" type="PackedScene" id=3]
+[ext_resource type="PackedScene" uid="uid://bcc6pak2xklpr" path="res://components/Weapon.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://b0p5a8pygnti2" path="res://components/weapons/AutocannonGraphics.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://projectiles/LaserBeam.tscn" id="3"]
 
-[node name="Weapon" instance=ExtResource( 1 )]
-projectile_scene = ExtResource( 3 )
+[node name="Weapon" instance=ExtResource("1")]
+projectile_scene = ExtResource("3")
 burst_count = 6
 spread = 0.01
 world_projectile = false
 engagement_range = 100.0
 
-[node name="Graphics" parent="." index="0" instance=ExtResource( 2 )]
+[node name="Graphics" parent="." index="0" instance=ExtResource("2")]
 
 [node name="Cooldown" parent="." index="1"]
 wait_time = 0.5

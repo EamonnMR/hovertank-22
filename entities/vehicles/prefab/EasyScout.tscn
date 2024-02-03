@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c7g36rqj85572"]
 
 [ext_resource type="PackedScene" uid="uid://s2k4ixfrnpjm" path="res://entities/vehicles/Scout.tscn" id="1"]
-[ext_resource type="PackedScene" path="res://components/weapons/AutoCannon.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://chotgrswtmlak" path="res://components/weapons/AutoCannon.tscn" id="2"]
 
 [node name="Vehicle" instance=ExtResource("1")]
 

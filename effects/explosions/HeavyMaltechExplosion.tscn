@@ -46,6 +46,4 @@ process_material = SubResource("9")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." index="4"]
 mesh = SubResource("BoxMesh_hhoao")
 
-[connection signal="timeout" from="Lifetime" to="." method="_on_Lifetime_timeout"]
-
 [editable path="Notifier"]

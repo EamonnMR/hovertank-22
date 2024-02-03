@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://bkua52kbjrxug"]
 
-[ext_resource path="res://components/AmmoManager.gd" type="Script" id=1]
+[ext_resource type="Script" path="res://components/AmmoManager.gd" id="1"]
 
 [node name="AmmoManager" type="Node3D"]
-script = ExtResource( 1 )
+script = ExtResource("1")

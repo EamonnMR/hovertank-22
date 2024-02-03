@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://ckyo6ben5yv0x"]
 
-[ext_resource path="res://components/WeaponSlot.gd" type="Script" id=1]
+[ext_resource type="Script" path="res://components/WeaponSlot.gd" id="1"]
 
 [node name="WeaponSlot" type="Node3D"]
-script = ExtResource( 1 )
+script = ExtResource("1")

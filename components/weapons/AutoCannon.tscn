@@ -1,15 +1,15 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=7 format=3 uid="uid://chotgrswtmlak"]
 
-[ext_resource path="res://components/Weapon.tscn" type="PackedScene" id=1]
-[ext_resource path="res://components/weapons/AutocannonGraphics.tscn" type="PackedScene" id=2]
-[ext_resource path="res://effects/misc_particle_data/ParticleMat.tres" type="Material" id=3]
-[ext_resource path="res://effects/misc_particle_data/AutoCannonEffect.tres" type="Material" id=4]
-[ext_resource path="res://projectiles/AutocannonProjectile.tscn" type="PackedScene" id=6]
+[ext_resource type="PackedScene" uid="uid://bcc6pak2xklpr" path="res://components/Weapon.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://b0p5a8pygnti2" path="res://components/weapons/AutocannonGraphics.tscn" id="2"]
+[ext_resource type="Material" path="res://effects/misc_particle_data/ParticleMat.tres" id="3"]
+[ext_resource type="Material" uid="uid://cf0qkp465wjtm" path="res://effects/misc_particle_data/AutoCannonEffect.tres" id="4"]
+[ext_resource type="PackedScene" uid="uid://bjm2enbteme88" path="res://projectiles/AutocannonProjectile.tscn" id="6"]
 
-[sub_resource type="QuadMesh" id=2]
+[sub_resource type="QuadMesh" id="2"]
 
-[node name="Weapon" instance=ExtResource( 1 )]
-projectile_scene = ExtResource( 6 )
+[node name="Weapon" instance=ExtResource("1")]
+projectile_scene = ExtResource("6")
 burst_count = 5
 spread = 0.1
 engagement_range = 45.0
@@ -20,19 +20,19 @@ wait_time = 0.15
 [node name="BurstCooldown" parent="." index="1"]
 wait_time = 0.5
 
-[node name="Graphics" parent="." index="2" instance=ExtResource( 2 )]
+[node name="Graphics" parent="." index="2" instance=ExtResource("2")]
 
 [node name="Emerge" parent="." index="5"]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.03299, 0, 0 )
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.03299, 0, 0)
 
 [node name="MuzzleFlash" parent="Emerge" index="0"]
-material_override = ExtResource( 3 )
+material_override = ExtResource("3")
 emitting = false
 amount = 1
 lifetime = 0.4
 one_shot = true
 explosiveness = 1.0
-process_material = ExtResource( 4 )
-draw_pass_1 = SubResource( 2 )
+process_material = ExtResource("4")
+draw_pass_1 = SubResource("2")
 
 [editable path="Notifier"]

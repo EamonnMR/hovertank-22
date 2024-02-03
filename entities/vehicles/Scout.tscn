@@ -1,9 +1,9 @@
 [gd_scene load_steps=11 format=3 uid="uid://s2k4ixfrnpjm"]
 
-[ext_resource type="PackedScene" path="res://components/Turret.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://cxtf74dpsytv2" path="res://components/Turret.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://b4pnub8wm7go5" path="res://entities/KinematicVehicle.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://3lv0h23t5i0d" path="res://assets/eamonn/scout/scout.dae" id="4"]
-[ext_resource type="PackedScene" path="res://components/WeaponSlot.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://ckyo6ben5yv0x" path="res://components/WeaponSlot.tscn" id="5"]
 [ext_resource type="Material" path="res://entities/vehicles/scout_spatialmaterial_itar.tres" id="6"]
 [ext_resource type="Material" path="res://assets/eamonn/scout/scout_spatialmaterial_destroyed.tres" id="7"]
 [ext_resource type="PackedScene" path="res://components/player_control/KinematicWheelsMovement.tscn" id="8"]

@@ -6,8 +6,8 @@
 [ext_resource type="MeshLibrary" uid="uid://cnnb7eet88dqx" path="res://environment/TileLibrary.tres" id="2_lmtem"]
 [ext_resource type="PackedScene" uid="uid://dtfn1b1de4uh" path="res://entities/ExitDoor.tscn" id="2_wtsh6"]
 [ext_resource type="PackedScene" uid="uid://8uk5ssmajufh" path="res://entities/vehicles/Heavy.tscn" id="7_5ne22"]
-[ext_resource type="PackedScene" path="res://components/weapons/Canister.tscn" id="8_t8aub"]
-[ext_resource type="PackedScene" path="res://components/weapons/AutoCannon.tscn" id="9_c6pbt"]
+[ext_resource type="PackedScene" uid="uid://bh4hxh6ojcyot" path="res://components/weapons/Canister.tscn" id="8_t8aub"]
+[ext_resource type="PackedScene" uid="uid://chotgrswtmlak" path="res://components/weapons/AutoCannon.tscn" id="9_c6pbt"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mqmem"]
 

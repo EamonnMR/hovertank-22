@@ -2,10 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://c6byrql7a8trc" path="res://assets/eamonn/hovertank/hovertank.glb" id="1"]
 [ext_resource type="PackedScene" uid="uid://b4pnub8wm7go5" path="res://entities/KinematicVehicle.tscn" id="2"]
-[ext_resource type="PackedScene" path="res://components/WeaponSlot.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://ckyo6ben5yv0x" path="res://components/WeaponSlot.tscn" id="3"]
 [ext_resource type="PackedScene" path="res://components/player_control/HoverMovement.tscn" id="4"]
 [ext_resource type="Material" path="res://assets/eamonn/hovertank/itar_material.tres" id="6"]
-[ext_resource type="PackedScene" path="res://components/Turret.tscn" id="7"]
+[ext_resource type="PackedScene" uid="uid://cxtf74dpsytv2" path="res://components/Turret.tscn" id="7"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mvfti"]
 radius = 1.48344

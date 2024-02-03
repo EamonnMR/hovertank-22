@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bvu4fvrk3vhgm"]
 
-[ext_resource type="PackedScene" path="res://components/player_control/MouseAndKeyboardController.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://cxtebi57v6rke" path="res://components/player_control/MouseAndKeyboardController.tscn" id="1"]
 [ext_resource type="Script" path="res://components/player_control/CardinalController.gd" id="2"]
 
 [node name="MouseAndKeyboardController" instance=ExtResource("1")]
