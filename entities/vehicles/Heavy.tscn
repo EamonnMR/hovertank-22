@@ -46,12 +46,7 @@ bone_name = "Turret"
 bone_idx = 1
 traverse_degrees = 90
 
-[node name="2dIn3d2" parent="Graphics/Armature/Skeleton3D/Turret" index="0"]
-layout_mode = 3
-anchors_preset = 0
-
 [node name="TurretInfo" parent="Graphics/Armature/Skeleton3D/Turret/2dIn3d2" index="0"]
-layout_mode = 0
 offset_bottom = 23.0
 
 [node name="ElevationPivot" parent="Graphics/Armature/Skeleton3D/Turret" index="2"]

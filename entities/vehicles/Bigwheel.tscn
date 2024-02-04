@@ -1,65 +1,65 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=3 uid="uid://btsac33hwk6k1"]
 
-[ext_resource path="res://entities/KinematicVehicle.tscn" type="PackedScene" id=1]
-[ext_resource path="res://assets/eamonn/bigwheel/bigwheel_recovered.dae" type="PackedScene" id=2]
-[ext_resource path="res://components/Turret.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/eamonn/bigwheel/Bigwheel_material.tres" type="Material" id=4]
-[ext_resource path="res://assets/eamonn/bigwheel/Bigwheel_material_itar.tres" type="Material" id=5]
-[ext_resource path="res://assets/eamonn/bigwheel/Bigwheel_material_destroyed.tres" type="Material" id=6]
-[ext_resource path="res://components/player_control/KinematicTankMovement.tscn" type="PackedScene" id=7]
-[ext_resource path="res://components/WeaponSlot.tscn" type="PackedScene" id=8]
+[ext_resource type="PackedScene" uid="uid://b4pnub8wm7go5" path="res://entities/KinematicVehicle.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://bynass2dk32dx" path="res://assets/eamonn/bigwheel/bigwheel_recovered.dae" id="2"]
+[ext_resource type="PackedScene" uid="uid://cxtf74dpsytv2" path="res://components/Turret.tscn" id="3"]
+[ext_resource type="Material" path="res://assets/eamonn/bigwheel/Bigwheel_material_itar.tres" id="5"]
+[ext_resource type="Material" path="res://assets/eamonn/bigwheel/Bigwheel_material_destroyed.tres" id="6"]
+[ext_resource type="PackedScene" path="res://components/player_control/KinematicTankMovement.tscn" id="7"]
+[ext_resource type="PackedScene" uid="uid://ckyo6ben5yv0x" path="res://components/WeaponSlot.tscn" id="8"]
 
-[sub_resource type="BoxShape3D" id=2]
-size = Vector3( 3.95964, 1.63029, 1.74644 )
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_txqyp"]
+radius = 2.42223
+height = 8.85271
 
-[node name="Vehicle" instance=ExtResource( 1 )]
+[node name="Vehicle" instance=ExtResource("1")]
 speed = 40.0
 accel = 6.0
 
-[node name="Graphics" parent="." index="0" instance=ExtResource( 2 )]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.19464, 0 )
+[node name="Graphics" parent="." index="0" instance=ExtResource("2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.19464, 0)
 
 [node name="Cube001" parent="Graphics/Armature/Skeleton3D" index="0"]
-transform = Transform3D( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0 )
-material/0 = ExtResource( 4 )
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 
-[node name="Turret" parent="Graphics/Armature/Skeleton3D" index="1" instance=ExtResource( 3 )]
-transform = Transform3D( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 1.82709, 0.81222 )
+[node name="Turret" parent="Graphics/Armature/Skeleton3D" index="1" instance=ExtResource("3")]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 1.82709, 0.81222)
 bone_name = "turret"
-bone_axis = Vector3( 0, 0, 1 )
-elevation_axis = Vector3( 0, 1, 0 )
+bone_idx = 1
+bone_axis = Vector3(0, 0, 1)
+elevation_axis = Vector3(0, 1, 0)
 bone_invert = true
 
-[node name="WeaponSlot" parent="Graphics/Armature/Skeleton3D/Turret/ElevationPivot" index="0" instance=ExtResource( 8 )]
+[node name="WeaponSlot" parent="Graphics/Armature/Skeleton3D/Turret/ElevationPivot" index="0" instance=ExtResource("8")]
 primary = true
 
-[node name="WeaponSlot2" parent="Graphics/Armature/Skeleton3D/Turret/ElevationPivot" index="1" instance=ExtResource( 8 )]
+[node name="WeaponSlot2" parent="Graphics/Armature/Skeleton3D/Turret/ElevationPivot" index="1" instance=ExtResource("8")]
 
 [node name="Health" parent="." index="2"]
 max_health = 30
 
 [node name="CameraMover" parent="." index="3"]
-transform = Transform3D( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 5.97289, 0 )
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 5.97289, 0)
 
 [node name="DontGetStuckOnlyCapsulesWork" parent="." index="4"]
-transform = Transform3D( -4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 0, 1.23168, 0 )
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 0, 1.23168, 0)
 
 [node name="Notifier" parent="." index="5"]
 radius = 45.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="6"]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.53662, 0 )
-shape = SubResource( 2 )
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 2.53662, 0)
+shape = SubResource("CapsuleShape3D_txqyp")
 
 [node name="CenterOfMass" parent="." index="7"]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3926, 0 )
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3926, 0)
 
 [node name="VehicleCore" parent="." index="8"]
 turret_path = NodePath("../Graphics/Armature/Skeleton3D/Turret")
 graphics = NodePath("../Graphics/Armature/Skeleton3D/Cube001")
-player_shader = ExtResource( 5 )
-destroyed_shader = ExtResource( 6 )
-movement_type = ExtResource( 7 )
+player_shader = ExtResource("5")
+destroyed_shader = ExtResource("6")
+movement_type = ExtResource("7")
 
 [editable path="Graphics"]
 [editable path="Graphics/Armature/Skeleton3D/Turret"]

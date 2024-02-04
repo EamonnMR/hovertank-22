@@ -30,7 +30,22 @@ var VEHICLES = {
 		"name": "Cobra Light TD",
 		"scene": preload("res://entities/vehicles/rat.tscn"),
 		"desc": "Everything sacrified at the altar of speed and a bigger gun. Mounts no secondary weapon. Handling is, well, you'll see."
-	}
+	},
+	"bigwheel": {
+		"name": "Bigwheel IFV",
+		"scene": preload("res://entities/vehicles/Bigwheel.tscn"),
+		"desc": "A unique solution to infantry support"
+	},
+	"scout": {
+		"name": "Scout Rover",
+		"scene": preload("res://entities/vehicles/Scout.tscn"),
+		"desc": "Six wheels of speed"
+	},
+	"heavy": {
+		"name": "Rex Tank",
+		"scene": preload("res://entities/vehicles/Heavy.tscn"),
+		"desc": "Big"
+	},
 }
 
 var WEAPONS = {

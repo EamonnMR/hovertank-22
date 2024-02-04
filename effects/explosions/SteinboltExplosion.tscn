@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://yotccdxemi27"]
 
-[ext_resource type="PackedScene" path="res://effects/explosions/DelayedDamageExplosion.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://ct16bmbmr5hvo" path="res://effects/explosions/DelayedDamageExplosion.tscn" id="1"]
 
 [sub_resource type="Gradient" id="Gradient_47d1q"]
 offsets = PackedFloat32Array(0, 0.554745, 1)

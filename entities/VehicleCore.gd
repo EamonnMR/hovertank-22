@@ -130,7 +130,8 @@ func add_movement():
 	var mover = movement_type.instantiate()
 	mover.name = "Movement"
 	parent.add_child(mover)
-	parent.get_node("DontGetStuckOnlyCapsulesWork").queue_free()
+	if parent.has_node("DontGetStuckOnlyCapsulesWork"):
+		parent.get_node("DontGetStuckOnlyCapsulesWork").queue_free()
 
 func _nerf_npc_stats():
 	parent.nerf_npc_stats_base()
