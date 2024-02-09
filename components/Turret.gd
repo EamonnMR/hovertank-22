@@ -14,6 +14,7 @@ var secondary_slots = []
 # Hacks for wonky models; ignore unless your model is wonky
 @export var bone_axis: Vector3 = Vector3(0,1,0)
 @export var elevation_axis: Vector3 = Vector3(0,0,1)
+@export var elevation_pivot_offset: Vector3 = Vector3(0,0,0)
 @export var bone_invert: bool = false
 @export var bone_offset = PI/2
 @export var traverse_degrees: int = 0
@@ -114,7 +115,7 @@ func _process(delta):
 		turret_bone,
 		Quaternion(bone_axis, _modify_aim(aim_pose.y))
 	)
-	$ElevationPivot.rotation = aim_pose.x * elevation_axis
+	$ElevationPivot.rotation = (aim_pose.x * elevation_axis) + elevation_pivot_offset
 	
 	if parent.core.camera:
 		var ray_result: Dictionary = project_ray()

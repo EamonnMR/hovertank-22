@@ -16,11 +16,11 @@ var VEHICLES = {
 		"scene": preload("res://entities/vehicles/hovertank.tscn"),
 		"desc": "A standard Warp Ranger choice."
 	},
-	"mecha": {
-		"name": "Cassidy Mech",
-		"scene": preload("res://entities/vehicles/Mecha.tscn"),
-		"desc": "Light, by giant robot standards."
-	},
+	#"mecha": {
+		#"name": "Cassidy Mech",
+		#"scene": preload("res://entities/vehicles/Mecha.tscn"),
+		#"desc": "Light, by giant robot standards."
+	#},
 	"tilter": {
 		"name": "Tilter Halftrack",
 		"scene": preload("res://entities/vehicles/Tilter.tscn"),

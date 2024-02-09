@@ -3,32 +3,32 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bynass2dk32dx"
-path="res://.godot/imported/bigwheel_recovered.dae-3dcab6ef0d70f65dac3a43fbf8727153.scn"
+uid="uid://tvj7q5k3kbjr"
+path="res://.godot/imported/bigwheel_recovered.glb-fc4a1e2db65ae0a5fc11e7cf76ea1002.scn"
 
 [deps]
 
-source_file="res://assets/eamonn/bigwheel/bigwheel_recovered.dae"
-dest_files=["res://.godot/imported/bigwheel_recovered.dae-3dcab6ef0d70f65dac3a43fbf8727153.scn"]
+source_file="res://assets/eamonn/bigwheel/bigwheel_recovered.glb"
+dest_files=["res://.godot/imported/bigwheel_recovered.glb-fc4a1e2db65ae0a5fc11e7cf76ea1002.scn"]
 
 [params]
 
-nodes/root_type="Node3D"
-nodes/root_name="Scene Root"
+nodes/root_type=""
+nodes/root_name=""
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
 meshes/ensure_tangents=true
 meshes/generate_lods=true
 meshes/create_shadow_meshes=true
-meshes/light_baking=0
-meshes/lightmap_texel_size=0.1
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
 meshes/force_disable_compression=false
 skins/use_named_skins=true
 animation/import=true
-animation/fps=15
+animation/fps=30
 animation/trimming=false
 animation/remove_immutable_tracks=true
 import_script/path=""
 _subresources={}
-gltf/naming_version=0
+gltf/naming_version=1
 gltf/embedded_image_handling=1
